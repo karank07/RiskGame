@@ -4,6 +4,7 @@
 package ca.concordia.risk.model;
 
 import java.util.Arrays;
+
 /**
  * @author Karan
  *
@@ -17,67 +18,82 @@ public class Country {
 	int yCo;
 	int continentID;
 	int owner;
-	int [] neighbours;
+	int[] neighbours;
+
 	/**
 	 * @return the neighbours
 	 */
-	public int [] getNeighbours() {
+	public int[] getNeighbours() {
 		return neighbours;
 	}
+
 	/**
 	 * @param neighbours the neighbours to set
 	 */
-	public void setNeighbours(int [] neighbours) {
-		
+	public void setNeighbours(int[] neighbours) {
+
 		this.neighbours = new int[neighbours.length];
 		this.neighbours = neighbours;
 	}
-	public Country(int countryNumber,String countryName,int continentID,int xCo,int yCo)
-	{
-		this.countryName=countryName;
-		this.countryNumber=countryNumber;
-		this.xCo=xCo;
-		this.yCo=yCo;
-		this.continentID=continentID;
+
+	public Country(int countryNumber, String countryName, int continentID, int xCo, int yCo) {
+		this.countryName = countryName;
+		this.countryNumber = countryNumber;
+		this.xCo = xCo;
+		this.yCo = yCo;
+		this.continentID = continentID;
 	}
+
 	String getCountryName() {
 		return countryName;
 	}
+
 	void setCountryName(String countryName) {
-		this.countryName=countryName;
+		this.countryName = countryName;
 	}
+
 	int getCountryNumber() {
 		return countryNumber;
 	}
+
 	void setCountryNumber(int countryNumber) {
-		this.countryNumber=countryNumber;
+		this.countryNumber = countryNumber;
 	}
+
 	int getXCo() {
 		return xCo;
 	}
+
 	void setXCo(int xCo) {
-		this.xCo=xCo;
+		this.xCo = xCo;
 	}
+
 	int getYCo() {
 		return yCo;
 	}
+
 	void setYCo(int yCo) {
-		this.yCo=yCo;
+		this.yCo = yCo;
 	}
+
 	int getContinentID() {
 		return continentID;
 	}
+
 	void setContinentID(int continentID) {
-		this.continentID=continentID;
+		this.continentID = continentID;
 	}
+
 	int getCountryOwner() {
 		return owner;
 	}
+
 	void setCountryOwner(int owner) {
-		this.owner=owner;
+		this.owner = owner;
 	}
-	
+
 	public String toString() {
-		return ""+countryNumber +" "+countryName+" "+ continentID +" "+xCo+" "+yCo+" "+Arrays.toString(this.getNeighbours());
+		return "" + countryNumber + " " + countryName + " " + continentID + " " + xCo + " " + yCo + " "
+				+ Arrays.toString(this.getNeighbours());
 	}
 }
