@@ -8,6 +8,10 @@ import javax.swing.*;
 
 import ca.concordia.risk.controller.MainClass;
 
+/**
+ * @author Karan
+ *
+ */
 public class Console implements ActionListener {
 	JTextField textField;
 	JButton button1, button2;
