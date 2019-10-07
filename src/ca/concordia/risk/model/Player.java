@@ -4,37 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This is a model class for a Player with member variables for id, name, countries, armies assigned and cards collected
+ * This is a model class for a Player with member variables for id, name,
+ * countries, armies assigned and cards collected
+ * 
  * @author Pranal
  *
  */
 
 public class Player {
-	
+
 	/**
 	 * @param playerId - for unique player id
 	 */
 	private int playerId;
-	
+
 	/**
 	 * @param playerName - for assigning name to the player
 	 */
 	private String playerName;
-	
+
 	/**
 	 * @param playerCountries - list of countries owned by the player
 	 */
 	private List<Country> playerCountries;
-	
+
 	/**
 	 * @param playerCards -list of cards the player possesses
 	 */
 	private List<Card> playerCards;
-	
+
 	/**
 	 * @param player Armies - total armies of the player
 	 */
 	private int playerTotalArmies = 0;
+
 	
 	/**
 	 * @param playerTotalCountries- total countries owner by a player 
@@ -50,8 +53,12 @@ public class Player {
 	 *@param cardExchangeCount- maintains a count of turns in which player has exchanged cards for armies 
 	 */
 	private int cardExchangeCount=0;
+
+
+
 	/**
 	 * Constructor to instantiate Player object
+	 * 
 	 * @param playerId
 	 * @param playerName
 	 */
@@ -62,7 +69,6 @@ public class Player {
 		this.playerCountries = new ArrayList<Country>();
 		this.playerCards = new ArrayList<Card>();
 	}
-	
 
 	/**
 	 * @return the playerId

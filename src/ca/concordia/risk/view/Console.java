@@ -17,7 +17,7 @@ public class Console implements ActionListener {
 	JButton button1, button2;
 	String fileName;
 	MainClass m;
-	
+
 	public void createConsole() {
 		m = new MainClass();
 		JFrame frame = new JFrame("Console");
@@ -40,33 +40,31 @@ public class Console implements ActionListener {
 
 	}
 
-	public void actionPerformed(ActionEvent e) {  
-	    String s1=textField.getText();
-	    String[] temp = new String[2];
-	    temp=s1.split(" ");
-	    if(e.getSource()==button1){  
-	        if(temp[0].contentEquals("loadmap"))
-	        {
-	        		fileName=temp[1];
-	        	    try {
-						m.readMapFile(fileName);
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+	public void actionPerformed(ActionEvent e) {
+		String s1 = textField.getText();
+		String[] temp = new String[2];
+		temp = s1.split(" ");
+		if (e.getSource() == button1) {
+			if (temp[0].contentEquals("loadmap")) {
+				fileName = temp[1];
+				try {
+					m.readMapFile(fileName);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			} else {
+				alert();
 			}
-	        else {
-    			alert();
-    		}
-	    }else if(e.getSource()==button2){  
-	    	System.exit(0);
-	    }  
-	    
+		} else if (e.getSource() == button2) {
+			System.exit(0);
+		}
+
 	}
 
 	public void alert() {
 		JFrame f = new JFrame();
-		
-		JOptionPane.showMessageDialog(f,"Wrong Input!");
+
+		JOptionPane.showMessageDialog(f, "Wrong Input!");
 	}
 }
