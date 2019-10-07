@@ -66,84 +66,84 @@ public class Country {
 	/**
 	 * @return the countryName
 	 */
-	String getCountryName() {
+	public String getCountryName() {
 		return countryName;
 	}
 
 	/**
 	 * @param countryName the countryName to set
 	 */
-	void setCountryName(String countryName) {
+	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
 
 	/**
 	 * @return the countryNumber
 	 */
-	int getCountryNumber() {
+	public int getCountryNumber() {
 		return countryNumber;
 	}
 
 	/**
 	 * @param countryNumber the countryNumber to set
 	 */
-	void setCountryNumber(int countryNumber) {
+	public void setCountryNumber(int countryNumber) {
 		this.countryNumber = countryNumber;
 	}
 
 	/**
 	 * @return the xCo- x coordinate
 	 */
-	int getXCo() {
+	public int getXCo() {
 		return xCo;
 	}
 
 	/**
 	 * @param xCo the xCoordinate to set
 	 */
-	void setXCo(int xCo) {
+	public void setXCo(int xCo) {
 		this.xCo = xCo;
 	}
 
 	/**
 	 * @return the yCo- y coordinate
 	 */
-	int getYCo() {
+	public int getYCo() {
 		return yCo;
 	}
 
 	/**
 	 * @param yCo the yCoordinate to set
 	 */
-	void setYCo(int yCo) {
+	public void setYCo(int yCo) {
 		this.yCo = yCo;
 	}
 
 	/**
 	 * @return the continentID
 	 */
-	int getContinentID() {
+	public int getContinentID() {
 		return continentID;
 	}
 
 	/**
 	 * @param continentID the continentID to set
 	 */
-	void setContinentID(int continentID) {
+	public void setContinentID(int continentID) {
 		this.continentID = continentID;
 	}
 
 	/**
 	 * @return the countryOwner
 	 */
-	int getCountryOwner() {
+	public int getCountryOwner() {
 		return owner;
 	}
 
 	/**
 	 * @param owner the owner to set
 	 */
-	void setCountryOwner(int owner) {
+	public void setCountryOwner(int owner) {
 		this.owner = owner;
 	}
 	
