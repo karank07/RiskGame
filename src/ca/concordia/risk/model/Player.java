@@ -41,7 +41,7 @@ public class Player {
 
 	
 	/**
-	 * @param playerTotalCountries- total countries owner by a player 
+	 * @param playerTotalCountries- total countries owned by a player 
 	 */
 	private int playerTotalCountries=0;
 	
