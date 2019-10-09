@@ -1,10 +1,13 @@
-package ca.concordia.risk.model;
+package ca.concordia.risk.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Player;
 
 
 /**
