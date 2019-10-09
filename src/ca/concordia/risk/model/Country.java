@@ -179,4 +179,13 @@ public class Country {
 		return "" + countryNumber + " " + countryName + " " + continentID + " " + xCo + " " + yCo + " "
 				+ Arrays.toString(this.getNeighbours());
 	}
+	
+	/**
+	 * 
+	 */
+	public void setOwnerArmy(int owner, int armies ) {
+		this.owner = owner;
+		this.countryArmy = armies;
+		
+	}
 }
