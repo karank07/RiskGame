@@ -25,7 +25,7 @@ public class MainClass {
 	FileReader file;
 	BufferedReader br;
 	List<String> continentString;
-	List<Continent> ContinentList;
+	List<Continent> continentList;
 	List<String> countryString;
 	List<Country> CountryList;
 	List<String> BorderString;
@@ -42,7 +42,7 @@ public class MainClass {
 		file = null;
 		br = null;
 		continentString = new ArrayList<String>();
-		ContinentList = new ArrayList<Continent>();
+		continentList = new ArrayList<Continent>();
 		countryString = new ArrayList<String>();
 		CountryList = new ArrayList<Country>();
 		BorderString = new ArrayList<String>();
@@ -66,7 +66,7 @@ public class MainClass {
 						continentString.add(fileData);
 						fileData = br.readLine();
 					}
-					stringToContinent(continentString, ContinentList);
+					stringToContinent(continentString, continentList);
 				} else if (fileData.equals("[countries]")) {
 					fileData = br.readLine();
 
@@ -102,20 +102,22 @@ public class MainClass {
 	 * @param continentString
 	 * @param ContinentList
 	 */
-	private static void stringToContinent(List<String> continentString, List<Continent> ContinentList) {
+	private static void stringToContinent(List<String> continentString, List<Continent> continentList) {
 		// TODO Auto-generated method stub
 		String[] temp = new String[3];
 
 		for (String obj : continentString) {
 
 			temp = obj.split(" ");
+
 			Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name, c_value, color
 			
-			ContinentList.add(objContinent);
+			continentList.add(objContinent);
+
 
 		}
 
-		for (Continent o : ContinentList) {
+		for (Continent o : continentList) {
 			System.out.println(o.toString());
 		}
 
@@ -167,4 +169,5 @@ public class MainClass {
 		}
 
 	}
+
 }
