@@ -43,6 +43,9 @@ public class Console implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String s1 = textField.getText();
 		String[] temp = new String[2];
+		String countryFrom;
+		String countryTo;
+		int numOfArmy;
 		temp = s1.split(" ");
 		if (e.getSource() == button1) {
 			if (temp[0].contentEquals("loadmap")) {
@@ -52,19 +55,27 @@ public class Console implements ActionListener {
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					alert("File Not Found!");
 				}
-			} else {
-				alert();
+			} else if(temp[0].contentEquals("fortify") && temp[1].contentEquals("none")) {
+				//next player turn
+				alert("Successfull! Next player turn!");
+			}else if(temp[0].contentEquals("fortify")){
+				countryFrom=temp[1];
+				countryTo=temp[2];
+				numOfArmy=Integer.parseInt(temp[3]);
+				m.setFortify(countryFrom, countryTo, numOfArmy);
 			}
+			else alert("Wrong Input!");
 		} else if (e.getSource() == button2) {
 			System.exit(0);
 		}
 
 	}
 
-	public void alert() {
+	public void alert(String arg) {
 		JFrame f = new JFrame();
-
-		JOptionPane.showMessageDialog(f, "Wrong Input!");
+		
+		JOptionPane.showMessageDialog(f, arg);
 	}
 }
