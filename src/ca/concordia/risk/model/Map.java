@@ -13,8 +13,8 @@ public class Map
 {
 	public static Map m_instance;
 	
-	private List<Country> countries;
-	private List<Continent> continents;
+	private static List<Country> countries;
+	private static List<Continent> continents;
 	private HashMap<Country, ArrayList<String>> territories;
 	
 	/**
@@ -22,14 +22,14 @@ public class Map
 	 */
 	private Map()
 	{
-		this.countries = new ArrayList<Country>();
-		this.continents = new ArrayList<Continent>();
+		Map.countries = new ArrayList<Country>();
+		Map.continents = new ArrayList<Continent>();
 		this.territories = new HashMap<Country, ArrayList<String>>();
 	}
 	
 	
 	/**
-	 * Only One intance of Map so Singleton
+	 * Only One instance of Map so Singleton
 	 * @return the instance of Map class
 	 */
 	public static Map getM_instance() {
@@ -45,7 +45,7 @@ public class Map
 	 * get the list of countries
 	 * @return the list of countries
 	 */
-	public List<Country> getCountries() {
+	public static List<Country> getCountries() {
 		return countries;
 	}
 
@@ -55,7 +55,7 @@ public class Map
 	 * @param countries the list of countries to set
 	 */
 	public void setCountries(List<Country> countries) {
-		this.countries = countries;
+		Map.countries = countries;
 	}
 
 	
@@ -63,7 +63,7 @@ public class Map
 	 * get the list of continents
 	 * @return the list of continents
 	 */
-	public List<Continent> getContinents() {
+	public static List<Continent> getContinents() {
 		return continents;
 	}
 
@@ -73,7 +73,7 @@ public class Map
 	 * @param continents the list of continents to set
 	 */
 	public void setContinents(List<Continent> continents) {
-		this.continents = continents;
+		Map.continents = continents;
 	}
 
 	
@@ -100,9 +100,9 @@ public class Map
 	 * @param cName the name of country to be searched
 	 * @return the country object matched with country name
 	 */
-	public Country getCountryByName(String cName)
+	public static Country getCountryByName(String cName)
 	{
-		for(Country c: this.countries)
+		for(Country c: Map.countries)
 		{
 			if((c.getCountryName()).equals(cName))
 			{
@@ -120,7 +120,7 @@ public class Map
 	 */
 	public Continent getContinentByName(String contName)
 	{
-		for(Continent cont: this.continents)
+		for(Continent cont: Map.continents)
 		{
 			if((cont.getContinentName()).equals(contName))
 			{
@@ -136,7 +136,7 @@ public class Map
 	 * @param continentName the name of continent whose countries are to be listed
 	 * @return list of countries in given continent name
 	 */
-	public List<Country> getCountriesByContinent(String continentName)
+	public static List<Country> getCountriesByContinent(String continentName)
 	{
 		List<Country> continentCountry=new ArrayList<>();
 		int continentIndex=0;
