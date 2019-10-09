@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 /**
@@ -51,6 +52,23 @@ public class StartUpPhase {
 
 	private void placeArmiesInitially() {
 		
+		int j = 0;
+		int playersLeftForAssign = numberOfPlayers;
+		while (playersLeftForAssign > 0) {
+			if (players.get(j % numberOfPlayers).getPlayerTotalArmies() > 0) {
+				Player p = players.get(j%numberOfPlayers);
+				List<Country> playerCountryList = getCountriesConqueredBy(p);
+				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
+				randomCountry.addCountryArmies(1);
+				p.setPlayerTotalArmies(p.getPlayerTotalArmies() - 1);
+				HashMap<String, Object> eventPayload = new HashMap<>();
+				eventPayload.put("countryName", randomCountry.getCountryName());
+				
+			} else {
+				playersLeftForAssign--;
+			}
+			j++;
+		}
 		
 	}
 
@@ -87,6 +105,10 @@ public class StartUpPhase {
 			player_country_map.put(p, cList);
 		}
 		cList.add(c);
+	}
+	
+	public List<Country> getCountriesConqueredBy(Player p) {
+		return player_country_map.get(p);
 	}
 	
 	
