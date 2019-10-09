@@ -1,6 +1,9 @@
 package ca.concordia.risk.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,7 +26,12 @@ public class StartUpPhase {
 	/**
 	 * @mapInstance an instance for the Map class
 	 */
-	private Map mapInstance;
+	private ca.concordia.risk.model.Map mapInstance;
+	
+	/**
+	 * 
+	 */
+	private Map<Player, List<Country>> player_country_map;
 	
 	/**
 	 * Constructor for the StartUpPhase
@@ -31,7 +39,7 @@ public class StartUpPhase {
 	 */
 	public void StartUpPhase(int numberOfPlayers) {
 		
-		mapInstance= Map.getM_instance();
+		mapInstance= ca.concordia.risk.model.Map.getM_instance();
 		for(int i=1; i<= numberOfPlayers; i++)
 		{
 			players.add(new Player(i,"Player" +i));
@@ -51,11 +59,38 @@ public class StartUpPhase {
 	 */
 	private void populateCountries() {
 		
+		int j = 0;
+		for (Country country : mapInstance.getCountries()) {
+			Player player = players.get(j % numberOfPlayers);
+			setNewCountryRuler(player, country, 1);
+			player.remArmies(1);
+			HashMap<String, Object> countryPopulated = new HashMap<>();
+			countryPopulated.put("countryName", country.getCountryName());
+			j++;	
+		}
+			
+	}
 		
-		
-		
+	private boolean setNewCountryRuler(Player pl, Country co, int armies) {
+		if (co.getCountryArmy() != 0)
+			return false;
+			co.setOwnerArmy(pl.getPlayerId(),armies);
+			mapPlayerToCountry(pl, co);
+			return true;	
+			
+		}
+	
+	public void mapPlayerToCountry(Player p, Country c) {
+		List<Country> cList = player_country_map.get(p);
+		if (cList == null) {
+			cList = new ArrayList<>();
+			player_country_map.put(p, cList);
+		}
+		cList.add(c);
 	}
 	
 	
 
 }
+
+	
