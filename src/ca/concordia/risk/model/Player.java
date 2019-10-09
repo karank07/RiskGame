@@ -37,6 +37,7 @@ public class Player {
 	 * @param player Armies - total armies of the player
 	 */
 	private int playerTotalArmies = 0;
+	
 
 	
 	/**
@@ -137,6 +138,26 @@ public class Player {
 	public void setPlayerTotalArmies(int playerTotalArmies) {
 		this.playerTotalArmies = playerTotalArmies;
 	}
+	
+	/**
+	 * @param addN number of armies to be added
+	 *
+	 */
+	public void addArmies(int addN)
+	{
+		this.playerTotalArmies+= addN;
+	}
+	
+	/**
+	 * @param n armies dedeucted from total
+	 *
+	 */
+	public void remArmies(int n)
+	{
+		this.playerTotalArmies-= n;
+	}
+	
+	
 	/**
 	 * @return total countries the player own
 	 */
