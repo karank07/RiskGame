@@ -109,11 +109,8 @@ public class MainClass {
 		for (String obj : continentString) {
 
 			temp = obj.split(" ");
-			Continent objContinent = new Continent();
-			objContinent.setContinentName(temp[0]);
-
-			objContinent.setContinentControlValue(Integer.parseInt(temp[1]));
-			objContinent.setContinentColor(temp[2]);
+			Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name, c_value, color
+			
 			ContinentList.add(objContinent);
 
 		}

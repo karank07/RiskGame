@@ -99,7 +99,7 @@ public class Map
 	 * @param cName the name of country to be searched
 	 * @return the country object matched with country name
 	 */
-	public Country getCountryByName(String cName)
+	public static Country getCountryByName(String cName)
 	{
 		for(Country c: Map.countries)
 		{
