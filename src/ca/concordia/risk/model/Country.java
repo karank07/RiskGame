@@ -45,8 +45,17 @@ public class Country {
 	 * @param neigbours - list of neighbouring countries
 	 */
 	private int[] neighbours;
-
 	
+	int countryArmy=0;
+	
+	public int getCountryArmy() {
+		return countryArmy;
+	}
+
+	public void setCountryArmy(int countryArmy) {
+		this.countryArmy = countryArmy;
+	}
+
 	/**
 	 * Constructor to instantiate Country object
 	 * @param countryNumber
@@ -162,7 +171,6 @@ public class Country {
 		this.neighbours = new int[neighbours.length];
 		this.neighbours = neighbours;
 	}
-
 
 	/**
 	 * 
