@@ -54,8 +54,6 @@ public class Player {
 	 */
 	private int cardExchangeCount=0;
 
-
-
 	/**
 	 * Constructor to instantiate Player object
 	 * 
