@@ -28,7 +28,7 @@ public class Map
 	
 	
 	/**
-	 * Only One intance of Map so Singleton
+	 * Only One instance of Map so Singleton
 	 * @return the instance of Map class
 	 */
 	public static Map getM_instance() {
