@@ -12,6 +12,7 @@ import java.util.List;
 
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Player;
 import ca.concordia.risk.view.Console;
 
 /**
@@ -29,10 +30,13 @@ public class MainClass {
 	List<String> countryString;
 	List<Country> CountryList;
 	List<String> BorderString;
-
+	FortificationPhase fp;
+	List<Player> playerList;
+	static Console c;
+	static Player currentPlayer;
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		Console c = new Console();
+		new MainClass();
 		c.createConsole();
 
 	}
@@ -46,7 +50,8 @@ public class MainClass {
 		countryString = new ArrayList<String>();
 		CountryList = new ArrayList<Country>();
 		BorderString = new ArrayList<String>();
-
+		c = new Console();
+		fp=new FortificationPhase();
 	}
 
 	public void readMapFile(String fileName) throws IOException {
@@ -168,6 +173,24 @@ public class MainClass {
 
 		}
 
+	}
+	public void setFortify(String from,String to,int army)
+	{
+		Country countryTo=null,countryFrom=null;
+		for(Country obj:CountryList)
+		{
+			
+			if(obj.getCountryName().equals(from))
+			{
+				countryFrom=obj;
+			}
+			if(obj.getCountryName().equals(to))
+			{
+				 countryTo=obj;
+			}
+			
+		}
+		fp.fortify(countryFrom, countryTo, currentPlayer.getPlayerId(), army);
 	}
 
 }
