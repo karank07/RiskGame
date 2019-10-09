@@ -3,6 +3,7 @@ package ca.concordia.risk.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 /**
  * This class parses the map file and create countries, territories, continents and neighboring countries.
  * @author dhruv
