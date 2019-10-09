@@ -188,4 +188,23 @@ public class Country {
 		this.countryArmy = armies;
 		
 	}
+	
+	
+	/**
+	 * @param addN number of armies to be added
+	 *
+	 */
+	public void addCountryArmies(int addN)
+	{
+		this.countryArmy+= addN;
+	}
+	
+	/**
+	 * @param n armies deducted from total
+	 *
+	 */
+	public void remCountryArmies(int n)
+	{
+		this.countryArmy-= n;
+	}
 }
