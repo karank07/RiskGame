@@ -149,7 +149,7 @@ public class Player {
 	}
 	
 	/**
-	 * @param n armies dedeucted from total
+	 * @param n armies deducted from total
 	 *
 	 */
 	public void remArmies(int n)
