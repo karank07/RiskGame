@@ -4,6 +4,7 @@
 package ca.concordia.risk.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Karan
@@ -206,5 +207,17 @@ public class Country {
 	public void remCountryArmies(int n)
 	{
 		this.countryArmy-= n;
+	}
+	
+	
+	/**
+	 * Get the continent name of country
+	 * @return returns the continent name of the country.
+	 */	
+	public String getContinentName()							//added by dhruv
+	{
+		List<Continent> continents = Map.getContinents();
+		
+		return continents.get(continentID).getContinentName();
 	}
 }
