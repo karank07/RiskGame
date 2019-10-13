@@ -4,6 +4,7 @@
 package ca.concordia.risk.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Karan
@@ -179,5 +180,45 @@ public class Country {
 	public String toString() {
 		return "" + countryNumber + " " + countryName + " " + continentID + " " + xCo + " " + yCo + " "
 				+ Arrays.toString(this.getNeighbours());
+	}
+	
+	/**
+	 * 
+	 */
+	public void setOwnerArmy(int owner, int armies ) {
+		this.owner = owner;
+		this.countryArmy = armies;
+		
+	}
+	
+	
+	/**
+	 * @param addN number of armies to be added
+	 *
+	 */
+	public void addCountryArmies(int addN)
+	{
+		this.countryArmy+= addN;
+	}
+	
+	/**
+	 * @param n armies deducted from total
+	 *
+	 */
+	public void remCountryArmies(int n)
+	{
+		this.countryArmy-= n;
+	}
+	
+	
+	/**
+	 * Get the continent name of country
+	 * @return returns the continent name of the country.
+	 */	
+	public String getContinentName()							//added by dhruv
+	{
+		List<Continent> continents = Map.getContinents();
+		
+		return continents.get(continentID).getContinentName();
 	}
 }

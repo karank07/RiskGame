@@ -147,16 +147,13 @@ public class ReinforcementPhase {
 					}
 				}
 				
-				
+					
 			}
 			else {
 				System.out.println("display msg that entered countr name is not valid");
 			}
-			
-			
+	
 		}
-		
-		
 		
 	}
 

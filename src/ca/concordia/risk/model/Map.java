@@ -3,6 +3,7 @@ package ca.concordia.risk.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 /**
  * This class parses the map file and create countries, territories, continents and neighboring countries.
  * @author dhruv
@@ -28,7 +29,7 @@ public class Map
 	
 	
 	/**
-	 * Only One intance of Map so Singleton
+	 * Only One instance of Map so Singleton
 	 * @return the instance of Map class
 	 */
 	public static Map getM_instance() {

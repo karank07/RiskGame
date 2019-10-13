@@ -34,13 +34,12 @@ public class MainClass {
 	List<Country> CountryList;
 	List<String> BorderString;
 	FortificationPhase fp;
+	ReinforcementPhase rp;
 	List<Player> playerList;
 	
 	static Console c;
 	static Player currentPlayer;
-
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
+	public static void main(String[] a) throws Exception {
 		new MainClass();
 		c.createConsole();
 
@@ -56,7 +55,9 @@ public class MainClass {
 		CountryList = new ArrayList<Country>();
 		BorderString = new ArrayList<String>();
 		c = new Console();
-		fp = new FortificationPhase();
+		fp= new FortificationPhase();
+		rp = new ReinforcementPhase();
+		
 	}
 
 	public void readMapFile(String fileName) throws IOException {
@@ -193,5 +194,12 @@ public class MainClass {
 		}
 		fp.fortify(countryFrom, countryTo, currentPlayer.getPlayerId(), army);
 	}
+	
+	public void setReinforce() {
+		rp.beginReinforcement(currentPlayer);
+	}
+	
+	
+	
 
 }

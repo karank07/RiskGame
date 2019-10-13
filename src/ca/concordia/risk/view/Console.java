@@ -65,8 +65,12 @@ public class Console implements ActionListener {
 				countryTo = temp[2];
 				numOfArmy = Integer.parseInt(temp[3]);
 				m.setFortify(countryFrom, countryTo, numOfArmy);
-			} else
-				alert("Wrong Input!");
+			}
+			else if(temp[0].contentEquals("reinforce")) {
+				m.setReinforce();
+				
+			}
+			else alert("Wrong Input!");
 		} else if (e.getSource() == button2) {
 			System.exit(0);
 		}
