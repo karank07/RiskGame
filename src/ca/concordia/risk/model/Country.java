@@ -15,39 +15,39 @@ public class Country {
 	 * @param countryName - for assigning name to Country
 	 */
 	private String countryName;
-	
+
 	/**
 	 * @param countryNumber - for unique Country Number
 	 */
 	private int countryNumber;
-	
+
 	/**
 	 * @param xCo - x coordinate to plot on map
 	 */
 	private int xCo;
-	
+
 	/**
 	 * @param yCo - y coordinate to plot on map
 	 */
 	private int yCo;
-	
+
 	/**
 	 * @param continentID - identify continent it belongs to
 	 */
 	private int continentID;
-	
+
 	/**
 	 * @param owner - PlayerID of country owner
 	 */
 	private int owner;
-	
+
 	/**
 	 * @param neigbours - list of neighbouring countries
 	 */
 	private int[] neighbours;
-	
-	int countryArmy=0;
-	
+
+	int countryArmy = 0;
+
 	public int getCountryArmy() {
 		return countryArmy;
 	}
@@ -58,6 +58,7 @@ public class Country {
 
 	/**
 	 * Constructor to instantiate Country object
+	 * 
 	 * @param countryNumber
 	 * @param countryName
 	 * @param continentID
@@ -155,7 +156,7 @@ public class Country {
 	public void setCountryOwner(int owner) {
 		this.owner = owner;
 	}
-	
+
 	/**
 	 * @return the neighbours
 	 */

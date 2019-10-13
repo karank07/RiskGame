@@ -57,16 +57,16 @@ public class Console implements ActionListener {
 					e1.printStackTrace();
 					alert("File Not Found!");
 				}
-			} else if(temp[0].contentEquals("fortify") && temp[1].contentEquals("none")) {
-				//next player turn
+			} else if (temp[0].contentEquals("fortify") && temp[1].contentEquals("none")) {
+				// next player turn
 				alert("Successfull! Next player turn!");
-			}else if(temp[0].contentEquals("fortify")){
-				countryFrom=temp[1];
-				countryTo=temp[2];
-				numOfArmy=Integer.parseInt(temp[3]);
+			} else if (temp[0].contentEquals("fortify")) {
+				countryFrom = temp[1];
+				countryTo = temp[2];
+				numOfArmy = Integer.parseInt(temp[3]);
 				m.setFortify(countryFrom, countryTo, numOfArmy);
-			}
-			else alert("Wrong Input!");
+			} else
+				alert("Wrong Input!");
 		} else if (e.getSource() == button2) {
 			System.exit(0);
 		}
@@ -75,7 +75,7 @@ public class Console implements ActionListener {
 
 	public void alert(String arg) {
 		JFrame f = new JFrame();
-		
+
 		JOptionPane.showMessageDialog(f, arg);
 	}
 }

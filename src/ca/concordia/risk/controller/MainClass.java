@@ -26,14 +26,19 @@ public class MainClass {
 	FileReader file;
 	BufferedReader br;
 	List<String> continentString;
+	/**
+	 * 
+	 */
 	List<Continent> continentList;
 	List<String> countryString;
 	List<Country> CountryList;
 	List<String> BorderString;
 	FortificationPhase fp;
 	List<Player> playerList;
+	
 	static Console c;
 	static Player currentPlayer;
+
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		new MainClass();
@@ -51,7 +56,7 @@ public class MainClass {
 		CountryList = new ArrayList<Country>();
 		BorderString = new ArrayList<String>();
 		c = new Console();
-		fp=new FortificationPhase();
+		fp = new FortificationPhase();
 	}
 
 	public void readMapFile(String fileName) throws IOException {
@@ -116,9 +121,8 @@ public class MainClass {
 			temp = obj.split(" ");
 
 			Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name, c_value, color
-			
-			continentList.add(objContinent);
 
+			continentList.add(objContinent);
 
 		}
 
@@ -174,21 +178,18 @@ public class MainClass {
 		}
 
 	}
-	public void setFortify(String from,String to,int army)
-	{
-		Country countryTo=null,countryFrom=null;
-		for(Country obj:CountryList)
-		{
-			
-			if(obj.getCountryName().equals(from))
-			{
-				countryFrom=obj;
+
+	public void setFortify(String from, String to, int army) {
+		Country countryTo = null, countryFrom = null;
+		for (Country obj : CountryList) {
+
+			if (obj.getCountryName().equals(from)) {
+				countryFrom = obj;
 			}
-			if(obj.getCountryName().equals(to))
-			{
-				 countryTo=obj;
+			if (obj.getCountryName().equals(to)) {
+				countryTo = obj;
 			}
-			
+
 		}
 		fp.fortify(countryFrom, countryTo, currentPlayer.getPlayerId(), army);
 	}
