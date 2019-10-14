@@ -48,7 +48,8 @@ public class Console implements ActionListener {
 		int numOfArmy;
 		temp = s1.split(" ");
 		if (e.getSource() == button1) {
-			if (temp[0].contentEquals("loadmap")) {
+			switch (temp[0]) {
+			case "loadmap":
 				fileName = temp[1];
 				try {
 					m.readMapFile(fileName);
@@ -57,20 +58,43 @@ public class Console implements ActionListener {
 					e1.printStackTrace();
 					alert("File Not Found!");
 				}
-			} else if (temp[0].contentEquals("fortify") && temp[1].contentEquals("none")) {
-				// next player turn
-				alert("Successfull! Next player turn!");
-			} else if (temp[0].contentEquals("fortify")) {
-				countryFrom = temp[1];
-				countryTo = temp[2];
-				numOfArmy = Integer.parseInt(temp[3]);
-				m.setFortify(countryFrom, countryTo, numOfArmy);
-			}
-			else if(temp[0].contentEquals("reinforce")) {
+				break;
+			case "gameplayer":
+				switch (temp[1]) {
+				case "-add":
+					m.addPlayer(temp[2]);
+					break;
+				case "-remove":
+					m.removePlayer(temp[2]);
+					break;
+				}
+				break;
+			case "populatecountries":
+				m.populateCountries();
+				break;
+			case "placearmy":
+				m.placeArmyByCountry(temp[1]);
+				break;
+			case "placeall":
+				m.placeAll();
+				break;
+			case "fortify":
+				if (temp[1].contentEquals("none")) {
+					alert("Successfull! Next player turn!");
+				} else {
+					countryFrom = temp[1];
+					countryTo = temp[2];
+					numOfArmy = Integer.parseInt(temp[3]);
+					m.setFortify(countryFrom, countryTo, numOfArmy);
+				}
+				break;
+			case "reinforce":
 				m.setReinforce();
-				
+				break;
+			default:
+				alert("Wrong Input!");
 			}
-			else alert("Wrong Input!");
+
 		} else if (e.getSource() == button2) {
 			System.exit(0);
 		}
