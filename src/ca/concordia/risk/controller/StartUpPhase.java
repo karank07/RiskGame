@@ -84,7 +84,6 @@ public class StartUpPhase {
 
 		}
 	}
-
 	public void placeArmiesInitialRandom() {
 
 		int j = 0;
@@ -135,14 +134,15 @@ public class StartUpPhase {
 		players.add(p);
 	}
 
+
 	public void removePlayer(String playerName) {
 		for(Player obj:players)
 		{
 			if(playerName.contentEquals(obj.getPlayerName()))
 			{
 				players.remove(obj.getPlayerId());
-				playerCount--;
 			}
 		}
 	}
 }
+
