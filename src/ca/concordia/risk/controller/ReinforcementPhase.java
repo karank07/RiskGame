@@ -21,7 +21,7 @@ public class ReinforcementPhase {
 	public static final String CAVALRY = "Cavalry";
 	public static final String ARTILLERY = "Artillery";
 
-	static List<Country>[] set_of_contries = new ArrayList[Map.getContinents().size()];
+	static ArrayList<ArrayList<Country>> set_of_contries;// = new ArrayList<Country>(Map.getContinents().size());
 	static ArrayList<Continent> name_of_continents = new ArrayList<Continent>();
 
 	/**
@@ -39,7 +39,7 @@ public class ReinforcementPhase {
 
 		// 2nd rule: check if player owns all countries of any of the continents
 		for (int i = 0; i < Map.getContinents().size(); i++) {
-			if (player.getPlayerCountries().equals(set_of_contries[i])) {
+			if (player.getPlayerCountries().equals(set_of_contries.get(i))) {
 				player.setPlayerReinforceArmy(
 						player.getPlayerReinforceArmy() + Map.getContinents().get(i).getContinentControlValue());
 
@@ -61,14 +61,15 @@ public class ReinforcementPhase {
 
 		name_of_continents = (ArrayList<Continent>) Map.getContinents();
 		for (int i = 0; i < Map.getContinents().size(); i++) {
-			set_of_contries[i] = new ArrayList<Country>();
-			set_of_contries[i] = Map.getCountriesByContinent(name_of_continents.get(i).toString());
+			set_of_contries.get(i).add((Country) Map.getCountriesByContinent(name_of_continents.get(i).toString()));
 		}
 
 	}
 
 	/**
-	 * Method to execute the 3rd rule: to exchange cards with army, and remove those cards from player's cardList
+	 * Method to execute the 3rd rule: to exchange cards with army, and remove those
+	 * cards from player's cardList
+	 * 
 	 * @param player
 	 * @param countryNameOfCards
 	 */
@@ -125,36 +126,36 @@ public class ReinforcementPhase {
 
 		// increase cardExchangeCount of player object
 		player.setCardExchangeCount(player.getCardExchangeCount() + 1);
-		
-		//command:- reinforce countryname number (number - army to be placed in that country)
+
+		// command:- reinforce countryname number (number - army to be placed in that
+		// country)
 		int currentlyUnplacedArmy = player.getPlayerReinforceArmy();
-		while(currentlyUnplacedArmy <= 0) {
-			
-			//take the country name from the GUI use DROPDOWN MENu
+		while (currentlyUnplacedArmy <= 0) {
+
+			// take the country name from the GUI use DROPDOWN MENu
 			String countryName = null;
-			
-			//check whether entered country name (through consol) is valid or not
-			if(countryBelongsToPlayer(player, countryName)) {
-				//int take number from GUI of how many army to placed in the selected country use DROPDOWN MENu
-				int armyNumber=0;
-				
-				//check whether entered country name (through consol) is valid or not
-				if(armyNumber<=currentlyUnplacedArmy) {
+
+			// check whether entered country name (through consol) is valid or not
+			if (countryBelongsToPlayer(player, countryName)) {
+				// int take number from GUI of how many army to placed in the selected country
+				// use DROPDOWN MENu
+				int armyNumber = 0;
+
+				// check whether entered country name (through consol) is valid or not
+				if (armyNumber <= currentlyUnplacedArmy) {
 					reinforceArmy(countryName, armyNumber);
 					currentlyUnplacedArmy--;
-					if(/*user press stop in GUI then break*/) {
-						break;
-					}
+					/*
+					 * if(user press stop in GUI then break) { break; }
+					 */
 				}
-				
-					
-			}
-			else {
+
+			} else {
 				System.out.println("display msg that entered countr name is not valid");
 			}
-	
+
 		}
-		
+
 	}
 
 	private boolean countryBelongsToPlayer(Player player, String countryName) {
