@@ -1,3 +1,5 @@
+package ca.concordia.risk.controller;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +67,6 @@ public class StartUpPhase {
 	}
 
 	public void placeArmyByCountryName(String counrtyName) {
-		int j = 0;
 		playerTurn++;
 		int playerId = playerTurn;
 		if (players.get(playerId).getPlayerTotalArmies() > 0) {
@@ -129,7 +130,7 @@ public class StartUpPhase {
 	}
 
 	public void addPlayer(String playerName) {
-
+		playerCount++;
 		Player p = new Player(playerCount, playerName);
 		players.add(p);
 	}
@@ -144,3 +145,4 @@ public class StartUpPhase {
 		}
 	}
 }
+
