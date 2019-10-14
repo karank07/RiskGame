@@ -84,7 +84,6 @@ public class StartUpPhase {
 
 		}
 	}
-
 	public void placeArmiesInitialRandom() {
 
 		int j = 0;
@@ -134,6 +133,7 @@ public class StartUpPhase {
 		Player p = new Player(playerCount, playerName);
 		players.add(p);
 	}
+
 
 	public void removePlayer(String playerName) {
 		for(Player obj:players)

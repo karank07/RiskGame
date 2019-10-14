@@ -16,7 +16,6 @@ public class Country {
 	 * @param countryName - for assigning name to Country
 	 */
 	private String countryName;
-
 	/**
 	 * @param countryNumber - for unique Country Number
 	 */
@@ -72,6 +71,7 @@ public class Country {
 		this.xCo = xCo;
 		this.yCo = yCo;
 		this.continentID = continentID;
+		
 	}
 
 	/**
