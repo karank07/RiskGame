@@ -127,35 +127,6 @@ public class ReinforcementPhase {
 		// increase cardExchangeCount of player object
 		player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-		// command:- reinforce countryname number (number - army to be placed in that
-		// country)
-		int currentlyUnplacedArmy = player.getPlayerReinforceArmy();
-		while (currentlyUnplacedArmy <= 0) {
-
-			// take the country name from the GUI use DROPDOWN MENu
-			String countryName = null;
-
-			// check whether entered country name (through consol) is valid or not
-			if (countryBelongsToPlayer(player, countryName)) {
-				// int take number from GUI of how many army to placed in the selected country
-				// use DROPDOWN MENu
-				int armyNumber = 0;
-
-				// check whether entered country name (through consol) is valid or not
-				if (armyNumber <= currentlyUnplacedArmy) {
-					reinforceArmy(countryName, armyNumber);
-					currentlyUnplacedArmy--;
-					/*
-					 * if(user press stop in GUI then break) { break; }
-					 */
-				}
-
-			} else {
-				System.out.println("display msg that entered countr name is not valid");
-			}
-
-		}
-
 	}
 
 	private boolean countryBelongsToPlayer(Player player, String countryName) {
@@ -170,10 +141,64 @@ public class ReinforcementPhase {
 	}
 
 	/**
+	 * function for command:- reinforce countryname number (number - army to be
+	 * placed in that country)
+	 * 
 	 * @param countryName
 	 * @param armyNumber
 	 */
-	private void reinforceArmy(String countryName, int armyNumber) {
+	public void reinforceArmy(Player player, String countryName, int armyNumber) {
+
+		int currentlyUnplacedArmy = player.getPlayerReinforceArmy();
+		while (currentlyUnplacedArmy <= 0) {
+
+			// take the country name from the GUI use DROPDOWN MENu
+			// String countryName = null;
+
+			// check whether entered country name (through consol) is valid or not
+			if (countryBelongsToPlayer(player, countryName)) {
+				// int take number from GUI of how many army to placed in the selected country
+				// use DROPDOWN MENu
+				// int armyNumber = 0;
+
+				// check whether entered country name (through consol) is valid or not
+				if (armyNumber <= currentlyUnplacedArmy) {
+					PlaceArmy(countryName, armyNumber);
+					currentlyUnplacedArmy--;
+					/*
+					 * if(user press stop in GUI then break) { break; }
+					 */
+				}
+
+			} else {
+				System.out.println("display msg that entered country name is not valid");
+			}
+
+		}
+
+		// TODO Auto-generated method stub
+		/*int correctContryNameFlag = 0;
+		//int counrtyIsOfPlayer = 0;
+		ArrayList<Country> player_country_list = (ArrayList<Country>) player.getPlayerCountries();
+
+		// check first that the entered countryname is even the void name or not
+		for (Country c : Map.getCountries()) {
+			if (c.getCountryName().equals(countryName)) {
+				correctContryNameFlag = 1;
+			}
+		}
+		Country country = Map.getCountryByName(countryName);
+
+		if (correctContryNameFlag == 1) {
+			// now check for whether the entered counry is the country of this playerr or
+			// not
+
+		}
+		country.setCountryArmy(armyNumber);
+		*/
+	}
+
+	private void PlaceArmy(String countryName, int armyNumber) {
 		// TODO Auto-generated method stub
 		Country country = Map.getCountryByName(countryName);
 		country.setCountryArmy(armyNumber);
