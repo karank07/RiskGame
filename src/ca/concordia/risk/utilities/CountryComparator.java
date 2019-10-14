@@ -2,26 +2,23 @@ package ca.concordia.risk.utilities;
 
 import java.util.Comparator;
 
-import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
-import ca.concordia.risk.model.Map;
+
 
 /**
- * Class CountryComparator for comparing two countries
+ * Class CountryComparator compares two countries 
  * @author dhruv
  */
 public class CountryComparator implements Comparator<Country>{
 
 	/**
-	 * method for comparing countries
-	 * @param c1 ,c2
+	 * This method compares two country objects
+	 * @param c1 country object 1
+	 * @param c2 country object 2
+	 * @return integer is returned according to country comparison
 	 */
 
 	@Override
-	/**
-	 * This method compares two countries
-	 * return c integer 
-	 */
 	public int compare(Country c1, Country c2) {
 		
 		int c=-1;

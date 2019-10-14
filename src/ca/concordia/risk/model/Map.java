@@ -1,7 +1,6 @@
 package ca.concordia.risk.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -11,11 +10,10 @@ import java.util.List;
 
 public class Map
 {
-	public static Map m_instance;
+	public static Map m_instance=null;
 	
 	private static List<Country> countries;
 	private static List<Continent> continents;
-	private HashMap<Country, ArrayList<String>> territories;
 	
 	/**
 	 * Default Constructor
@@ -24,7 +22,6 @@ public class Map
 	{
 		Map.countries = new ArrayList<Country>();
 		Map.continents = new ArrayList<Continent>();
-		this.territories = new HashMap<Country, ArrayList<String>>();
 	}
 	
 	
@@ -77,22 +74,7 @@ public class Map
 	}
 
 	
-	/**
-	 * get the list of territories
-	 * @return territories the list of territories
-	 */
-	public HashMap<Country, ArrayList<String>> getTerritories() {
-		return territories;
-	}
 	
-	
-	/**
-	 * sets the territories
-	 * @param territories
-	 */
-	public void setTerritories(HashMap<Country, ArrayList<String>> territories) {
-		this.territories = territories;
-	}
 	
 	
 	/**
@@ -171,10 +153,7 @@ public class Map
 	{
 		List<Country> neighbourCountry= new ArrayList<>();
 		
-		for(String neighbourC: territories.get(country))
-		{
-			neighbourCountry.add(getCountryByName(neighbourC));
-		}
+		//Implementation left
 		return neighbourCountry;
 	}
 	
