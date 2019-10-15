@@ -15,7 +15,7 @@ public class Map
 	
 	private List<Country> countries;
 	private List<Continent> continents;
-	private HashMap<Integer, ArrayList<Integer>> borders;
+	private List<ArrayList<String>> borders;
 	/**
 	 * Default Constructor
 	 */
@@ -23,6 +23,7 @@ public class Map
 	{
 		countries = new ArrayList<Country>();
 		continents = new ArrayList<Continent>();
+		borders= new ArrayList<ArrayList<String>>();
 	}
 	
 	
@@ -75,12 +76,12 @@ public class Map
 	}
 
 	
-	public HashMap<Integer, ArrayList<Integer>> getBorders() {
+	public List<ArrayList<String>> getBorders() {
 		return borders;
 	}
 
 
-	public void setBorders(HashMap<Integer, ArrayList<Integer>> borders) {
+	public void setBorders(List<ArrayList<String>> borders) {
 		this.borders = borders;
 	}
 
