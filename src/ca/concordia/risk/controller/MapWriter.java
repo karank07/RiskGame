@@ -1,0 +1,83 @@
+package ca.concordia.risk.controller;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import ca.concordia.risk.model.Continent;
+import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Map;
+import ca.concordia.risk.utilities.CountryComparator;
+import ca.concordia.risk.utilities.GameConstants;
+
+public class MapWriter{
+	
+	/**
+	 * This method writes the map details to the map file.
+	 * @param map object of the map which is being processed
+	 * @param file file path
+	 */
+	public void writeMapFile(Map map, File file) {
+		
+		FileWriter fileWriter;
+		try {
+			if (map == null) {
+				System.out.println("Map Object is NULL!");
+			}
+			
+			String content = parseMapAndReturn(map);
+			fileWriter = new FileWriter(file, false);
+			fileWriter.write(content);
+			fileWriter.close();
+			
+		}catch (IOException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * This method processes the map and makes a string to be written in the map file.
+	 * @param map object of the map which is being processed
+	 * @return List of String to be written in the map file
+	 */
+	private String parseMapAndReturn(Map map)
+	{
+		List<String> lines=new ArrayList<String>();
+		
+		lines.add(GameConstants.CONTINENT_HEADER);
+		
+		for(Continent c: map.getContinents())
+		{
+			lines.add(c.getContinentName() + " " + c.getContinentControlValue() + " " + c.getContinentColor());
+		}
+		
+		lines.add(GameConstants.NEW_LINE);
+		
+		lines.add(GameConstants.COUNTRIES_HEADER);
+		
+		List<Country> countries= map.getCountries();
+		Collections.sort(countries, new CountryComparator());
+		
+		
+		for(Country cn: countries)
+		{
+			StringBuffer strbuf=new StringBuffer();
+			strbuf.append(cn.getCountryNumber() + " " + cn.getCountryName() + " " + cn.getContinentID() + " " + cn.getXCo() + " " + cn.getYCo());
+			lines.add(strbuf.toString());
+		}
+		
+		lines.add(GameConstants.BORDERS_HEADER);
+		
+		for(Country coun: countries)
+		{
+			lines.add(coun.getNeighbours().toString());
+		}
+		
+		return lines.toString();
+	}
+	
+}

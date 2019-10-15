@@ -45,59 +45,6 @@ public class MapService {
 	}
 	
 	
-	/**
-	 * Creates a new Map File
-	 * @param saveFilePath the path of the file to be saved.
-	 */
-	public void createMap(String saveFilePath)
-	{
-		Map map= Map.getM_instance();
-		
-		List<String> lines=new ArrayList<String>();
-		
-		lines.add(GameConstants.CONTINENT_HEADER);
-		
-		for(Continent c: map.getContinents())
-		{
-			lines.add(c.getContinentName() + " " + c.getContinentControlValue() + " " + c.getContinentColor());
-		}
-		
-		lines.add(GameConstants.NEW_LINE);
-		
-		lines.add(GameConstants.COUNTRIES_HEADER);
-		
-		List<Country> countries= Map.getCountries();
-		Collections.sort(countries, new CountryComparator());
-		
-		
-		for(Country cn: countries)
-		{
-			StringBuffer strbuf=new StringBuffer();
-			strbuf.append(cn.getCountryNumber() + " " + cn.getCountryName() + " " + cn.getContinentID() + " " + cn.getXCo() + " " + cn.getYCo());
-			lines.add(strbuf.toString());
-		}
-		
-		lines.add(GameConstants.BORDERS_HEADER);
-		
-		for(Country coun: countries)
-		{
-			lines.add(coun.getNeighbours().toString());
-		}
-		
-		
-		Path path=Paths.get(saveFilePath);
-		
-		try 
-		{
-			Files.write(path, lines,StandardOpenOption.CREATE);
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		
-	}
-	
 	
 	/**
 	 * This method loads map file
