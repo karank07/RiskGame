@@ -204,7 +204,9 @@ public class Player {
 	public void setCardExchangeCount(int cardExchangeCount) {
 		this.cardExchangeCount = cardExchangeCount;
 	}
-	
+	public String toString() {
+		return playerId + " "+playerName;
+	}
 	/**
 	 * sets initial value of total armies owner by the player
 	 */

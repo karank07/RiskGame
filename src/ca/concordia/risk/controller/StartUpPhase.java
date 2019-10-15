@@ -132,6 +132,7 @@ public class StartUpPhase {
 		playerCount++;
 		Player p = new Player(playerCount, playerName);
 		players.add(p);
+		System.out.println(p.toString());
 	}
 
 

@@ -38,7 +38,8 @@ public class MainClass {
 	List<Player> playerList;
 
 	static Console c;
-	static Player currentPlayer;
+	int currentPlayer=0;
+	static String phase;
 
 	public static void main(String[] a) throws Exception {
 		new MainClass();
@@ -57,57 +58,8 @@ public class MainClass {
 		BorderString = new ArrayList<String>();
 		c = new Console();
 		fp = new FortificationPhase();
-		//rp = new ReinforcementPhase();
+		rp = new ReinforcementPhase();
 		sp = new StartUpPhase();
-
-	}
-
-	public void readMapFile(String fileName) throws IOException {
-		fileName = "D:\\Project\\RiskGame\\maps\\" + fileName + ".map";
-
-		try {
-			file = new FileReader(fileName);
-			br = new BufferedReader(file);
-
-			while (fileData != null) {
-				fileData = br.readLine();
-
-				if (fileData.equals("[continents]")) {
-					fileData = br.readLine();
-
-					while (!fileData.isEmpty()) {
-						continentString.add(fileData);
-						fileData = br.readLine();
-					}
-					stringToContinent(continentString, continentList);
-				} else if (fileData.equals("[countries]")) {
-					fileData = br.readLine();
-
-					while (!fileData.isEmpty()) {
-						countryString.add(fileData);
-						fileData = br.readLine();
-					}
-					stringToCountry(countryString, CountryList);
-				} else if (fileData.equals("[borders]")) {
-					fileData = br.readLine();
-
-					while (fileData != null) {
-						BorderString.add(fileData);
-						fileData = br.readLine();
-					}
-
-					setNeigbourCountry(CountryList, BorderString);
-					break;
-				}
-			}
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			br.close();
-			file.close();
-		}
 
 	}
 
@@ -182,7 +134,102 @@ public class MainClass {
 
 	}
 
-	public void setFortify(String from, String to, int army) {
+	private void readMapFile(String fileName) throws IOException {
+		if (!phase.contentEquals("loadmap"))
+			return;
+		fileName = "D:\\Project\\RiskGame\\maps\\" + fileName + ".map";
+
+		try {
+			file = new FileReader(fileName);
+			br = new BufferedReader(file);
+
+			while (fileData != null) {
+				fileData = br.readLine();
+
+				if (fileData.equals("[continents]")) {
+					fileData = br.readLine();
+
+					while (!fileData.isEmpty()) {
+						continentString.add(fileData);
+						fileData = br.readLine();
+					}
+					stringToContinent(continentString, continentList);
+				} else if (fileData.equals("[countries]")) {
+					fileData = br.readLine();
+
+					while (!fileData.isEmpty()) {
+						countryString.add(fileData);
+						fileData = br.readLine();
+					}
+					stringToCountry(countryString, CountryList);
+				} else if (fileData.equals("[borders]")) {
+					fileData = br.readLine();
+
+					while (fileData != null) {
+						BorderString.add(fileData);
+						fileData = br.readLine();
+					}
+
+					setNeigbourCountry(CountryList, BorderString);
+					break;
+				}
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			br.close();
+			file.close();
+		}
+
+		phase = "gameplayer";
+
+	}
+
+	private void addPlayer(String playerName) {
+		if (!phase.contentEquals("gameplayer"))
+			return;
+		sp.addPlayer(playerName);
+		
+	}
+
+	private void removePlayer(String playerName) {
+		if (!phase.contentEquals("gameplayer"))
+			return;
+		sp.removePlayer(playerName);
+	}
+
+	private void populateCountries() {
+		if (!phase.contentEquals("populatecountries"))
+			return;
+		sp.populateCountries();
+		phase = "placearmy";
+	}
+
+	private void placeAll() {
+		if (!phase.contentEquals("placearmy"))
+			return;
+		sp.placeArmiesInitialRandom();
+	}
+
+	private void placeArmyByCountry(String cName) {
+		if (!phase.contentEquals("placearmy"))
+			return;
+		sp.placeArmyByCountryName(cName);
+	}
+
+	private void setReinforce(String countryName, int armyNumber) {
+		if (!phase.contentEquals("reinforce"))
+			return;
+		rp.beginReinforcement(playerList.get(currentPlayer));
+		rp.reinforceArmy(playerList.get(currentPlayer), countryName, armyNumber);
+		phase="fortify";
+	}
+
+	private void setFortify(String from, String to, int army) {
+		if (!phase.contentEquals("fortify"))
+			return;
 		Country countryTo = null, countryFrom = null;
 		for (Country obj : CountryList) {
 
@@ -194,31 +241,77 @@ public class MainClass {
 			}
 
 		}
-		fp.fortify(countryFrom, countryTo, currentPlayer.getPlayerId(), army);
+		fp.fortify(countryFrom, countryTo, playerList.get(currentPlayer).getPlayerId(), army);
 	}
 
-	public void setReinforce() {
-		rp.beginReinforcement(currentPlayer);
-	}
+	public boolean phaseDecider(String s1) {
+		String[] temp = new String[3];
+		temp = s1.split(" ");
+		for(int i=0;i<temp.length;i++)
+		{
+			temp[i]=temp[i].toLowerCase();
+		}
+		boolean gamePlayerSet=false;
+		boolean placeArmyFlag=false;
+		boolean errorFlag = false;
 
-	public void placeAll() {
-		sp.placeArmiesInitialRandom();
-	}
+		switch (temp[0]) {
+		case "loadmap":
+			phase = "loadmap";
+			fileName = temp[1];
+			try {
+				readMapFile(fileName);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				// set flag for alert("File Not Found!");
+				errorFlag = true;
+			}
+			break;
+		case "gameplayer":
+			for (int i = 1; i < temp.length; i++) {
+				if (temp[i].contentEquals("-add")) {
+					addPlayer(temp[i + 1]);
+				} else if (temp[i].contentEquals("-remove")) {
+					removePlayer(temp[i + 1]);
+				}
+			}
+			if(!playerList.isEmpty())
+				gamePlayerSet=true;
+			break;
+		case "populatecountries":
+			if(gamePlayerSet)
+				phase = "populatecountries";
+			populateCountries();
+			break;
+		case "placearmy":
+			placeArmyByCountry(temp[1]);
+			if(playerList.get(currentPlayer).getPlayerTotalArmies()==0)
+				placeArmyFlag=true;
+			break;
+		case "placeall":
+			placeAll();
+			if(playerList.get(currentPlayer).getPlayerTotalArmies()==0)
+				placeArmyFlag=true;
+			break;
+		case "reinforce":
+			if(placeArmyFlag)
+				phase="reinforce";
+			// temp[1]-countryName, temp[2]- armyCount
+			setReinforce(temp[1], Integer.parseInt(temp[2]));
+			break;
+		case "fortify":
+			if (temp[1].contentEquals("none")) {
+				// alert("Successfull! Next player turn!");
+			} else {
+				// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
+				setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
+			}
+			break;
 
-	public void placeArmyByCountry(String cName) {
-		sp.placeArmyByCountryName(cName);
+		default:
+			// set flag for alert("Wrong Input!");
+			errorFlag = true;
+		}
+		return errorFlag;
 	}
-
-	public void populateCountries() {
-		sp.populateCountries();
-	}
-
-	public void removePlayer(String playerName) {
-		sp.removePlayer(playerName);
-	}
-
-	public void addPlayer(String playerName) {
-		sp.addPlayer(playerName);
-	}
-
 }
