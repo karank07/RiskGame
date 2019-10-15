@@ -1,7 +1,6 @@
 package ca.concordia.risk.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -165,7 +164,7 @@ public class Map
 	{
 		List<Country> neighbourCountry= new ArrayList<>();
 		
-		//Implementation left
+		
 		return neighbourCountry;
 	}
 }

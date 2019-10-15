@@ -2,7 +2,6 @@ package ca.concordia.risk.controller;
 
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import ca.concordia.risk.model.Continent;
@@ -79,6 +78,15 @@ public class MapOperations{
 	}
 	
 	
+	/**
+	 * This method adds neighbours to map
+	 * @param map the map object
+	 * @param borders the borders list
+	 * @param country_name the name of country to which border need to be added
+	 * @param neighbour_country_name the name of the country which is the border to given country
+	 * @return  true if border is added else false
+	 * @throws ValidMapException
+	 */
 	
 	public boolean addNeighbours(Map map,List<String> borders, String country_name, String neighbour_country_name) throws ValidMapException
 	{
