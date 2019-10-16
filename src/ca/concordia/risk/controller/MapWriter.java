@@ -10,9 +10,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.junit.validator.ValidateWith;
+
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.utilities.GameConstants;
+import ca.concordia.risk.utilities.ValidMapException;
 
 
 /**
@@ -22,6 +25,7 @@ import ca.concordia.risk.utilities.GameConstants;
 public class MapWriter{
 	
 	MapValidate mv = new MapValidate();
+	MapOperations mo= new MapOperations();
 	String continent_start,country, country_start, border, border_start;
 	String[] cont_info, country_info, border_info;
 	boolean flag;
@@ -34,60 +38,69 @@ public class MapWriter{
 	 * @param boundries  the hashmap of borders
 	 * @param mapFile
 	 * @throws IOException
+	 * @throws ValidMapException 
 	 */
-	public void writeMapFile(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String mapFile) throws IOException {
-
-		String filePath = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + mapFile;
-		File mapfile = new File(filePath);
-		FileWriter fileWriter = new FileWriter(mapfile, false);
-		BufferedWriter buffW = new BufferedWriter(fileWriter);
-		mapfile.createNewFile();
+	public void writeMapFile(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String mapFile) throws IOException, ValidMapException {
+		
+		if(mo.isConnected(borders))
+		{
+			String filePath = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + mapFile;
+			File mapfile = new File(filePath);
+			FileWriter fileWriter = new FileWriter(mapfile, false);
+			BufferedWriter buffW = new BufferedWriter(fileWriter);
+			mapfile.createNewFile();
 		
 		
-		buffW.write(GameConstants.CONTINENT_HEADER);
-		buffW.newLine();
-		for (Integer n : continents.keySet()) {
-			Continent con = continents.get(n);
+			buffW.write(GameConstants.CONTINENT_HEADER);
+			buffW.newLine();
+			for (Integer n : continents.keySet()) 
+			{
+				Continent con = continents.get(n);
 			buffW.write(con.getContinentName() + " " + con.getContinentControlValue() + " " + con.getContinentColor());
 			buffW.newLine();
-		}
-
-		buffW.write("\n");
-		
-		buffW.write(GameConstants.COUNTRIES_HEADER);
-		
-		buffW.newLine();
-		
-		for (Integer i : countries.keySet()) 
-		{
-			Country coun = countries.get(i);
-			
-			int continent_id=coun.getContinentID()+1;
-			
-			buffW.write(i + " " + coun.getCountryName() + " " + continent_id + " " + coun.getXCo() + " " + coun.getYCo());
-			buffW.newLine();
-		}
-
-		buffW.write("\n");
-		buffW.write(GameConstants.BORDERS_HEADER);
-		buffW.newLine();
-		
-		for (Integer m : borders.keySet()) 
-		{
-			ArrayList<Integer> list = new ArrayList<Integer>();
-			String border_string = "";
-			list = borders.get(m);
-			
-			for (Integer n : list) {
-				border_string =border_string + n + " ";
 			}
-			
-			buffW.write(m + " " + border_string.trim());
+
+			buffW.write("\n");
+		
+			buffW.write(GameConstants.COUNTRIES_HEADER);
+		
 			buffW.newLine();
+		
+			for (Integer i : countries.keySet()) 
+			{
+				Country coun = countries.get(i);
+			
+				int continent_id=coun.getContinentID()+1;
+			
+				buffW.write(i + " " + coun.getCountryName() + " " + continent_id + " " + coun.getXCo() + " " + coun.getYCo());
+				buffW.newLine();
+			}
+
+			buffW.write("\n");
+			buffW.write(GameConstants.BORDERS_HEADER);
+			buffW.newLine();
+		
+			for (Integer m : borders.keySet()) 
+			{
+				ArrayList<Integer> list = new ArrayList<Integer>();
+				String border_string = "";
+				list = borders.get(m);
+			
+				for (Integer n : list) 
+				{
+					border_string =border_string + n + " ";
+				}
+			
+				buffW.write(m + " " + border_string.trim());
+				buffW.newLine();
+			}
+			buffW.close();
 		}
-		buffW.close();
+		else
+		{
+			throw new ValidMapException("The map is not connected");
+		}
 	}
-	
 	
 	/**
 	 * This method loads map file and validates it.
