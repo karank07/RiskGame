@@ -1,5 +1,5 @@
 /**
- * 
+ * Country class is the model class to store the data of Country entity (continent object)
  */
 package ca.concordia.risk.model;
 
@@ -191,7 +191,7 @@ public class Country {
 	}
 
 	/**
-	 * 
+	 * Override toString to print data members of country
 	 */
 	public String toString() {
 		return "" + countryNumber + " " + countryName + " " + continentID + " " + xCo + " " + yCo + " "
@@ -199,7 +199,9 @@ public class Country {
 	}
 	
 	/**
-	 * 
+	 * setOwnerArmy method to set owner armies
+	 * @param owner
+	 * @param armies
 	 */
 	public void setOwnerArmy(int owner, int armies ) {
 		this.owner = owner;

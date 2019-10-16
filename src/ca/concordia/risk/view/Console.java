@@ -17,7 +17,6 @@ import ca.concordia.risk.controller.MainClass;
 public class Console implements ActionListener {
 	JTextField textField;
 	JButton submit, exit;
-	String fileName;
 	MainClass m;
 
 	public void createConsole() {
@@ -52,7 +51,7 @@ public class Console implements ActionListener {
 		String errorFlag;
 		
 		if (e.getSource() == submit) {
-			errorFlag=m.phaseDecider(s1+" stop");
+			errorFlag=m.phaseDecider(s1);
 			if(!errorFlag.contentEquals("false"))
 			{
 				alert(errorFlag);
