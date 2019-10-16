@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * This is a model class for Country object containing data members for storing, assigning and retrieving  name, number,
+ * co-ordinates, armies and continents.
  * @author Karan
  *
  */
@@ -182,7 +184,7 @@ public class Country {
 	}
 
 	/**
-	 * @param neighbours the neighbours to set
+	 * @param neighbours the neighbors to set
 	 */
 	public void setNeighbours(int[] neighbours) {
 
@@ -199,9 +201,8 @@ public class Country {
 	}
 	
 	/**
-	 * setOwnerArmy method to set owner armies
-	 * @param owner
-	 * @param armies
+	 *@param owner player to be assigned armies
+	 *@param armies number of armies to be assigned
 	 */
 	public void setOwnerArmy(int owner, int armies ) {
 		this.owner = owner;

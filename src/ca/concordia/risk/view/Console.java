@@ -11,14 +11,28 @@ import javax.swing.*;
 import ca.concordia.risk.controller.MainClass;
 
 /**
+ * This class manages view of the Risk game to get input from console and sets up a interactive console for the user to play the game.
  * @author Karan
  *
  */
 public class Console implements ActionListener {
+/**
+ * @param textField manages the text-field for console
+ */
 	JTextField textField;
+/**
+ * @param submit for submitting the command
+ * @param exit for exiting the gaming console
+ */
 	JButton submit, exit;
+/**
+ *  @param m instance of the main class
+ */
 	MainClass m;
 
+/**
+* This method creates and sets up a console for getting input commands and displaying messages/alerts accordingly.
+*/
 	public void createConsole() {
 		m = new MainClass();
 		JFrame frame = new JFrame("Console");
@@ -46,6 +60,10 @@ public class Console implements ActionListener {
 
 	}
 
+/**
+ * Manages the actions being performed by the user
+ * @param e holds action that occurs
+ */
 	public void actionPerformed(ActionEvent e) {
 		String s1 = textField.getText();
 		String errorFlag;
@@ -61,7 +79,10 @@ public class Console implements ActionListener {
 		}
 
 	}
-
+/**
+ * Sets up an alert dialogue box
+ * @param arg the message to be printed in the alert box
+ */
 	public void alert(String arg) {
 		JFrame f = new JFrame();
 

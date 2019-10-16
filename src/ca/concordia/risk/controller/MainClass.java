@@ -8,15 +8,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
+import ca.concordia.risk.utilities.ValidMapException;
 import ca.concordia.risk.view.Console;
 
 /**
- * @author Karan and Rohan
+ * This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. 
+ * Includes filename, filereader, list of countries and continents, model class objects, etc as data members
+ * @author Karan, Rohan and Pranal
  *
  */
 public class MainClass {
@@ -25,9 +30,7 @@ public class MainClass {
 	FileReader file;
 	BufferedReader br;
 	List<String> continentString;
-	/**
-	 * 
-	 */
+
 	public static List<Continent> continentList;
 	List<String> countryString;
 	public static List<Country> CountryList;
@@ -36,6 +39,13 @@ public class MainClass {
 	ReinforcementPhase rp;
 	StartUpPhase sp;
 	public static List<Player> playerList;
+	public HashMap<Integer, Continent> continents;
+	public HashMap<Integer, Country> countries;
+	public HashMap<Integer, ArrayList<Integer>> borders;
+	Map mapInstance;
+
+	MapOperations mapOperations;
+	MapWriter mapWriter;
 
 	static Console c;
 	int currentPlayer = 0;
@@ -65,6 +75,14 @@ public class MainClass {
 		fp = new FortificationPhase();
 		rp = new ReinforcementPhase();
 
+		continents = new HashMap<Integer, Continent>();
+		countries = new HashMap<Integer, Country>();
+		borders = new HashMap<Integer, ArrayList<Integer>>();
+		mapInstance = Map.getM_instance();
+
+		mapOperations = new MapOperations();
+		mapWriter = new MapWriter();
+
 //		Scanner in=new Scanner(System.in);
 //		while(true)
 //		{
@@ -76,8 +94,9 @@ public class MainClass {
 	}
 
 	/**
-	 * @param continentString
-	 * @param ContinentList
+	 * This method converts string continent name to continent object
+	 * @param continentString the names of continents
+	 * @param ContinentList the list containing the continent entities
 	 */
 	private static void stringToContinent(List<String> continentString, List<Continent> continentList) {
 		String[] temp = new String[3];
@@ -99,8 +118,9 @@ public class MainClass {
 	}
 
 	/**
-	 * @param countryString
-	 * @param CountryList
+	 * This method converts string country name to country object
+	 * @param countryString the names of countries
+	 * @param CountryList the list of the country objects
 	 */
 	private static void stringToCountry(List<String> countryString, List<Country> CountryList) {
 		// TODO Auto-generated method stub
@@ -115,9 +135,9 @@ public class MainClass {
 
 	}
 
-	/**
-	 * @param countryList
-	 * @param borderString
+	/** sets the neighbors of the country
+	 * @param countryList the list of country entities
+	 * @param borderString contains the names of the borders
 	 */
 	private static void setNeigbourCountry(List<Country> countryList, List<String> borderString) {
 		// TODO Auto-generated method stub
@@ -145,6 +165,11 @@ public class MainClass {
 
 	}
 
+	/**
+	 * reads the map file to be loaded
+	 * @param fileName Map file to be read
+	 * @throws IOException
+	 */
 	private void readMapFile(String fileName) throws IOException {
 		if (!phase.contentEquals("loadmap")) {
 			errorFlag = "invalid command!";
@@ -200,38 +225,61 @@ public class MainClass {
 
 	}
 
+	/**
+	 * 
+	 * @param playerName the player to be added
+	 */
 	private void addPlayer(String playerName) {
 		if (!phase.contentEquals("gameplayer"))
 			return;
 		sp.addPlayer(playerName);
 
 	}
-
+	
+/**
+ * 
+ * @param playerName player to be removed from the game
+ */
 	private void removePlayer(String playerName) {
 		if (!phase.contentEquals("gameplayer"))
 			return;
 		sp.removePlayer(playerName);
 	}
 
+/**
+ * to assign countries to the players initially	
+ */
 	private void populateCountries() {
 		if (!phase.contentEquals("populatecountries"))
 			return;
 		sp.populateCountries();
 		phase = "placearmy";
 	}
-
+	
+/**
+ * to place all the armies initially without the player choosing
+ */
 	private void placeAll() {
 		if (!phase.contentEquals("placearmy"))
 			return;
 		sp.placeArmiesInitialRandom();
 	}
 
+/**
+ * 	assigning army to particular mentioned country
+ * @param cName country to be assigned army
+ */
 	private void placeArmyByCountry(String cName) {
 		if (!phase.contentEquals("placearmy"))
 			return;
 		sp.placeArmyByCountryName(cName);
 	}
 
+/**
+ * 	Reinforcement phase base method
+ * @param countryName country to reinforced
+ * @param armyNumber army to be reinforced
+ */
 	private void setReinforce(String countryName, int armyNumber) {
 		if (!phase.contentEquals("reinforce"))
 			return;
@@ -242,6 +290,12 @@ public class MainClass {
 		}
 	}
 
+/**
+ * 	Fortification base method
+ * @param from country from where armies would be sent
+ * @param to country to where armies would be sent
+ * @param army number of armies used to fortify
+ */
 	private void setFortify(String from, String to, int army) {
 		if (!phase.contentEquals("fortify"))
 			return;
@@ -265,13 +319,12 @@ public class MainClass {
 	}
 
 	/**
-	 * @param s1
-	 * @return
+
+	 * @param s1 phase command taken as input from console
+	 * @return errorFlag to indicate successful execution or not
 	 */
-	/**
-	 * @param s1
-	 * @return
-	 */
+	
+
 	public String phaseDecider(String s1) {
 		String[] temp = new String[10];
 		temp = s1.split(" ");
@@ -282,6 +335,90 @@ public class MainClass {
 		}
 
 		switch (temp[0]) {
+		case "editcontinent":
+			for (int i = 0; i < temp.length; i++) {
+				if (temp[i].contentEquals("-add")) {
+					if (temp[i + 1] != null || temp[i + 2] != null) { // continent name and continent value should not
+																		// be null
+						try {
+							mapOperations.addContinent(mapInstance, continents, temp[i + 1],
+									Integer.parseInt(temp[i + 2]), null);
+							//mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+					}
+				} else if (temp[i].contentEquals("-remove")) {
+
+				}
+			}
+			break;
+
+		case "editcountry":
+			for (int i = 0; i < temp.length; i++) {
+				if (temp[i].contentEquals("-add")) {
+					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and continent name should not
+																		// be null
+						try {
+							mapOperations.addCountry(mapInstance, continents, countries, temp[i + 1], temp[i + 2]);
+							
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+					}
+				} else if (temp[i].contentEquals("-remove")) {
+
+				}
+			}
+			break;
+			
+		case "editneighbor":
+			for (int i = 0; i < temp.length; i++) {
+				if (temp[i].contentEquals("-add")) {
+					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and neighbour country name should not
+																		// be null
+						try {
+							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 1], temp[i + 2]);
+							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 2], temp[i + 1]);
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+					}
+				} else if (temp[i].contentEquals("-remove")) {
+
+				}
+			}
+			break;
+			
+			
+		case "savemap":
+			try {
+				try {
+					mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+				} catch (ValidMapException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			
+		case "editmap":
+			try {
+				mapWriter.loadMap(continents, countries, borders, temp[1]);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
 		case "loadmap":
 			if (!phase.contentEquals("loadmap")) {
 				errorFlag = "Invalid command!";
