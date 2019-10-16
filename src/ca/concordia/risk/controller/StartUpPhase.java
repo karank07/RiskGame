@@ -162,6 +162,13 @@ public class StartUpPhase {
 
 	}
 
+/**
+ * 
+ * @param pl player to be assigned army for
+ * @param co country
+ * @param armies the number of armies assigned
+ * @return
+ */
 	private boolean setNewCountryRuler(Player pl, Country co, int armies) {
 		if (co.getCountryArmy() != 0)
 			return false;
@@ -171,6 +178,11 @@ public class StartUpPhase {
 
 	}
 
+/**
+ * 
+ * @param p player to be assigned a country
+ * @param c country being assigned to the player
+ */
 	public void mapPlayerToCountry(Player p, Country c) {
 		List<Country> cList = player_country_map.get(p);
 		c.setCountryOwner(p.getPlayerId());
@@ -181,11 +193,19 @@ public class StartUpPhase {
 		cList.add(c);
 
 	}
-
+/**
+ * 	
+ * @param p player whose conquered countries are to be known
+ * @return the list of countries owned by the player p
+ */
 	public List<Country> getCountriesConqueredBy(Player p) {
 		return player_country_map.get(p);
 	}
 
+/**
+ * 
+ * @param playerName the player to be added in the game
+ */
 	public void addPlayer(String playerName) {
 		playerCount = MainClass.playerList.size() + 1;
 		Player p = new Player(playerCount, playerName);
@@ -193,6 +213,10 @@ public class StartUpPhase {
 		System.out.println(p.toString());
 	}
 
+/**
+ * 
+ * @param playerName the player to be removed from the game
+ */
 	public void removePlayer(String playerName) {
 		for (Player obj : MainClass.playerList) {
 
