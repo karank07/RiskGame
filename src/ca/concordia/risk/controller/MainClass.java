@@ -270,6 +270,7 @@ public class MainClass {
 		case "gameplayer":
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
+					System.out.println("TEST: "+ temp[i+1]);
 					addPlayer(temp[i + 1]);
 				} else if (temp[i].contentEquals("-remove")) {
 					removePlayer(temp[i + 1]);
