@@ -312,8 +312,13 @@ public class MainClass {
 					
 				}
 			}
+			for(Player p:playerList)
+			{
+				System.out.println(p.getPlayerId()+" "+p.getPlayerName());
+			}
 			if (!playerList.isEmpty()) {
 				gamePlayerSet = true;
+				
 			}
 
 			break;
@@ -382,8 +387,6 @@ public class MainClass {
 				}
 				break;
 			}
-			
-
 		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";
