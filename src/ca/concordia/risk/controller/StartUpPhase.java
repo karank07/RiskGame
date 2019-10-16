@@ -104,12 +104,16 @@ public class StartUpPhase {
 
 	}
 
-	public void placeArmyByCountryName(String counrtyName) {
+/**
+ * This method allows the player to choose and place the armies in a particular country
+ * @param countryName the country to be assigned armies
+ */
+	public void placeArmyByCountryName(String countryName) {
 
 		if (MainClass.playerList.get(playerTurn % playerCount).getPlayerTotalArmies() > 0) {
 
 			Player p = MainClass.playerList.get(playerTurn % playerCount);
-			Country c1 = mapInstance.getCountryByName(counrtyName);
+			Country c1 = mapInstance.getCountryByName(countryName);
 			List<Country> playerCountryList = getCountriesConqueredBy(p);
 			for (Country obj : playerCountryList) {
 				if (obj.equals(c1)) {
@@ -125,7 +129,10 @@ public class StartUpPhase {
 		playerTurn++;
 
 	}
-
+	
+/**
+ * Randomly assigns the armies initially to each player in round robin fashion
+ */
 	public void placeArmiesInitialRandom() {
 
 		int playersLeftForAssign = playerCount;
