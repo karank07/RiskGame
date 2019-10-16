@@ -26,6 +26,7 @@ import ca.concordia.risk.utilities.ValidMapException;
  * The Class MapService.
  * @author dhruv
  */
+
 public class MapService {
 
 	/** 
@@ -66,9 +67,8 @@ public class MapService {
 		
 		lines.add(GameConstants.COUNTRIES_HEADER);
 		
-		List<Country> countries= Map.getCountries();
+		List<Country> countries= map.getCountries();
 		Collections.sort(countries, new CountryComparator());
-		
 		
 		for(Country cn: countries)
 		{
