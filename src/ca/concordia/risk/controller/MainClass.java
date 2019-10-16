@@ -272,7 +272,7 @@ public class MainClass {
 	 * @param s1
 	 * @return
 	 */
-	public boolean phaseDecider(String s1) {
+	public String phaseDecider(String s1) {
 		String[] temp = new String[3];
 		temp = s1.split(" ");
 		int j = 0;
@@ -311,6 +311,7 @@ public class MainClass {
 			break;
 			
 		case "populatecountries":
+			sp=new StartUpPhase();
 			if (gamePlayerSet) {
 				phase = "populatecountries";
 			}
