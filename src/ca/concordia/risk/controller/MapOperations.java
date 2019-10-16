@@ -198,6 +198,9 @@ public class MapOperations{
 		}
 		
 	}
+	
+	
+	
 	/**
 	 * This method checks if the map is connected or not
 	 * @param borders the list of borders, to check connectivity
