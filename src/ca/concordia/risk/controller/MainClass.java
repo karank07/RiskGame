@@ -25,35 +25,34 @@ import ca.concordia.risk.view.Console;
  *
  */
 public class MainClass {
-	String fileName;
-	String fileData;
-	FileReader file;
+	private String fileName;
+	private String fileData;
+	private FileReader file;
 	BufferedReader br;
-	List<String> continentString;
-
+	private List<String> continentString;
 	public static List<Continent> continentList;
-	List<String> countryString;
-	public static List<Country> CountryList;
-	List<String> BorderString;
-	FortificationPhase fp;
-	ReinforcementPhase rp;
-	StartUpPhase sp;
+	private List<String> countryString;
+	public static List<Country> countryList;
+	private List<String> BorderString;
+	private FortificationPhase fp;
+	private ReinforcementPhase rp;
+	private StartUpPhase sp;
 	public static List<Player> playerList;
 	public HashMap<Integer, Continent> continents;
 	public HashMap<Integer, Country> countries;
 	public HashMap<Integer, ArrayList<Integer>> borders;
-	Map mapInstance;
+	private Map mapInstance;
 
-	MapOperations mapOperations;
-	MapWriter mapWriter;
+	private MapOperations mapOperations;
+	private MapWriter mapWriter;
 
-	static Console c;
+	static Console c; 
 	int currentPlayer = 0;
 	static String phase = "loadmap";
 
-	boolean gamePlayerSet = false;
-	boolean placeArmyFlag = false;
-	static String errorFlag = "false";
+	private boolean gamePlayerSet = false;
+	private boolean placeArmyFlag = false;
+	public static String errorFlag = "false";
 
 	public static void main(String[] a) throws Exception {
 		new MainClass();
@@ -69,7 +68,7 @@ public class MainClass {
 		continentString = new ArrayList<String>();
 		continentList = new ArrayList<Continent>();
 		countryString = new ArrayList<String>();
-		CountryList = new ArrayList<Country>();
+		countryList = new ArrayList<Country>();
 		BorderString = new ArrayList<String>();
 		c = new Console();
 		fp = new FortificationPhase();
@@ -200,7 +199,7 @@ public class MainClass {
 						countryString.add(fileData);
 						fileData = br.readLine();
 					}
-					stringToCountry(countryString, CountryList);
+					stringToCountry(countryString, countryList);
 				} else if (fileData.equals("[borders]")) {
 					fileData = br.readLine();
 
@@ -209,7 +208,7 @@ public class MainClass {
 						fileData = br.readLine();
 					}
 
-					setNeigbourCountry(CountryList, BorderString);
+					setNeigbourCountry(countryList, BorderString);
 					break;
 				}
 				errorFlag = "false";
@@ -300,7 +299,7 @@ public class MainClass {
 		if (!phase.contentEquals("fortify"))
 			return;
 		Country countryTo = null, countryFrom = null;
-		for (Country obj : CountryList) {
+		for (Country obj : countryList) {
 
 			if (obj.getCountryName().equalsIgnoreCase(from)) {
 				countryFrom = obj;

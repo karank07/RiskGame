@@ -51,7 +51,7 @@ public class FortificationPhase {
 		} else
 			System.out.println("Move not possible");
 		System.out.println("Country and Army Count for Player " + owner);
-		for (Country c : m.CountryList) {
+		for (Country c : m.countryList) {
 			if (c.getCountryOwner() == owner)
 				System.out.println(c.getCountryName() + " " + c.getCountryArmy());
 
@@ -93,9 +93,9 @@ public class FortificationPhase {
 		if (!arrayContains(listOfNeighbours, to.getCountryNumber())) {
 			visited.add(from);
 			for (int i = 0; i < listOfNeighbours.length; i++) {
-				if (m.CountryList.get(i).getCountryOwner() == owner) {
+				if (m.countryList.get(i).getCountryOwner() == owner) {
 
-					Country mayBecomeFrom = m.CountryList.get(i);
+					Country mayBecomeFrom = m.countryList.get(i);
 					if (!visited.contains(mayBecomeFrom)) {
 						searchNeighbors(visited, mayBecomeFrom, to, owner);
 					}
