@@ -69,7 +69,7 @@ public class MapOperations{
 		Random r=new Random();
 		int x_co=r.nextInt(600);
 		int y_co=r.nextInt(600);
-		country_num= map.getCountries().size();
+		country_num= countries.size();
 		
 		boolean continentFlag=false,countryFlag=false;
 		int continent_id=0;
@@ -117,6 +117,7 @@ public class MapOperations{
 		{
 			Country co = new Country(country_num, country_name, continent_id, x_co, y_co);
 			countries.put(country_num +1, co);
+			//country_num+=1;
 			return true;
 		}
 		return false;

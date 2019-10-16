@@ -211,10 +211,19 @@ public class StartUpPhase {
 	 * @param playerName the player to be added in the game
 	 */
 	public void addPlayer(String playerName) {
+		for(Player p:MainClass.playerList)
+		{
+			if(p.getPlayerName().equalsIgnoreCase(playerName))
+			{
+				MainClass.errorFlag="Name Already exists!";
+				return;
+			}
+		}
 		playerCount = MainClass.playerList.size() + 1;
 		Player p = new Player(playerCount, playerName);
 		MainClass.playerList.add(p);
-		//System.out.println(p.toString());
+		MainClass.errorFlag="false";
+		// System.out.println(p.toString());
 	}
 
 	/**
@@ -222,24 +231,23 @@ public class StartUpPhase {
 	 * @param playerName the player to be removed from the game
 	 */
 	public void removePlayer(String playerName) {
-		if(MainClass.playerList.isEmpty()) {
-			MainClass.errorFlag="There are no players currently playing";
-		}
-		else {
-		for (Player obj : MainClass.playerList) {
+		if (MainClass.playerList.isEmpty()) {
+			MainClass.errorFlag = "There are no players currently playing";
+		} else {
+			for (Player obj : MainClass.playerList) {
 
-			if (playerName.contentEquals(obj.getPlayerName())) {
-				MainClass.playerList.remove(obj.getPlayerId() - 1);
-				System.out.println("\nplayer deleted");
-				for (int i = 0; i < MainClass.playerList.size(); i++) {
-					MainClass.playerList.get(i).setPlayerId(i + 1);
+				if (playerName.contentEquals(obj.getPlayerName())) {
+					MainClass.playerList.remove(obj.getPlayerId() - 1);
+					System.out.println("\nplayer deleted");
+					MainClass.errorFlag="false";
+					for (int i = 0; i < MainClass.playerList.size(); i++) {
+						MainClass.playerList.get(i).setPlayerId(i + 1);
+					}
+					break;
 				}
-				break;
+
 			}
-
 		}
+	}
 
-		System.out.println(MainClass.playerList.toString());
-	}}
-	
 }

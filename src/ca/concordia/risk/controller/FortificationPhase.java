@@ -28,10 +28,10 @@ public class FortificationPhase {
 	/**
 	 * fortification-move armies to another country that belongs to the player
 	 * 
-	 * @param from
-	 * @param to
-	 * @param owner
-	 * @param army
+	 * @param from country-name from which armies are sent
+	 * @param to country-name to which armies are sent
+	 * @param owner the player fortifying
+	 * @param army number of armies sent
 	 */
 	public void fortify(Country from, Country to, int owner, int army) {
 
@@ -61,10 +61,10 @@ public class FortificationPhase {
 	/**
 	 * to check if two countries are connected and belongs to same owner
 	 * 
-	 * @param from
-	 * @param to
-	 * @param owner
-	 * @return adjFlag
+	 * @param from country name whose neighbor has to be checked
+	 * @param to country name which is checked
+	 * @param owner the player owning the given countries
+	 * @return adjFlag determines the given countries are neighbors or not
 	 */
 	public boolean checkNeighbours(Country from, Country to, int owner) {
 		adjFlag = false;
@@ -73,12 +73,20 @@ public class FortificationPhase {
 		visited.add(from);
 		//System.out.println(visited.toString());
 		if (from.getCountryOwner() == to.getCountryOwner()) {
-			dfs(visited, from, to, owner);
+			searchNeighbors(visited, from, to, owner);
 		}
 		return adjFlag;
 	}
+	
+/**
+ * 
+ * @param visited the list of countries traversed
+ * @param from country 1 to be checked for neighbor
+ * @param to country 2 to be checked for neighbor
+ * @param owner the player owning countries to be checked
+ */
 
-	private void dfs(List<Country> visited, Country from, Country to, int owner) {
+	private void searchNeighbors(List<Country> visited, Country from, Country to, int owner) {
 		int[] listOfNeighbours = from.getNeighbours();
 
 		if (!arrayContains(listOfNeighbours, to.getCountryNumber())) {
@@ -88,7 +96,7 @@ public class FortificationPhase {
 
 					Country mayBecomeFrom = m.CountryList.get(i);
 					if (!visited.contains(mayBecomeFrom)) {
-						dfs(visited, mayBecomeFrom, to, owner);
+						searchNeighbors(visited, mayBecomeFrom, to, owner);
 					}
 				}
 			}
@@ -100,9 +108,9 @@ public class FortificationPhase {
 	/**
 	 * To check if array contains the key
 	 * 
-	 * @param arr
-	 * @param key
-	 * @return
+	 * @param arr the array to be checked for the key
+	 * @param key the key to be found
+	 * @return true if the arr contains the key
 	 */
 	public boolean arrayContains(int[] arr, int key) {
 		for (int i = 0; i < arr.length; i++) {
