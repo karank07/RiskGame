@@ -214,7 +214,7 @@ public class StartUpPhase {
 		playerCount = MainClass.playerList.size() + 1;
 		Player p = new Player(playerCount, playerName);
 		MainClass.playerList.add(p);
-		System.out.println(p.toString());
+		//System.out.println(p.toString());
 	}
 
 	/**
@@ -222,6 +222,10 @@ public class StartUpPhase {
 	 * @param playerName the player to be removed from the game
 	 */
 	public void removePlayer(String playerName) {
+		if(MainClass.playerList.isEmpty()) {
+			MainClass.errorFlag="There are no players currently playing";
+		}
+		else {
 		for (Player obj : MainClass.playerList) {
 
 			if (playerName.contentEquals(obj.getPlayerName())) {
@@ -236,5 +240,6 @@ public class StartUpPhase {
 		}
 
 		System.out.println(MainClass.playerList.toString());
-	}
+	}}
+	
 }

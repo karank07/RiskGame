@@ -44,7 +44,7 @@ public class MainClass {
 
 	boolean gamePlayerSet = false;
 	boolean placeArmyFlag = false;
-	String errorFlag;
+	static String errorFlag;
 
 	public static void main(String[] a) throws Exception {
 		new MainClass();
@@ -227,7 +227,6 @@ public class MainClass {
 	private void placeArmyByCountry(String cName) {
 		if (!phase.contentEquals("placearmy"))
 			return;
-		System.out.println("main");
 		sp.placeArmyByCountryName(cName);
 	}
 
@@ -304,7 +303,12 @@ public class MainClass {
 					else
 					{errorFlag="add a valid name";}				
 				} else if (temp[i].contentEquals("-remove")) {
-					removePlayer(temp[i + 1]);
+					if(temp[i+1]!="") {
+						removePlayer(temp[i + 1]);
+					}
+					else
+					{errorFlag="add a valid name";}
+					
 				}
 			}
 			if (!playerList.isEmpty()) {
@@ -325,7 +329,8 @@ public class MainClass {
 			break;
 			
 		case "placearmy":
-			placeArmyByCountry(temp[1]);
+			if(temp[1]!="") {placeArmyByCountry(temp[1]);}
+			else {errorFlag="Check the country name entered!";}
 			if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0)
 				placeArmyFlag = true;
 			break;
