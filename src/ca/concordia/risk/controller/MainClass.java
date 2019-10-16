@@ -191,10 +191,8 @@ public class MainClass {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			errorFlag = "Given Map file doesnot exist!";
-		} finally {
-			br.close();
-			file.close();
-		}
+			}
+
 
 		phase = "gameplayer";
 
