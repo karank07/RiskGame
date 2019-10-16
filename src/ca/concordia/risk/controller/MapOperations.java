@@ -2,7 +2,9 @@ package ca.concordia.risk.controller;
 
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
@@ -17,6 +19,10 @@ import ca.concordia.risk.utilities.ValidMapException;
 public class MapOperations{
 	
 	static int country_num=1;
+	static List<ArrayList<String>> neighboursList=new ArrayList< ArrayList<String>>(250);
+	HashMap<Integer, ArrayList<Integer>> hMap;
+	private boolean[] visited;
+	private int flag;
 	/**
 	 * This method adds continent to map
 	 * @param map current map object
@@ -88,22 +94,20 @@ public class MapOperations{
 	 * @throws ValidMapException
 	 */
 	
-	public boolean addNeighbours(Map map,List<String> borders, String country_name, String neighbour_country_name) throws ValidMapException
+	public boolean addNeighbours(Map map,List<ArrayList<String>> borders, String country_name, String neighbour_country_name) throws ValidMapException
 	{
 		int country_id= map.getCountryByName(country_name).getCountryNumber();
 		int neighbour_country_id= map.getCountryByName(neighbour_country_name).getCountryNumber();
-		
-		List<ArrayList<String>> neighboursList=new ArrayList< ArrayList<String>>();
 		
 		if(map.getCountries().contains(map.getCountryByName(country_name))) 
 		{	
 			if(map.getCountries().contains(map.getCountryByName(neighbour_country_name)))
 			{
 				//neighboursList.put(country_id,  );
-				
 				neighboursList.get(country_id).add(Integer.toString(neighbour_country_id));
 				neighboursList.get(neighbour_country_id).add(Integer.toString(country_id));
-				map.setBorders(neighboursList);
+				//map.setBorders(neighboursList);
+				borders=neighboursList;
 				return true;
 			}
 			else
@@ -114,9 +118,99 @@ public class MapOperations{
 		else
 		{
 			throw new ValidMapException("The Country: "+ country_name +" does not exist!" );
-		}
-		
-		
+		}	
 	}
 	
+	/**
+	 * This method converts List of ArrayList of String to HashMap for borders
+	 * @param array the list to be converted into hashmap
+	 * @return the converted hashmap
+	 */
+	public HashMap<Integer, ArrayList<Integer>> convertToHashMap(List<ArrayList<String>> array)
+	{
+		HashMap<Integer, ArrayList<Integer>> newHash= new HashMap<Integer, ArrayList<Integer>>();
+		
+		for(int i=0; i<array.size();i++)
+		{
+			ArrayList<Integer> line = new ArrayList<Integer>();
+			for(int j=0; j<array.get(i).size();j++)
+			{
+				line.add(Integer.parseInt(array.get(i).get(j)));
+			}
+			newHash.put(i+1, line);
+		}
+		return newHash;
+	}
+	
+	
+	/**
+	 * This method checks if the map is connected or not
+	 * @param borders the list of borders, to check connectivity
+	 * @return true if map is connected, else false
+	 */
+	public boolean isConnected(List<ArrayList<String>> bordersList)
+	{
+		HashMap<Integer,ArrayList<Integer>> borders;
+		borders=convertToHashMap(bordersList);
+		hMap=borders;
+		visited= new boolean[borders.size()];
+		flag=0;
+		
+		Entry<Integer, ArrayList<Integer>> firstNode = borders.entrySet().iterator().next();
+		traverseMap(firstNode.getKey());
+		
+		for(int i=0; i<visited.length ;i++)
+		{
+			if(visited[i]==false)
+			{
+				flag=1;
+			}
+		}
+		
+		if(flag==1)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+	
+	/**
+	 * This method traverses the full map and checks the connectivity
+	 * @param node the vertex of map which is being traversed
+	 */
+	public void traverseMap(int node)
+	{
+		visited[node-1]=true;
+		
+		for(int n: neighbourNodes(node))
+		{
+			if(visited[n-1]==false)
+			{
+				traverseMap(n);
+			}
+		}
+	}
+	
+	
+	/**
+	 * This method returns array list of neighbours of given node
+	 * @param n the node of which neighbours are to be found
+	 * @return the array of neighbours
+	 */
+	public ArrayList<Integer> neighbourNodes(int n)
+	{
+		if(n>hMap.size())
+		{
+			return null;
+		}
+		else
+		{
+			ArrayList<Integer> list = new ArrayList<Integer>(hMap.get(n)); 
+			return list;
+		}
+	}
 }

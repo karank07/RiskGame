@@ -3,6 +3,7 @@ package ca.concordia.risk.controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,18 +19,19 @@ public class MapWriter{
 	/**
 	 * This method writes the map details to the map file.
 	 * @param map object of the map which is being processed
-	 * @param file file path
+	 * @param fileName file name
 	 */
-	public void writeMapFile(Map map, File file) {
+	public void writeMapFile(Map map, String fileName) {
 		
 		FileWriter fileWriter;
 		try {
 			if (map == null) {
 				System.out.println("Map Object is NULL!");
 			}
-			
+			String createPath = Paths.get("").toAbsolutePath().toString() + "\\maps" + fileName;
+			File mapfile = new File(createPath);
 			String content = parseMapAndReturn(map);
-			fileWriter = new FileWriter(file, false);
+			fileWriter = new FileWriter(mapfile, false);
 			fileWriter.write(content);
 			fileWriter.close();
 			
@@ -65,16 +67,14 @@ public class MapWriter{
 		
 		for(Country cn: countries)
 		{
-			StringBuffer strbuf=new StringBuffer();
-			strbuf.append(cn.getCountryNumber() + " " + cn.getCountryName() + " " + cn.getContinentID() + " " + cn.getXCo() + " " + cn.getYCo());
-			lines.add(strbuf.toString());
+			lines.add(cn.getCountryNumber() + " " + cn.getCountryName() + " " + cn.getContinentID() + " " + cn.getXCo() + " " + cn.getYCo());
 		}
 		
 		lines.add(GameConstants.BORDERS_HEADER);
 		
-		for(Country coun: countries)
+		for(int i=0; i<map.getBorders().size(); i++)
 		{
-			lines.add(coun.getNeighbours().toString());
+			lines.add( Integer.toString(i+1) +" "+ map.getBorders().get(i));
 		}
 		
 		return lines.toString();

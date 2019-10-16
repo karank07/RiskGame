@@ -13,7 +13,7 @@ public class Map
 	public static Map m_instance=null;
 	
 	private List<Country> countries;
-	private List<Continent> continents;
+	private static List<Continent> continents;
 	private List<ArrayList<String>> borders;
 	/**
 	 * Default Constructor
@@ -61,7 +61,7 @@ public class Map
 	 * get the list of continents
 	 * @return the list of continents
 	 */
-	public List<Continent> getContinents() {
+	public static List<Continent> getContinents() {
 		return continents;
 	}
 
@@ -163,8 +163,13 @@ public class Map
 	public List<Country> getNeighbourCountries(Country country)
 	{
 		List<Country> neighbourCountry= new ArrayList<>();
-		
-		
+		int[] neighbour=country.getNeighbours();
+		String cName;
+		for(int i=0; i<neighbour.length; i++)
+		{
+			
+			//neighbourCountry.add(getCountryByName());
+		}
 		return neighbourCountry;
 	}
 }
