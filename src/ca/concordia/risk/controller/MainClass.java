@@ -35,7 +35,7 @@ public class MainClass {
 	FortificationPhase fp;
 	ReinforcementPhase rp;
 	StartUpPhase sp;
-	List<Player> playerList;
+	static List<Player> playerList;
 
 	static Console c;
 	int currentPlayer=0;
@@ -58,7 +58,7 @@ public class MainClass {
 		BorderString = new ArrayList<String>();
 		c = new Console();
 		fp = new FortificationPhase();
-		rp = new ReinforcementPhase();
+		rp = new ReinforcementPhase();  
 		sp = new StartUpPhase();
 
 	}
