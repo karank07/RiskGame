@@ -185,6 +185,7 @@ public class MainClass {
 					setNeigbourCountry(CountryList, BorderString);
 					break;
 				}
+				errorFlag="false";
 			}
 
 		} catch (FileNotFoundException e) {
@@ -271,7 +272,7 @@ public class MainClass {
 	 * @return
 	 */
 	public String phaseDecider(String s1) {
-		String[] temp = new String[3];
+		String[] temp = new String[10];
 		temp = s1.split(" ");
 		int j = 0;
 		System.out.println("\n" + s1);
@@ -297,13 +298,13 @@ public class MainClass {
 			sp = new StartUpPhase();
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-					if(temp[i+1]!="") {
+					if(!temp[i+1].contentEquals("stop")) {
 						addPlayer(temp[i + 1]);
 					}
 					else
 					{errorFlag="add a valid name";}				
 				} else if (temp[i].contentEquals("-remove")) {
-					if(temp[i+1]!="") {
+					if(!temp[i+1].contentEquals("stop")) {
 						removePlayer(temp[i + 1]);
 					}
 					else
@@ -362,7 +363,7 @@ public class MainClass {
 		case "fortify":
 			currentPlayer = 1;// for build 1 static player
 			if (temp[1].contentEquals("none")) {
-				System.out.println("Fortification skipped!");
+				System.out.println("Fortification 	`skipped!");
 				phase = "reinforce";
 			} else {
 				// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
