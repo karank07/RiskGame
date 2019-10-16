@@ -69,7 +69,7 @@ public class Console implements ActionListener {
 		String errorFlag;
 		
 		if (e.getSource() == submit) {
-			errorFlag=m.phaseDecider(s1+" stop");
+			errorFlag=m.phaseDecider(s1);
 			if(!errorFlag.contentEquals("false"))
 			{
 				alert(errorFlag);

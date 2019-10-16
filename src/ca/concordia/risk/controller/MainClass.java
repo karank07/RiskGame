@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
@@ -50,11 +49,11 @@ public class MainClass {
 
 	static Console c;
 	int currentPlayer = 0;
-	static String phase;
+	static String phase = "loadmap";
 
 	boolean gamePlayerSet = false;
 	boolean placeArmyFlag = false;
-	static String errorFlag;
+	static String errorFlag = "false";
 
 	public static void main(String[] a) throws Exception {
 		new MainClass();
@@ -172,8 +171,11 @@ public class MainClass {
 	 * @throws IOException
 	 */
 	private void readMapFile(String fileName) throws IOException {
-		if (!phase.contentEquals("loadmap"))
+		if (!phase.contentEquals("loadmap")) {
+			errorFlag = "invalid command!";
 			return;
+		}
+
 		fileName = "D:\\Project\\RiskGame\\maps\\" + fileName + ".map";
 
 		try {
@@ -210,7 +212,7 @@ public class MainClass {
 					setNeigbourCountry(CountryList, BorderString);
 					break;
 				}
-				errorFlag="false";
+				errorFlag = "false";
 			}
 
 		} catch (FileNotFoundException e) {
@@ -418,6 +420,10 @@ public class MainClass {
 			break;
 
 		case "loadmap":
+			if (!phase.contentEquals("loadmap")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
 			phase = "loadmap";
 			fileName = temp[1];
 			try {
@@ -430,19 +436,26 @@ public class MainClass {
 			break;
 
 		case "gameplayer":
+			if (!phase.contentEquals("gameplayer")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+			errorFlag = "false";
+			s1=s1+" stop";
+			String[] t = new String[3];
+			temp = s1.split(" ");
+			
 			System.out.println("\nPlayers:");
 			sp = new StartUpPhase();
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-
-					if(!temp[i+1].contentEquals("stop")) {
+					if (!temp[i + 1].contentEquals("stop")) {
 						addPlayer(temp[i + 1]);
 					} else {
 						errorFlag = "add a valid name";
 					}
 				} else if (temp[i].contentEquals("-remove")) {
-
-					if(!temp[i+1].contentEquals("stop")) {
+					if (!temp[i + 1].contentEquals("stop")) {
 						removePlayer(temp[i + 1]);
 					} else {
 						errorFlag = "add a valid name";
@@ -450,22 +463,27 @@ public class MainClass {
 
 				}
 			}
-			for(Player p:playerList)
-			{
-				System.out.println(p.getPlayerId()+" "+p.getPlayerName());
+			for (Player p : playerList) {
+				System.out.println(p.getPlayerId() + " " + p.getPlayerName());
 			}
 			if (!playerList.isEmpty()) {
 				gamePlayerSet = true;
-				
+
 			}
 
 			break;
 
 		case "populatecountries":
-			sp = new StartUpPhase();
 			if (gamePlayerSet) {
 				phase = "populatecountries";
 			}
+			if (!phase.contentEquals("populatecountries")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+			errorFlag = "false";
+			sp = new StartUpPhase();
+			
 			populateCountries();
 
 		case "dividearmies":
@@ -473,6 +491,11 @@ public class MainClass {
 			break;
 
 		case "placearmy":
+			if (!phase.contentEquals("placearmy")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+			errorFlag = "false";
 			if (temp[1] != "") {
 				placeArmyByCountry(temp[1]);
 			} else {
@@ -483,9 +506,15 @@ public class MainClass {
 			break;
 
 		case "placeall":
+			if (!phase.contentEquals("placearmy")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+			errorFlag = "false";
 			placeAll();
 			if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0)
-				placeArmyFlag = true;
+				phase = "reinforce";
+			
 
 		case "caclulate armies for reinforcement":
 			for (Player p : playerList) {
@@ -496,29 +525,39 @@ public class MainClass {
 			System.out.println("\nTurn for Player " + (currentPlayer));
 			break;
 		case "reinforce":
-			if(temp[1]=="" || temp[2]=="")
-			{errorFlag="Invalid command!";
-			break;}
-			else {
-				if (placeArmyFlag)
-					phase = "reinforce";
+			if(!phase.contentEquals("reinforce"))
+			{
+				errorFlag="Invalid command!";
+				return errorFlag;
+			}
+			errorFlag = "false";
+			if (temp[1] == "" || temp[2] == "") {
+				errorFlag = "Invalid command!";
+				break;
+			} else {
 				setReinforce(temp[1], Integer.parseInt(temp[2]));// temp[1]-countryName, temp[2]- armyCount
-				
-				//for printing list of all player's countries and armies
+
+				// for printing list of all player's countries and armies
 				for (int i = 0; i < playerList.get(currentPlayer - 1).getPlayerCountries().size(); i++) {
-					System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName() + " "
-							+ playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
+					System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName()
+							+ " " + playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
 					break;
 				}
-				
+
 			}
-			
+
 		case "fortify":
+			if(!phase.contentEquals("fortify"))
+			{
+				errorFlag="Invalid command!";
+				return errorFlag;
+			}
+			errorFlag = "false";
 			currentPlayer = 1;// for build 1 static player
-			if(temp[1]=="" || temp[2]=="" || temp[3]=="") 
-			{errorFlag="Invalid command!";
-			break;}
-			else {
+			if (temp[1] == "" || temp[2] == "" || temp[3] == "") {
+				errorFlag = "Invalid command!";
+				break;
+			} else {
 				if (temp[1].contentEquals("none")) {
 					System.out.println("Fortification skipped!");
 					phase = "reinforce";
