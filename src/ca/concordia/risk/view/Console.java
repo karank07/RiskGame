@@ -49,13 +49,13 @@ public class Console implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		String s1 = textField.getText();
-		boolean errorFlag=false;
+		String errorFlag;
 		
 		if (e.getSource() == submit) {
 			errorFlag=m.phaseDecider(s1);
-			if(errorFlag)
+			if(errorFlag!="")
 			{
-				alert("Wrong Input!");
+				alert(errorFlag);
 			}
 		} else if (e.getSource() == exit) {
 			System.exit(0);
