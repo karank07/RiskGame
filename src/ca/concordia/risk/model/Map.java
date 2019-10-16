@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Map.Entry;
 
 /**
- * This class parses the map file and create countries, territories, continents and neighboring countries.
+ * This class parses the map file and create countries, territories, continents
+ * and neighboring countries.
+ * 
  * @author dhruv
  */
-
 public class Map
 {
 	public static Map m_instance=null;
@@ -31,24 +32,20 @@ public class Map
 	
 	/**
 	 * Only One instance of Map so Singleton
+	 * 
 	 * @return the instance of Map class
 	 */
 	public static Map getM_instance() {
-		if(m_instance==null)
-		{
-			m_instance= new Map();	
+		if (m_instance == null) {
+			m_instance = new Map();
 		}
 		return m_instance;
 	}
 
-	
-	
-	
 	public HashMap<Integer, Country> getCountries() {
 		return countries;
 	}
 
-	
 	public void setCountries(HashMap<Integer, Country> countries) {
 		Map.countries = countries;
 	}
@@ -64,14 +61,13 @@ public class Map
 	public HashMap<Integer, ArrayList<Integer>> getBorders() {
 		return borders;
 	}
-	
 	public void setBorders(HashMap<Integer, ArrayList<Integer>> borders) {
 		this.borders = borders;
 	}
 
-	
 	/**
 	 * gets the country by country name
+	 * 
 	 * @param cName the name of country to be searched
 	 * @return the country object matched with country name
 	 */
@@ -92,6 +88,7 @@ public class Map
 	
 	/**
 	 * gets the continent by continent name
+	 * 
 	 * @param contName the name of the continent to be searched
 	 * @return the continent object matched with the continent name
 	 */
@@ -107,10 +104,10 @@ public class Map
 		}
 		return null;
 	}
-	
-	
+
 	/**
 	 * gets the countries located in a particular continent
+	 * 
 	 * @param continentName the name of continent whose countries are to be listed
 	 * @return list of countries in given continent name
 	 */
@@ -142,6 +139,7 @@ public class Map
 
 	/**
 	 * get the neighboring countries
+	 * 
 	 * @param country the country object
 	 * @return List of Neighboring countries
 	 */

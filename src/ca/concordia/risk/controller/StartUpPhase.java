@@ -63,7 +63,8 @@ public class StartUpPhase {
 		}
 
 		for (Player p : MainClass.playerList) {
-			System.out.println("\nCountries Allocated to Player " + p.getPlayerId() + " " + p.getPlayerName() + " are : ");
+			System.out.println(
+					"\nCountries Allocated to Player " + p.getPlayerId() + " " + p.getPlayerName() + " are : ");
 			for (Country c : player_country_map.get(p)) {
 				System.out.println(c.getCountryName());
 			}
@@ -104,10 +105,12 @@ public class StartUpPhase {
 
 	}
 
-/**
- * This method allows the player to choose and place the armies in a particular country
- * @param countryName the country to be assigned armies
- */
+	/**
+	 * This method allows the player to choose and place the armies in a particular
+	 * country
+	 * 
+	 * @param countryName the country to be assigned armies
+	 */
 	public void placeArmyByCountryName(String countryName) {
 
 		if (MainClass.playerList.get(playerTurn % playerCount).getPlayerTotalArmies() > 0) {
@@ -129,10 +132,10 @@ public class StartUpPhase {
 		playerTurn++;
 
 	}
-	
-/**
- * Randomly assigns the armies initially to each player in round robin fashion
- */
+
+	/**
+	 * Randomly assigns the armies initially to each player in round robin fashion
+	 */
 	public void placeArmiesInitialRandom() {
 
 		int playersLeftForAssign = playerCount;
@@ -151,24 +154,23 @@ public class StartUpPhase {
 			}
 			playerTurn++;
 		}
-		for(Player p:MainClass.playerList)
-		{
-			System.out.println("\nFor player : "+p.getPlayerId()+" "+p.getPlayerName());
-			for(Country c:player_country_map.get(p))
-			{
-				System.out.println("Owns Country : "+c.getCountryName()+" and has Armies : "+c.getCountryArmy());
+		for (Player p : MainClass.playerList) {
+			System.out.println("\nFor player : " + p.getPlayerId() + " " + p.getPlayerName());
+			for (Country c : player_country_map.get(p)) {
+				System.out.println("Owns Country : " + c.getCountryName() + " and has Armies : " + c.getCountryArmy());
 			}
 		}
+		System.out.println();
 
 	}
 
-/**
- * 
- * @param pl player to be assigned army for
- * @param co country
- * @param armies the number of armies assigned
- * @return
- */
+	/**
+	 * 
+	 * @param pl     player to be assigned army for
+	 * @param co     country
+	 * @param armies the number of armies assigned
+	 * @return
+	 */
 	private boolean setNewCountryRuler(Player pl, Country co, int armies) {
 		if (co.getCountryArmy() != 0)
 			return false;
@@ -178,11 +180,11 @@ public class StartUpPhase {
 
 	}
 
-/**
- * 
- * @param p player to be assigned a country
- * @param c country being assigned to the player
- */
+	/**
+	 * 
+	 * @param p player to be assigned a country
+	 * @param c country being assigned to the player
+	 */
 	public void mapPlayerToCountry(Player p, Country c) {
 		List<Country> cList = player_country_map.get(p);
 		c.setCountryOwner(p.getPlayerId());
@@ -193,19 +195,20 @@ public class StartUpPhase {
 		cList.add(c);
 
 	}
-/**
- * 	
- * @param p player whose conquered countries are to be known
- * @return the list of countries owned by the player p
- */
+
+	/**
+	 * 
+	 * @param p player whose conquered countries are to be known
+	 * @return the list of countries owned by the player p
+	 */
 	public List<Country> getCountriesConqueredBy(Player p) {
 		return player_country_map.get(p);
 	}
 
-/**
- * 
- * @param playerName the player to be added in the game
- */
+	/**
+	 * 
+	 * @param playerName the player to be added in the game
+	 */
 	public void addPlayer(String playerName) {
 		playerCount = MainClass.playerList.size() + 1;
 		Player p = new Player(playerCount, playerName);
@@ -213,10 +216,10 @@ public class StartUpPhase {
 		System.out.println(p.toString());
 	}
 
-/**
- * 
- * @param playerName the player to be removed from the game
- */
+	/**
+	 * 
+	 * @param playerName the player to be removed from the game
+	 */
 	public void removePlayer(String playerName) {
 		for (Player obj : MainClass.playerList) {
 

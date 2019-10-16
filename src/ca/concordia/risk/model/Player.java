@@ -62,7 +62,7 @@ public class Player {
 	 * @param playerName
 	 */
 	public Player(int playerId, String playerName) {
-		super();
+		
 		this.playerId = playerId;
 		this.playerName = playerName;
 		this.playerCountries = new ArrayList<Country>();
@@ -197,7 +197,6 @@ public class Player {
 		return cardExchangeCount;
 	}
 
-
 	/**
 	 * @param cardExchangeCount sets count of times card exhanged by the player
 	 */
@@ -207,6 +206,7 @@ public class Player {
 	public String toString() {
 		return playerId + " "+playerName;
 	}
+	
 	/**
 	 * sets initial value of total armies owner by the player
 	 */

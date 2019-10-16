@@ -11,7 +11,7 @@ import java.util.List;
  *
  */
 public class Country {
-
+	private ca.concordia.risk.model.Map mapInstance;
 	/**
 	 * @param countryName - for assigning name to Country
 	 */
@@ -191,7 +191,6 @@ public class Country {
 		
 	}
 	
-	
 	/**
 	 * @param addN number of armies to be added
 	 *
@@ -211,14 +210,15 @@ public class Country {
 	}
 	
 	
-	/**
+	/*
 	 * Get the continent name of country
 	 * @return returns the continent name of the country.
-	 */	
+	 	
 	public String getContinentName()							//added by dhruv
 	{
-		List<Continent> continents = (List<Continent>) Map.getContinents().values();
-		
+		mapInstance = ca.concordia.risk.model.Map.getM_instance();
+		List<Continent> continents = mapInstance.getContinents();
 		return continents.get(continentID).getContinentName();
 	}
+	*/
 }

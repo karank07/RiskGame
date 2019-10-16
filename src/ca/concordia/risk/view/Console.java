@@ -1,7 +1,9 @@
 package ca.concordia.risk.view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -14,7 +16,7 @@ import ca.concordia.risk.controller.MainClass;
  */
 public class Console implements ActionListener {
 	JTextField textField;
-	JButton button1, button2;
+	JButton submit, exit;
 	String fileName;
 	MainClass m;
 
@@ -24,19 +26,23 @@ public class Console implements ActionListener {
 		textField = new JTextField();
 		textField.setBounds(50, 100, 400, 30);
 
-		button1 = new JButton("Submit");
-		button1.setBounds(50, 200, 150, 50);
-		button2 = new JButton("Exit");
-		button2.setBounds(220, 200, 150, 50);
+		submit = new JButton("Submit");
+		submit.setBounds(50, 150, 100, 30);
+		exit = new JButton("Exit");
+		exit.setBounds(180, 150, 100, 30);
 		frame.add(textField);
-		frame.add(button1);
-		frame.add(button2);
-		frame.setSize(600, 600);
+		frame.add(submit);
+		frame.add(exit);
+		frame.setSize(600, 300);
 		frame.setLayout(null);
 		frame.setVisible(true);
-
-		button1.addActionListener(this);
-		button2.addActionListener(this);
+		textField.setForeground(Color.WHITE);
+		textField.setBackground(Color.BLUE);
+		frame.setBackground(Color.black);
+		
+		submit.addActionListener(this);
+		//frame.getRootPane().setDefaultButton();
+		exit.addActionListener(this);
 		
 
 	}
@@ -44,13 +50,14 @@ public class Console implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String s1 = textField.getText();
 		boolean errorFlag=false;
-		if (e.getSource() == button1) {
+		
+		if (e.getSource() == submit) {
 			errorFlag=m.phaseDecider(s1);
 			if(errorFlag)
 			{
 				alert("Wrong Input!");
 			}
-		} else if (e.getSource() == button2) {
+		} else if (e.getSource() == exit) {
 			System.exit(0);
 		}
 
