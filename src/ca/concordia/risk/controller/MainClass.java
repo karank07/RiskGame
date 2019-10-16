@@ -36,7 +36,11 @@ public class MainClass {
 	FortificationPhase fp;
 	ReinforcementPhase rp;
 	StartUpPhase sp;
+<<<<<<< HEAD
 	public static List<Player> playerList;
+=======
+	static List<Player> playerList;
+>>>>>>> b77b716930d3eae49a05b8a8418dc71964eae830
 
 	static Console c;
 	int currentPlayer = 0;
@@ -74,7 +78,6 @@ public class MainClass {
 
 //
 //		}
-
 	}
 
 	/**
@@ -300,7 +303,6 @@ public class MainClass {
 			sp = new StartUpPhase();
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-
 					addPlayer(temp[i + 1]);
 				} else if (temp[i].contentEquals("-remove")) {
 					removePlayer(temp[i + 1]);

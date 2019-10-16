@@ -20,7 +20,7 @@ public class ReinforcementPhase {
 	public static final String INFANTRY = "INFANTRY";
 	public static final String CAVALRY = "Cavalry";
 	public static final String ARTILLERY = "Artillery";
-	private ca.concordia.risk.model.Map mapInstance;
+	private ca.concordia.risk.model.Map mapInstance = Map.getM_instance();
 
 	static ArrayList<ArrayList<Country>> set_of_contries;
 	static ArrayList<Continent> name_of_continents = new ArrayList<Continent>();
@@ -60,7 +60,7 @@ public class ReinforcementPhase {
 	 */
 	private void initialize() {
 		mapInstance = ca.concordia.risk.model.Map.getM_instance();
-		name_of_continents = (ArrayList<Continent>) mapInstance.getContinents();
+		name_of_continents = (ArrayList<Continent>) mapInstance.getContinents().values();
 		set_of_contries = new ArrayList<ArrayList<Country>>(mapInstance.getContinents().size());
 
 		for (int i = 0; i < mapInstance.getContinents().size(); i++) {

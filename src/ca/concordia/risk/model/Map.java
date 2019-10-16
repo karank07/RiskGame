@@ -11,23 +11,25 @@ import java.util.Map.Entry;
  * 
  * @author dhruv
  */
-
-public class Map {
-	public static Map m_instance = null;
-
+public class Map
+{
+	public static Map m_instance=null;
+	
 	private static HashMap<Integer, Country> countries;
 	private static HashMap<Integer, Continent> continents;
 	private static HashMap<Integer, ArrayList<Integer>> borders;
-
 	/**
 	 * Default Constructor
 	 */
-	private Map() {
+	private Map()
+	{
 		countries = new HashMap<Integer, Country>();
 		continents = new HashMap<Integer, Continent>();
-		borders = new HashMap<Integer, ArrayList<Integer>>();
+		borders= new HashMap<Integer, ArrayList<Integer>>();
 	}
-
+	
+	
+	
 	/**
 	 * Only One instance of Map so Singleton
 	 * 
@@ -59,7 +61,6 @@ public class Map {
 	public HashMap<Integer, ArrayList<Integer>> getBorders() {
 		return borders;
 	}
-
 	public void setBorders(HashMap<Integer, ArrayList<Integer>> borders) {
 		this.borders = borders;
 	}
@@ -70,28 +71,36 @@ public class Map {
 	 * @param cName the name of country to be searched
 	 * @return the country object matched with country name
 	 */
-	public Country getCountryByName(String cName) {
-		for (Country c : m_instance.getCountries().values()) {
-			if (cName.equals(c.getCountryName())) {
+	public Country getCountryByName(String cName)
+	{
+		for(Country c: m_instance.getCountries().values())
+		{
+			if(cName.equals(c.getCountryName()))
+			{
 				return c;
 			}
-
+				
 		}
 		return null;
 	}
-
+	
+	
+	
 	/**
 	 * gets the continent by continent name
 	 * 
 	 * @param contName the name of the continent to be searched
 	 * @return the continent object matched with the continent name
 	 */
-	public Continent getContinentByName(String contName) {
-		for (Continent c : m_instance.getContinents().values()) {
-			if (contName.equals(c.getContinentName())) {
+	public Continent getContinentByName(String contName)
+	{
+		for(Continent c: m_instance.getContinents().values())
+		{
+			if(contName.equals(c.getContinentName()))
+			{
 				return c;
 			}
-
+				
 		}
 		return null;
 	}
@@ -102,23 +111,31 @@ public class Map {
 	 * @param continentName the name of continent whose countries are to be listed
 	 * @return list of countries in given continent name
 	 */
-	public static List<Country> getCountriesByContinent(String continentName) {
-		int id = 0;
+	public static List<Country> getCountriesByContinent(String continentName)
+	{
+		int id=0;
 		List<Country> countryList = new ArrayList<Country>();
-		for (Entry<Integer, Continent> entry : continents.entrySet()) {
-			if (continentName.equals(entry.getValue().getContinentName())) {
-				id = entry.getKey();
+		for(Entry<Integer, Continent> entry : continents.entrySet())
+		{
+			if(continentName.equals(entry.getValue().getContinentName()))
+			{
+				id=entry.getKey();
 				break;
 			}
 		}
-
-		for (Entry<Integer, Country> entry : countries.entrySet()) {
-			if (id == entry.getValue().getContinentID()) {
+		
+		for(Entry<Integer, Country> entry : countries.entrySet())
+		{
+			if(id==entry.getValue().getContinentID())
+			{
 				countryList.add(entry.getValue());
 			}
 		}
+		
 		return countryList;
 	}
+			
+	
 
 	/**
 	 * get the neighboring countries
@@ -126,9 +143,11 @@ public class Map {
 	 * @param country the country object
 	 * @return List of Neighboring countries
 	 */
-	public List<Country> getNeighbourCountries(Country country) {
-		List<Country> neighbourCountry = new ArrayList<>();
-
+	public List<Country> getNeighbourCountries(Country country)
+	{
+		List<Country> neighbourCountry= new ArrayList<>();
+		
+		
 		return neighbourCountry;
 	}
 }
