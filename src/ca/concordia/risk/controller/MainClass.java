@@ -350,26 +350,39 @@ public class MainClass {
 			System.out.println("\nTurn for Player " + (currentPlayer));
 			break;
 		case "reinforce":
-			if (placeArmyFlag)
-				phase = "reinforce";
-			setReinforce(temp[1], Integer.parseInt(temp[2]));// temp[1]-countryName, temp[2]- armyCount
-			
-			//for printing list of all player's countries and armies
-			for (int i = 0; i < playerList.get(currentPlayer - 1).getPlayerCountries().size(); i++) {
-				System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName() + " "
-						+ playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
+			if(temp[1]=="" || temp[2]=="")
+			{errorFlag="Invalid command!";
+			break;}
+			else {
+				if (placeArmyFlag)
+					phase = "reinforce";
+				setReinforce(temp[1], Integer.parseInt(temp[2]));// temp[1]-countryName, temp[2]- armyCount
+				
+				//for printing list of all player's countries and armies
+				for (int i = 0; i < playerList.get(currentPlayer - 1).getPlayerCountries().size(); i++) {
+					System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName() + " "
+							+ playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
+					break;
+				}
+				
 			}
-			break;
+			
 		case "fortify":
 			currentPlayer = 1;// for build 1 static player
-			if (temp[1].contentEquals("none")) {
-				System.out.println("Fortification 	`skipped!");
-				phase = "reinforce";
-			} else {
-				// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
-				setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
+			if(temp[1]=="" || temp[2]=="" || temp[3]=="") 
+			{errorFlag="Invalid command!";
+			break;}
+			else {
+				if (temp[1].contentEquals("none")) {
+					System.out.println("Fortification skipped!");
+					phase = "reinforce";
+				} else {
+					// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
+					setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
+				}
+				break;
 			}
-			break;
+			
 
 		default:
 			// set flag for alert("Wrong Input!");
