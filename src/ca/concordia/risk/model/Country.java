@@ -210,14 +210,15 @@ public class Country {
 	}
 	
 	
-	/**
+	/*
 	 * Get the continent name of country
 	 * @return returns the continent name of the country.
-	 */	
+	 	
 	public String getContinentName()							//added by dhruv
 	{
 		mapInstance = ca.concordia.risk.model.Map.getM_instance();
 		List<Continent> continents = mapInstance.getContinents();
 		return continents.get(continentID).getContinentName();
 	}
+	*/
 }
