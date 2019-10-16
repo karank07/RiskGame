@@ -36,11 +36,7 @@ public class MainClass {
 	FortificationPhase fp;
 	ReinforcementPhase rp;
 	StartUpPhase sp;
-<<<<<<< HEAD
 	public static List<Player> playerList;
-=======
-	static List<Player> playerList;
->>>>>>> b77b716930d3eae49a05b8a8418dc71964eae830
 
 	static Console c;
 	int currentPlayer = 0;
