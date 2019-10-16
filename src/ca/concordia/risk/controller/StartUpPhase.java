@@ -51,7 +51,7 @@ public class StartUpPhase {
 
 		playerCount = MainClass.playerList.size();
 		int j = 0;
-		for (Country country : mapInstance.getCountries()) {
+		for (Country country : mapInstance.getCountries().values()) {
 			Player player = MainClass.playerList.get(j % playerCount);
 			setNewCountryRuler(player, country, 1);
 			player.remArmies(1);

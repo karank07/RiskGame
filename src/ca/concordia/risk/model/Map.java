@@ -44,12 +44,12 @@ public class Map
 	
 	
 	
-	public static HashMap<Integer, Country> getCountries() {
+	public HashMap<Integer, Country> getCountries() {
 		return countries;
 	}
 
 	
-	public static void setCountries(HashMap<Integer, Country> countries) {
+	public void setCountries(HashMap<Integer, Country> countries) {
 		Map.countries = countries;
 	}
 
@@ -75,7 +75,7 @@ public class Map
 	 * @param cName the name of country to be searched
 	 * @return the country object matched with country name
 	 */
-	public static Country getCountryByName(String cName)
+	public Country getCountryByName(String cName)
 	{
 		for(Country c: m_instance.getCountries().values())
 		{
@@ -114,7 +114,7 @@ public class Map
 	 * @param continentName the name of continent whose countries are to be listed
 	 * @return list of countries in given continent name
 	 */
-	public List<Country> getCountriesByContinent(String continentName)
+	public static List<Country> getCountriesByContinent(String continentName)
 	{
 		int id=0;
 		List<Country> countryList = new ArrayList<Country>();
