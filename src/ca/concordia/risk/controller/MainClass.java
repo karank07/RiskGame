@@ -203,6 +203,7 @@ public class MainClass {
 					setNeigbourCountry(CountryList, BorderString);
 					break;
 				}
+				errorFlag="false";
 			}
 
 		} catch (FileNotFoundException e) {
@@ -284,7 +285,7 @@ public class MainClass {
 	 * @return
 	 */
 	public String phaseDecider(String s1) {
-		String[] temp = new String[3];
+		String[] temp = new String[10];
 		temp = s1.split(" ");
 		int j = 0;
 		System.out.println("\n" + s1);
@@ -356,7 +357,12 @@ public class MainClass {
 			
 		case "savemap":
 			try {
-				mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+				try {
+					mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+				} catch (ValidMapException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -389,13 +395,15 @@ public class MainClass {
 			sp = new StartUpPhase();
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-					if (temp[i + 1] != "") {
+
+					if(!temp[i+1].contentEquals("stop")) {
 						addPlayer(temp[i + 1]);
 					} else {
 						errorFlag = "add a valid name";
 					}
 				} else if (temp[i].contentEquals("-remove")) {
-					if (temp[i + 1] != "") {
+
+					if(!temp[i+1].contentEquals("stop")) {
 						removePlayer(temp[i + 1]);
 					} else {
 						errorFlag = "add a valid name";
@@ -403,8 +411,13 @@ public class MainClass {
 
 				}
 			}
+			for(Player p:playerList)
+			{
+				System.out.println(p.getPlayerId()+" "+p.getPlayerName());
+			}
 			if (!playerList.isEmpty()) {
 				gamePlayerSet = true;
+				
 			}
 
 			break;
@@ -444,27 +457,38 @@ public class MainClass {
 			System.out.println("\nTurn for Player " + (currentPlayer));
 			break;
 		case "reinforce":
-			if (placeArmyFlag)
-				phase = "reinforce";
-			setReinforce(temp[1], Integer.parseInt(temp[2]));// temp[1]-countryName, temp[2]- armyCount
-
-			// for printing list of all player's countries and armies
-			for (int i = 0; i < playerList.get(currentPlayer - 1).getPlayerCountries().size(); i++) {
-				System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName() + " "
-						+ playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
+			if(temp[1]=="" || temp[2]=="")
+			{errorFlag="Invalid command!";
+			break;}
+			else {
+				if (placeArmyFlag)
+					phase = "reinforce";
+				setReinforce(temp[1], Integer.parseInt(temp[2]));// temp[1]-countryName, temp[2]- armyCount
+				
+				//for printing list of all player's countries and armies
+				for (int i = 0; i < playerList.get(currentPlayer - 1).getPlayerCountries().size(); i++) {
+					System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName() + " "
+							+ playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
+					break;
+				}
+				
 			}
-			break;
+			
 		case "fortify":
 			currentPlayer = 1;// for build 1 static player
-			if (temp[1].contentEquals("none")) {
-				System.out.println("Fortification skipped!");
-				phase = "reinforce";
-			} else {
-				// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
-				setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
+			if(temp[1]=="" || temp[2]=="" || temp[3]=="") 
+			{errorFlag="Invalid command!";
+			break;}
+			else {
+				if (temp[1].contentEquals("none")) {
+					System.out.println("Fortification skipped!");
+					phase = "reinforce";
+				} else {
+					// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
+					setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
+				}
+				break;
 			}
-			break;
-
 		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";
