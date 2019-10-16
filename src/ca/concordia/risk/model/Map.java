@@ -1,7 +1,9 @@
 package ca.concordia.risk.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 /**
  * This class parses the map file and create countries, territories, continents and neighboring countries.
@@ -12,18 +14,19 @@ public class Map
 {
 	public static Map m_instance=null;
 	
-	private List<Country> countries;
-	private static List<Continent> continents;
-	private List<ArrayList<String>> borders;
+	private static HashMap<Integer, Country> countries;
+	private static HashMap<Integer, Continent> continents;
+	private static HashMap<Integer, ArrayList<Integer>> borders;
 	/**
 	 * Default Constructor
 	 */
 	private Map()
 	{
-		countries = new ArrayList<Country>();
-		continents = new ArrayList<Continent>();
-		borders= new ArrayList<ArrayList<String>>();
+		countries = new HashMap<Integer, Country>();
+		continents = new HashMap<Integer, Continent>();
+		borders= new HashMap<Integer, ArrayList<Integer>>();
 	}
+	
 	
 	
 	/**
@@ -39,70 +42,52 @@ public class Map
 	}
 
 	
-	/**
-	 * get the list of countries
-	 * @return the list of countries
-	 */
-	public List<Country> getCountries() {
+	
+	
+	public static HashMap<Integer, Country> getCountries() {
 		return countries;
 	}
 
 	
-	/**
-	 * sets the countries which are passed in the countries list
-	 * @param countries the list of countries to set
-	 */
-	public void setCountries(List<Country> countries) {
-		this.countries = countries;
+	public static void setCountries(HashMap<Integer, Country> countries) {
+		Map.countries = countries;
 	}
 
-	
-	/**
-	 * get the list of continents
-	 * @return the list of continents
-	 */
-	public static List<Continent> getContinents() {
+	public static HashMap<Integer, Continent> getContinents() {
 		return continents;
 	}
 
-	
-	/**
-	 * sets the continents which are passed in the continents list
-	 * @param continents the list of continents to set
-	 */
-	public void setContinents(List<Continent> continents) {
-		this.continents = continents;
+	public static void setContinents(HashMap<Integer, Continent> continents) {
+		Map.continents = continents;
 	}
 
-	
-	public List<ArrayList<String>> getBorders() {
+	public HashMap<Integer, ArrayList<Integer>> getBorders() {
 		return borders;
 	}
-
-
-	public void setBorders(List<ArrayList<String>> borders) {
+	
+	public void setBorders(HashMap<Integer, ArrayList<Integer>> borders) {
 		this.borders = borders;
 	}
 
-	
-	
 	
 	/**
 	 * gets the country by country name
 	 * @param cName the name of country to be searched
 	 * @return the country object matched with country name
 	 */
-	public Country getCountryByName(String cName)
+	public static Country getCountryByName(String cName)
 	{
-		for(Country c: countries)
+		for(Country c: m_instance.getCountries().values())
 		{
-			if((c.getCountryName()).equals(cName))
+			if(cName.equals(c.getCountryName()))
 			{
 				return c;
 			}
+				
 		}
 		return null;
 	}
+	
 	
 	
 	/**
@@ -112,12 +97,13 @@ public class Map
 	 */
 	public Continent getContinentByName(String contName)
 	{
-		for(Continent cont: continents)
+		for(Continent c: m_instance.getContinents().values())
 		{
-			if((cont.getContinentName()).equals(contName))
+			if(contName.equals(c.getContinentName()))
 			{
-				return cont;
+				return c;
 			}
+				
 		}
 		return null;
 	}
@@ -130,29 +116,28 @@ public class Map
 	 */
 	public List<Country> getCountriesByContinent(String continentName)
 	{
-		List<Country> continentCountry=new ArrayList<>();
-		int continentIndex=0;
-		
-		//get index of continent from continent name
-		for(int i=0; i<continents.size() ; i++)
+		int id=0;
+		List<Country> countryList = new ArrayList<Country>();
+		for(Entry<Integer, Continent> entry : continents.entrySet())
 		{
-			if((continents.get(i).getContinentName()).equals(continentName))
+			if(continentName.equals(entry.getValue().getContinentName()))
 			{
-				continentIndex=i+1;
+				id=entry.getKey();
 				break;
 			}
 		}
 		
-		//match continent index with continent id and add the matched countries to the array list
-		for(Country c: getCountries())
+		for(Entry<Integer, Country> entry : countries.entrySet())
 		{
-			if(continentIndex==c.getContinentID())
+			if(id==entry.getValue().getContinentID())
 			{
-				continentCountry.add(c);
+				countryList.add(entry.getValue());
 			}
 		}
-		return continentCountry;
+		
+		return countryList;
 	}
+			
 	
 
 	/**
@@ -163,13 +148,8 @@ public class Map
 	public List<Country> getNeighbourCountries(Country country)
 	{
 		List<Country> neighbourCountry= new ArrayList<>();
-		int[] neighbour=country.getNeighbours();
-		String cName;
-		for(int i=0; i<neighbour.length; i++)
-		{
-			
-			//neighbourCountry.add(getCountryByName());
-		}
+		
+		
 		return neighbourCountry;
 	}
 }

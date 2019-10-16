@@ -52,7 +52,7 @@ public class MapWriter{
 		
 		lines.add(GameConstants.CONTINENT_HEADER);
 		
-		for(Continent c: map.getContinents())
+		for(Continent c: map.getContinents().values())
 		{
 			lines.add(c.getContinentName() + " " + c.getContinentControlValue() + " " + c.getContinentColor());
 		}
@@ -61,7 +61,7 @@ public class MapWriter{
 		
 		lines.add(GameConstants.COUNTRIES_HEADER);
 		
-		List<Country> countries= map.getCountries();
+		List<Country> countries= (List<Country>) map.getCountries().values();
 		Collections.sort(countries, new CountryComparator());
 		
 		
@@ -72,9 +72,16 @@ public class MapWriter{
 		
 		lines.add(GameConstants.BORDERS_HEADER);
 		
-		for(int i=0; i<map.getBorders().size(); i++)
+		for (Integer n : map.getBorders().keySet()) 
 		{
-			lines.add( Integer.toString(i+1) +" "+ map.getBorders().get(i));
+			ArrayList<Integer> tempList = new ArrayList<Integer>();
+			String adj = "";
+			tempList = map.getBorders().get(n);
+			for (Integer m : tempList)
+			{
+				adj = adj + m + " ";
+			}
+			lines.add(n + " " + adj.trim());
 		}
 		
 		return lines.toString();

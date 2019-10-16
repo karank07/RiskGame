@@ -217,7 +217,7 @@ public class Country {
 	 */	
 	public String getContinentName()							//added by dhruv
 	{
-		List<Continent> continents = Map.getContinents();
+		List<Continent> continents = (List<Continent>) Map.getContinents();
 		
 		return continents.get(continentID).getContinentName();
 	}

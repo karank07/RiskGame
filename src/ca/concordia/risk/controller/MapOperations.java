@@ -19,139 +19,194 @@ import ca.concordia.risk.utilities.ValidMapException;
 public class MapOperations{
 	
 	static int country_num=1;
-	static List<ArrayList<String>> neighboursList=new ArrayList< ArrayList<String>>(250);
+	static int continent_num=1;
+	static int hashMapID=0;
+	static List<ArrayList<String>> neighboursList=new ArrayList< ArrayList<String>>();
 	HashMap<Integer, ArrayList<Integer>> hMap;
 	private boolean[] visited;
 	private int flag;
 	/**
 	 * This method adds continent to map
 	 * @param map current map object
-	 * @param continents the list of continents
+	 * @param continents the hashmap of continents
 	 * @param continent_name the name of the continent
 	 * @param control_val the control value of continent
 	 * @param color the color of continent
 	 * @return boolean value true if country is added else returns false
 	 * @throws ValidMapException throws an exception if map is invalid
 	 */
-	public boolean addContinent(Map map, List<Continent> continents, String continent_name, int control_val, String color) throws ValidMapException 
+	public boolean addContinent(Map map, HashMap<Integer, Continent> continents, String continent_name, int control_val, String color) throws ValidMapException 
 	{
-		Continent con= new Continent(continent_name,control_val,color);
-		
-		if(map.getContinents().contains(con))
+		for (int n : continents.keySet()) 
 		{
-			throw new ValidMapException("The Continent with name "+ continent_name + "already exists" );
+			String cont_name = continents.get(n).getContinentName();
+			if (cont_name.equals(continent_name))
+			{
+				throw new ValidMapException("The Continent with name "+ continent_name + "already exists" );
+			} 
 		}
-		continents.add(con);
+		color=null;
+		continent_num=map.getContinents().size();
+		Continent cont = new Continent(continent_name, control_val, color);
+		continents.put(continent_num, cont);
 		return true;
 	}
 	
 	
 	/**
-	 * This method add countries to map.
-	 * @param map the map object
-	 * @param countries the list of countries
-	 * @param country_name the name of the country to be added
-	 * @param continent_name the name of continent in which the country needs to be added
-	 * @return boolean value true if country is added else returns false
+	 * This method adds countries to map 
+	 * @param map the map object instance
+	 * @param continents the hashmap of existing continents
+	 * @param countries the hashmap of existing countries
+	 * @param country_name the country name to be added
+	 * @param continent_name the continent name in which country needs to be added
+	 * @return true if country added, else false
 	 * @throws ValidMapException
 	 */
-	public boolean addCountry(Map map,List<Country> countries, String country_name, String continent_name ) throws ValidMapException
+	public boolean addCountry(Map map,HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, String country_name, String continent_name ) throws ValidMapException
 	{
 		Random r=new Random();
 		int x_co=r.nextInt(600);
 		int y_co=r.nextInt(600);
+		country_num= map.getCountries().size();
 		
-		if(map.getContinents().contains(map.getContinentByName(continent_name)))
-		{
-			int continent_id= map.getContinents().indexOf(map.getContinentByName(continent_name)) + 1;
+		boolean continentFlag=false,countryFlag=false;
+		int continent_id=0;
 		
-			Country co=new Country(country_num,country_name, continent_id, x_co, y_co);
-			country_num++;
-			for(Continent cont: map.getContinents())
+		for (int i : continents.keySet()) {
+			String con_name = continents.get(i).getContinentName();
+			if (con_name.equals(continent_name)) 
 			{
-				if(map.getCountriesByContinent(cont.getContinentName()).contains(co))
-				{
-					throw new ValidMapException("The Country with same name "+ country_name +" already exist in continent " + cont.getContinentName() +".");
+				continent_id=i;
+				continentFlag=true;
+				break;				
+			}
+		}
+		
+		if(continentFlag==true)
+		{
+			if(countries.size()>0)
+			{
+				for (int n : countries.keySet()) {
+					String co = countries.get(n).getCountryName();
+					if (co.equals(country_name)) {					
+						throw new ValidMapException("Country with name:"+ country_name +" already exists!");
+					}
+					else
+					{
+						countryFlag=true;
+					}
 				}
 			}
-			countries.add(co);
-			return true;
+			else
+			{
+				Country co = new Country(country_num, country_name, continent_id, x_co, y_co);
+				countries.put(country_num+1, co);
+				return true;
+			}
+
 		}
+		
 		else
 		{
-			throw new ValidMapException("There is no continent with name:"+continent_name);
+			throw new ValidMapException("The Continent:"+continent_name +"does not exist!");
 		}
+		
+		if(countryFlag == true)
+		{
+			Country co = new Country(country_num, country_name, continent_id, x_co, y_co);
+			countries.put(country_num +1, co);
+			return true;
+		}
+		return false;
 	}
-	
+
 	
 	/**
-	 * This method adds neighbours to map
+	 * This method adds borders to map
 	 * @param map the map object
-	 * @param borders the borders list
-	 * @param country_name the name of country to which border need to be added
-	 * @param neighbour_country_name the name of the country which is the border to given country
-	 * @return  true if border is added else false
+	 * @param borders the borders hashmap
+	 * @param country_name the name of the country
+	 * @param neighbour_country_name the name of the neighbour country
+	 * @return true if border added, else false
 	 * @throws ValidMapException
 	 */
-	
-	public boolean addNeighbours(Map map,List<ArrayList<String>> borders, String country_name, String neighbour_country_name) throws ValidMapException
+	public boolean addNeighbours(Map map,HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String country_name, String neighbour_country_name) throws ValidMapException
 	{
-		int country_id= map.getCountryByName(country_name).getCountryNumber();
-		int neighbour_country_id= map.getCountryByName(neighbour_country_name).getCountryNumber();
 		
-		if(map.getCountries().contains(map.getCountryByName(country_name))) 
-		{	
-			if(map.getCountries().contains(map.getCountryByName(neighbour_country_name)))
+		boolean country_flag=false,neighbour_flag=false;
+		int country_id=0,neighbour_country_id=0;
+		for (int n : countries.keySet()) {
+			String coun = countries.get(n).getCountryName();
+			if (country_name.equals(coun)) {
+				country_id=n;
+				country_flag=true;
+				break;
+			}
+		}
+		
+		if(country_flag==true)
+		{
+			for (int p : countries.keySet()) {
+				String neigh_country = countries.get(p).getCountryName();
+				if (neighbour_country_name.equals(neigh_country)) {
+					neighbour_country_id=p;
+					neighbour_flag=true;
+					break;
+				}
+			}
+			
+			if(neighbour_flag==true)
 			{
-				//neighboursList.put(country_id,  );
-				neighboursList.get(country_id).add(Integer.toString(neighbour_country_id));
-				neighboursList.get(neighbour_country_id).add(Integer.toString(country_id));
-				//map.setBorders(neighboursList);
-				borders=neighboursList;
+				if(borders.size()>0)
+				{
+					if(borders.containsKey(country_id))
+					{
+						if(borders.get(country_id).contains(neighbour_country_id))
+						{
+							throw new ValidMapException("The neighbour country already exists in Borders List!");
+						}
+						else
+						{
+							borders.get(country_id).add(neighbour_country_id);
+							borders.get(neighbour_country_id).add(country_id);
+						}
+					}
+					else
+					{
+						//When no elements are present
+						ArrayList<Integer> list = new ArrayList<Integer>();
+						list.add(neighbour_country_id);
+						borders.put(country_id, list);
+					}
+				}
+				else
+				{
+					ArrayList<Integer> list1 = new ArrayList<Integer>();
+					list1.add(neighbour_country_id);
+					borders.put(country_id, list1);
+				}				
 				return true;
 			}
 			else
 			{
-				throw new ValidMapException("The Neighbour Country: "+ neighbour_country_name +" does not exist!");
+				throw new ValidMapException("THe neighbour country named "+ neighbour_country_name +" does not exist. Please add the country and then try to add the neighbour");
 			}
 		}
 		else
 		{
-			throw new ValidMapException("The Country: "+ country_name +" does not exist!" );
-		}	
-	}
-	
-	/**
-	 * This method converts List of ArrayList of String to HashMap for borders
-	 * @param array the list to be converted into hashmap
-	 * @return the converted hashmap
-	 */
-	public HashMap<Integer, ArrayList<Integer>> convertToHashMap(List<ArrayList<String>> array)
-	{
-		HashMap<Integer, ArrayList<Integer>> newHash= new HashMap<Integer, ArrayList<Integer>>();
-		
-		for(int i=0; i<array.size();i++)
-		{
-			ArrayList<Integer> line = new ArrayList<Integer>();
-			for(int j=0; j<array.get(i).size();j++)
-			{
-				line.add(Integer.parseInt(array.get(i).get(j)));
-			}
-			newHash.put(i+1, line);
+			throw new ValidMapException("The Country "+ country_name +" does not exists. Please add the country and then neighbour");
 		}
-		return newHash;
+		
 	}
-	
 	
 	/**
 	 * This method checks if the map is connected or not
 	 * @param borders the list of borders, to check connectivity
 	 * @return true if map is connected, else false
 	 */
-	public boolean isConnected(List<ArrayList<String>> bordersList)
+	public boolean isConnected(HashMap<Integer, ArrayList<Integer>> borders)
 	{
-		HashMap<Integer,ArrayList<Integer>> borders;
-		borders=convertToHashMap(bordersList);
 		hMap=borders;
 		visited= new boolean[borders.size()];
 		flag=0;
