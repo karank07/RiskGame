@@ -13,13 +13,16 @@ public class FortificationPhase {
 	/**
 	 * @param countryList- list of all the objects of countries
 	 */
-	List<Country> countryList;
+
+	MainClass m;
+	boolean adjFlag = false;
+	List<Country> visited = new ArrayList<Country>();
 
 	/**
 	 * to instantiate object
 	 */
 	public FortificationPhase() {
-		countryList = new ArrayList<Country>();
+
 	}
 
 	/**
@@ -31,17 +34,28 @@ public class FortificationPhase {
 	 * @param army
 	 */
 	public void fortify(Country from, Country to, int owner, int army) {
-		boolean adjFlag = false;
+
 		adjFlag = checkNeighbours(from, to, owner);
+		System.out.println("player "+owner);
 		if (adjFlag) {
 			if (from.getCountryArmy() - army >= 1) {
 				from.setCountryArmy(from.getCountryArmy() - army);
 				to.setCountryArmy(to.getCountryArmy() + army);
+				System.out.println("\nFortification successful");
+				m.phase="reinforce";
+
 			} else
 				System.out.println("There must be atleast one army in a country!");
 		} else
 			System.out.println("Move not possible");
-
+		System.out.println("Country and Army Count for Player "+owner);
+		for (Country c : m.CountryList)
+		{
+			if(c.getCountryOwner()==owner)
+				System.out.println(c.getCountryName() + " " + c.getCountryArmy());
+			
+		}
+				
 	}
 
 	/**
@@ -53,14 +67,34 @@ public class FortificationPhase {
 	 * @return adjFlag
 	 */
 	public boolean checkNeighbours(Country from, Country to, int owner) {
-		boolean adjFlag = false;
+		adjFlag = false;
 		int[] listOfNeighbours = from.getNeighbours();
-		if ((!arrayContains(listOfNeighbours, to.getCountryNumber()))
-				&& (checkNeighbours(countryList.get(listOfNeighbours[1]), to, owner))
-				&& (from.getCountryOwner() == to.getCountryOwner())) {
-			adjFlag = true;
+		visited.clear();
+		visited.add(from);
+		//System.out.println(visited.toString());
+		if (from.getCountryOwner() == to.getCountryOwner()) {
+			dfs(visited, from, to, owner);
 		}
 		return adjFlag;
+	}
+
+	private void dfs(List<Country> visited, Country from, Country to, int owner) {
+		int[] listOfNeighbours = from.getNeighbours();
+
+		if (!arrayContains(listOfNeighbours, to.getCountryNumber())) {
+			visited.add(from);
+			for (int i = 0; i < listOfNeighbours.length; i++) {
+				if (m.CountryList.get(i).getCountryOwner() == owner) {
+
+					Country mayBecomeFrom = m.CountryList.get(i);
+					if (!visited.contains(mayBecomeFrom)) {
+						dfs(visited, mayBecomeFrom, to, owner);
+					}
+				}
+			}
+		} else {
+			adjFlag = true;
+		}
 	}
 
 	/**
