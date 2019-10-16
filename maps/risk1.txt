@@ -1,0 +1,21 @@
+[continents]
+asia 3 null
+aus 5 null
+
+[countries]
+1 india 1 285 520
+2 pak 1 306 312
+3 hhh 1 102 91
+4 rohan 2 48 12
+5 dhruv 2 326 325
+6 con3 2 28 117
+7 con4 1 200 251
+
+[borders]
+1 2
+2 1 4
+3 6
+4 5 2
+5 4
+6 7 3
+7 6
