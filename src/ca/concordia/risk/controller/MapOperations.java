@@ -46,11 +46,12 @@ public class MapOperations{
 			} 
 		}
 		color=null;
-		continent_num=map.getContinents().size();
+		continent_num=continents.size();
 		Continent cont = new Continent(continent_name, control_val, color);
 		continents.put(continent_num, cont);
 		return true;
 	}
+	
 	
 	
 	/**
@@ -120,7 +121,6 @@ public class MapOperations{
 		}
 		return false;
 	}
-
 	
 	/**
 	 * This method adds borders to map
@@ -169,7 +169,6 @@ public class MapOperations{
 						else
 						{
 							borders.get(country_id).add(neighbour_country_id);
-							borders.get(neighbour_country_id).add(country_id);
 						}
 					}
 					else
@@ -199,7 +198,6 @@ public class MapOperations{
 		}
 		
 	}
-	
 	/**
 	 * This method checks if the map is connected or not
 	 * @param borders the list of borders, to check connectivity

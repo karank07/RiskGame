@@ -1,11 +1,13 @@
 package ca.concordia.risk.controller;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import ca.concordia.risk.model.Continent;
@@ -17,74 +19,63 @@ import ca.concordia.risk.utilities.GameConstants;
 public class MapWriter{
 	
 	/**
-	 * This method writes the map details to the map file.
-	 * @param map object of the map which is being processed
-	 * @param fileName file name
+	 * This method the map file
+	 * @param continents the hashmap of continents
+	 * @param countries the hashmap of countries
+	 * @param boundries  the hashmap of borders
+	 * @param mapFile
+	 * @throws IOException
 	 */
-	public void writeMapFile(Map map, String fileName) {
+	public void writeMapFile(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String mapFile) throws IOException {
+
+		String filePath = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + mapFile;
+		File mapfile = new File(filePath);
+		FileWriter fileWriter = new FileWriter(mapfile, false);
+		BufferedWriter buffW = new BufferedWriter(fileWriter);
+		mapfile.createNewFile();
 		
-		FileWriter fileWriter;
-		try {
-			if (map == null) {
-				System.out.println("Map Object is NULL!");
-			}
-			String createPath = Paths.get("").toAbsolutePath().toString() + "\\maps" + fileName;
-			File mapfile = new File(createPath);
-			String content = parseMapAndReturn(map);
-			fileWriter = new FileWriter(mapfile, false);
-			fileWriter.write(content);
-			fileWriter.close();
+		
+		buffW.write(GameConstants.CONTINENT_HEADER);
+		buffW.newLine();
+		for (Integer n : continents.keySet()) {
+			Continent con = continents.get(n);
+			buffW.write(con.getContinentName() + " " + con.getContinentControlValue() + " " + con.getContinentColor());
+			buffW.newLine();
+		}
+
+		buffW.write("\n");
+		
+		buffW.write(GameConstants.COUNTRIES_HEADER);
+		
+		buffW.newLine();
+		
+		for (Integer i : countries.keySet()) 
+		{
+			Country coun = countries.get(i);
 			
-		}catch (IOException e) {
-			System.err.println(e.getMessage());
+			int continent_id=coun.getContinentID()+1;
+			
+			buffW.write(i + " " + coun.getCountryName() + " " + continent_id + " " + coun.getXCo() + " " + coun.getYCo());
+			buffW.newLine();
 		}
-	}
-	
-	
-	/**
-	 * This method processes the map and makes a string to be written in the map file.
-	 * @param map object of the map which is being processed
-	 * @return List of String to be written in the map file
-	 */
-	private String parseMapAndReturn(Map map)
-	{
-		List<String> lines=new ArrayList<String>();
+
+		buffW.write("\n");
+		buffW.write(GameConstants.BORDERS_HEADER);
+		buffW.newLine();
 		
-		lines.add(GameConstants.CONTINENT_HEADER);
-		
-		for(Continent c: map.getContinents().values())
+		for (Integer m : borders.keySet()) 
 		{
-			lines.add(c.getContinentName() + " " + c.getContinentControlValue() + " " + c.getContinentColor());
-		}
-		
-		lines.add(GameConstants.NEW_LINE);
-		
-		lines.add(GameConstants.COUNTRIES_HEADER);
-		
-		List<Country> countries= (List<Country>) map.getCountries().values();
-		Collections.sort(countries, new CountryComparator());
-		
-		
-		for(Country cn: countries)
-		{
-			lines.add(cn.getCountryNumber() + " " + cn.getCountryName() + " " + cn.getContinentID() + " " + cn.getXCo() + " " + cn.getYCo());
-		}
-		
-		lines.add(GameConstants.BORDERS_HEADER);
-		
-		for (Integer n : map.getBorders().keySet()) 
-		{
-			ArrayList<Integer> tempList = new ArrayList<Integer>();
-			String adj = "";
-			tempList = map.getBorders().get(n);
-			for (Integer m : tempList)
-			{
-				adj = adj + m + " ";
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			String border_string = "";
+			list = borders.get(m);
+			
+			for (Integer n : list) {
+				border_string =border_string + n + " ";
 			}
-			lines.add(n + " " + adj.trim());
+			
+			buffW.write(m + " " + border_string.trim());
+			buffW.newLine();
 		}
-		
-		return lines.toString();
+		buffW.close();
 	}
-	
 }
