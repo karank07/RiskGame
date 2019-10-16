@@ -44,7 +44,7 @@ public class MainClass {
 
 	boolean gamePlayerSet = false;
 	boolean placeArmyFlag = false;
-	boolean errorFlag = false;
+	String errorFlag;
 
 	public static void main(String[] a) throws Exception {
 		new MainClass();
@@ -189,7 +189,8 @@ public class MainClass {
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			errorFlag = "Given Map file doesnot exist!";
 		} finally {
 			br.close();
 			file.close();
@@ -272,7 +273,7 @@ public class MainClass {
 	 * @param s1
 	 * @return
 	 */
-	public boolean phaseDecider(String s1) {
+	public String phaseDecider(String s1) {
 		String[] temp = new String[3];
 		temp = s1.split(" ");
 		int j = 0;
@@ -290,7 +291,7 @@ public class MainClass {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 				// set flag for alert("File Not Found!");
-				errorFlag = true;
+				errorFlag = "Check map file name again!";
 			}
 			break;
 			
@@ -299,7 +300,11 @@ public class MainClass {
 			sp = new StartUpPhase();
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-					addPlayer(temp[i + 1]);
+					if(temp[i+1]!="") {
+						addPlayer(temp[i + 1]);
+					}
+					else
+					{errorFlag="add a valid name";}				
 				} else if (temp[i].contentEquals("-remove")) {
 					removePlayer(temp[i + 1]);
 				}
@@ -363,7 +368,7 @@ public class MainClass {
 
 		default:
 			// set flag for alert("Wrong Input!");
-			errorFlag = true;
+			errorFlag = "Check commands again!";
 		}
 		return errorFlag;
 	}
