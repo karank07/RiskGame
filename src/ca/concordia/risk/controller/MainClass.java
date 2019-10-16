@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
@@ -28,18 +29,22 @@ public class MainClass {
 	/**
 	 * 
 	 */
-	List<Continent> continentList;
+	public static List<Continent> continentList;
 	List<String> countryString;
-	List<Country> CountryList;
+	public static List<Country> CountryList;
 	List<String> BorderString;
 	FortificationPhase fp;
 	ReinforcementPhase rp;
 	StartUpPhase sp;
-	List<Player> playerList;
+	public static List<Player> playerList;
 
 	static Console c;
-	int currentPlayer=0;
+	int currentPlayer = 0;
 	static String phase;
+
+	boolean gamePlayerSet = false;
+	boolean placeArmyFlag = false;
+	boolean errorFlag = false;
 
 	public static void main(String[] a) throws Exception {
 		new MainClass();
@@ -51,6 +56,7 @@ public class MainClass {
 		fileData = "";
 		file = null;
 		br = null;
+		playerList = new ArrayList<Player>();
 		continentString = new ArrayList<String>();
 		continentList = new ArrayList<Continent>();
 		countryString = new ArrayList<String>();
@@ -59,7 +65,15 @@ public class MainClass {
 		c = new Console();
 		fp = new FortificationPhase();
 		rp = new ReinforcementPhase();
-		sp = new StartUpPhase();
+
+//		Scanner in=new Scanner(System.in);
+//		while(true)
+//		{
+//			String s1=in.nextLine();
+//			phaseDecider(s1);
+
+//
+//		}
 
 	}
 
@@ -68,7 +82,6 @@ public class MainClass {
 	 * @param ContinentList
 	 */
 	private static void stringToContinent(List<String> continentString, List<Continent> continentList) {
-		// TODO Auto-generated method stub
 		String[] temp = new String[3];
 
 		for (String obj : continentString) {
@@ -191,7 +204,7 @@ public class MainClass {
 		if (!phase.contentEquals("gameplayer"))
 			return;
 		sp.addPlayer(playerName);
-		
+
 	}
 
 	private void removePlayer(String playerName) {
@@ -216,15 +229,18 @@ public class MainClass {
 	private void placeArmyByCountry(String cName) {
 		if (!phase.contentEquals("placearmy"))
 			return;
+		System.out.println("main");
 		sp.placeArmyByCountryName(cName);
 	}
 
 	private void setReinforce(String countryName, int armyNumber) {
 		if (!phase.contentEquals("reinforce"))
 			return;
-		rp.beginReinforcement(playerList.get(currentPlayer));
-		rp.reinforceArmy(playerList.get(currentPlayer), countryName, armyNumber);
-		phase="fortify";
+		rp.reinforceArmy(playerList.get(currentPlayer - 1), countryName, armyNumber);
+
+		if (playerList.get(currentPlayer - 1).getPlayerReinforceArmy() == 0) {
+			phase = "fortify";
+		}
 	}
 
 	private void setFortify(String from, String to, int army) {
@@ -233,27 +249,38 @@ public class MainClass {
 		Country countryTo = null, countryFrom = null;
 		for (Country obj : CountryList) {
 
-			if (obj.getCountryName().equals(from)) {
+			if (obj.getCountryName().equalsIgnoreCase(from)) {
 				countryFrom = obj;
 			}
-			if (obj.getCountryName().equals(to)) {
+			if (obj.getCountryName().equalsIgnoreCase(to)) {
 				countryTo = obj;
 			}
 
 		}
-		fp.fortify(countryFrom, countryTo, playerList.get(currentPlayer).getPlayerId(), army);
+		fp.fortify(countryFrom, countryTo, playerList.get(currentPlayer - 1).getPlayerId(), army);
 	}
 
+	private void divideInitialArmies() {
+		for (Player p : playerList)
+			p.setPlayerTotalArmies(sp.getInitialArmies());
+	}
+
+	/**
+	 * @param s1
+	 * @return
+	 */
+	/**
+	 * @param s1
+	 * @return
+	 */
 	public boolean phaseDecider(String s1) {
 		String[] temp = new String[3];
 		temp = s1.split(" ");
-		for(int i=0;i<temp.length;i++)
-		{
-			temp[i]=temp[i].toLowerCase();
+		int j = 0;
+		System.out.println("\n" + s1);
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = temp[i].toLowerCase();
 		}
-		boolean gamePlayerSet=false;
-		boolean placeArmyFlag=false;
-		boolean errorFlag = false;
 
 		switch (temp[0]) {
 		case "loadmap":
@@ -267,41 +294,69 @@ public class MainClass {
 				errorFlag = true;
 			}
 			break;
+			
 		case "gameplayer":
+			System.out.println("\nPlayers:");
+			sp = new StartUpPhase();
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
+
 					addPlayer(temp[i + 1]);
 				} else if (temp[i].contentEquals("-remove")) {
 					removePlayer(temp[i + 1]);
 				}
 			}
-			if(!playerList.isEmpty())
-				gamePlayerSet=true;
+			if (!playerList.isEmpty()) {
+				gamePlayerSet = true;
+			}
+
 			break;
+			
 		case "populatecountries":
-			if(gamePlayerSet)
+			if (gamePlayerSet) {
 				phase = "populatecountries";
+			}
 			populateCountries();
+			
+		case "dividearmies":
+			divideInitialArmies();
 			break;
+			
 		case "placearmy":
 			placeArmyByCountry(temp[1]);
-			if(playerList.get(currentPlayer).getPlayerTotalArmies()==0)
-				placeArmyFlag=true;
+			if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0)
+				placeArmyFlag = true;
 			break;
+			
 		case "placeall":
 			placeAll();
-			if(playerList.get(currentPlayer).getPlayerTotalArmies()==0)
-				placeArmyFlag=true;
+			if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0)
+				placeArmyFlag = true;
+
+		case "caclulate armies for reinforcement":
+			for (Player p : playerList) {
+				rp.beginReinforcement(p);
+
+			}
+			currentPlayer = 1;//for build 1 implemented for single player
+			System.out.println("\nTurn for Player " + (currentPlayer));
 			break;
 		case "reinforce":
-			if(placeArmyFlag)
-				phase="reinforce";
-			// temp[1]-countryName, temp[2]- armyCount
-			setReinforce(temp[1], Integer.parseInt(temp[2]));
+			if (placeArmyFlag)
+				phase = "reinforce";
+			setReinforce(temp[1], Integer.parseInt(temp[2]));// temp[1]-countryName, temp[2]- armyCount
+			
+			//for printing list of all player's countries and armies
+			for (int i = 0; i < playerList.get(currentPlayer - 1).getPlayerCountries().size(); i++) {
+				System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName() + " "
+						+ playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
+			}
 			break;
 		case "fortify":
+			currentPlayer = 1;// for build 1 static player
 			if (temp[1].contentEquals("none")) {
-				// alert("Successfull! Next player turn!");
+				System.out.println("Fortification skipped!");
+				phase = "reinforce";
 			} else {
 				// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
 				setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
