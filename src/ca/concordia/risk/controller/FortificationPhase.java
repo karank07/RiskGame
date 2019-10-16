@@ -6,6 +6,8 @@ import java.util.List;
 import ca.concordia.risk.model.Country;
 
 /**
+ * This class contains data members such as list of country - visited, fortify(), searchNeighbors(), etc to implement a 
+ * valid fortification move according to risk rules
  * @author Karan
  *
  */
