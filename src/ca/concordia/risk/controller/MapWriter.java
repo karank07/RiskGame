@@ -13,7 +13,6 @@ import java.util.List;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Map;
-import ca.concordia.risk.utilities.CountryComparator;
 import ca.concordia.risk.utilities.GameConstants;
 
 public class MapWriter{
