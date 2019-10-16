@@ -41,6 +41,7 @@ public class StartUpPhase {
 	public StartUpPhase() {
 
 		mapInstance = ca.concordia.risk.model.Map.getM_instance();
+		mapInstance.initializeList();
 
 	}
 

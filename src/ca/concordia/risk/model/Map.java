@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import ca.concordia.risk.controller.MainClass;
+
 /**
  * This class parses the map file and create countries, territories, continents
  * and neighboring countries.
@@ -15,9 +17,11 @@ public class Map
 {
 	public static Map m_instance=null;
 	
+	
 	private static HashMap<Integer, Country> countries;
 	private static HashMap<Integer, Continent> continents;
 	private static HashMap<Integer, ArrayList<Integer>> borders;
+	int continentIndex=0;
 	/**
 	 * Default Constructor
 	 */
@@ -28,7 +32,20 @@ public class Map
 		borders= new HashMap<Integer, ArrayList<Integer>>();
 	}
 	
-	
+	public void initializeList()
+	{
+		countries.clear();
+		continents.clear();
+		for(Country c:MainClass.CountryList)
+		{
+			countries.put(c.getCountryNumber(), c);
+		}
+		for(Continent c:MainClass.continentList)
+		{
+			continentIndex++;
+			continents.put(continentIndex, c);
+		}
+	}
 	
 	/**
 	 * Only One instance of Map so Singleton
@@ -75,7 +92,7 @@ public class Map
 	{
 		for(Country c: m_instance.getCountries().values())
 		{
-			if(cName.equals(c.getCountryName()))
+			if(cName.equalsIgnoreCase(c.getCountryName()))
 			{
 				return c;
 			}
