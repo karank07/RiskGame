@@ -73,6 +73,22 @@ public class Country {
 		this.continentID = continentID;
 		
 	}
+	
+	/**
+	 * Constructor with 4 parameters
+	 * @param countryName the name of country
+	 * @param continentID the ID number of continent
+	 * @param xCo the xCoordinate of country
+	 * @param yCo the yCoordinate of country
+	 */
+	public Country(String countryName, int continentID, int xCo, int yCo) {
+		this.countryName = countryName;
+		this.xCo = xCo;
+		this.yCo = yCo;
+		this.continentID = continentID;
+		
+	}
+	
 
 	/**
 	 * @return the countryName
