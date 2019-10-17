@@ -3,6 +3,7 @@ package ca.concordia.risk.controller;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -10,6 +11,7 @@ import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.utilities.ValidMapException;
+
 
 /**
  * This class contains all map operations
@@ -40,7 +42,7 @@ public class MapOperations{
 		for (int n : continents.keySet()) 
 		{
 			String cont_name = continents.get(n).getContinentName();
-			if (cont_name.equals(continent_name))
+			if (cont_name.equalsIgnoreCase(continent_name))
 			{
 				throw new ValidMapException("The Continent with name "+ continent_name + "already exists" );
 			} 
@@ -76,7 +78,7 @@ public class MapOperations{
 		
 		for (int i : continents.keySet()) {
 			String con_name = continents.get(i).getContinentName();
-			if (con_name.equals(continent_name)) 
+			if (con_name.equalsIgnoreCase(continent_name)) 
 			{
 				continent_id=i;
 				continentFlag=true;
@@ -90,7 +92,7 @@ public class MapOperations{
 			{
 				for (int n : countries.keySet()) {
 					String co = countries.get(n).getCountryName();
-					if (co.equals(country_name)) {					
+					if (co.equalsIgnoreCase(country_name)) {					
 						throw new ValidMapException("Country with name:"+ country_name +" already exists!");
 					}
 					else
@@ -143,7 +145,7 @@ public class MapOperations{
 		//get the country id from country name
 		for (int n : countries.keySet()) {
 			String coun = countries.get(n).getCountryName();
-			if (country_name.equals(coun)) {
+			if (country_name.equalsIgnoreCase(coun)) {
 				country_id=n;
 				country_flag=true;
 				break;
@@ -155,7 +157,7 @@ public class MapOperations{
 		{	//get the neighbour country id from neighbour country name
 			for (int p : countries.keySet()) {
 				String neigh_country = countries.get(p).getCountryName();
-				if (neighbour_country_name.equals(neigh_country)) {
+				if (neighbour_country_name.equalsIgnoreCase(neigh_country)) {
 					neighbour_country_id=p;
 					neighbour_flag=true;
 					break;
@@ -206,9 +208,76 @@ public class MapOperations{
 	}
 	
 	
-	
-//	public boolean Continent()
-	
+	/**
+	 * This method removes continent
+	 * @param continents the hashmap of continents
+	 * @param countries the hashmap of countries
+	 * @param borders the hashmap of borders
+	 * @param continentName the name of continent to be removed
+	 * @return true if continent and its countries along with neighbours is deleted
+	 */
+	public boolean deleteContinent(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String continentName)
+	{
+		int state=0;
+		
+		Iterator<Entry<Integer, Continent>> iteratorContinent=continents.entrySet().iterator();
+		Iterator<Entry<Integer, Country>> iteratorCountry=countries.entrySet().iterator();
+		Iterator<Entry<Integer, ArrayList<Integer>>> iteratorBoundries=borders.entrySet().iterator();
+		
+		while (iteratorContinent.hasNext())
+		{
+			Entry<Integer, Continent> entryContinents=iteratorContinent.next();
+			
+			String cont = entryContinents.getValue().getContinentName();
+			
+			if (cont.equalsIgnoreCase(continentName))
+			{
+				iteratorContinent.remove();
+				state=1;
+				
+				while(iteratorCountry.hasNext()) 
+				{
+					Entry<Integer, Country> entryCountries=iteratorCountry.next();
+				
+					Country c = entryCountries.getValue();
+					if (c.getContinentID() == entryContinents.getKey()) 
+					{
+						iteratorCountry.remove();
+						state=2;
+						while (iteratorBoundries.hasNext()) 
+						{
+							Entry<Integer, ArrayList<Integer>> entryBoundries=iteratorBoundries.next();
+							
+							ArrayList<Integer> list = entryBoundries.getValue();
+							
+							if (entryBoundries.getKey() == entryCountries.getKey()) 
+							{
+								iteratorBoundries.remove();
+								state=3;
+							}
+							else
+							{								
+								if(list.contains(entryCountries.getKey()))
+								{
+									list.remove(Integer.valueOf(entryCountries.getKey()));
+								}
+							}							
+						}
+					}
+				}				
+			}
+		}
+		if(state==3)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+}
+
+		
 	
 	/**
 	 * This method checks if the map is connected or not
