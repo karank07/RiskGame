@@ -358,7 +358,7 @@ public class MainClass {
 		case "savemap":
 			try {
 				try {
-					mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+					mapWriter.writeMapFile(continents, countries, borders, temp[1]);
 				} catch (ValidMapException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
