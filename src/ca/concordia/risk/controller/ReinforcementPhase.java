@@ -41,7 +41,7 @@ public class ReinforcementPhase {
 		// 1st rule: country/3...if it's less then 3; then assign 3 army minimum
 		player.setPlayerReinforceArmy(
 				(player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3);
-
+ 
 		// 2nd rule: check if player owns all countries of any of the continents
 		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
 			if (player.getPlayerCountries().equals(set_of_contries.get(i))) {
