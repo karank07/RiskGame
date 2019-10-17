@@ -49,8 +49,6 @@ public class Console implements ActionListener {
 		frame.setSize(600, 300);
 		frame.setLayout(null);
 		frame.setVisible(true);
-		textField.setForeground(Color.WHITE);
-		textField.setBackground(Color.BLUE);
 		frame.setBackground(Color.black);
 		
 		submit.addActionListener(this);
@@ -74,7 +72,7 @@ public class Console implements ActionListener {
 			{
 				alert(errorFlag);
 			}
-			textField.setText(" ");
+			textField.setText("");
 		} else if (e.getSource() == exit) {
 			System.exit(0);
 		}

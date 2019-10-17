@@ -123,7 +123,7 @@ public class StartUpPhase {
 				if (obj.equals(c1)) {
 					c1.addCountryArmies(1);
 					MainClass.playerList.get(p.getPlayerId() - 1).setPlayerTotalArmies(p.getPlayerTotalArmies() - 1);
-					System.out.println(p.getPlayerTotalArmies());
+					System.out.println("Remaining Armies: "+p.getPlayerTotalArmies());
 					break;
 
 				}
@@ -148,6 +148,7 @@ public class StartUpPhase {
 				List<Country> playerCountryList = getCountriesConqueredBy(p);
 				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
 				MainClass.playerList.get(p.getPlayerId() - 1).setPlayerTotalArmies(p.getPlayerTotalArmies() - 1);
+				randomCountry.setCountryArmy(randomCountry.getCountryArmy()+1);
 				HashMap<String, Object> eventPayload = new HashMap<>();
 				eventPayload.put("countryName", randomCountry.getCountryName());
 			} else {
@@ -176,6 +177,7 @@ public class StartUpPhase {
 		if (co.getCountryArmy() != 0)
 			return false;
 		co.setOwnerArmy(pl.getPlayerId(), armies);
+		pl.setPlayerTotalArmies(pl.getPlayerTotalArmies()-1);
 		mapPlayerToCountry(pl, co);
 		return true;
 
