@@ -339,6 +339,7 @@ public class MainClass {
 				if (temp[i].contentEquals("-add")) {
 					if (temp[i + 1] != null || temp[i + 2] != null) { // continent name and continent value should not
 																		// be null
+						errorFlag = "false";
 						try {
 							mapOperations.addContinent(mapInstance, continents, temp[i + 1],
 									Integer.parseInt(temp[i + 2]), null);
@@ -347,6 +348,9 @@ public class MainClass {
 							e.printStackTrace();
 						}
 
+					}
+					else {
+						errorFlag = "Enter a valid command";
 					}
 				} else if (temp[i].contentEquals("-remove")) {
 
@@ -359,17 +363,19 @@ public class MainClass {
 				if (temp[i].contentEquals("-add")) {
 					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and continent name should not
 																		// be null
+						errorFlag = "flase";
 						try {
 							mapOperations.addCountry(mapInstance, continents, countries, temp[i + 1], temp[i + 2]);
-							
 							
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-
+					}
+					else {
+						errorFlag = "Enter a valid command";
 					}
 				} else if (temp[i].contentEquals("-remove")) {
-
+					
 				}
 			}
 			break;
@@ -377,28 +383,29 @@ public class MainClass {
 		case "editneighbor":
 			for (int i = 0; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and neighbour country name should not
-																		// be null
+					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and neighbour country name should not																		// be null
+						errorFlag = "flase";
 						try {
 							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 1], temp[i + 2]);
-							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 2], temp[i + 1]);
-							
+							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 2], temp[i + 1]);		
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-
+					}
+					else {
+						errorFlag = "Enter a valid command";
 					}
 				} else if (temp[i].contentEquals("-remove")) {
 
 				}
 			}
-			break;
-			
+			break;	
 			
 		case "savemap":
 			try {
 				try {
 					mapWriter.writeMapFile(continents, countries, borders, temp[1]);
+					errorFlag = "flase";
 				} catch (ValidMapException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -414,13 +421,14 @@ public class MainClass {
 				if(mapWriter.loadMap(continents, countries, borders, temp[1]))
 				{
 					System.out.println("Loaded"); 
+					errorFlag = "flase";
 				}
 				else
 				{
 					System.out.println("Not Loaded!");
+					errorFlag = "flase";
 				}
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
