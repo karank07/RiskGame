@@ -12,9 +12,7 @@ import ca.concordia.risk.model.Country;
  *
  */
 public class FortificationPhase {
-	/**
-	 * @param countryList- list of all the objects of countries
-	 */
+	
 
 	MainClass m;
 	boolean adjFlag = false;

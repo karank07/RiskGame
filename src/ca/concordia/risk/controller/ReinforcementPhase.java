@@ -90,8 +90,8 @@ public class ReinforcementPhase {
 	 * Method to execute the 3rd rule: to exchange cards with army, and remove those
 	 * cards from player's cardList
 	 * 
-	 * @param player
-	 * @param countryNameOfCards
+	 * @param player for player
+	 * @param countryNameOfCards for cards of country
 	 */
 	private void exchangeCardsForArmy(Player player, String[] countryNameOfCards) {
 		List<Card> playerCardsList = new ArrayList<Card>();
@@ -167,8 +167,9 @@ public class ReinforcementPhase {
 	 * function for command:- reinforce countryname, number (number is army to be
 	 * placed in that country)
 	 * 
-	 * @param countryName
-	 * @param armyNumber
+	 * @param countryName for country name
+	 * @param armyNumber number of armies
+	 * @param player for player entity
 	 */
 	public void reinforceArmy(Player player, String countryName, int armyNumber) {
 

@@ -97,7 +97,7 @@ public class MainClass {
 	 * This method converts string continent name to continent object
 	 * 
 	 * @param continentString the names of continents
-	 * @param ContinentList   the list containing the continent entities
+	 * @param continentList   the list containing the continent entities
 	 */
 	private static void stringToContinent(List<String> continentString, List<Continent> continentList) {
 		String[] temp = new String[3];
@@ -171,7 +171,7 @@ public class MainClass {
 	 * reads the map file to be loaded
 	 * 
 	 * @param fileName Map file to be read
-	 * @throws IOException
+	 * @throws IOException to handle exceptions
 	 */
 	public void readMapFile(String fileName) throws IOException {
 		if (!phase.contentEquals("loadmap")) {
