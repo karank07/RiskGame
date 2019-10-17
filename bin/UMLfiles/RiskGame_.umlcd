@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.diagrams="http://ns.yatta-solutions.com/umllab/diagrams/1.1.0" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_jjYSMPB8Eema6uMr0HTvsQ">
+  <modelElement href="RiskGame.uml#_g5DZ8PB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_jAQLcPCGEema6uMr0HTvsQ" sourceAnchor="49.0,16.0" targetAnchor="47.0,56.0" enclosingItem="_jos3EPB8Eema6uMr0HTvsQ" containedItem="_jARZkPCGEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_jojhkPCGEema6uMr0HTvsQ" sourceAnchor="45.0,16.0" targetAnchor="47.0,56.0" enclosingItem="_jARZkPCGEema6uMr0HTvsQ" containedItem="_jokvsPCGEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_pgiooPCGEema6uMr0HTvsQ" sourceAnchor="47.0,16.0" targetAnchor="47.0,56.0" enclosingItem="_jokvsPCGEema6uMr0HTvsQ" containedItem="_pgkd0PCGEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_pglE4PCGEema6uMr0HTvsQ" sourceAnchor="92.0,29.0" targetAnchor="47.0,56.0" enclosingItem="_jokvsPCGEema6uMr0HTvsQ" containedItem="_pgmTAPCGEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh0egPCHEema6uMr0HTvsQ" sourceX="17" targetX="62" targetY="221"/>
+    <bendpoints xmi:id="_Nh0egfCHEema6uMr0HTvsQ" sourceX="17" sourceY="-192" targetX="62" targetY="29"/>
+    <bendpoints xmi:id="_Nh0egvCHEema6uMr0HTvsQ" sourceX="-45" sourceY="-192" targetY="29"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_pgm6EPCGEema6uMr0HTvsQ" sourceAnchor="47.0,16.0" targetAnchor="47.0,56.0" enclosingItem="_jokvsPCGEema6uMr0HTvsQ" containedItem="_pgoIMPCGEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh1FkPCHEema6uMr0HTvsQ" sourceY="-44" targetX="-150" targetY="29"/>
+    <bendpoints xmi:id="_Nh1FkfCHEema6uMr0HTvsQ" sourceX="150" sourceY="-44" targetY="29"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_pgoIMvCGEema6uMr0HTvsQ" sourceAnchor="2.0,29.0" targetAnchor="47.0,56.0" enclosingItem="_jokvsPCGEema6uMr0HTvsQ" containedItem="_pgpWUPCGEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh1soPCHEema6uMr0HTvsQ" sourceX="-17" targetX="-212" targetY="206"/>
+    <bendpoints xmi:id="_Nh1sofCHEema6uMr0HTvsQ" sourceX="-17" sourceY="-177" targetX="-212" targetY="29"/>
+    <bendpoints xmi:id="_Nh1sovCHEema6uMr0HTvsQ" sourceX="195" sourceY="-177" targetY="29"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_NYrJkPCHEema6uMr0HTvsQ" sourceAnchor="47.0,0.0" targetAnchor="47.0,58.0" enclosingItem="_jousQPB8Eema6uMr0HTvsQ" containedItem="_NYsXsPCHEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh26wPCHEema6uMr0HTvsQ" sourceY="-28" targetX="-150" targetY="27"/>
+    <bendpoints xmi:id="_Nh26wfCHEema6uMr0HTvsQ" sourceX="150" sourceY="-28" targetY="27"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_NYsXsvCHEema6uMr0HTvsQ" sourceAnchor="47.0,0.0" targetAnchor="47.0,58.0" enclosingItem="_jousQPB8Eema6uMr0HTvsQ" containedItem="_NYtl0PCHEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh3h0PCHEema6uMr0HTvsQ" sourceY="-28" targetX="165" targetY="27"/>
+    <bendpoints xmi:id="_Nh3h0fCHEema6uMr0HTvsQ" sourceX="-165" sourceY="-28" targetY="27"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_NYuM4PCHEema6uMr0HTvsQ" sourceAnchor="47.0,0.0" targetAnchor="47.0,58.0" enclosingItem="_jousQPB8Eema6uMr0HTvsQ" containedItem="_NYvbAPCHEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh3h0vCHEema6uMr0HTvsQ" sourceY="-28" targetX="-300" targetY="27"/>
+    <bendpoints xmi:id="_Nh3h0_CHEema6uMr0HTvsQ" sourceX="300" sourceY="-28" targetY="27"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_NYvbAvCHEema6uMr0HTvsQ" sourceAnchor="47.0,0.0" targetAnchor="47.0,58.0" enclosingItem="_jousQPB8Eema6uMr0HTvsQ" containedItem="_NYwpIPCHEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh4I4PCHEema6uMr0HTvsQ" sourceY="-28" targetX="330" targetY="27"/>
+    <bendpoints xmi:id="_Nh4I4fCHEema6uMr0HTvsQ" sourceX="-330" sourceY="-28" targetY="27"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_NYwpIvCHEema6uMr0HTvsQ" sourceAnchor="47.0,0.0" targetAnchor="47.0,58.0" enclosingItem="_jousQPB8Eema6uMr0HTvsQ" containedItem="_NYx3QPCHEema6uMr0HTvsQ">
+    <bendpoints xmi:id="_Nh4I4vCHEema6uMr0HTvsQ" sourceY="-28" targetX="-450" targetY="27"/>
+    <bendpoints xmi:id="_Nh4I4_CHEema6uMr0HTvsQ" sourceX="450" sourceY="-28" targetY="27"/>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_jowhcPB8Eema6uMr0HTvsQ" name="javax">
+    <modelElement href="RiskGame.uml#_i_looPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_jowhcfB8Eema6uMr0HTvsQ" position="200.0,50.0" size="-1.0,-1.0" visible="false"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_jos3EPB8Eema6uMr0HTvsQ" containments="_jAQLcPCGEema6uMr0HTvsQ" name="ca">
+    <modelElement href="RiskGame.uml#_i8RO4PB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_jos3EfB8Eema6uMr0HTvsQ" position="452.0,29.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_jARZkPCGEema6uMr0HTvsQ" containment="_jAQLcPCGEema6uMr0HTvsQ" containments="_jojhkPCGEema6uMr0HTvsQ" name="concordia">
+    <modelElement href="RiskGame.uml#_i8R18PB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_jARZkfCGEema6uMr0HTvsQ" position="450.0,108.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_pgmTAPCGEema6uMr0HTvsQ" containment="_pglE4PCGEema6uMr0HTvsQ" name="controller">
+    <modelElement href="RiskGame.uml#_i8ZKsPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_pgmTAfCGEema6uMr0HTvsQ" position="452.0,450.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_pgoIMPCGEema6uMr0HTvsQ" containment="_pgm6EPCGEema6uMr0HTvsQ" name="utilities">
+    <modelElement href="RiskGame.uml#_i8hGgPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_pgoIMfCGEema6uMr0HTvsQ" position="302.0,315.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_pgpWUPCGEema6uMr0HTvsQ" containment="_pgoIMvCGEema6uMr0HTvsQ" name="view">
+    <modelElement href="RiskGame.uml#_i_AZ0PB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_pgpWUfCGEema6uMr0HTvsQ" position="302.0,435.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_jokvsPCGEema6uMr0HTvsQ" containment="_jojhkPCGEema6uMr0HTvsQ" containments="_pgiooPCGEema6uMr0HTvsQ _pglE4PCGEema6uMr0HTvsQ _pgm6EPCGEema6uMr0HTvsQ _pgoIMvCGEema6uMr0HTvsQ" name="risk">
+    <modelElement href="RiskGame.uml#_i8R18fB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_jokvsfCGEema6uMr0HTvsQ" position="452.0,202.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_jousQPB8Eema6uMr0HTvsQ" containments="_NYrJkPCHEema6uMr0HTvsQ _NYsXsvCHEema6uMr0HTvsQ _NYuM4PCHEema6uMr0HTvsQ _NYvbAvCHEema6uMr0HTvsQ _NYwpIvCHEema6uMr0HTvsQ" name="java">
+    <modelElement href="RiskGame.uml#_i8SdAPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_jousQfB8Eema6uMr0HTvsQ" position="-115.0,50.0" size="-1.0,-1.0" visible="false"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_NYtl0PCHEema6uMr0HTvsQ" containment="_NYsXsvCHEema6uMr0HTvsQ" name="io">
+    <modelElement href="RiskGame.uml#_i84S4PB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_NYtl0fCHEema6uMr0HTvsQ" position="50.0,163.0" size="-1.0,-1.0" visible="false"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_NYwpIPCHEema6uMr0HTvsQ" containment="_NYvbAvCHEema6uMr0HTvsQ" name="awt">
+    <modelElement href="RiskGame.uml#_i_kagPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_NYwpIfCHEema6uMr0HTvsQ" position="215.0,163.0" size="-1.0,-1.0" visible="false"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_NYx3QPCHEema6uMr0HTvsQ" containment="_NYwpIvCHEema6uMr0HTvsQ" name="lang">
+    <modelElement href="RiskGame.uml#_jSc6QPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_NYx3QfCHEema6uMr0HTvsQ" position="-565.0,163.0" size="-1.0,-1.0" visible="false"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_NYvbAPCHEema6uMr0HTvsQ" containment="_NYuM4PCHEema6uMr0HTvsQ" name="nio">
+    <modelElement href="RiskGame.uml#_i9FHMPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_NYvbAfCHEema6uMr0HTvsQ" position="-415.0,163.0" size="-1.0,-1.0" visible="false"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_NYsXsPCHEema6uMr0HTvsQ" containment="_NYrJkPCHEema6uMr0HTvsQ" name="util">
+    <modelElement href="RiskGame.uml#_i8SdAfB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_NYsXsfCHEema6uMr0HTvsQ" position="-265.0,163.0" size="-1.0,-1.0" visible="false"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_pgkd0PCGEema6uMr0HTvsQ" containment="_pgiooPCGEema6uMr0HTvsQ" name="model">
+    <modelElement href="RiskGame.uml#_i8TEEPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_pgkd0fCGEema6uMr0HTvsQ" position="452.0,330.0" size="-1.0,-1.0"/>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

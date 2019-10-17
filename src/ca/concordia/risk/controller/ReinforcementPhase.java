@@ -55,7 +55,7 @@ public class ReinforcementPhase {
 		// countirs from thes dropdown menu in
 		// GUI
 		// exchangeCardsForArmy(player, countryNameOfCards);
-		System.out.println("Armies available for player " + player.getPlayerId() + " " + player.getPlayerName()
+		System.out.println("Cannot move! Armies available for player " + player.getPlayerId() + " " + player.getPlayerName()
 				+ " to reinforce: " + player.getPlayerReinforceArmy());
 
 	}
