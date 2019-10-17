@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -175,7 +176,7 @@ public class MainClass {
 			return;
 		}
 
-		fileName = "D:\\Project\\RiskGame\\maps\\" + fileName + ".map";
+		fileName = Paths.get("").toAbsolutePath().toString()+"\\maps\\" + fileName;
 
 		try {
 			file = new FileReader(fileName);
@@ -360,7 +361,7 @@ public class MainClass {
 					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and continent name should not
 																		// be null
 						try {
-							mapOperations.addCountry(mapInstance, continents, countries, temp[i + 1], temp[i + 2]);
+							mapOperations.addCountry(mapInstance, continents, countries, borders, temp[i + 1], temp[i + 2]);
 							
 							
 						} catch (Exception e) {
