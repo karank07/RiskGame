@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ca.concordia.risk.controller;
 
 import java.io.BufferedReader;
@@ -20,10 +17,13 @@ import ca.concordia.risk.utilities.ValidMapException;
 import ca.concordia.risk.view.Console;
 
 /**
- * This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. 
- * Includes filename, filereader, list of countries and continents, model class objects, etc as data members
+ * This class manages the overall execution of all the phases in the game.
+ * Controls various model class object according to the phase. Includes
+ * filename, filereader, list of countries and continents, model class objects,
+ * etc as data members
+ * 
  * @author Karan
- * @author Rohan 
+ * @author Rohan
  * @author Pranal
  */
 public class MainClass {
@@ -48,7 +48,7 @@ public class MainClass {
 	private MapOperations mapOperations;
 	private MapWriter mapWriter;
 
-	static Console c; 
+	static Console c;
 	int currentPlayer = 0;
 	static String phase = "loadmap";
 
@@ -95,8 +95,9 @@ public class MainClass {
 
 	/**
 	 * This method converts string continent name to continent object
+	 * 
 	 * @param continentString the names of continents
-	 * @param ContinentList the list containing the continent entities
+	 * @param ContinentList   the list containing the continent entities
 	 */
 	private static void stringToContinent(List<String> continentString, List<Continent> continentList) {
 		String[] temp = new String[3];
@@ -119,11 +120,11 @@ public class MainClass {
 
 	/**
 	 * This method converts string country name to country object
+	 * 
 	 * @param countryString the names of countries
-	 * @param CountryList the list of the country objects
+	 * @param CountryList   the list of the country objects
 	 */
 	private static void stringToCountry(List<String> countryString, List<Country> CountryList) {
-		// TODO Auto-generated method stub
 		String[] temp = new String[3];
 
 		for (String obj : countryString) {
@@ -135,12 +136,13 @@ public class MainClass {
 
 	}
 
-	/** sets the neighbors of the country
-	 * @param countryList the list of country entities
+	/**
+	 * sets the neighbors of the country
+	 * 
+	 * @param countryList  the list of country entities
 	 * @param borderString contains the names of the borders
 	 */
 	private static void setNeigbourCountry(List<Country> countryList, List<String> borderString) {
-		// TODO Auto-generated method stub
 		String[] temp2;
 		int[] temp3 = null;
 
@@ -167,16 +169,17 @@ public class MainClass {
 
 	/**
 	 * reads the map file to be loaded
+	 * 
 	 * @param fileName Map file to be read
 	 * @throws IOException
 	 */
-	private void readMapFile(String fileName) throws IOException {
+	public void readMapFile(String fileName) throws IOException {
 		if (!phase.contentEquals("loadmap")) {
 			errorFlag = "invalid command!";
 			return;
 		}
 
-		fileName = Paths.get("").toAbsolutePath().toString()+"\\maps\\" + fileName;
+		fileName = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
 
 		try {
 			file = new FileReader(fileName);
@@ -235,51 +238,53 @@ public class MainClass {
 		sp.addPlayer(playerName);
 
 	}
-	
-/**
- * 
- * @param playerName player to be removed from the game
- */
+
+	/**
+	 * 
+	 * @param playerName player to be removed from the game
+	 */
 	private void removePlayer(String playerName) {
 		if (!phase.contentEquals("gameplayer"))
 			return;
 		sp.removePlayer(playerName);
 	}
 
-/**
- * to assign countries to the players initially	
- */
+	/**
+	 * to assign countries to the players initially
+	 */
 	private void populateCountries() {
 		if (!phase.contentEquals("populatecountries"))
 			return;
 		sp.populateCountries();
 		phase = "placearmy";
 	}
-	
-/**
- * to place all the armies initially without the player choosing
- */
+
+	/**
+	 * to place all the armies initially without the player choosing
+	 */
 	private void placeAll() {
 		if (!phase.contentEquals("placearmy"))
 			return;
 		sp.placeArmiesInitialRandom();
 	}
 
-/**
- * 	assigning army to particular mentioned country
- * @param cName country to be assigned army
- */
+	/**
+	 * assigning army to particular mentioned country
+	 * 
+	 * @param cName country to be assigned army
+	 */
 	private void placeArmyByCountry(String cName) {
 		if (!phase.contentEquals("placearmy"))
 			return;
 		sp.placeArmyByCountryName(cName);
 	}
 
-/**
- * 	Reinforcement phase base method
- * @param countryName country to reinforced
- * @param armyNumber army to be reinforced
- */
+	/**
+	 * Reinforcement phase base method
+	 * 
+	 * @param countryName country to reinforced
+	 * @param armyNumber  army to be reinforced
+	 */
 	private void setReinforce(String countryName, int armyNumber) {
 		if (!phase.contentEquals("reinforce"))
 			return;
@@ -290,12 +295,13 @@ public class MainClass {
 		}
 	}
 
-/**
- * 	Fortification base method
- * @param from country from where armies would be sent
- * @param to country to where armies would be sent
- * @param army number of armies used to fortify
- */
+	/**
+	 * Fortification base method
+	 * 
+	 * @param from country from where armies would be sent
+	 * @param to   country to where armies would be sent
+	 * @param army number of armies used to fortify
+	 */
 	private void setFortify(String from, String to, int army) {
 		if (!phase.contentEquals("fortify"))
 			return;
@@ -318,13 +324,28 @@ public class MainClass {
 			p.setPlayerTotalArmies(sp.getInitialArmies());
 	}
 
+	private void showmapForGamePhase(){
+		for(Country c:countryList)
+		{
+			System.out.println("Country: "+c.getCountryName()+" Continent: "+continentList.get(c.getContinentID()-1).getContinentName()+" Country army: "+c.getCountryArmy()+" Owner Name:"
+		+playerList.get(c.getCountryOwner()-1).getPlayerName()+"Neighbours :");
+			System.out.println(getNeighboursName(c.getNeighbours()));
+		}
+	}
+	private List<String> getNeighboursName(int[] neighbours){
+		List <String>list =new ArrayList();
+		for(int i=0;i<neighbours.length;i++)
+		{
+			list.add(countryList.get(neighbours[i]).getCountryName());
+		}
+		return list;
+	}
+
 	/**
 
 	 * @param s1 phase command taken as input from console
 	 * @return errorFlag to indicate successful execution or not
 	 */
-	
-
 	public String phaseDecider(String s1) {
 		String[] temp = new String[10];
 		temp = s1.split(" ");
@@ -556,11 +577,11 @@ public class MainClass {
 				for (int i = 0; i < playerList.get(currentPlayer - 1).getPlayerCountries().size(); i++) {
 					System.out.println(playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryName()
 							+ " " + playerList.get(currentPlayer - 1).getPlayerCountries().get(i).getCountryArmy());
-					break;
+					
 				}
 
 			}
-
+			break;
 		case "fortify":
 			if(!phase.contentEquals("fortify"))
 			{
@@ -580,8 +601,17 @@ public class MainClass {
 					// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
 					setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
 				}
-				break;
 			}
+			
+			break;
+			
+		case "showmap":
+			if(countryList.isEmpty() || continentList.isEmpty() || playerList.isEmpty())
+			{
+				errorFlag="Invalid command!";
+			}
+			else showmapForGamePhase();
+		break;
 		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";
