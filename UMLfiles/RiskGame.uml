@@ -4,7 +4,10 @@
     <eAnnotations xmi:id="_hCXG8PB8Eema6uMr0HTvsQ" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_hCXuAPB8Eema6uMr0HTvsQ" source="codegen">
         <details xmi:id="_hCYVEPB8Eema6uMr0HTvsQ" key="codegenDirectory" value="/RiskGame/src"/>
-        <details xmi:id="_jjUAwPB8Eema6uMr0HTvsQ" key="AssociatedSourceCode" value="/RiskGame/src/ca/concordia/risk/controller/FortificationPhase.java;1080811144/1;/RiskGame/src/ca/concordia/risk/utilities/ValidMapException.java;1109686242/1;/RiskGame/src/ca/concordia/risk/controller/MapOperations.java;3886571538/1;/RiskGame/src/ca/concordia/risk/controller/MapValidate.java;1812365344/1;/RiskGame/src/ca/concordia/risk/controller/MapWriter.java;2559735358/1;/RiskGame/src/ca/concordia/risk/controller/ReinforcementPhase.java;2788232093/1;/RiskGame/src/ca/concordia/risk/controller/StartUpPhase.java;2663463029/1;/RiskGame/src/ca/concordia/risk/model/Card.java;366664516/1;/RiskGame/src/ca/concordia/risk/model/Continent.java;3959097854/1;/RiskGame/src/ca/concordia/risk/utilities/GameConstants.java;2473659471/1;/RiskGame/src/ca/concordia/risk/model/Map.java;1390149047/1;/RiskGame/src/ca/concordia/risk/model/Player.java;569634964/1;/RiskGame/src/ca/concordia/risk/model/Country.java;920351033/1;/RiskGame/src/ca/concordia/risk/controller/MainClass.java;1308605671/1;/RiskGame/src/ca/concordia/risk/view/Console.java;571255119/1;"/>
+        <details xmi:id="_jjUAwPB8Eema6uMr0HTvsQ" key="AssociatedSourceCode" value="/RiskGame/src/ca/concordia/risk/controller/FortificationPhase.java;1080811144/1;/RiskGame/src/ca/concordia/risk/utilities/ValidMapException.java;1109686242/1;/RiskGame/src/ca/concordia/risk/controller/MapOperations.java;3805139013/1;/RiskGame/src/ca/concordia/risk/controller/MapValidate.java;1812365344/1;/RiskGame/src/ca/concordia/risk/controller/MapWriter.java;648829259/1;/RiskGame/src/ca/concordia/risk/controller/ReinforcementPhase.java;2788232093/1;/RiskGame/src/ca/concordia/risk/controller/StartUpPhase.java;2663463029/1;/RiskGame/src/ca/concordia/risk/model/Card.java;366664516/1;/RiskGame/src/ca/concordia/risk/model/Continent.java;3959097854/1;/RiskGame/src/ca/concordia/risk/utilities/GameConstants.java;2473659471/1;/RiskGame/src/ca/concordia/risk/model/Map.java;1390149047/1;/RiskGame/src/ca/concordia/risk/model/Player.java;569634964/1;/RiskGame/src/ca/concordia/risk/model/Country.java;920351033/1;/RiskGame/src/ca/concordia/risk/controller/MainClass.java;2720347623/1;/RiskGame/src/ca/concordia/risk/view/Console.java;1145371129/1;"/>
+      </contents>
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_oBwoYPCEEema6uMr0HTvsQ" source="dangling-refs">
+        <contents xmi:type="uml:Parameter" xmi:id="_jTLTAPB8Eema6uMr0HTvsQ" name="borderString" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_jBtIgPB8Eema6uMr0HTvsQ">
@@ -1224,7 +1227,7 @@ valid fortification move according to risk rules&#xD;
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_jB-OQPB8Eema6uMr0HTvsQ" name="MapOperations">
-              <ownedComment xmi:id="_jVPIgfB8Eema6uMr0HTvsQ">
+              <ownedComment xmi:id="_J8aNJvB-Eema6uMr0HTvsQ">
                 <body>This class contains all map operations&#xD;
 @author dhruv&#xD;
  *</body>
@@ -1266,6 +1269,7 @@ valid fortification move according to risk rules&#xD;
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_jUwnZvB8Eema6uMr0HTvsQ" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -1284,77 +1288,6 @@ valid fortification move according to risk rules&#xD;
 		return true;&#xD;
 	</body>
               </ownedBehavior>
-              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jUxOcPB8Eema6uMr0HTvsQ" name="addCountry" specification="_jSmEMPB8Eema6uMr0HTvsQ">
-                <ownedParameter xmi:id="_jUxOcfB8Eema6uMr0HTvsQ" name="map" type="_jDaYsfB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jUxOcvB8Eema6uMr0HTvsQ" name="continents" type="_jROyQPB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jUxOc_B8Eema6uMr0HTvsQ" name="countries" type="_jROyQPB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jUxOdPB8Eema6uMr0HTvsQ" name="country_name">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedParameter>
-                <ownedParameter xmi:id="_jUxOdfB8Eema6uMr0HTvsQ" name="continent_name">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedParameter>
-                <ownedParameter xmi:id="_jUxOdvB8Eema6uMr0HTvsQ" direction="return">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-                </ownedParameter>
-                <language>java</language>
-                <body>Random r=new Random();&#xD;
-		int x_co=r.nextInt(600);&#xD;
-		int y_co=r.nextInt(600);&#xD;
-		country_num= countries.size();&#xD;
-		&#xD;
-		boolean continentFlag=false,countryFlag=false;&#xD;
-		int continent_id=0;&#xD;
-		&#xD;
-		for (int i : continents.keySet()) {&#xD;
-			String con_name = continents.get(i).getContinentName();&#xD;
-			if (con_name.equals(continent_name)) &#xD;
-			{&#xD;
-				continent_id=i;&#xD;
-				continentFlag=true;&#xD;
-				break;				&#xD;
-			}&#xD;
-		}&#xD;
-		&#xD;
-		if(continentFlag==true)&#xD;
-		{&#xD;
-			if(countries.size()>0)&#xD;
-			{&#xD;
-				for (int n : countries.keySet()) {&#xD;
-					String co = countries.get(n).getCountryName();&#xD;
-					if (co.equals(country_name)) {					&#xD;
-						throw new ValidMapException(&quot;Country with name:&quot;+ country_name +&quot; already exists!&quot;);&#xD;
-					}&#xD;
-					else&#xD;
-					{&#xD;
-						countryFlag=true;&#xD;
-					}&#xD;
-				}&#xD;
-			}&#xD;
-			else&#xD;
-			{&#xD;
-				Country co = new Country(country_num, country_name, continent_id, x_co, y_co);&#xD;
-				countries.put(country_num+1, co);&#xD;
-				return true;&#xD;
-			}&#xD;
-&#xD;
-		}&#xD;
-		&#xD;
-		else&#xD;
-		{&#xD;
-			throw new ValidMapException(&quot;The Continent:&quot;+continent_name +&quot;does not exist!&quot;);&#xD;
-		}&#xD;
-		&#xD;
-		if(countryFlag == true)&#xD;
-		{&#xD;
-			Country co = new Country(country_num, country_name, continent_id, x_co, y_co);&#xD;
-			countries.put(country_num +1, co);&#xD;
-			//country_num+=1;&#xD;
-			return true;&#xD;
-		}&#xD;
-		return false;&#xD;
-	</body>
-              </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jUyckPB8Eema6uMr0HTvsQ" name="addNeighbours" specification="_jSq8sPB8Eema6uMr0HTvsQ">
                 <ownedParameter xmi:id="_jUyckfB8Eema6uMr0HTvsQ" name="map" type="_jDaYsfB8Eema6uMr0HTvsQ"/>
                 <ownedParameter xmi:id="_jUyckvB8Eema6uMr0HTvsQ" name="countries" type="_jROyQPB8Eema6uMr0HTvsQ"/>
@@ -1366,6 +1299,7 @@ valid fortification move according to risk rules&#xD;
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_jUyclvB8Eema6uMr0HTvsQ" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -1441,6 +1375,7 @@ valid fortification move according to risk rules&#xD;
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jUycl_B8Eema6uMr0HTvsQ" name="isConnected" specification="_jSunEPB8Eema6uMr0HTvsQ">
                 <ownedParameter xmi:id="_jUycmPB8Eema6uMr0HTvsQ" name="borders" type="_jROyQPB8Eema6uMr0HTvsQ"/>
                 <ownedParameter xmi:id="_jUycmfB8Eema6uMr0HTvsQ" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -1489,7 +1424,9 @@ valid fortification move according to risk rules&#xD;
                 <ownedParameter xmi:id="_jUzDo_B8Eema6uMr0HTvsQ" name="n">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
-                <ownedParameter xmi:id="_jUzDpPB8Eema6uMr0HTvsQ" type="_jRFoUPB8Eema6uMr0HTvsQ" direction="return"/>
+                <ownedParameter xmi:id="_jUzDpPB8Eema6uMr0HTvsQ" type="_jRFoUPB8Eema6uMr0HTvsQ" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>if(n>hMap.size())&#xD;
 		{&#xD;
@@ -1502,8 +1439,81 @@ valid fortification move according to risk rules&#xD;
 		}&#xD;
 	</body>
               </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_J8WiwPB-Eema6uMr0HTvsQ" name="addCountry" specification="_J8GEEPB-Eema6uMr0HTvsQ">
+                <ownedParameter xmi:id="_J8WiwfB-Eema6uMr0HTvsQ" name="map" type="_jDaYsfB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8WiwvB-Eema6uMr0HTvsQ" name="continents" type="_jROyQPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8Wiw_B-Eema6uMr0HTvsQ" name="countries" type="_jROyQPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8WixPB-Eema6uMr0HTvsQ" name="borders" type="_jROyQPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8WixfB-Eema6uMr0HTvsQ" name="country_name">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_J8WixvB-Eema6uMr0HTvsQ" name="continent_name">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_J8Wix_B-Eema6uMr0HTvsQ" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>Random r=new Random();&#xD;
+		int x_co=r.nextInt(600);&#xD;
+		int y_co=r.nextInt(600);&#xD;
+		country_num= countries.size();&#xD;
+		&#xD;
+		boolean continentFlag=false,countryFlag=false;&#xD;
+		int continent_id=0;&#xD;
+		&#xD;
+		for (int i : continents.keySet()) {&#xD;
+			String con_name = continents.get(i).getContinentName();&#xD;
+			if (con_name.equals(continent_name)) &#xD;
+			{&#xD;
+				continent_id=i;&#xD;
+				continentFlag=true;&#xD;
+				break;				&#xD;
+			}&#xD;
+		}&#xD;
+		&#xD;
+		if(continentFlag==true)&#xD;
+		{&#xD;
+			if(countries.size()>0)&#xD;
+			{&#xD;
+				for (int n : countries.keySet()) {&#xD;
+					String co = countries.get(n).getCountryName();&#xD;
+					if (co.equals(country_name)) {					&#xD;
+						throw new ValidMapException(&quot;Country with name:&quot;+ country_name +&quot; already exists!&quot;);&#xD;
+					}&#xD;
+					else&#xD;
+					{&#xD;
+						countryFlag=true;&#xD;
+					}&#xD;
+				}&#xD;
+			}&#xD;
+			else&#xD;
+			{&#xD;
+				Country co = new Country(country_num, country_name, continent_id, x_co, y_co);&#xD;
+				countries.put(country_num+1, co);&#xD;
+				borders.put(country_num, new ArrayList&lt;Integer>());&#xD;
+				return true;&#xD;
+			}&#xD;
+&#xD;
+		}&#xD;
+		&#xD;
+		else&#xD;
+		{&#xD;
+			throw new ValidMapException(&quot;The Continent:&quot;+continent_name +&quot;does not exist!&quot;);&#xD;
+		}&#xD;
+		&#xD;
+		if(countryFlag == true)&#xD;
+		{&#xD;
+			Country co = new Country(country_num, country_name, continent_id, x_co, y_co);&#xD;
+			countries.put(country_num +1, co);&#xD;
+			//country_num+=1;&#xD;
+			return true;&#xD;
+		}&#xD;
+		return false;&#xD;
+	</body>
+              </ownedBehavior>
               <ownedOperation xmi:id="_jCEU4PB8Eema6uMr0HTvsQ" name="traverseMap" method="_jUzDoPB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVPvk_B8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8a0M_B-Eema6uMr0HTvsQ">
                   <body>This method traverses the full map and checks the connectivity&#xD;
 	 * @param node the current vertex of map which is being traversed</body>
                 </ownedComment>
@@ -1512,7 +1522,7 @@ valid fortification move according to risk rules&#xD;
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jCJNYPB8Eema6uMr0HTvsQ" name="neighbourNodes" method="_jUzDovB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVPvlPB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8a0NPB-Eema6uMr0HTvsQ">
                   <body>This method returns array list of neighbours of given node&#xD;
 	 * @param n the node of which neighbours are to be found&#xD;
 	 * @return the array of neighbours</body>
@@ -1523,7 +1533,7 @@ valid fortification move according to risk rules&#xD;
                 <ownedParameter xmi:id="_jSv1MfB8Eema6uMr0HTvsQ" type="_jRFoUPB8Eema6uMr0HTvsQ" direction="return"/>
               </ownedOperation>
               <ownedOperation xmi:id="_jSjn8PB8Eema6uMr0HTvsQ" name="addContinent" method="_jUwnYPB8Eema6uMr0HTvsQ" raisedException="_jB4usPB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVPIgvB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8aNJ_B-Eema6uMr0HTvsQ">
                   <body>This method adds continent to map&#xD;
 	 * @param map current map object&#xD;
 	 * @param continents the hashmap of continents&#xD;
@@ -1548,32 +1558,8 @@ valid fortification move according to risk rules&#xD;
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
               </ownedOperation>
-              <ownedOperation xmi:id="_jSmEMPB8Eema6uMr0HTvsQ" name="addCountry" method="_jUxOcPB8Eema6uMr0HTvsQ" raisedException="_jB4usPB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVPvkPB8Eema6uMr0HTvsQ">
-                  <body>This method adds countries to map &#xD;
-	 * @param map the map object instance&#xD;
-	 * @param continents the hashmap of existing continents&#xD;
-	 * @param countries the hashmap of existing countries&#xD;
-	 * @param country_name the country name to be added&#xD;
-	 * @param continent_name the continent name in which country needs to be added&#xD;
-	 * @return true if country added, else false&#xD;
-	 * @throws ValidMapException</body>
-                </ownedComment>
-                <ownedParameter xmi:id="_jSmEMfB8Eema6uMr0HTvsQ" name="map" type="_jDaYsfB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jSmEMvB8Eema6uMr0HTvsQ" name="continents" type="_jROyQPB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jSmEM_B8Eema6uMr0HTvsQ" name="countries" type="_jROyQPB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jSmENPB8Eema6uMr0HTvsQ" name="country_name">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedParameter>
-                <ownedParameter xmi:id="_jSmENfB8Eema6uMr0HTvsQ" name="continent_name">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedParameter>
-                <ownedParameter xmi:id="_jSmrQPB8Eema6uMr0HTvsQ" direction="return">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-                </ownedParameter>
-              </ownedOperation>
               <ownedOperation xmi:id="_jSq8sPB8Eema6uMr0HTvsQ" name="addNeighbours" method="_jUyckPB8Eema6uMr0HTvsQ" raisedException="_jB4usPB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVPvkfB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8a0MfB-Eema6uMr0HTvsQ">
                   <body>This method adds borders to map&#xD;
 	 * @param map the map object&#xD;
 	 * @param borders the borders hashmap&#xD;
@@ -1596,13 +1582,38 @@ valid fortification move according to risk rules&#xD;
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jSunEPB8Eema6uMr0HTvsQ" name="isConnected" method="_jUycl_B8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVPvkvB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8a0MvB-Eema6uMr0HTvsQ">
                   <body>This method checks if the map is connected or not&#xD;
 	 * @param borders the list of borders, to check connectivity&#xD;
 	 * @return true if map is connected, else false</body>
                 </ownedComment>
                 <ownedParameter xmi:id="_jSunEfB8Eema6uMr0HTvsQ" name="borders" type="_jROyQPB8Eema6uMr0HTvsQ"/>
                 <ownedParameter xmi:id="_jSvOIPB8Eema6uMr0HTvsQ" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_J8GEEPB-Eema6uMr0HTvsQ" name="addCountry" method="_J8WiwPB-Eema6uMr0HTvsQ" raisedException="_jB4usPB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8a0MPB-Eema6uMr0HTvsQ">
+                  <body>This method adds countries to map &#xD;
+	 * @param map the map object instance&#xD;
+	 * @param continents the hashmap of existing continents&#xD;
+	 * @param countries the hashmap of existing countries&#xD;
+	 * @param country_name the country name to be added&#xD;
+	 * @param continent_name the continent name in which country needs to be added&#xD;
+	 * @return true if country added, else false&#xD;
+	 * @throws ValidMapException</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_J8GrIPB-Eema6uMr0HTvsQ" name="map" type="_jDaYsfB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8GrIfB-Eema6uMr0HTvsQ" name="continents" type="_jROyQPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8HSMPB-Eema6uMr0HTvsQ" name="countries" type="_jROyQPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8HSMfB-Eema6uMr0HTvsQ" name="borders" type="_jROyQPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_J8HSMvB-Eema6uMr0HTvsQ" name="country_name">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_J8H5QPB-Eema6uMr0HTvsQ" name="continent_name">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_J8H5QfB-Eema6uMr0HTvsQ" direction="return">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
               </ownedOperation>
@@ -1663,7 +1674,7 @@ This class is used for map validation&#xD;
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_jCWowPB8Eema6uMr0HTvsQ" name="MapWriter">
-              <ownedComment xmi:id="_jVQWoPB8Eema6uMr0HTvsQ">
+              <ownedComment xmi:id="_J8a0NfB-Eema6uMr0HTvsQ">
                 <body>This class is used for reading and writing map files&#xD;
 @author dhruv</body>
               </ownedComment>
@@ -1778,6 +1789,7 @@ This class is used for map validation&#xD;
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_jU0RyvB8Eema6uMr0HTvsQ" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -1899,6 +1911,7 @@ This class is used for map validation&#xD;
 			{&#xD;
 				sc.close();&#xD;
 				return false;&#xD;
+				&#xD;
 			}&#xD;
 			&#xD;
 		} catch (Exception e)&#xD;
@@ -2533,7 +2546,7 @@ members for allocation initial armies and countries&#xD;
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_jEeIoPB8Eema6uMr0HTvsQ" name="MainClass">
-              <ownedComment xmi:id="_jViDdvB8Eema6uMr0HTvsQ">
+              <ownedComment xmi:id="_J8Y_APB-Eema6uMr0HTvsQ">
                 <body>This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. &#xD;
 Includes filename, filereader, list of countries and continents, model class objects, etc as data members&#xD;
 @author Karan&#xD;
@@ -2611,7 +2624,9 @@ Includes filename, filereader, list of countries and continents, model class obj
 	</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jVHMs_B8Eema6uMr0HTvsQ" name="MainClass" specification="_jEpHwPB8Eema6uMr0HTvsQ">
-                <ownedParameter xmi:id="_jVHMtPB8Eema6uMr0HTvsQ" type="_jEeIoPB8Eema6uMr0HTvsQ" direction="return"/>
+                <ownedParameter xmi:id="_jVHMtPB8Eema6uMr0HTvsQ" type="_jEeIoPB8Eema6uMr0HTvsQ" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>fileData = &quot;&quot;;&#xD;
 		file = null;&#xD;
@@ -2720,7 +2735,7 @@ Includes filename, filereader, list of countries and continents, model class obj
 			return;&#xD;
 		}&#xD;
 &#xD;
-		fileName = &quot;D:\\Project\\RiskGame\\maps\\&quot; + fileName + &quot;.map&quot;;&#xD;
+		fileName = Paths.get(&quot;&quot;).toAbsolutePath().toString()+&quot;\\maps\\&quot; + fileName;&#xD;
 &#xD;
 		try {&#xD;
 			file = new FileReader(fileName);&#xD;
@@ -2870,6 +2885,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_jVKQA_B8Eema6uMr0HTvsQ" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2908,7 +2924,7 @@ Includes filename, filereader, list of countries and continents, model class obj
 					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and continent name should not&#xD;
 																		// be null&#xD;
 						try {&#xD;
-							mapOperations.addCountry(mapInstance, continents, countries, temp[i + 1], temp[i + 2]);&#xD;
+							mapOperations.addCountry(mapInstance, continents, countries, borders, temp[i + 1], temp[i + 2]);&#xD;
 							&#xD;
 							&#xD;
 						} catch (Exception e) {&#xD;
@@ -3141,7 +3157,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 <ownedParameter xmi:id="_jEpHw_B8Eema6uMr0HTvsQ" type="_jEeIoPB8Eema6uMr0HTvsQ" direction="return"/>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq88PB8Eema6uMr0HTvsQ" name="readMapFile" visibility="private" method="_jVIa0PB8Eema6uMr0HTvsQ" raisedException="_jRdbwfB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jViqg_B8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8ZmE_B-Eema6uMr0HTvsQ">
                   <body>reads the map file to be loaded&#xD;
 	 * @param fileName Map file to be read&#xD;
 	 * @throws IOException</body>
@@ -3151,7 +3167,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq88vB8Eema6uMr0HTvsQ" name="addPlayer" visibility="private" method="_jVIa0vB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRkPB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8ZmFPB-Eema6uMr0HTvsQ">
                   <body>&#xD;
 	 * @param playerName the player to be added</body>
                 </ownedComment>
@@ -3160,7 +3176,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq89PB8Eema6uMr0HTvsQ" name="removePlayer" visibility="private" method="_jVJB4PB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRkfB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8ZmFfB-Eema6uMr0HTvsQ">
                   <body>&#xD;
 @param playerName player to be removed from the game</body>
                 </ownedComment>
@@ -3169,17 +3185,17 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq89vB8Eema6uMr0HTvsQ" name="populateCountries" visibility="private" method="_jVJB4vB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRkvB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8aNIPB-Eema6uMr0HTvsQ">
                   <body>to assign countries to the players initially</body>
                 </ownedComment>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq89_B8Eema6uMr0HTvsQ" name="placeAll" visibility="private" method="_jVJB4_B8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRk_B8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8aNIfB-Eema6uMr0HTvsQ">
                   <body>to place all the armies initially without the player choosing</body>
                 </ownedComment>
               </ownedOperation>
               <ownedOperation xmi:id="_jEv1cPB8Eema6uMr0HTvsQ" name="placeArmyByCountry" visibility="private" method="_jVJo8PB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRlPB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8aNIvB-Eema6uMr0HTvsQ">
                   <body>	assigning army to particular mentioned country&#xD;
 @param cName country to be assigned army</body>
                 </ownedComment>
@@ -3188,7 +3204,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jExDkPB8Eema6uMr0HTvsQ" name="setReinforce" visibility="private" method="_jVJo8vB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRlfB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8aNI_B-Eema6uMr0HTvsQ">
                   <body>	Reinforcement phase base method&#xD;
 @param countryName country to reinforced&#xD;
 @param armyNumber army to be reinforced</body>
@@ -3201,7 +3217,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jExDk_B8Eema6uMr0HTvsQ" name="setFortify" visibility="private" method="_jVJo9fB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRlvB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8aNJPB-Eema6uMr0HTvsQ">
                   <body>	Fortification base method&#xD;
 @param from country from where armies would be sent&#xD;
 @param to country to where armies would be sent&#xD;
@@ -3219,7 +3235,7 @@ Includes filename, filereader, list of countries and continents, model class obj
               </ownedOperation>
               <ownedOperation xmi:id="_jExDl_B8Eema6uMr0HTvsQ" name="divideInitialArmies" visibility="private" method="_jVKQAPB8Eema6uMr0HTvsQ"/>
               <ownedOperation xmi:id="_jExDmPB8Eema6uMr0HTvsQ" name="phaseDecider" method="_jVKQAfB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jVjRl_B8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8aNJfB-Eema6uMr0HTvsQ">
                   <body>@param s1 phase command taken as input from console&#xD;
 	 * @return errorFlag to indicate successful execution or not</body>
                 </ownedComment>
@@ -3231,7 +3247,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jTFMYPB8Eema6uMr0HTvsQ" name="stringToContinent" visibility="private" isStatic="true" method="_jVHzwPB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jViqgPB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8ZmEPB-Eema6uMr0HTvsQ">
                   <body>This method converts string continent name to continent object&#xD;
 	 * @param continentString the names of continents&#xD;
 	 * @param ContinentList the list containing the continent entities</body>
@@ -3240,7 +3256,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 <ownedParameter xmi:id="_jTFMYvB8Eema6uMr0HTvsQ" name="continentList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
               </ownedOperation>
               <ownedOperation xmi:id="_jTHooPB8Eema6uMr0HTvsQ" name="stringToCountry" visibility="private" isStatic="true" method="_jVHzw_B8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jViqgfB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8ZmEfB-Eema6uMr0HTvsQ">
                   <body>This method converts string country name to country object&#xD;
 	 * @param countryString the names of countries&#xD;
 	 * @param CountryList the list of the country objects</body>
@@ -3249,13 +3265,12 @@ Includes filename, filereader, list of countries and continents, model class obj
                 <ownedParameter xmi:id="_jTHoovB8Eema6uMr0HTvsQ" name="CountryList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
               </ownedOperation>
               <ownedOperation xmi:id="_jTKr8PB8Eema6uMr0HTvsQ" name="setNeigbourCountry" visibility="private" isStatic="true" method="_jVHzxvB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_jViqgvB8Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_J8ZmEvB-Eema6uMr0HTvsQ">
                   <body>sets the neighbors of the country&#xD;
 	 * @param countryList the list of country entities&#xD;
 	 * @param borderString contains the names of the borders</body>
                 </ownedComment>
                 <ownedParameter xmi:id="_jTKr8fB8Eema6uMr0HTvsQ" name="countryList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jTLTAPB8Eema6uMr0HTvsQ" name="borderString" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_jT2ocfB8Eema6uMr0HTvsQ" name="Player"/>
@@ -3478,7 +3493,7 @@ Includes filename, filereader, list of countries and continents, model class obj
           </packagedElement>
           <packagedElement xmi:type="uml:Package" xmi:id="_i_AZ0PB8Eema6uMr0HTvsQ" name="view">
             <packagedElement xmi:type="uml:Class" xmi:id="_jFDXcPB8Eema6uMr0HTvsQ" name="Console">
-              <ownedComment xmi:id="_jVj4oPB8Eema6uMr0HTvsQ">
+              <ownedComment xmi:id="_J8bbQPB-Eema6uMr0HTvsQ">
                 <body>This class manages view of the Risk game to get input from console and sets up a interactive console for the user to play the game.&#xD;
 @author Karan&#xD;
  *</body>
@@ -3528,6 +3543,7 @@ Includes filename, filereader, list of countries and continents, model class obj
 			{&#xD;
 				alert(errorFlag);&#xD;
 			}&#xD;
+			textField.setText(&quot; &quot;);&#xD;
 		} else if (e.getSource() == exit) {&#xD;
 			System.exit(0);&#xD;
 		}&#xD;
@@ -3661,8 +3677,6 @@ Includes filename, filereader, list of countries and continents, model class obj
   <UMLLabProfile:Reference xmi:id="_jSeIYPB8Eema6uMr0HTvsQ" base_Element="_jSc6QfB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Reference xmi:id="_jSf9kPB8Eema6uMr0HTvsQ" base_Element="_jSevcPB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jSldIPB8Eema6uMr0HTvsQ" genericsValue="Integer, Continent" base_Element="_jSjn8vB8Eema6uMr0HTvsQ"/>
-  <UMLLabProfile:Generics xmi:id="_jSn5YPB8Eema6uMr0HTvsQ" genericsValue="Integer, Continent" base_Element="_jSmEMvB8Eema6uMr0HTvsQ"/>
-  <UMLLabProfile:Generics xmi:id="_jSpukPB8Eema6uMr0HTvsQ" genericsValue="Integer, Country" base_Element="_jSmEM_B8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jStY8PB8Eema6uMr0HTvsQ" genericsValue="Integer, Country" base_Element="_jSq8svB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jSuAAPB8Eema6uMr0HTvsQ" genericsValue="Integer, ArrayList&lt;Integer>" base_Element="_jSrjwPB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jSv1MPB8Eema6uMr0HTvsQ" genericsValue="Integer, ArrayList&lt;Integer>" base_Element="_jSunEfB8Eema6uMr0HTvsQ"/>
@@ -3680,7 +3694,6 @@ Includes filename, filereader, list of countries and continents, model class obj
   <UMLLabProfile:Generics xmi:id="_jTI2wPB8Eema6uMr0HTvsQ" genericsValue="String" base_Element="_jTHoofB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jTKE4PB8Eema6uMr0HTvsQ" genericsValue="Country" base_Element="_jTHoovB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jTMhIPB8Eema6uMr0HTvsQ" genericsValue="Country" base_Element="_jTKr8fB8Eema6uMr0HTvsQ"/>
-  <UMLLabProfile:Generics xmi:id="_jTNIMPB8Eema6uMr0HTvsQ" genericsValue="String" base_Element="_jTLTAPB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Reference xmi:id="_jTTO0PB8Eema6uMr0HTvsQ" base_Element="_jTSAsPB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Reference xmi:id="_jTVEAPB8Eema6uMr0HTvsQ" base_Element="_jTT14PB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_jTc_0PB8Eema6uMr0HTvsQ" base_Element="_jTcYwPB8Eema6uMr0HTvsQ"/>
@@ -3840,4 +3853,7 @@ Includes filename, filereader, list of countries and continents, model class obj
   <UMLLabProfile:Reference xmi:id="_jWOnAPB8Eema6uMr0HTvsQ" base_Element="_jWN_8fB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Reference xmi:id="_jWP1IPB8Eema6uMr0HTvsQ" base_Element="_jWPOEPB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Reference xmi:id="_jWQcMPB8Eema6uMr0HTvsQ" base_Element="_jWP1IfB8Eema6uMr0HTvsQ"/>
+  <UMLLabProfile:Generics xmi:id="_J8JucPB-Eema6uMr0HTvsQ" genericsValue="Integer, Continent" base_Element="_J8GrIfB-Eema6uMr0HTvsQ"/>
+  <UMLLabProfile:Generics xmi:id="_J8KVgPB-Eema6uMr0HTvsQ" genericsValue="Integer, Country" base_Element="_J8HSMPB-Eema6uMr0HTvsQ"/>
+  <UMLLabProfile:Generics xmi:id="_J8LjoPB-Eema6uMr0HTvsQ" genericsValue="Integer, ArrayList&lt;Integer>" base_Element="_J8HSMfB-Eema6uMr0HTvsQ"/>
 </xmi:XMI>
