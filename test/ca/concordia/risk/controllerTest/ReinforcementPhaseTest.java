@@ -93,7 +93,7 @@ public class ReinforcementPhaseTest {
 		// assertEquals("rohan", "rohan");
 
 		 mapInstance.setContinents(continents);
-		 
+		  
 		 rP.assign_army(p);
 		System.out.println(p.getPlayerReinforceArmy());
 		// assertEquals(20 / 3, p.getPlayerReinforceArmy());
