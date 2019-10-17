@@ -398,7 +398,7 @@ public class MainClass {
 		case "savemap":
 			try {
 				try {
-					mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+					mapWriter.writeMapFile(continents, countries, borders, temp[1]);
 				} catch (ValidMapException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -411,7 +411,14 @@ public class MainClass {
 			
 		case "editmap":
 			try {
-				mapWriter.loadMap(continents, countries, borders, temp[1]);
+				if(mapWriter.loadMap(continents, countries, borders, temp[1]))
+				{
+					System.out.println("Loaded"); 
+				}
+				else
+				{
+					System.out.println("Not Loaded!");
+				}
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

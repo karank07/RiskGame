@@ -33,6 +33,11 @@ public class ReinforcementPhase {
 	 */
 	public void beginReinforcement(Player player) {
 		initialize();
+		assign_army(player);
+
+	}
+
+	public void assign_army(Player player) {
 		// 1st rule: country/3...if it's less then 3; then assign 3 army minimum
 		player.setPlayerReinforceArmy(
 				(player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3);
@@ -44,13 +49,15 @@ public class ReinforcementPhase {
 						+ mapInstance.getContinents().get(i).getContinentControlValue());
 
 			}
-		}
+		} 
 		// 3rd rule: if player owns 3 cards and want them to exchange with army
 		// String[] countryNameOfCards = new String[3]; // Initialize when user selects
-		// countirs from thr dropdown menu in
+		// countirs from thes dropdown menu in
 		// GUI
 		// exchangeCardsForArmy(player, countryNameOfCards);
-		System.out.println("Armies available for player "+player.getPlayerId()+ " "+player.getPlayerName()+" to reinforce: "+player.getPlayerReinforceArmy());
+		System.out.println("Armies available for player " + player.getPlayerId() + " " + player.getPlayerName()
+				+ " to reinforce: " + player.getPlayerReinforceArmy());
+
 	}
 
 	/**
@@ -59,8 +66,7 @@ public class ReinforcementPhase {
 	 */
 	private void initialize() {
 		mapInstance = ca.concordia.risk.model.Map.getM_instance();
-		for(Continent c: mapInstance.getContinents().values())
-		{
+		for (Continent c : mapInstance.getContinents().values()) {
 			name_of_continents.add(c);
 		}
 		set_of_contries = new ArrayList<ArrayList<Country>>(mapInstance.getContinents().size());
@@ -165,13 +171,13 @@ public class ReinforcementPhase {
 	 * @param armyNumber
 	 */
 	public void reinforceArmy(Player player, String countryName, int armyNumber) {
-		
+
 		int currentlyUnplacedArmy = player.getPlayerReinforceArmy();
 
 		if (currentlyUnplacedArmy > 0) {
 			// check whether entered country name (through console) is valid or not
 			if (countryBelongsToPlayer(player, countryName)) {
-																
+
 				if (armyNumber <= currentlyUnplacedArmy) {
 
 					PlaceArmy(countryName, armyNumber);
@@ -182,14 +188,16 @@ public class ReinforcementPhase {
 			} else {
 				System.out.println("This country does not belongs to you!");
 			}
-			
-			System.out.println("Armies available to reinforce for :"+player.getPlayerId()+" "+player.getPlayerName() + " are " + player.getPlayerReinforceArmy());
+
+			System.out.println("Armies available to reinforce for :" + player.getPlayerId() + " "
+					+ player.getPlayerName() + " are " + player.getPlayerReinforceArmy());
 
 		}
-		
-		//Printing LOG _ The status of new army with number of army it contains
-		for(int i=-0;i<player.getPlayerTotalCountries();i++) {
-			System.out.println("Country: " + player.getPlayerCountries().get(i).getCountryName() + "-->>" + player.getPlayerCountries().get(i).getCountryArmy());
+
+		// Printing LOG _ The status of new army with number of army it contains
+		for (int i = -0; i < player.getPlayerTotalCountries(); i++) {
+			System.out.println("Country: " + player.getPlayerCountries().get(i).getCountryName() + "-->>"
+					+ player.getPlayerCountries().get(i).getCountryArmy());
 		}
 	}
 
@@ -199,7 +207,7 @@ public class ReinforcementPhase {
  * @param armyNumber the number of armies to be assigned
  */
 	private void PlaceArmy(String countryName, int armyNumber) {
-		
+
 		Country country = mapInstance.getCountryByName(countryName);
 		country.setCountryArmy(armyNumber + country.getCountryArmy());
 	}
