@@ -22,8 +22,9 @@ import ca.concordia.risk.view.Console;
 /**
  * This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. 
  * Includes filename, filereader, list of countries and continents, model class objects, etc as data members
- * @author Karan, Rohan and Pranal
- *
+ * @author Karan
+ * @author Rohan 
+ * @author Pranal
  */
 public class MainClass {
 	private String fileName;
@@ -79,7 +80,6 @@ public class MainClass {
 		countries = new HashMap<Integer, Country>();
 		borders = new HashMap<Integer, ArrayList<Integer>>();
 		mapInstance = Map.getM_instance();
-
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
 
@@ -399,7 +399,7 @@ public class MainClass {
 		case "savemap":
 			try {
 				try {
-					mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+					mapWriter.writeMapFile(continents, countries, borders, temp[1]);
 				} catch (ValidMapException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -412,7 +412,14 @@ public class MainClass {
 			
 		case "editmap":
 			try {
-				mapWriter.loadMap(continents, countries, borders, temp[1]);
+				if(mapWriter.loadMap(continents, countries, borders, temp[1]))
+				{
+					System.out.println("Loaded"); 
+				}
+				else
+				{
+					System.out.println("Not Loaded!");
+				}
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

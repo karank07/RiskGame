@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import org.junit.validator.ValidateWith;
-
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.utilities.GameConstants;
@@ -70,9 +68,9 @@ public class MapWriter{
 			{
 				Country coun = countries.get(i);
 			
-				int continent_id=coun.getContinentID()+1;
+				int continent_id=coun.getContinentID();
 			
-				buffW.write(i + " " + coun.getCountryName() + " " + continent_id + " " + coun.getXCo() + " " + coun.getYCo());
+				buffW.write(i + " " + coun.getCountryName() + " " + (continent_id) + " " + coun.getXCo() + " " + coun.getYCo());
 				buffW.newLine();
 			}
 
