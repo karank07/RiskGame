@@ -597,7 +597,7 @@
   <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_kn_J0PB8Eema6uMr0HTvsQ" targetItem="_kpFWCvB8Eema6uMr0HTvsQ"/>
   <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_koAX8PB8Eema6uMr0HTvsQ" targetItem="_kpFWEvB8Eema6uMr0HTvsQ"/>
   <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_koBmEfB8Eema6uMr0HTvsQ" targetItem="_kpFWG_B8Eema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_koC0MfB8Eema6uMr0HTvsQ" targetItem="_kpFWJPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_koC0MfB8Eema6uMr0HTvsQ"/>
   <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_ko1eYPB8Eema6uMr0HTvsQ" target="_kpEH4PB8Eema6uMr0HTvsQ">
     <modelElement href="RiskGame.uml#_jWPOEPB8Eema6uMr0HTvsQ"/>
     <stereotypes xmi:id="_ko1eYfB8Eema6uMr0HTvsQ" name="Reference">
@@ -709,20 +709,20 @@
   <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KguW8fCFEema6uMr0HTvsQ" targetItem="_kj8Xd_B8Eema6uMr0HTvsQ" sourceItem="_KguW8PCFEema6uMr0HTvsQ"/>
   <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KgvlEfCFEema6uMr0HTvsQ" targetItem="_kj8Xi_B8Eema6uMr0HTvsQ" sourceItem="_KgvlEPCFEema6uMr0HTvsQ"/>
   <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KgxaQfCFEema6uMr0HTvsQ" targetItem="_klDxoPB8Eema6uMr0HTvsQ" sourceItem="_KgxaQPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhImofCFEema6uMr0HTvsQ" targetItem="_kpEH4PB8Eema6uMr0HTvsQ" sourceItem="_KhImoPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhVa8fCFEema6uMr0HTvsQ" targetItem="_kpEvYfB8Eema6uMr0HTvsQ" sourceItem="_KhVa8PCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhWCAPCFEema6uMr0HTvsQ" targetItem="_kpEvZ_B8Eema6uMr0HTvsQ" sourceItem="_KhVa8vCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhWCAvCFEema6uMr0HTvsQ" targetItem="_kpEvbfB8Eema6uMr0HTvsQ" sourceItem="_KhWCAfCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhWpEfCFEema6uMr0HTvsQ" targetItem="_kpEvc_B8Eema6uMr0HTvsQ" sourceItem="_KhWpEPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhXQIfCFEema6uMr0HTvsQ" targetItem="_kpEvdvB8Eema6uMr0HTvsQ" sourceItem="_KhXQIPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhX3MPCFEema6uMr0HTvsQ" targetItem="_kpEvefB8Eema6uMr0HTvsQ" sourceItem="_KhXQIvCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhX3MvCFEema6uMr0HTvsQ" targetItem="_kpEvf_B8Eema6uMr0HTvsQ" sourceItem="_KhX3MfCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhYeQfCFEema6uMr0HTvsQ" targetItem="_kpEviPB8Eema6uMr0HTvsQ" sourceItem="_KhYeQPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhZFUfCFEema6uMr0HTvsQ" targetItem="_kpFWCvB8Eema6uMr0HTvsQ" sourceItem="_KhZFUPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhZsYfCFEema6uMr0HTvsQ" targetItem="_kpFWEvB8Eema6uMr0HTvsQ" sourceItem="_KhZsYPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhaTcfCFEema6uMr0HTvsQ" targetItem="_kpFWG_B8Eema6uMr0HTvsQ" sourceItem="_KhaTcPCFEema6uMr0HTvsQ"/>
-  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhcIofCFEema6uMr0HTvsQ" targetItem="_kpFWJPB8Eema6uMr0HTvsQ" sourceItem="_KhcIoPCFEema6uMr0HTvsQ"/>
   <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_KhfzAPCFEema6uMr0HTvsQ" targetItem="_KgmbIPCFEema6uMr0HTvsQ" sourceItem="_KhfL9fCFEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_strWMPCKEema6uMr0HTvsQ" targetItem="_stskUPCKEema6uMr0HTvsQ" sourceItem="_stcFoPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_su9voPCKEema6uMr0HTvsQ" targetItem="_kpEH4PB8Eema6uMr0HTvsQ" sourceItem="_susp4PCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_sxKvEPCKEema6uMr0HTvsQ" targetItem="_kpEvYfB8Eema6uMr0HTvsQ" sourceItem="_sxKIAPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_sxVuMPCKEema6uMr0HTvsQ" targetItem="_kpEvZ_B8Eema6uMr0HTvsQ" sourceItem="_sxT5APCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_sxffMPCKEema6uMr0HTvsQ" targetItem="_kpEvbfB8Eema6uMr0HTvsQ" sourceItem="_sxeREPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_sxoCEPCKEema6uMr0HTvsQ" targetItem="_kpEvc_B8Eema6uMr0HTvsQ" sourceItem="_sxmM4PCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_syWa0PCKEema6uMr0HTvsQ" targetItem="_kpEvdvB8Eema6uMr0HTvsQ" sourceItem="_syUloPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_sydvkPCKEema6uMr0HTvsQ" targetItem="_kpEvefB8Eema6uMr0HTvsQ" sourceItem="_sychcPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_syqj4PCKEema6uMr0HTvsQ" targetItem="_kpEvf_B8Eema6uMr0HTvsQ" sourceItem="_sym5gPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_szcnAPCKEema6uMr0HTvsQ" targetItem="_kpEviPB8Eema6uMr0HTvsQ" sourceItem="_sy3YMPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_szj7wPCKEema6uMr0HTvsQ" targetItem="_kpFWCvB8Eema6uMr0HTvsQ" sourceItem="_szitoPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_szuT0PCKEema6uMr0HTvsQ" targetItem="_kpFWEvB8Eema6uMr0HTvsQ" sourceItem="_szrQgPCKEema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_sz6hEPCKEema6uMr0HTvsQ" targetItem="_kpFWG_B8Eema6uMr0HTvsQ" sourceItem="_sz22sPCKEema6uMr0HTvsQ"/>
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_kicigPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_kicigfB8Eema6uMr0HTvsQ" text="This class contains data members such as list of country - visited, fortify(), searchNeighbors(), etc to implement a &#xD;&#xA;valid fortification move according to risk rules&#xD;&#xA;@author Karan&#xD;&#xA; *" item="_kiygwPB8Eema6uMr0HTvsQ">
     <modelElement href="RiskGame.uml#_jVOhcPB8Eema6uMr0HTvsQ"/>
   </nodes>
@@ -783,14 +783,6 @@
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_kmy3APB8Eema6uMr0HTvsQ" sourceConnectionVisual="_kmy3AfB8Eema6uMr0HTvsQ" text="&#xD;&#xA;&#x9; * @param p player whose conquered countries are to be known&#xD;&#xA;&#x9; * @return the list of countries owned by the player p" item="_knFyIfB8Eema6uMr0HTvsQ">
     <modelElement href="RiskGame.uml#_jVWdQvB8Eema6uMr0HTvsQ"/>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_kqg5YPB8Eema6uMr0HTvsQ" name="Player">
-    <modelElement href="RiskGame.uml#_jT2ocfB8Eema6uMr0HTvsQ"/>
-    <visualProperties xmi:id="_kqhgcPB8Eema6uMr0HTvsQ" position="-780.0,318.0" size="-1.0,-1.0"/>
-    <stereotypes xmi:id="_kqhgcfB8Eema6uMr0HTvsQ" name="Reference">
-      <modelElement href="RiskGame.uml#_jT3PgPB8Eema6uMr0HTvsQ"/>
-    </stereotypes>
-    <visibility xmi:id="_kqhgcvB8Eema6uMr0HTvsQ" label="+"/>
-  </nodes>
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KgnCMPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KgnCMfCFEema6uMr0HTvsQ" text="This class contains all map operations&#xD;&#xA;@author dhruv&#xD;&#xA; *" item="_kj7wSfB8Eema6uMr0HTvsQ">
     <modelElement href="RiskGame.uml#_J8aNJvB-Eema6uMr0HTvsQ"/>
   </nodes>
@@ -811,45 +803,6 @@
   </nodes>
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KgxaQPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KgxaQfCFEema6uMr0HTvsQ" text="This class is used for reading and writing map files&#xD;&#xA;@author dhruv" item="_klDxoPB8Eema6uMr0HTvsQ">
     <modelElement href="RiskGame.uml#_J8a0NfB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhImoPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhImofCFEema6uMr0HTvsQ" text="This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. &#xD;&#xA;Includes filename, filereader, list of countries and continents, model class objects, etc as data members&#xD;&#xA;@author Karan&#xD;&#xA;@author Rohan &#xD;&#xA;@author Pranal" item="_kpEH4PB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8Y_APB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhVa8PCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhVa8fCFEema6uMr0HTvsQ" text="reads the map file to be loaded&#xD;&#xA;&#x9; * @param fileName Map file to be read&#xD;&#xA;&#x9; * @throws IOException" item="_kpEvYfB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8ZmE_B-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhVa8vCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhWCAPCFEema6uMr0HTvsQ" text="&#xD;&#xA;&#x9; * @param playerName the player to be added" item="_kpEvZ_B8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8ZmFPB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhWCAfCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhWCAvCFEema6uMr0HTvsQ" text="&#xD;&#xA;@param playerName player to be removed from the game" item="_kpEvbfB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8ZmFfB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhWpEPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhWpEfCFEema6uMr0HTvsQ" text="to assign countries to the players initially" item="_kpEvc_B8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8aNIPB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhXQIPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhXQIfCFEema6uMr0HTvsQ" text="to place all the armies initially without the player choosing" item="_kpEvdvB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8aNIfB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhXQIvCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhX3MPCFEema6uMr0HTvsQ" text="&#x9;assigning army to particular mentioned country&#xD;&#xA;@param cName country to be assigned army" item="_kpEvefB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8aNIvB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhX3MfCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhX3MvCFEema6uMr0HTvsQ" text="&#x9;Reinforcement phase base method&#xD;&#xA;@param countryName country to reinforced&#xD;&#xA;@param armyNumber army to be reinforced" item="_kpEvf_B8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8aNI_B-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhYeQPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhYeQfCFEema6uMr0HTvsQ" text="&#x9;Fortification base method&#xD;&#xA;@param from country from where armies would be sent&#xD;&#xA;@param to country to where armies would be sent&#xD;&#xA;@param army number of armies used to fortify" item="_kpEviPB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8aNJPB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhZFUPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhZFUfCFEema6uMr0HTvsQ" text="@param s1 phase command taken as input from console&#xD;&#xA;&#x9; * @return errorFlag to indicate successful execution or not" item="_kpFWCvB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8aNJfB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhZsYPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhZsYfCFEema6uMr0HTvsQ" text="This method converts string continent name to continent object&#xD;&#xA;&#x9; * @param continentString the names of continents&#xD;&#xA;&#x9; * @param ContinentList the list containing the continent entities" item="_kpFWEvB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8ZmEPB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhaTcPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhaTcfCFEema6uMr0HTvsQ" text="This method converts string country name to country object&#xD;&#xA;&#x9; * @param countryString the names of countries&#xD;&#xA;&#x9; * @param CountryList the list of the country objects" item="_kpFWG_B8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8ZmEfB-Eema6uMr0HTvsQ"/>
-  </nodes>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhcIoPCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhcIofCFEema6uMr0HTvsQ" text="sets the neighbors of the country&#xD;&#xA;&#x9; * @param countryList the list of country entities&#xD;&#xA;&#x9; * @param borderString contains the names of the borders" item="_kpFWJPB8Eema6uMr0HTvsQ">
-    <modelElement href="RiskGame.uml#_J8ZmEvB-Eema6uMr0HTvsQ"/>
   </nodes>
   <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_KhfL9fCFEema6uMr0HTvsQ" sourceConnectionVisual="_KhfzAPCFEema6uMr0HTvsQ" text="This method adds countries to map &#xD;&#xA;&#x9; * @param map the map object instance&#xD;&#xA;&#x9; * @param continents the hashmap of existing continents&#xD;&#xA;&#x9; * @param countries the hashmap of existing countries&#xD;&#xA;&#x9; * @param country_name the country name to be added&#xD;&#xA;&#x9; * @param continent_name the continent name in which country needs to be added&#xD;&#xA;&#x9; * @return true if country added, else false&#xD;&#xA;&#x9; * @throws ValidMapException" item="_KgmbIPCFEema6uMr0HTvsQ">
     <modelElement href="RiskGame.uml#_J8a0MPB-Eema6uMr0HTvsQ"/>
@@ -887,6 +840,9 @@
       <stereotypes xmi:id="_KiLIcPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KiM9oPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjO4YPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tofVcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tohxsPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqSFMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kmIvwfB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kmIvwvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kmIvw_B8Eema6uMr0HTvsQ" name="Map">
@@ -901,6 +857,12 @@
       <stereotypes xmi:id="_KiRPEPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjQtkPCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjQtkfCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tokN8PCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tok1APCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tonRQPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_ton4UPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqW9sPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tqXkwPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kmIvx_B8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kmIvyPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kmIvyfB8Eema6uMr0HTvsQ" name="ArrayList">
@@ -915,6 +877,12 @@
       <stereotypes xmi:id="_KiVggPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjSiwPCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjTJ0PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_torisPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tosJwPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toumAPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tovNEPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqbPIPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tqcdQPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kmIvzfB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kmIvzvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kmIvz_B8Eema6uMr0HTvsQ" name="ArrayList">
@@ -1049,6 +1017,9 @@
       <stereotypes xmi:id="_KhnHwPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KhoV4PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Ki_n0PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tnw8sPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tnzY8PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqe5gPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kiygxfB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kiygxvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kiygx_B8Eema6uMr0HTvsQ" name="MainClass">
@@ -1071,6 +1042,9 @@
       <stereotypes xmi:id="_KhqLEPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KhsAQPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjAO4PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tn2cQPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tn4RcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqjK8PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kiygz_B8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kiyg0PB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
       <type xmi:id="_kiyg0fB8Eema6uMr0HTvsQ" name="Country">
@@ -1225,6 +1199,9 @@
       <stereotypes xmi:id="_Kh5boPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Kh7Q0PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjGVgPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toJ-QPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toLzcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqlnMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_klDxpfB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_klDxpvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_klDxp_B8Eema6uMr0HTvsQ" name="MapValidate">
@@ -1236,6 +1213,9 @@
       <stereotypes xmi:id="_Kh8e8PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Kh9tEPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjG8kPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toNooPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toPd0PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqvYMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_klDxqvB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_klDxq_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_klDxrPB8Eema6uMr0HTvsQ" name="MapOperations">
@@ -1292,6 +1272,12 @@
       <stereotypes xmi:id="_KiG3APCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjJ_4PCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjJ_4fCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toWLgPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_toWykPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toZ14PCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_toZ14fCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_trAd8PCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_trgNMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_klDxwvB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_klDxw_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_klDxxPB8Eema6uMr0HTvsQ" name="ArrayList">
@@ -1455,7 +1441,7 @@
       </parameters>
     </operations>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_kpEH4PB8Eema6uMr0HTvsQ" comments="_KhImoPCFEema6uMr0HTvsQ" targetConnectionVisual="_kntdAfB8Eema6uMr0HTvsQ _KhImofCFEema6uMr0HTvsQ" name="MainClass" associationsIn="_kiuPUPB8Eema6uMr0HTvsQ _ko1eYPB8Eema6uMr0HTvsQ" associationsOut="_kirzEPB8Eema6uMr0HTvsQ _klvHEPB8Eema6uMr0HTvsQ _kmlboPB8Eema6uMr0HTvsQ _kjfEUPB8Eema6uMr0HTvsQ _kkph8PB8Eema6uMr0HTvsQ _knvSMPB8Eema6uMr0HTvsQ _knwgUPB8Eema6uMr0HTvsQ _knwgUfB8Eema6uMr0HTvsQ _knxHYPB8Eema6uMr0HTvsQ _knxucPB8Eema6uMr0HTvsQ _knxucfB8Eema6uMr0HTvsQ _ko4hsPB8Eema6uMr0HTvsQ _ko7lAPB8Eema6uMr0HTvsQ _ko-oUPB8Eema6uMr0HTvsQ _kpDg0PB8Eema6uMr0HTvsQ">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_kpEH4PB8Eema6uMr0HTvsQ" comments="_susp4PCKEema6uMr0HTvsQ" targetConnectionVisual="_kntdAfB8Eema6uMr0HTvsQ _su9voPCKEema6uMr0HTvsQ" name="MainClass" associationsIn="_kiuPUPB8Eema6uMr0HTvsQ _ko1eYPB8Eema6uMr0HTvsQ" associationsOut="_kirzEPB8Eema6uMr0HTvsQ _klvHEPB8Eema6uMr0HTvsQ _kmlboPB8Eema6uMr0HTvsQ _kjfEUPB8Eema6uMr0HTvsQ _kkph8PB8Eema6uMr0HTvsQ _knvSMPB8Eema6uMr0HTvsQ _knwgUPB8Eema6uMr0HTvsQ _knwgUfB8Eema6uMr0HTvsQ _knxHYPB8Eema6uMr0HTvsQ _knxucPB8Eema6uMr0HTvsQ _knxucfB8Eema6uMr0HTvsQ _ko4hsPB8Eema6uMr0HTvsQ _ko7lAPB8Eema6uMr0HTvsQ _ko-oUPB8Eema6uMr0HTvsQ _kpDg0PB8Eema6uMr0HTvsQ">
     <modelElement href="RiskGame.uml#_jEeIoPB8Eema6uMr0HTvsQ"/>
     <visualProperties xmi:id="_kpEH4fB8Eema6uMr0HTvsQ" position="361.0,-649.0" size="398.0,247.0"/>
     <visibility xmi:id="_kpEH4vB8Eema6uMr0HTvsQ" label="+"/>
@@ -1486,6 +1472,9 @@
       <stereotypes xmi:id="_Ki3E8PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Ki3sAPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjYpYPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tprBMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tps2YPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_trtokPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEH7_B8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEH8PB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEH8fB8Eema6uMr0HTvsQ" name="FileReader">
@@ -1497,6 +1486,9 @@
       <stereotypes xmi:id="_Ki46IPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Ki6IQPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjZQcPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpvSoPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpxH0PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_trzvMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEH9PB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kpEH9fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEH9vB8Eema6uMr0HTvsQ" name="BufferedReader">
@@ -1519,6 +1511,9 @@
       <stereotypes xmi:id="_Ki7WYPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Ki8kgPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjbssPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpy9APCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tp8uAPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tr4AoPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEu9fB8Eema6uMr0HTvsQ" label="+"/>
       <cardinality xmi:id="_kpEu9vB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
       <type xmi:id="_kpEu9_B8Eema6uMr0HTvsQ" name="Continent">
@@ -1541,6 +1536,9 @@
       <stereotypes xmi:id="_KikKAPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KilYIPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjewAPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpFyYPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpHnkPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tsE08PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEu__B8Eema6uMr0HTvsQ" label="+"/>
       <cardinality xmi:id="_kpEvAPB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
       <type xmi:id="_kpEvAfB8Eema6uMr0HTvsQ" name="Country">
@@ -1563,6 +1561,9 @@
       <stereotypes xmi:id="_Khi2UPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KhlSkPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjhMQPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tnsEMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tnugcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tsK7kPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvCPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvCfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvCvB8Eema6uMr0HTvsQ" name="FortificationPhase">
@@ -1574,6 +1575,9 @@
       <stereotypes xmi:id="_KiIFIPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KiJTQPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjiaYPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tobrEPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_todgQPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tsVToPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvDPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvDfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvDvB8Eema6uMr0HTvsQ" name="ReinforcementPhase">
@@ -1585,6 +1589,9 @@
       <stereotypes xmi:id="_KiXVsPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KiYj0PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjkPkPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toxpUPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tozegPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tsY-APCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvEPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvEfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvEvB8Eema6uMr0HTvsQ" name="StartUpPhase">
@@ -1596,6 +1603,9 @@
       <stereotypes xmi:id="_KimmQPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Kin0YPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjldsPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpKq4PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpNHIPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tsdPcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvFfB8Eema6uMr0HTvsQ" label="+"/>
       <cardinality xmi:id="_kpEvFvB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
       <type xmi:id="_kpEvF_B8Eema6uMr0HTvsQ" name="Player">
@@ -1610,6 +1620,12 @@
       <stereotypes xmi:id="_KirewPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjnS4PCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_Kjn58PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpPjYPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tpQKcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpTNwPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tpT00PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tsfEoPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tsfrsPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvG_B8Eema6uMr0HTvsQ" label="+"/>
       <cardinality xmi:id="_kpEvHPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvHfB8Eema6uMr0HTvsQ" name="HashMap">
@@ -1624,6 +1640,12 @@
       <stereotypes xmi:id="_Kit7AfCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjpvIPCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjqWMPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpXfMPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tpYGQPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpbJkPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tpbwoPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tsiH8PCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tsivAPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvIfB8Eema6uMr0HTvsQ" label="+"/>
       <cardinality xmi:id="_kpEvIvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvI_B8Eema6uMr0HTvsQ" name="HashMap">
@@ -1638,6 +1660,12 @@
       <stereotypes xmi:id="_Kiw-UfCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjsLYPCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjsLYfCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpez8PCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tpfbAPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpieUPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tpjFYPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tslyUPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tsnAcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvJ_B8Eema6uMr0HTvsQ" label="+"/>
       <cardinality xmi:id="_kpEvKPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvKfB8Eema6uMr0HTvsQ" name="HashMap">
@@ -1649,6 +1677,9 @@
       <stereotypes xmi:id="_KiyMcPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Ki0BoPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjuAkPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tplhoPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tpmvwPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tstuIPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvLPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvLfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvLvB8Eema6uMr0HTvsQ" name="Map">
@@ -1660,6 +1691,9 @@
       <stereotypes xmi:id="_KhtOYPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KhucgPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjvOsPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tn6tsPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tn9J8PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ts1C4PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvMPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvMfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvMvB8Eema6uMr0HTvsQ" name="MapOperations">
@@ -1671,6 +1705,9 @@
       <stereotypes xmi:id="_KiAJUPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KiB-gPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Kjv1wPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toR6EPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toUWUPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ts24EPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvNPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvNfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvNvB8Eema6uMr0HTvsQ" name="MapWriter">
@@ -1682,6 +1719,9 @@
       <stereotypes xmi:id="_Ki9yoPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_Ki-ZsPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjxD4PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqIUMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tqKwcPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ts7JgPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kpEvOfB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kpEvOvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kpEvO_B8Eema6uMr0HTvsQ" name="Console">
@@ -1767,7 +1807,7 @@
         </type>
       </outParameters>
     </operations>
-    <operations xmi:id="_kpEvYfB8Eema6uMr0HTvsQ" comments="_KhVa8PCFEema6uMr0HTvsQ" targetConnectionVisual="_kn0xwfB8Eema6uMr0HTvsQ _KhVa8fCFEema6uMr0HTvsQ" name="readMapFile">
+    <operations xmi:id="_kpEvYfB8Eema6uMr0HTvsQ" comments="_sxKIAPCKEema6uMr0HTvsQ" targetConnectionVisual="_kn0xwfB8Eema6uMr0HTvsQ _sxKvEPCKEema6uMr0HTvsQ" name="readMapFile">
       <modelElement href="RiskGame.uml#_jEq88PB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvYvB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvY_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1779,7 +1819,7 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpEvZ_B8Eema6uMr0HTvsQ" comments="_KhVa8vCFEema6uMr0HTvsQ" targetConnectionVisual="_kn1_4PB8Eema6uMr0HTvsQ _KhWCAPCFEema6uMr0HTvsQ" name="addPlayer">
+    <operations xmi:id="_kpEvZ_B8Eema6uMr0HTvsQ" comments="_sxT5APCKEema6uMr0HTvsQ" targetConnectionVisual="_kn1_4PB8Eema6uMr0HTvsQ _sxVuMPCKEema6uMr0HTvsQ" name="addPlayer">
       <modelElement href="RiskGame.uml#_jEq88vB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvaPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvafB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1791,7 +1831,7 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpEvbfB8Eema6uMr0HTvsQ" comments="_KhWCAfCFEema6uMr0HTvsQ" targetConnectionVisual="_kn3OAPB8Eema6uMr0HTvsQ _KhWCAvCFEema6uMr0HTvsQ" name="removePlayer">
+    <operations xmi:id="_kpEvbfB8Eema6uMr0HTvsQ" comments="_sxeREPCKEema6uMr0HTvsQ" targetConnectionVisual="_kn3OAPB8Eema6uMr0HTvsQ _sxffMPCKEema6uMr0HTvsQ" name="removePlayer">
       <modelElement href="RiskGame.uml#_jEq89PB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvbvB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvb_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1803,17 +1843,17 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpEvc_B8Eema6uMr0HTvsQ" comments="_KhWpEPCFEema6uMr0HTvsQ" targetConnectionVisual="_kn31EfB8Eema6uMr0HTvsQ _KhWpEfCFEema6uMr0HTvsQ" name="populateCountries">
+    <operations xmi:id="_kpEvc_B8Eema6uMr0HTvsQ" comments="_sxmM4PCKEema6uMr0HTvsQ" targetConnectionVisual="_kn31EfB8Eema6uMr0HTvsQ _sxoCEPCKEema6uMr0HTvsQ" name="populateCountries">
       <modelElement href="RiskGame.uml#_jEq89vB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvdPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvdfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
     </operations>
-    <operations xmi:id="_kpEvdvB8Eema6uMr0HTvsQ" comments="_KhXQIPCFEema6uMr0HTvsQ" targetConnectionVisual="_kn4cIfB8Eema6uMr0HTvsQ _KhXQIfCFEema6uMr0HTvsQ" name="placeAll">
+    <operations xmi:id="_kpEvdvB8Eema6uMr0HTvsQ" comments="_syUloPCKEema6uMr0HTvsQ" targetConnectionVisual="_kn4cIfB8Eema6uMr0HTvsQ _syWa0PCKEema6uMr0HTvsQ" name="placeAll">
       <modelElement href="RiskGame.uml#_jEq89_B8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvd_B8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvePB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
     </operations>
-    <operations xmi:id="_kpEvefB8Eema6uMr0HTvsQ" comments="_KhXQIvCFEema6uMr0HTvsQ" targetConnectionVisual="_kn5qQfB8Eema6uMr0HTvsQ _KhX3MPCFEema6uMr0HTvsQ" name="placeArmyByCountry">
+    <operations xmi:id="_kpEvefB8Eema6uMr0HTvsQ" comments="_sychcPCKEema6uMr0HTvsQ" targetConnectionVisual="_kn5qQfB8Eema6uMr0HTvsQ _sydvkPCKEema6uMr0HTvsQ" name="placeArmyByCountry">
       <modelElement href="RiskGame.uml#_jEv1cPB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvevB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEve_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1825,7 +1865,7 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpEvf_B8Eema6uMr0HTvsQ" comments="_KhX3MfCFEema6uMr0HTvsQ" targetConnectionVisual="_kn8GgPB8Eema6uMr0HTvsQ _KhX3MvCFEema6uMr0HTvsQ" name="setReinforce">
+    <operations xmi:id="_kpEvf_B8Eema6uMr0HTvsQ" comments="_sym5gPCKEema6uMr0HTvsQ" targetConnectionVisual="_kn8GgPB8Eema6uMr0HTvsQ _syqj4PCKEema6uMr0HTvsQ" name="setReinforce">
       <modelElement href="RiskGame.uml#_jExDkPB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvgPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvgfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1844,7 +1884,7 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpEviPB8Eema6uMr0HTvsQ" comments="_KhYeQPCFEema6uMr0HTvsQ" targetConnectionVisual="_kn9UofB8Eema6uMr0HTvsQ _KhYeQfCFEema6uMr0HTvsQ" name="setFortify">
+    <operations xmi:id="_kpEviPB8Eema6uMr0HTvsQ" comments="_sy3YMPCKEema6uMr0HTvsQ" targetConnectionVisual="_kn9UofB8Eema6uMr0HTvsQ _szcnAPCKEema6uMr0HTvsQ" name="setFortify">
       <modelElement href="RiskGame.uml#_jExDk_B8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpEvifB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpEvivB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1875,7 +1915,7 @@
       <visibility xmi:id="_kpFWCPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpFWCfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
     </operations>
-    <operations xmi:id="_kpFWCvB8Eema6uMr0HTvsQ" comments="_KhZFUPCFEema6uMr0HTvsQ" targetConnectionVisual="_kn_J0PB8Eema6uMr0HTvsQ _KhZFUfCFEema6uMr0HTvsQ" name="phaseDecider">
+    <operations xmi:id="_kpFWCvB8Eema6uMr0HTvsQ" comments="_szitoPCKEema6uMr0HTvsQ" targetConnectionVisual="_kn_J0PB8Eema6uMr0HTvsQ _szj7wPCKEema6uMr0HTvsQ" name="phaseDecider">
       <modelElement href="RiskGame.uml#_jExDmPB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpFWC_B8Eema6uMr0HTvsQ" label="+"/>
       <cardinality xmi:id="_kpFWDPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1893,7 +1933,7 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpFWEvB8Eema6uMr0HTvsQ" comments="_KhZsYPCFEema6uMr0HTvsQ" targetConnectionVisual="_koAX8PB8Eema6uMr0HTvsQ _KhZsYfCFEema6uMr0HTvsQ" name="stringToContinent" staticOperation="true">
+    <operations xmi:id="_kpFWEvB8Eema6uMr0HTvsQ" comments="_szrQgPCKEema6uMr0HTvsQ" targetConnectionVisual="_koAX8PB8Eema6uMr0HTvsQ _szuT0PCKEema6uMr0HTvsQ" name="stringToContinent" staticOperation="true">
       <modelElement href="RiskGame.uml#_jTFMYPB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpFWE_B8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpFWFPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1912,7 +1952,7 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpFWG_B8Eema6uMr0HTvsQ" comments="_KhaTcPCFEema6uMr0HTvsQ" targetConnectionVisual="_koBmEfB8Eema6uMr0HTvsQ _KhaTcfCFEema6uMr0HTvsQ" name="stringToCountry" staticOperation="true">
+    <operations xmi:id="_kpFWG_B8Eema6uMr0HTvsQ" comments="_sz22sPCKEema6uMr0HTvsQ" targetConnectionVisual="_koBmEfB8Eema6uMr0HTvsQ _sz6hEPCKEema6uMr0HTvsQ" name="stringToCountry" staticOperation="true">
       <modelElement href="RiskGame.uml#_jTHooPB8Eema6uMr0HTvsQ"/>
       <visibility xmi:id="_kpFWHPB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_kpFWHfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
@@ -1931,14 +1971,21 @@
         </type>
       </parameters>
     </operations>
-    <operations xmi:id="_kpFWJPB8Eema6uMr0HTvsQ" comments="_KhcIoPCFEema6uMr0HTvsQ" targetConnectionVisual="_koC0MfB8Eema6uMr0HTvsQ _KhcIofCFEema6uMr0HTvsQ" name="setNeigbourCountry" staticOperation="true">
-      <modelElement href="RiskGame.uml#_jTKr8PB8Eema6uMr0HTvsQ"/>
-      <visibility xmi:id="_kpFWJfB8Eema6uMr0HTvsQ" label="-"/>
-      <cardinality xmi:id="_kpFWJvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
-      <parameters xmi:id="_kpFWJ_B8Eema6uMr0HTvsQ" name="countryList">
-        <modelElement href="RiskGame.uml#_jTKr8fB8Eema6uMr0HTvsQ"/>
-        <cardinality xmi:id="_kpFWKPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
-        <type xmi:id="_kpFWKfB8Eema6uMr0HTvsQ" name="List">
+    <operations xmi:id="_stskUPCKEema6uMr0HTvsQ" comments="_stcFoPCKEema6uMr0HTvsQ" targetConnectionVisual="_strWMPCKEema6uMr0HTvsQ" name="setNeigbourCountry" staticOperation="true">
+      <modelElement href="RiskGame.uml#_srQ7YPCKEema6uMr0HTvsQ"/>
+      <visibility xmi:id="_stskUfCKEema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_stskUvCKEema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_stskU_CKEema6uMr0HTvsQ" name="countryList">
+        <modelElement href="RiskGame.uml#_srRicPCKEema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_stskVPCKEema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_stskVfCKEema6uMr0HTvsQ" name="List">
+          <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_stskVvCKEema6uMr0HTvsQ" name="borderString">
+        <modelElement href="RiskGame.uml#_srRicfCKEema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_stskV_CKEema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_stskWPCKEema6uMr0HTvsQ" name="List">
           <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
         </type>
       </parameters>
@@ -1953,6 +2000,9 @@
       <stereotypes xmi:id="_KiZx8PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KibnIPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjUX8PCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_to1TsPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_to3v8PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ttGvsPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_knFK5fB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_knFK5vB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_knFK5_B8Eema6uMr0HTvsQ" name="Map">
@@ -1978,6 +2028,12 @@
       <stereotypes xmi:id="_KihGsfCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjVmEPCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjWNIPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_to6MMPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_to6zQPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_to_rwPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tpAS0PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ttOEcPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_ttPSkPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_knFK8PB8Eema6uMr0HTvsQ" label="-"/>
       <cardinality xmi:id="_knFK8fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_knFK8vB8Eema6uMr0HTvsQ" name="List">
@@ -2179,6 +2235,12 @@
       <stereotypes xmi:id="_KhzVAPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjCrIPCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjDSMPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_tn-_IPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_tn_mMPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toCCcPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_toCpgPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ttaRsPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_ttbf0PCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kj7wXvB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kj7wX_B8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
       <type xmi:id="_kj7wYPB8Eema6uMr0HTvsQ" name="ArrayList">
@@ -2193,6 +2255,12 @@
       <stereotypes xmi:id="_Kh3mcPCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <stereotypes xmi:id="_KjEgUPCFEema6uMr0HTvsQ" name="Generics"/>
       <stereotypes xmi:id="_KjEgUfCFEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toEesPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_toFFwPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_toHiAPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_toIJEPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_ttkCsPCGEema6uMr0HTvsQ" name="Generics"/>
+      <stereotypes xmi:id="_ttkpwPCGEema6uMr0HTvsQ" name="LegacyStyledElement"/>
       <visibility xmi:id="_kj7wZPB8Eema6uMr0HTvsQ" label="~"/>
       <cardinality xmi:id="_kj7wZfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
       <type xmi:id="_kj7wZvB8Eema6uMr0HTvsQ" name="HashMap">
@@ -2443,5 +2511,52 @@
         </type>
       </parameters>
     </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_kqg5YPB8Eema6uMr0HTvsQ" name="Player">
+    <modelElement href="RiskGame.uml#_jT2ocfB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_kqhgcPB8Eema6uMr0HTvsQ" position="-780.0,318.0" size="-1.0,-1.0" visible="false"/>
+    <stereotypes xmi:id="_kqhgcfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jT3PgPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <visibility xmi:id="_kqhgcvB8Eema6uMr0HTvsQ" label="+"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_stcFoPCKEema6uMr0HTvsQ" sourceConnectionVisual="_strWMPCKEema6uMr0HTvsQ" text="sets the neighbors of the country&#xD;&#xA;&#x9; * @param countryList the list of country entities&#xD;&#xA;&#x9; * @param borderString contains the names of the borders" item="_stskUPCKEema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2KMvCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_susp4PCKEema6uMr0HTvsQ" sourceConnectionVisual="_su9voPCKEema6uMr0HTvsQ" text="This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. &#xD;&#xA;Includes filename, filereader, list of countries and continents, model class objects, etc as data members&#xD;&#xA;@author Karan&#xD;&#xA;@author Rohan &#xD;&#xA;@author Pranal" item="_kpEH4PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr1jIPCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sxKIAPCKEema6uMr0HTvsQ" sourceConnectionVisual="_sxKvEPCKEema6uMr0HTvsQ" text="reads the map file to be loaded&#xD;&#xA;&#x9; * @param fileName Map file to be read&#xD;&#xA;&#x9; * @throws IOException" item="_kpEvYfB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2KM_CKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sxT5APCKEema6uMr0HTvsQ" sourceConnectionVisual="_sxVuMPCKEema6uMr0HTvsQ" text="&#xD;&#xA;&#x9; * @param playerName the player to be added" item="_kpEvZ_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2KNPCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sxeREPCKEema6uMr0HTvsQ" sourceConnectionVisual="_sxffMPCKEema6uMr0HTvsQ" text="&#xD;&#xA;@param playerName player to be removed from the game" item="_kpEvbfB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2KNfCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sxmM4PCKEema6uMr0HTvsQ" sourceConnectionVisual="_sxoCEPCKEema6uMr0HTvsQ" text="to assign countries to the players initially" item="_kpEvc_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2KNvCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_syUloPCKEema6uMr0HTvsQ" sourceConnectionVisual="_syWa0PCKEema6uMr0HTvsQ" text="to place all the armies initially without the player choosing" item="_kpEvdvB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2xQPCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sychcPCKEema6uMr0HTvsQ" sourceConnectionVisual="_sydvkPCKEema6uMr0HTvsQ" text="&#x9;assigning army to particular mentioned country&#xD;&#xA;@param cName country to be assigned army" item="_kpEvefB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2xQfCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sym5gPCKEema6uMr0HTvsQ" sourceConnectionVisual="_syqj4PCKEema6uMr0HTvsQ" text="&#x9;Reinforcement phase base method&#xD;&#xA;@param countryName country to reinforced&#xD;&#xA;@param armyNumber army to be reinforced" item="_kpEvf_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2xQvCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sy3YMPCKEema6uMr0HTvsQ" sourceConnectionVisual="_szcnAPCKEema6uMr0HTvsQ" text="&#x9;Fortification base method&#xD;&#xA;@param from country from where armies would be sent&#xD;&#xA;@param to country to where armies would be sent&#xD;&#xA;@param army number of armies used to fortify" item="_kpEviPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2xQ_CKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_szitoPCKEema6uMr0HTvsQ" sourceConnectionVisual="_szj7wPCKEema6uMr0HTvsQ" text="@param s1 phase command taken as input from console&#xD;&#xA;&#x9; * @return errorFlag to indicate successful execution or not" item="_kpFWCvB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2xRPCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_szrQgPCKEema6uMr0HTvsQ" sourceConnectionVisual="_szuT0PCKEema6uMr0HTvsQ" text="This method converts string continent name to continent object&#xD;&#xA;&#x9; * @param continentString the names of continents&#xD;&#xA;&#x9; * @param ContinentList the list containing the continent entities" item="_kpFWEvB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2KMPCKEema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_sz22sPCKEema6uMr0HTvsQ" sourceConnectionVisual="_sz6hEPCKEema6uMr0HTvsQ" text="This method converts string country name to country object&#xD;&#xA;&#x9; * @param countryString the names of countries&#xD;&#xA;&#x9; * @param CountryList the list of the country objects" item="_kpFWG_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_sr2KMfCKEema6uMr0HTvsQ"/>
   </nodes>
 </com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

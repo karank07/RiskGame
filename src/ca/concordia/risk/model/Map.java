@@ -113,7 +113,7 @@ public class Map
 	{
 		for(Continent c: m_instance.getContinents().values())
 		{
-			if(contName.equals(c.getContinentName()))
+			if(contName.equalsIgnoreCase(c.getContinentName()))
 			{
 				return c;
 			}
@@ -134,7 +134,7 @@ public class Map
 		List<Country> countryList = new ArrayList<Country>();
 		for(Entry<Integer, Continent> entry : continents.entrySet())
 		{
-			if(continentName.equals(entry.getValue().getContinentName()))
+			if(continentName.equalsIgnoreCase(entry.getValue().getContinentName()))
 			{
 				id=entry.getKey();
 				break;

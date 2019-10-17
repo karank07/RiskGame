@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_hCXG8PB8Eema6uMr0HTvsQ" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_hCXuAPB8Eema6uMr0HTvsQ" source="codegen">
         <details xmi:id="_hCYVEPB8Eema6uMr0HTvsQ" key="codegenDirectory" value="/RiskGame/src"/>
-        <details xmi:id="_jjUAwPB8Eema6uMr0HTvsQ" key="AssociatedSourceCode" value="/RiskGame/src/ca/concordia/risk/controller/FortificationPhase.java;1080811144/1;/RiskGame/src/ca/concordia/risk/utilities/ValidMapException.java;1109686242/1;/RiskGame/src/ca/concordia/risk/controller/MapOperations.java;3805139013/1;/RiskGame/src/ca/concordia/risk/controller/MapValidate.java;1812365344/1;/RiskGame/src/ca/concordia/risk/controller/MapWriter.java;648829259/1;/RiskGame/src/ca/concordia/risk/controller/ReinforcementPhase.java;2788232093/1;/RiskGame/src/ca/concordia/risk/controller/StartUpPhase.java;2663463029/1;/RiskGame/src/ca/concordia/risk/model/Card.java;366664516/1;/RiskGame/src/ca/concordia/risk/model/Continent.java;3959097854/1;/RiskGame/src/ca/concordia/risk/utilities/GameConstants.java;2473659471/1;/RiskGame/src/ca/concordia/risk/model/Map.java;1390149047/1;/RiskGame/src/ca/concordia/risk/model/Player.java;569634964/1;/RiskGame/src/ca/concordia/risk/model/Country.java;920351033/1;/RiskGame/src/ca/concordia/risk/controller/MainClass.java;2720347623/1;/RiskGame/src/ca/concordia/risk/view/Console.java;1145371129/1;"/>
+        <details xmi:id="_jjUAwPB8Eema6uMr0HTvsQ" key="AssociatedSourceCode" value="/RiskGame/src/ca/concordia/risk/controller/FortificationPhase.java;1080811144/1;/RiskGame/src/ca/concordia/risk/utilities/ValidMapException.java;1109686242/1;/RiskGame/src/ca/concordia/risk/controller/MapOperations.java;3805139013/1;/RiskGame/src/ca/concordia/risk/controller/MapValidate.java;1812365344/1;/RiskGame/src/ca/concordia/risk/controller/MapWriter.java;648829259/1;/RiskGame/src/ca/concordia/risk/controller/ReinforcementPhase.java;2788232093/1;/RiskGame/src/ca/concordia/risk/controller/StartUpPhase.java;2663463029/1;/RiskGame/src/ca/concordia/risk/model/Card.java;366664516/1;/RiskGame/src/ca/concordia/risk/model/Continent.java;3959097854/1;/RiskGame/src/ca/concordia/risk/utilities/GameConstants.java;2473659471/1;/RiskGame/src/ca/concordia/risk/model/Map.java;1390149047/1;/RiskGame/src/ca/concordia/risk/model/Player.java;569634964/1;/RiskGame/src/ca/concordia/risk/model/Country.java;920351033/1;/RiskGame/src/ca/concordia/risk/controller/MainClass.java;2474174552/1;/RiskGame/src/ca/concordia/risk/view/Console.java;1145371129/1;"/>
       </contents>
       <contents xmi:type="ecore:EAnnotation" xmi:id="_oBwoYPCEEema6uMr0HTvsQ" source="dangling-refs">
         <contents xmi:type="uml:Parameter" xmi:id="_jTLTAPB8Eema6uMr0HTvsQ" name="borderString" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
@@ -2546,7 +2546,7 @@ members for allocation initial armies and countries&#xD;
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_jEeIoPB8Eema6uMr0HTvsQ" name="MainClass">
-              <ownedComment xmi:id="_J8Y_APB-Eema6uMr0HTvsQ">
+              <ownedComment xmi:id="_sr1jIPCKEema6uMr0HTvsQ">
                 <body>This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. &#xD;
 Includes filename, filereader, list of countries and continents, model class objects, etc as data members&#xD;
 @author Karan&#xD;
@@ -2692,35 +2692,6 @@ Includes filename, filereader, list of countries and continents, model class obj
 			Country objCountry = new Country(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),&#xD;
 					Integer.parseInt(temp[3]), Integer.parseInt(temp[4]));&#xD;
 			CountryList.add(objCountry);&#xD;
-		}&#xD;
-&#xD;
-	</body>
-              </ownedBehavior>
-              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_jVHzxvB8Eema6uMr0HTvsQ" name="setNeigbourCountry" specification="_jTKr8PB8Eema6uMr0HTvsQ">
-                <ownedParameter xmi:id="_jVHzx_B8Eema6uMr0HTvsQ" name="countryList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
-                <ownedParameter xmi:id="_jVHzyPB8Eema6uMr0HTvsQ" name="borderString" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
-                <language>java</language>
-                <body>// TODO Auto-generated method stub&#xD;
-		String[] temp2;&#xD;
-		int[] temp3 = null;&#xD;
-&#xD;
-		int k = 0;&#xD;
-		for (Country obj : countryList) {&#xD;
-&#xD;
-			temp2 = borderString.get(k).split(&quot; &quot;);&#xD;
-			k = k + 1;&#xD;
-			temp3 = new int[temp2.length];&#xD;
-			for (int i = 0; i &lt; temp2.length; i++) {&#xD;
-				temp3[i] = Integer.parseInt(temp2[i]);&#xD;
-			}&#xD;
-&#xD;
-			obj.setNeighbours(temp3);&#xD;
-&#xD;
-		}&#xD;
-&#xD;
-		for (Country o : countryList) {&#xD;
-			System.out.println(o.toString());&#xD;
-&#xD;
 		}&#xD;
 &#xD;
 	</body>
@@ -2903,6 +2874,7 @@ Includes filename, filereader, list of countries and continents, model class obj
 				if (temp[i].contentEquals(&quot;-add&quot;)) {&#xD;
 					if (temp[i + 1] != null || temp[i + 2] != null) { // continent name and continent value should not&#xD;
 																		// be null&#xD;
+						errorFlag = &quot;false&quot;;&#xD;
 						try {&#xD;
 							mapOperations.addContinent(mapInstance, continents, temp[i + 1],&#xD;
 									Integer.parseInt(temp[i + 2]), null);&#xD;
@@ -2911,6 +2883,9 @@ Includes filename, filereader, list of countries and continents, model class obj
 							e.printStackTrace();&#xD;
 						}&#xD;
 &#xD;
+					}&#xD;
+					else {&#xD;
+						errorFlag = &quot;Enter a valid command&quot;;&#xD;
 					}&#xD;
 				} else if (temp[i].contentEquals(&quot;-remove&quot;)) {&#xD;
 &#xD;
@@ -2923,17 +2898,19 @@ Includes filename, filereader, list of countries and continents, model class obj
 				if (temp[i].contentEquals(&quot;-add&quot;)) {&#xD;
 					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and continent name should not&#xD;
 																		// be null&#xD;
+						errorFlag = &quot;flase&quot;;&#xD;
 						try {&#xD;
 							mapOperations.addCountry(mapInstance, continents, countries, borders, temp[i + 1], temp[i + 2]);&#xD;
-							&#xD;
 							&#xD;
 						} catch (Exception e) {&#xD;
 							e.printStackTrace();&#xD;
 						}&#xD;
-&#xD;
+					}&#xD;
+					else {&#xD;
+						errorFlag = &quot;Enter a valid command&quot;;&#xD;
 					}&#xD;
 				} else if (temp[i].contentEquals(&quot;-remove&quot;)) {&#xD;
-&#xD;
+					&#xD;
 				}&#xD;
 			}&#xD;
 			break;&#xD;
@@ -2941,28 +2918,29 @@ Includes filename, filereader, list of countries and continents, model class obj
 		case &quot;editneighbor&quot;:&#xD;
 			for (int i = 0; i &lt; temp.length; i++) {&#xD;
 				if (temp[i].contentEquals(&quot;-add&quot;)) {&#xD;
-					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and neighbour country name should not&#xD;
-																		// be null&#xD;
+					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and neighbour country name should not																		// be null&#xD;
+						errorFlag = &quot;flase&quot;;&#xD;
 						try {&#xD;
 							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 1], temp[i + 2]);&#xD;
-							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 2], temp[i + 1]);&#xD;
-							&#xD;
+							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 2], temp[i + 1]);		&#xD;
 						} catch (Exception e) {&#xD;
 							e.printStackTrace();&#xD;
 						}&#xD;
-&#xD;
+					}&#xD;
+					else {&#xD;
+						errorFlag = &quot;Enter a valid command&quot;;&#xD;
 					}&#xD;
 				} else if (temp[i].contentEquals(&quot;-remove&quot;)) {&#xD;
 &#xD;
 				}&#xD;
 			}&#xD;
-			break;&#xD;
-			&#xD;
+			break;	&#xD;
 			&#xD;
 		case &quot;savemap&quot;:&#xD;
 			try {&#xD;
 				try {&#xD;
 					mapWriter.writeMapFile(continents, countries, borders, temp[1]);&#xD;
+					errorFlag = &quot;flase&quot;;&#xD;
 				} catch (ValidMapException e) {&#xD;
 					// TODO Auto-generated catch block&#xD;
 					e.printStackTrace();&#xD;
@@ -2978,13 +2956,14 @@ Includes filename, filereader, list of countries and continents, model class obj
 				if(mapWriter.loadMap(continents, countries, borders, temp[1]))&#xD;
 				{&#xD;
 					System.out.println(&quot;Loaded&quot;); &#xD;
+					errorFlag = &quot;flase&quot;;&#xD;
 				}&#xD;
 				else&#xD;
 				{&#xD;
 					System.out.println(&quot;Not Loaded!&quot;);&#xD;
+					errorFlag = &quot;flase&quot;;&#xD;
 				}&#xD;
 			} catch (FileNotFoundException e) {&#xD;
-				// TODO Auto-generated catch block&#xD;
 				e.printStackTrace();&#xD;
 			}&#xD;
 			break;&#xD;
@@ -3144,6 +3123,35 @@ Includes filename, filereader, list of countries and continents, model class obj
 		return errorFlag;&#xD;
 	</body>
               </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_srzt8PCKEema6uMr0HTvsQ" name="setNeigbourCountry" specification="_srQ7YPCKEema6uMr0HTvsQ">
+                <ownedParameter xmi:id="_srzt8fCKEema6uMr0HTvsQ" name="countryList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_srzt8vCKEema6uMr0HTvsQ" name="borderString" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
+                <language>java</language>
+                <body>// TODO Auto-generated method stub&#xD;
+		String[] temp2;&#xD;
+		int[] temp3 = null;&#xD;
+&#xD;
+		int k = 0;&#xD;
+		for (Country obj : countryList) {&#xD;
+&#xD;
+			temp2 = borderString.get(k).split(&quot; &quot;);&#xD;
+			k = k + 1;&#xD;
+			temp3 = new int[temp2.length];&#xD;
+			for (int i = 0; i &lt; temp2.length; i++) {&#xD;
+				temp3[i] = Integer.parseInt(temp2[i]);&#xD;
+			}&#xD;
+&#xD;
+			obj.setNeighbours(temp3);&#xD;
+&#xD;
+		}&#xD;
+&#xD;
+		for (Country o : countryList) {&#xD;
+			System.out.println(o.toString());&#xD;
+&#xD;
+		}&#xD;
+&#xD;
+	</body>
+              </ownedBehavior>
               <ownedOperation xmi:id="_jEkPQPB8Eema6uMr0HTvsQ" name="main" isStatic="true" method="_jVHMsPB8Eema6uMr0HTvsQ" raisedException="_jSc6QfB8Eema6uMr0HTvsQ">
                 <ownedParameter xmi:id="_jEkPQfB8Eema6uMr0HTvsQ" name="a">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -3157,7 +3165,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 <ownedParameter xmi:id="_jEpHw_B8Eema6uMr0HTvsQ" type="_jEeIoPB8Eema6uMr0HTvsQ" direction="return"/>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq88PB8Eema6uMr0HTvsQ" name="readMapFile" visibility="private" method="_jVIa0PB8Eema6uMr0HTvsQ" raisedException="_jRdbwfB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8ZmE_B-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2KM_CKEema6uMr0HTvsQ">
                   <body>reads the map file to be loaded&#xD;
 	 * @param fileName Map file to be read&#xD;
 	 * @throws IOException</body>
@@ -3167,7 +3175,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq88vB8Eema6uMr0HTvsQ" name="addPlayer" visibility="private" method="_jVIa0vB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8ZmFPB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2KNPCKEema6uMr0HTvsQ">
                   <body>&#xD;
 	 * @param playerName the player to be added</body>
                 </ownedComment>
@@ -3176,7 +3184,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq89PB8Eema6uMr0HTvsQ" name="removePlayer" visibility="private" method="_jVJB4PB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8ZmFfB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2KNfCKEema6uMr0HTvsQ">
                   <body>&#xD;
 @param playerName player to be removed from the game</body>
                 </ownedComment>
@@ -3185,17 +3193,17 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq89vB8Eema6uMr0HTvsQ" name="populateCountries" visibility="private" method="_jVJB4vB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8aNIPB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2KNvCKEema6uMr0HTvsQ">
                   <body>to assign countries to the players initially</body>
                 </ownedComment>
               </ownedOperation>
               <ownedOperation xmi:id="_jEq89_B8Eema6uMr0HTvsQ" name="placeAll" visibility="private" method="_jVJB4_B8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8aNIfB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2xQPCKEema6uMr0HTvsQ">
                   <body>to place all the armies initially without the player choosing</body>
                 </ownedComment>
               </ownedOperation>
               <ownedOperation xmi:id="_jEv1cPB8Eema6uMr0HTvsQ" name="placeArmyByCountry" visibility="private" method="_jVJo8PB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8aNIvB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2xQfCKEema6uMr0HTvsQ">
                   <body>	assigning army to particular mentioned country&#xD;
 @param cName country to be assigned army</body>
                 </ownedComment>
@@ -3204,7 +3212,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jExDkPB8Eema6uMr0HTvsQ" name="setReinforce" visibility="private" method="_jVJo8vB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8aNI_B-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2xQvCKEema6uMr0HTvsQ">
                   <body>	Reinforcement phase base method&#xD;
 @param countryName country to reinforced&#xD;
 @param armyNumber army to be reinforced</body>
@@ -3217,7 +3225,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jExDk_B8Eema6uMr0HTvsQ" name="setFortify" visibility="private" method="_jVJo9fB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8aNJPB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2xQ_CKEema6uMr0HTvsQ">
                   <body>	Fortification base method&#xD;
 @param from country from where armies would be sent&#xD;
 @param to country to where armies would be sent&#xD;
@@ -3235,7 +3243,7 @@ Includes filename, filereader, list of countries and continents, model class obj
               </ownedOperation>
               <ownedOperation xmi:id="_jExDl_B8Eema6uMr0HTvsQ" name="divideInitialArmies" visibility="private" method="_jVKQAPB8Eema6uMr0HTvsQ"/>
               <ownedOperation xmi:id="_jExDmPB8Eema6uMr0HTvsQ" name="phaseDecider" method="_jVKQAfB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8aNJfB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2xRPCKEema6uMr0HTvsQ">
                   <body>@param s1 phase command taken as input from console&#xD;
 	 * @return errorFlag to indicate successful execution or not</body>
                 </ownedComment>
@@ -3247,7 +3255,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_jTFMYPB8Eema6uMr0HTvsQ" name="stringToContinent" visibility="private" isStatic="true" method="_jVHzwPB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8ZmEPB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2KMPCKEema6uMr0HTvsQ">
                   <body>This method converts string continent name to continent object&#xD;
 	 * @param continentString the names of continents&#xD;
 	 * @param ContinentList the list containing the continent entities</body>
@@ -3256,7 +3264,7 @@ Includes filename, filereader, list of countries and continents, model class obj
                 <ownedParameter xmi:id="_jTFMYvB8Eema6uMr0HTvsQ" name="continentList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
               </ownedOperation>
               <ownedOperation xmi:id="_jTHooPB8Eema6uMr0HTvsQ" name="stringToCountry" visibility="private" isStatic="true" method="_jVHzw_B8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8ZmEfB-Eema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2KMfCKEema6uMr0HTvsQ">
                   <body>This method converts string country name to country object&#xD;
 	 * @param countryString the names of countries&#xD;
 	 * @param CountryList the list of the country objects</body>
@@ -3264,13 +3272,14 @@ Includes filename, filereader, list of countries and continents, model class obj
                 <ownedParameter xmi:id="_jTHoofB8Eema6uMr0HTvsQ" name="countryString" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
                 <ownedParameter xmi:id="_jTHoovB8Eema6uMr0HTvsQ" name="CountryList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
               </ownedOperation>
-              <ownedOperation xmi:id="_jTKr8PB8Eema6uMr0HTvsQ" name="setNeigbourCountry" visibility="private" isStatic="true" method="_jVHzxvB8Eema6uMr0HTvsQ">
-                <ownedComment xmi:id="_J8ZmEvB-Eema6uMr0HTvsQ">
+              <ownedOperation xmi:id="_srQ7YPCKEema6uMr0HTvsQ" name="setNeigbourCountry" visibility="private" isStatic="true" method="_srzt8PCKEema6uMr0HTvsQ">
+                <ownedComment xmi:id="_sr2KMvCKEema6uMr0HTvsQ">
                   <body>sets the neighbors of the country&#xD;
 	 * @param countryList the list of country entities&#xD;
 	 * @param borderString contains the names of the borders</body>
                 </ownedComment>
-                <ownedParameter xmi:id="_jTKr8fB8Eema6uMr0HTvsQ" name="countryList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_srRicPCKEema6uMr0HTvsQ" name="countryList" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
+                <ownedParameter xmi:id="_srRicfCKEema6uMr0HTvsQ" name="borderString" type="_jRHdgPB8Eema6uMr0HTvsQ"/>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_jT2ocfB8Eema6uMr0HTvsQ" name="Player"/>
@@ -3693,7 +3702,6 @@ Includes filename, filereader, list of countries and continents, model class obj
   <UMLLabProfile:Generics xmi:id="_jTHBkPB8Eema6uMr0HTvsQ" genericsValue="Continent" base_Element="_jTFMYvB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jTI2wPB8Eema6uMr0HTvsQ" genericsValue="String" base_Element="_jTHoofB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_jTKE4PB8Eema6uMr0HTvsQ" genericsValue="Country" base_Element="_jTHoovB8Eema6uMr0HTvsQ"/>
-  <UMLLabProfile:Generics xmi:id="_jTMhIPB8Eema6uMr0HTvsQ" genericsValue="Country" base_Element="_jTKr8fB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Reference xmi:id="_jTTO0PB8Eema6uMr0HTvsQ" base_Element="_jTSAsPB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Reference xmi:id="_jTVEAPB8Eema6uMr0HTvsQ" base_Element="_jTT14PB8Eema6uMr0HTvsQ"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_jTc_0PB8Eema6uMr0HTvsQ" base_Element="_jTcYwPB8Eema6uMr0HTvsQ"/>
@@ -3856,4 +3864,6 @@ Includes filename, filereader, list of countries and continents, model class obj
   <UMLLabProfile:Generics xmi:id="_J8JucPB-Eema6uMr0HTvsQ" genericsValue="Integer, Continent" base_Element="_J8GrIfB-Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_J8KVgPB-Eema6uMr0HTvsQ" genericsValue="Integer, Country" base_Element="_J8HSMPB-Eema6uMr0HTvsQ"/>
   <UMLLabProfile:Generics xmi:id="_J8LjoPB-Eema6uMr0HTvsQ" genericsValue="Integer, ArrayList&lt;Integer>" base_Element="_J8HSMfB-Eema6uMr0HTvsQ"/>
+  <UMLLabProfile:Generics xmi:id="_srSJgPCKEema6uMr0HTvsQ" genericsValue="Country" base_Element="_srRicPCKEema6uMr0HTvsQ"/>
+  <UMLLabProfile:Generics xmi:id="_srT-sPCKEema6uMr0HTvsQ" genericsValue="String" base_Element="_srRicfCKEema6uMr0HTvsQ"/>
 </xmi:XMI>
