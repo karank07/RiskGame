@@ -361,7 +361,7 @@ public class MainClass {
 					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and continent name should not
 																		// be null
 						try {
-							mapOperations.addCountry(mapInstance, continents, countries, temp[i + 1], temp[i + 2]);
+							mapOperations.addCountry(mapInstance, continents, countries, borders, temp[i + 1], temp[i + 2]);
 							
 							
 						} catch (Exception e) {
