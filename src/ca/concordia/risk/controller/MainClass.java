@@ -148,7 +148,6 @@ public class MainClass {
 
 		int k = 0;
 		for (Country obj : countryList) {
-
  
 			temp2 = borderString.get(k).split(" ");
 			k = k + 1;
