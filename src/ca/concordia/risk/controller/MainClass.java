@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ca.concordia.risk.controller;
 
 import java.io.BufferedReader;
@@ -123,7 +120,6 @@ public class MainClass {
 	 * @param CountryList the list of the country objects
 	 */
 	private static void stringToCountry(List<String> countryString, List<Country> CountryList) {
-		// TODO Auto-generated method stub
 		String[] temp = new String[3];
 
 		for (String obj : countryString) {
@@ -140,7 +136,6 @@ public class MainClass {
 	 * @param borderString contains the names of the borders
 	 */
 	private static void setNeigbourCountry(List<Country> countryList, List<String> borderString) {
-		// TODO Auto-generated method stub
 		String[] temp2;
 		int[] temp3 = null;
 
