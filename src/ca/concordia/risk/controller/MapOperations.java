@@ -64,7 +64,7 @@ public class MapOperations{
 	 * @return true if country added, else false
 	 * @throws ValidMapException
 	 */
-	public boolean addCountry(Map map,HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, String country_name, String continent_name ) throws ValidMapException
+	public boolean addCountry(Map map,HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries,HashMap<Integer, ArrayList<Integer>> borders,String country_name, String continent_name ) throws ValidMapException
 	{
 		Random r=new Random();
 		int x_co=r.nextInt(600);
@@ -103,6 +103,7 @@ public class MapOperations{
 			{
 				Country co = new Country(country_num, country_name, continent_id, x_co, y_co);
 				countries.put(country_num+1, co);
+				borders.put(country_num, new ArrayList<Integer>());
 				return true;
 			}
 
@@ -204,6 +205,9 @@ public class MapOperations{
 		
 	}
 	
+	
+	
+//	public boolean Continent()
 	
 	
 	/**

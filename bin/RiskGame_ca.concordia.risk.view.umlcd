@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.diagrams="http://ns.yatta-solutions.com/umllab/diagrams/1.1.0" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_jkPN0PB8Eema6uMr0HTvsQ">
+  <modelElement href="RiskGame.uml#_i_AZ0PB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_mpEQwPB8Eema6uMr0HTvsQ" targetItem="_mpUvcPB8Eema6uMr0HTvsQ" sourceItem="_mpDpsPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_mpMMkPB8Eema6uMr0HTvsQ" sourceAnchor="398.0,391.0" targetAnchor="122.0,92.0" target="_mpUvcPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWLjsfB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_2hgJFPB8Eema6uMr0HTvsQ" position="172.0,137.0"/>
+    <bendpoints xmi:id="_20OQwPB8Eema6uMr0HTvsQ" sourceX="241" targetY="446"/>
+    <stereotypes xmi:id="_mpMMkfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWMx0PB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_mpMMkvB8Eema6uMr0HTvsQ" text="">
+      <visualProperties xmi:id="_20R7IPB8Eema6uMr0HTvsQ" position="-44.0,-231.25"/>
+    </nameVisual>
+    <sourceRole xmi:id="_mpMMk_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWLjsvB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20QtAPB8Eema6uMr0HTvsQ" position="1.0,-46.5"/>
+      <visibility xmi:id="_mpMMlPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpMMlfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_mpMMlvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="c" navigable="true">
+      <modelElement href="RiskGame.uml#_jUgIsPB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20SiMPB8Eema6uMr0HTvsQ" position="1.9999999999999716,1.0"/>
+      <stereotypes xmi:id="_mpMMl_B8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUgvwPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_mpMMmPB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpMMmfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_mpOo0PB8Eema6uMr0HTvsQ" sourceAnchor="15.0,0.0" targetAnchor="44.0,44.0" target="_2hds0PB8Eema6uMr0HTvsQ" source="_mpUvcPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWNY4PB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_mpjY8PB8Eema6uMr0HTvsQ" position="172.0,137.0"/>
+    <stereotypes xmi:id="_mpOo0fB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWN_8PB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_mpOo0vB8Eema6uMr0HTvsQ" text="">
+      <visualProperties xmi:id="_20WzoPB8Eema6uMr0HTvsQ" position="-83.0,-8.000000000000014"/>
+    </nameVisual>
+    <sourceRole xmi:id="_mpOo0_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWNY4fB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20U-cPB8Eema6uMr0HTvsQ" position="-17.0,-46.0"/>
+      <visibility xmi:id="_mpOo1PB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpOo1fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_mpOo1vB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="textField" navigable="true">
+      <modelElement href="RiskGame.uml#_jUmPUPB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20XasPB8Eema6uMr0HTvsQ" position="2.0,1.0"/>
+      <stereotypes xmi:id="_05aw8PB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUm2YPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_mpOo1_B8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpOo2PB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_mpQeAPB8Eema6uMr0HTvsQ" sourceAnchor="122.0,0.0" targetAnchor="28.0,44.0" target="_2hgJEPB8Eema6uMr0HTvsQ" source="_mpUvcPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWN_8fB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_mpjY8fB8Eema6uMr0HTvsQ" position="172.0,137.0"/>
+    <stereotypes xmi:id="_mpQeAfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWOnAPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_mpQeAvB8Eema6uMr0HTvsQ" text="">
+      <visualProperties xmi:id="_20aeAPB8Eema6uMr0HTvsQ" position="-3.0,5.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_mpQeA_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWN_8vB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20ZP4PB8Eema6uMr0HTvsQ" position="-17.0,-46.0"/>
+      <visibility xmi:id="_mpQeBPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpQeBfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_mpQeBvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="submit" navigable="true">
+      <modelElement href="RiskGame.uml#_jUm2YfB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20bFEPB8Eema6uMr0HTvsQ" position="41.0,1.0000000000000213"/>
+      <stereotypes xmi:id="_05bYAPB8Eema6uMr0HTvsQ" name="MultiDeclaration">
+        <modelElement href="RiskGame.uml#_jUndcPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_05bYAfB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUndcfB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_mpQeB_B8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpQeCPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_mpSTMPB8Eema6uMr0HTvsQ" sourceAnchor="0.0,46.0" targetAnchor="199.0,0.0" target="_2hVJ8PB8Eema6uMr0HTvsQ" source="_mpUvcPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWPOEPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_mpkAAPB8Eema6uMr0HTvsQ" position="172.0,137.0"/>
+    <bendpoints xmi:id="_20Pe4PB8Eema6uMr0HTvsQ" sourceX="-318" targetY="-101"/>
+    <stereotypes xmi:id="_mpSTMfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWP1IPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_mpSTMvB8Eema6uMr0HTvsQ" text="">
+      <visualProperties xmi:id="_20eIYPB8Eema6uMr0HTvsQ" position="1.0,41.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_mpSTM_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWPOEfB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20cTMPB8Eema6uMr0HTvsQ" position="-16.0,2.0"/>
+      <visibility xmi:id="_mpSTNPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpSTNfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_mpSTNvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="m" navigable="true">
+      <modelElement href="RiskGame.uml#_jUoEgPB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20evcPB8Eema6uMr0HTvsQ" position="-27.999999999999943,-45.999999999999886"/>
+      <stereotypes xmi:id="_05cmIPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUoEgfB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_mpSTN_B8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpSTOPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_mpUIYPB8Eema6uMr0HTvsQ" sourceAnchor="165.0,0.0" targetAnchor="56.0,22.0" target="_2hgJEPB8Eema6uMr0HTvsQ" source="_mpUvcPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWP1IfB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_mpkAAfB8Eema6uMr0HTvsQ" position="172.0,137.0"/>
+    <bendpoints xmi:id="_20QF8PB8Eema6uMr0HTvsQ" sourceY="-77" targetX="15"/>
+    <stereotypes xmi:id="_mpUIYfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWQcMPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_mpUIYvB8Eema6uMr0HTvsQ" text="">
+      <visualProperties xmi:id="_20iZ0PB8Eema6uMr0HTvsQ" position="2.0,1.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_mpUIY_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWP1IvB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20gkoPB8Eema6uMr0HTvsQ" position="-22.0,-76.0"/>
+      <visibility xmi:id="_mpUIZPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpUIZfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_mpUIZvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="exit" navigable="true">
+      <modelElement href="RiskGame.uml#_jVj4ofB8Eema6uMr0HTvsQ"/>
+      <visualProperties xmi:id="_20jA4PB8Eema6uMr0HTvsQ" position="1.0000000000000284,-52.000000000000014"/>
+      <stereotypes xmi:id="_05dNMPB8Eema6uMr0HTvsQ" name="MultiDeclaration">
+        <modelElement href="RiskGame.uml#_jVj4ovB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_05dNMfB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jVkfsPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_mpUIZ_B8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpUIaPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gW5kfB8Eema6uMr0HTvsQ" targetItem="_2hVJ8PB8Eema6uMr0HTvsQ" sourceItem="_2gW5kPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gZV0fB8Eema6uMr0HTvsQ" targetItem="_2hWYM_B8Eema6uMr0HTvsQ" sourceItem="_2gZV0PB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gaj8PB8Eema6uMr0HTvsQ" targetItem="_2hWYOfB8Eema6uMr0HTvsQ" sourceItem="_2gZ84PB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gbyEPB8Eema6uMr0HTvsQ" targetItem="_2hWYP_B8Eema6uMr0HTvsQ" sourceItem="_2gbLAPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gcZIfB8Eema6uMr0HTvsQ" targetItem="_2hWYRfB8Eema6uMr0HTvsQ" sourceItem="_2gcZIPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gdnQPB8Eema6uMr0HTvsQ" targetItem="_2hWYSPB8Eema6uMr0HTvsQ" sourceItem="_2gdAMPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2geOUfB8Eema6uMr0HTvsQ" targetItem="_2hWYS_B8Eema6uMr0HTvsQ" sourceItem="_2geOUPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gfccfB8Eema6uMr0HTvsQ" targetItem="_2hWYUfB8Eema6uMr0HTvsQ" sourceItem="_2gfccPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2ggqkPB8Eema6uMr0HTvsQ" targetItem="_2hWYWvB8Eema6uMr0HTvsQ" sourceItem="_2ggDgPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2ghRofB8Eema6uMr0HTvsQ" targetItem="_2hW_I_B8Eema6uMr0HTvsQ" sourceItem="_2ghRoPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gifwfB8Eema6uMr0HTvsQ" targetItem="_2hW_K_B8Eema6uMr0HTvsQ" sourceItem="_2gifwPB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gkU8PB8Eema6uMr0HTvsQ" targetItem="_2hW_NPB8Eema6uMr0HTvsQ" sourceItem="_2gjt4PB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_2gk8AfB8Eema6uMr0HTvsQ" targetItem="_2hW_PfB8Eema6uMr0HTvsQ" sourceItem="_2gk8APB8Eema6uMr0HTvsQ"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2g3P4PB8Eema6uMr0HTvsQ" target="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVu3wPB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2g3P4fB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jVve0PB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2g3P4vB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2g3P4_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jVu3wfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g3P5PB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g3P5fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2g3P5vB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="m" navigable="true">
+      <modelElement href="RiskGame.uml#_jTcYwPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2g3P5_B8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jTc_0PB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2g3P6PB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_2g3P6fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2g5FEPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jV-IUfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2g5FEfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jV-vYPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2g5FEvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2g5FE_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jV-IUvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g5FFPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g5FFfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2g5FFvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="file" navigable="true">
+      <modelElement href="RiskGame.uml#_jUPqAfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g5FF_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2g5FGPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2g66QPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jV-vYfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2g66QfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jV_WcPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2g66QvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2g66Q_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jV-vYvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g66RPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g66RfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2g66RvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="br" navigable="true">
+      <modelElement href="RiskGame.uml#_jUQREfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g66R_B8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_2g66SPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2g8vcPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jV_9gPB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2g8vcfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWBLoPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2g8vcvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2g8vc_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jV_9gfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g8vdPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g8vdfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2g8vdvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="continentList" navigable="true">
+      <modelElement href="RiskGame.uml#_jURfMfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g8vd_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g8vePB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2g-koPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWBLofB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2g-kofB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWCZwPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2g-kovB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2g-ko_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWBLovB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g-kpPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g-kpfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2g-kpvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="countryList" navigable="true">
+      <modelElement href="RiskGame.uml#_jUStUfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g-kp_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g-kqPB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2g_ywPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWCZwfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2g_ywfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWDn4PB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2g_ywvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2g_yw_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWCZwvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g_yxPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2g_yxfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2g_yxvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="fp" navigable="true">
+      <modelElement href="RiskGame.uml#_jUUigPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2g_yx_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2g_yyPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hBA4PB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWDn4fB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hBA4fB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWEO8PB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hBA4vB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hBA4_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWDn4vB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hBA5PB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hBA5fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hBA5vB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="rp" navigable="true">
+      <modelElement href="RiskGame.uml#_jUVJkPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hBA5_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hBA6PB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hCPAPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWEO8fB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hCPAfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWFdEPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hCPAvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hCPA_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWEO8vB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hC2EPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hC2EfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hC2EvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="sp" navigable="true">
+      <modelElement href="RiskGame.uml#_jUVJkvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hC2E_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hC2FPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hEEMPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWFdEfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hEEMfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWGEIPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hEEMvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hEEM_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWFdEvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hEENPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hEENfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hEENvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="playerList" navigable="true">
+      <modelElement href="RiskGame.uml#_jUVwofB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hEEN_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hEEOPB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hF5YPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWGrMPB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hF5YfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWHSQPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hGgcPB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hGgcfB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWGrMfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hGgcvB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hGgc_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hGgdPB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="continents" navigable="true">
+      <modelElement href="RiskGame.uml#_jUWXsfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hGgdfB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hGgdvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hI8sPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWHSQfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hI8sfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWH5UPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hI8svB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hI8s_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWHSQvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hI8tPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hI8tfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hI8tvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="countries" navigable="true">
+      <modelElement href="RiskGame.uml#_jUXl0fB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hI8t_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hI8uPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hLY8PB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWH5UfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hLY8fB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWJHcPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hLY8vB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hLY8_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWH5UvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hLY9PB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hLY9fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hLY9vB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="borders" navigable="true">
+      <modelElement href="RiskGame.uml#_jUZbAPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hLY9_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hLY-PB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hN1MPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWJHcfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hN1MfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWJugPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hN1MvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hN1M_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWJHcvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hN1NPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hN1NfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hN1NvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="mapInstance" navigable="true">
+      <modelElement href="RiskGame.uml#_jUb3QfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hN1N_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hN1OPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hQRcPB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWJugfB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hQRcfB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWK8oPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hQRcvB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hQRc_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWJugvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hQRdPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hQRdfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hQRdvB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="mapOperations" navigable="true">
+      <modelElement href="RiskGame.uml#_jUceUfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hQRd_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hQRePB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2hUi4PB8Eema6uMr0HTvsQ" source="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jWK8ofB8Eema6uMr0HTvsQ"/>
+    <stereotypes xmi:id="_2hUi4fB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jWLjsPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_2hUi4vB8Eema6uMr0HTvsQ" text=""/>
+    <sourceRole xmi:id="_2hUi4_B8Eema6uMr0HTvsQ" aggregationKind="NONE" name="">
+      <modelElement href="RiskGame.uml#_jWK8ovB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hUi5PB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hUi5fB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_2hUi5vB8Eema6uMr0HTvsQ" aggregationKind="NONE" name="mapWriter" navigable="true">
+      <modelElement href="RiskGame.uml#_jUdscPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hUi5_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hUi6PB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_mpDpsPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_mpEQwPB8Eema6uMr0HTvsQ" text="This class manages view of the Risk game to get input from console and sets up a interactive console for the user to play the game.&#xD;&#xA;@author Karan&#xD;&#xA; *" item="_mpUvcPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVj4oPB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gW5kPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gW5kfB8Eema6uMr0HTvsQ" text="This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. &#xD;&#xA;Includes filename, filereader, list of countries and continents, model class objects, etc as data members&#xD;&#xA;@author Karan&#xD;&#xA;@author Rohan &#xD;&#xA;@author Pranal" item="_2hVJ8PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jViDdvB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gZV0PB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gZV0fB8Eema6uMr0HTvsQ" text="reads the map file to be loaded&#xD;&#xA;&#x9; * @param fileName Map file to be read&#xD;&#xA;&#x9; * @throws IOException" item="_2hWYM_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jViqg_B8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gZ84PB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gaj8PB8Eema6uMr0HTvsQ" text="&#xD;&#xA;&#x9; * @param playerName the player to be added" item="_2hWYOfB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRkPB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gbLAPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gbyEPB8Eema6uMr0HTvsQ" text="&#xD;&#xA;@param playerName player to be removed from the game" item="_2hWYP_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRkfB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gcZIPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gcZIfB8Eema6uMr0HTvsQ" text="to assign countries to the players initially" item="_2hWYRfB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRkvB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gdAMPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gdnQPB8Eema6uMr0HTvsQ" text="to place all the armies initially without the player choosing" item="_2hWYSPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRk_B8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2geOUPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2geOUfB8Eema6uMr0HTvsQ" text="&#x9;assigning army to particular mentioned country&#xD;&#xA;@param cName country to be assigned army" item="_2hWYS_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRlPB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gfccPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gfccfB8Eema6uMr0HTvsQ" text="&#x9;Reinforcement phase base method&#xD;&#xA;@param countryName country to reinforced&#xD;&#xA;@param armyNumber army to be reinforced" item="_2hWYUfB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRlfB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2ggDgPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2ggqkPB8Eema6uMr0HTvsQ" text="&#x9;Fortification base method&#xD;&#xA;@param from country from where armies would be sent&#xD;&#xA;@param to country to where armies would be sent&#xD;&#xA;@param army number of armies used to fortify" item="_2hWYWvB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRlvB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2ghRoPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2ghRofB8Eema6uMr0HTvsQ" text="@param s1 phase command taken as input from console&#xD;&#xA;&#x9; * @return errorFlag to indicate successful execution or not" item="_2hW_I_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jVjRl_B8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gifwPB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gifwfB8Eema6uMr0HTvsQ" text="This method converts string continent name to continent object&#xD;&#xA;&#x9; * @param continentString the names of continents&#xD;&#xA;&#x9; * @param ContinentList the list containing the continent entities" item="_2hW_K_B8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jViqgPB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gjt4PB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gkU8PB8Eema6uMr0HTvsQ" text="This method converts string country name to country object&#xD;&#xA;&#x9; * @param countryString the names of countries&#xD;&#xA;&#x9; * @param CountryList the list of the country objects" item="_2hW_NPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jViqgfB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_2gk8APB8Eema6uMr0HTvsQ" sourceConnectionVisual="_2gk8AfB8Eema6uMr0HTvsQ" text="sets the neighbors of the country&#xD;&#xA;&#x9; * @param countryList the list of country entities&#xD;&#xA;&#x9; * @param borderString contains the names of the borders" item="_2hW_PfB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jViqgvB8Eema6uMr0HTvsQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_2hVJ8PB8Eema6uMr0HTvsQ" comments="_2gW5kPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gW5kfB8Eema6uMr0HTvsQ" name="MainClass" associationsIn="_mpSTMPB8Eema6uMr0HTvsQ _2g3P4PB8Eema6uMr0HTvsQ" associationsOut="_mpMMkPB8Eema6uMr0HTvsQ _2g5FEPB8Eema6uMr0HTvsQ _2g66QPB8Eema6uMr0HTvsQ _2g8vcPB8Eema6uMr0HTvsQ _2g-koPB8Eema6uMr0HTvsQ _2g_ywPB8Eema6uMr0HTvsQ _2hBA4PB8Eema6uMr0HTvsQ _2hCPAPB8Eema6uMr0HTvsQ _2hEEMPB8Eema6uMr0HTvsQ _2hF5YPB8Eema6uMr0HTvsQ _2hI8sPB8Eema6uMr0HTvsQ _2hLY8PB8Eema6uMr0HTvsQ _2hN1MPB8Eema6uMr0HTvsQ _2hQRcPB8Eema6uMr0HTvsQ _2hUi4PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jEeIoPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_2hVJ8fB8Eema6uMr0HTvsQ" position="-467.0,197.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_2hVJ8vB8Eema6uMr0HTvsQ" label="+"/>
+    <attributes xmi:id="_2hVJ8_B8Eema6uMr0HTvsQ" name="fileName">
+      <modelElement href="RiskGame.uml#_jUN00PB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxAPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUOb4PB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxAfB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxAvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxA_B8Eema6uMr0HTvsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxBPB8Eema6uMr0HTvsQ" name="fileData">
+      <modelElement href="RiskGame.uml#_jUPC8PB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxBfB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUPqAPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxBvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxB_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxCPB8Eema6uMr0HTvsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxCfB8Eema6uMr0HTvsQ" name="file">
+      <modelElement href="RiskGame.uml#_jUPqAfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxCvB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUQREPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxC_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxDPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxDfB8Eema6uMr0HTvsQ" name="FileReader">
+        <modelElement href="RiskGame.uml#_jSBccPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxDvB8Eema6uMr0HTvsQ" name="br">
+      <modelElement href="RiskGame.uml#_jUQREfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxD_B8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUQ4IPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxEPB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_2hVxEfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxEvB8Eema6uMr0HTvsQ" name="BufferedReader">
+        <modelElement href="RiskGame.uml#_jR_nQPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxE_B8Eema6uMr0HTvsQ" name="continentString">
+      <modelElement href="RiskGame.uml#_jUQ4IfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxFPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jURfMPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxFfB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxFvB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_2hVxF_B8Eema6uMr0HTvsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxGPB8Eema6uMr0HTvsQ" name="continentList" staticAttribute="true">
+      <modelElement href="RiskGame.uml#_jURfMfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxGfB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUSGQPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxGvB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hVxG_B8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_2hVxHPB8Eema6uMr0HTvsQ" name="Continent">
+        <modelElement href="RiskGame.uml#_jDIE0PB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxHfB8Eema6uMr0HTvsQ" name="countryString">
+      <modelElement href="RiskGame.uml#_jUSGQfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxHvB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUStUPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxH_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxIPB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_2hVxIfB8Eema6uMr0HTvsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxIvB8Eema6uMr0HTvsQ" name="countryList" staticAttribute="true">
+      <modelElement href="RiskGame.uml#_jUStUfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxI_B8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUTUYfB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxJPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hVxJfB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_2hVxJvB8Eema6uMr0HTvsQ" name="Country">
+        <modelElement href="RiskGame.uml#_jEFuIPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxJ_B8Eema6uMr0HTvsQ" name="BorderString">
+      <modelElement href="RiskGame.uml#_jUT7cPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxKPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUT7cvB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxKfB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxKvB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_2hVxK_B8Eema6uMr0HTvsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxLPB8Eema6uMr0HTvsQ" name="fp">
+      <modelElement href="RiskGame.uml#_jUUigPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxLfB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUUigfB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxLvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxL_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxMPB8Eema6uMr0HTvsQ" name="FortificationPhase">
+        <modelElement href="RiskGame.uml#_jBo3EPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxMfB8Eema6uMr0HTvsQ" name="rp">
+      <modelElement href="RiskGame.uml#_jUVJkPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxMvB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUVJkfB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxM_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxNPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxNfB8Eema6uMr0HTvsQ" name="ReinforcementPhase">
+        <modelElement href="RiskGame.uml#_jCjdEPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxNvB8Eema6uMr0HTvsQ" name="sp">
+      <modelElement href="RiskGame.uml#_jUVJkvB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxN_B8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUVwoPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxOPB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxOfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxOvB8Eema6uMr0HTvsQ" name="StartUpPhase">
+        <modelElement href="RiskGame.uml#_jC1w8PB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxO_B8Eema6uMr0HTvsQ" name="playerList" staticAttribute="true">
+      <modelElement href="RiskGame.uml#_jUVwofB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxPPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUWXsPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxPfB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hVxPvB8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+      <type xmi:id="_2hVxP_B8Eema6uMr0HTvsQ" name="Player">
+        <modelElement href="RiskGame.uml#_jDzaQPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxQPB8Eema6uMr0HTvsQ" name="continents">
+      <modelElement href="RiskGame.uml#_jUWXsfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxQfB8Eema6uMr0HTvsQ" name="Generics">
+        <modelElement href="RiskGame.uml#_jUW-wPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_2hVxQvB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUXl0PB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxQ_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hVxRPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxRfB8Eema6uMr0HTvsQ" name="HashMap">
+        <modelElement href="RiskGame.uml#_jROyQPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxRvB8Eema6uMr0HTvsQ" name="countries">
+      <modelElement href="RiskGame.uml#_jUXl0fB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxR_B8Eema6uMr0HTvsQ" name="Generics">
+        <modelElement href="RiskGame.uml#_jUYM4PB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_2hVxSPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUYz8PB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxSfB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hVxSvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxS_B8Eema6uMr0HTvsQ" name="HashMap">
+        <modelElement href="RiskGame.uml#_jROyQPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxTPB8Eema6uMr0HTvsQ" name="borders">
+      <modelElement href="RiskGame.uml#_jUZbAPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxTfB8Eema6uMr0HTvsQ" name="Generics">
+        <modelElement href="RiskGame.uml#_jUbQMPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_2hVxTvB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUb3QPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxT_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hVxUPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxUfB8Eema6uMr0HTvsQ" name="HashMap">
+        <modelElement href="RiskGame.uml#_jROyQPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxUvB8Eema6uMr0HTvsQ" name="mapInstance">
+      <modelElement href="RiskGame.uml#_jUb3QfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxU_B8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUceUPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxVPB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxVfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxVvB8Eema6uMr0HTvsQ" name="Map">
+        <modelElement href="RiskGame.uml#_jDaYsfB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxV_B8Eema6uMr0HTvsQ" name="mapOperations">
+      <modelElement href="RiskGame.uml#_jUceUfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxWPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUdFYPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxWfB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxWvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxW_B8Eema6uMr0HTvsQ" name="MapOperations">
+        <modelElement href="RiskGame.uml#_jB-OQPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxXPB8Eema6uMr0HTvsQ" name="mapWriter">
+      <modelElement href="RiskGame.uml#_jUdscPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxXfB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUfhoPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hVxXvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hVxX_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxYPB8Eema6uMr0HTvsQ" name="MapWriter">
+        <modelElement href="RiskGame.uml#_jCWowPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxYfB8Eema6uMr0HTvsQ" name="c" staticAttribute="true">
+      <modelElement href="RiskGame.uml#_jUgIsPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hVxYvB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_2hVxY_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hVxZPB8Eema6uMr0HTvsQ" name="Console">
+        <modelElement href="RiskGame.uml#_jFDXcPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hVxZfB8Eema6uMr0HTvsQ" defaultValue="0" name="currentPlayer">
+      <modelElement href="RiskGame.uml#_jUgvwfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hVxZvB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUhW0PB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hWYEPB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_2hWYEfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hWYEvB8Eema6uMr0HTvsQ" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hWYE_B8Eema6uMr0HTvsQ" defaultValue="&quot;loadmap&quot;" name="phase" staticAttribute="true">
+      <modelElement href="RiskGame.uml#_jUhW0fB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hWYFPB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUh94fB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hWYFfB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_2hWYFvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hWYF_B8Eema6uMr0HTvsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hWYGPB8Eema6uMr0HTvsQ" defaultValue="false" name="gamePlayerSet">
+      <modelElement href="RiskGame.uml#_jUik8PB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hWYGfB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUjMAPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hWYGvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYG_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hWYHPB8Eema6uMr0HTvsQ" name="boolean">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hWYHfB8Eema6uMr0HTvsQ" defaultValue="false" name="placeArmyFlag">
+      <modelElement href="RiskGame.uml#_jUjMAfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hWYHvB8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUjzEPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hWYH_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYIPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hWYIfB8Eema6uMr0HTvsQ" name="boolean">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_2hWYIvB8Eema6uMr0HTvsQ" defaultValue="&quot;false&quot;" name="errorFlag" staticAttribute="true">
+      <modelElement href="RiskGame.uml#_jUjzEfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_2hWYI_B8Eema6uMr0HTvsQ" name="LegacyStyledElement">
+        <modelElement href="RiskGame.uml#_jUlBMPB8Eema6uMr0HTvsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_2hWYJPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hWYJfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_2hWYJvB8Eema6uMr0HTvsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_2hWYJ_B8Eema6uMr0HTvsQ" name="main" staticOperation="true">
+      <modelElement href="RiskGame.uml#_jEkPQPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYKPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hWYKfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hWYKvB8Eema6uMr0HTvsQ" name="a">
+        <modelElement href="RiskGame.uml#_jEkPQfB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYK_B8Eema6uMr0HTvsQ" label="1..*" max="-1" min="1"/>
+        <type xmi:id="_2hWYLPB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hWYLfB8Eema6uMr0HTvsQ" name="MainClass">
+      <modelElement href="RiskGame.uml#_jEpHwPB8Eema6uMr0HTvsQ"/>
+      <keywords xmi:id="_2hWYLvB8Eema6uMr0HTvsQ" keyword="create"/>
+      <visibility xmi:id="_2hWYL_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hWYMPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_2hWYMfB8Eema6uMr0HTvsQ">
+        <modelElement href="RiskGame.uml#_jEpHw_B8Eema6uMr0HTvsQ"/>
+        <type xmi:id="_2hWYMvB8Eema6uMr0HTvsQ" name="MainClass">
+          <modelElement href="RiskGame.uml#_jEeIoPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_2hWYM_B8Eema6uMr0HTvsQ" comments="_2gZV0PB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gZV0fB8Eema6uMr0HTvsQ" name="readMapFile">
+      <modelElement href="RiskGame.uml#_jEq88PB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYNPB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYNfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hWYNvB8Eema6uMr0HTvsQ" name="fileName">
+        <modelElement href="RiskGame.uml#_jEq88fB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYN_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYOPB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hWYOfB8Eema6uMr0HTvsQ" comments="_2gZ84PB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gaj8PB8Eema6uMr0HTvsQ" name="addPlayer">
+      <modelElement href="RiskGame.uml#_jEq88vB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYOvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYO_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hWYPPB8Eema6uMr0HTvsQ" name="playerName">
+        <modelElement href="RiskGame.uml#_jEq88_B8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYPfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYPvB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hWYP_B8Eema6uMr0HTvsQ" comments="_2gbLAPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gbyEPB8Eema6uMr0HTvsQ" name="removePlayer">
+      <modelElement href="RiskGame.uml#_jEq89PB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYQPB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYQfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hWYQvB8Eema6uMr0HTvsQ" name="playerName">
+        <modelElement href="RiskGame.uml#_jEq89fB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYQ_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYRPB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hWYRfB8Eema6uMr0HTvsQ" comments="_2gcZIPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gcZIfB8Eema6uMr0HTvsQ" name="populateCountries">
+      <modelElement href="RiskGame.uml#_jEq89vB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYRvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYR_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_2hWYSPB8Eema6uMr0HTvsQ" comments="_2gdAMPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gdnQPB8Eema6uMr0HTvsQ" name="placeAll">
+      <modelElement href="RiskGame.uml#_jEq89_B8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYSfB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYSvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_2hWYS_B8Eema6uMr0HTvsQ" comments="_2geOUPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2geOUfB8Eema6uMr0HTvsQ" name="placeArmyByCountry">
+      <modelElement href="RiskGame.uml#_jEv1cPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYTPB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYTfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hWYTvB8Eema6uMr0HTvsQ" name="cName">
+        <modelElement href="RiskGame.uml#_jEv1cfB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYT_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYUPB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hWYUfB8Eema6uMr0HTvsQ" comments="_2gfccPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gfccfB8Eema6uMr0HTvsQ" name="setReinforce">
+      <modelElement href="RiskGame.uml#_jExDkPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYUvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYU_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hWYVPB8Eema6uMr0HTvsQ" name="countryName">
+        <modelElement href="RiskGame.uml#_jExDkfB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYVfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYVvB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_2hWYV_B8Eema6uMr0HTvsQ" name="armyNumber">
+        <modelElement href="RiskGame.uml#_jExDkvB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYWPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYWfB8Eema6uMr0HTvsQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hWYWvB8Eema6uMr0HTvsQ" comments="_2ggDgPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2ggqkPB8Eema6uMr0HTvsQ" name="setFortify">
+      <modelElement href="RiskGame.uml#_jExDk_B8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hWYW_B8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hWYXPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hWYXfB8Eema6uMr0HTvsQ" name="from">
+        <modelElement href="RiskGame.uml#_jExDlPB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYXvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYX_B8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_2hWYYPB8Eema6uMr0HTvsQ" name="to">
+        <modelElement href="RiskGame.uml#_jExDlfB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYYfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYYvB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_2hWYY_B8Eema6uMr0HTvsQ" name="army">
+        <modelElement href="RiskGame.uml#_jExDlvB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hWYZPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hWYZfB8Eema6uMr0HTvsQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hW_IPB8Eema6uMr0HTvsQ" name="divideInitialArmies">
+      <modelElement href="RiskGame.uml#_jExDl_B8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hW_IfB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hW_IvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_2hW_I_B8Eema6uMr0HTvsQ" comments="_2ghRoPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2ghRofB8Eema6uMr0HTvsQ" name="phaseDecider">
+      <modelElement href="RiskGame.uml#_jExDmPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hW_JPB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_2hW_JfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_2hW_JvB8Eema6uMr0HTvsQ">
+        <modelElement href="RiskGame.uml#_jExDmvB8Eema6uMr0HTvsQ"/>
+        <type xmi:id="_2hW_J_B8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_2hW_KPB8Eema6uMr0HTvsQ" name="s1">
+        <modelElement href="RiskGame.uml#_jExDmfB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hW_KfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hW_KvB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hW_K_B8Eema6uMr0HTvsQ" comments="_2gifwPB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gifwfB8Eema6uMr0HTvsQ" name="stringToContinent" staticOperation="true">
+      <modelElement href="RiskGame.uml#_jTFMYPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hW_LPB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hW_LfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hW_LvB8Eema6uMr0HTvsQ" name="continentString">
+        <modelElement href="RiskGame.uml#_jTFMYfB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hW_L_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hW_MPB8Eema6uMr0HTvsQ" name="List">
+          <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_2hW_MfB8Eema6uMr0HTvsQ" name="continentList">
+        <modelElement href="RiskGame.uml#_jTFMYvB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hW_MvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hW_M_B8Eema6uMr0HTvsQ" name="List">
+          <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hW_NPB8Eema6uMr0HTvsQ" comments="_2gjt4PB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gkU8PB8Eema6uMr0HTvsQ" name="stringToCountry" staticOperation="true">
+      <modelElement href="RiskGame.uml#_jTHooPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hW_NfB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hW_NvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hW_N_B8Eema6uMr0HTvsQ" name="countryString">
+        <modelElement href="RiskGame.uml#_jTHoofB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hW_OPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hW_OfB8Eema6uMr0HTvsQ" name="List">
+          <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_2hW_OvB8Eema6uMr0HTvsQ" name="CountryList">
+        <modelElement href="RiskGame.uml#_jTHoovB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hW_O_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hW_PPB8Eema6uMr0HTvsQ" name="List">
+          <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_2hW_PfB8Eema6uMr0HTvsQ" comments="_2gk8APB8Eema6uMr0HTvsQ" targetConnectionVisual="_2gk8AfB8Eema6uMr0HTvsQ" name="setNeigbourCountry" staticOperation="true">
+      <modelElement href="RiskGame.uml#_jTKr8PB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_2hW_PvB8Eema6uMr0HTvsQ" label="-"/>
+      <cardinality xmi:id="_2hW_P_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_2hW_QPB8Eema6uMr0HTvsQ" name="countryList">
+        <modelElement href="RiskGame.uml#_jTKr8fB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hW_QfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hW_QvB8Eema6uMr0HTvsQ" name="List">
+          <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_2hW_Q_B8Eema6uMr0HTvsQ" name="borderString">
+        <modelElement href="RiskGame.uml#_jTLTAPB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_2hW_RPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_2hW_RfB8Eema6uMr0HTvsQ" name="List">
+          <modelElement href="RiskGame.uml#_jRHdgPB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_2hds0PB8Eema6uMr0HTvsQ" name="JTextField" associationsIn="_mpOo0PB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jTSAsPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_2hds0fB8Eema6uMr0HTvsQ" position="21.0,-49.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_2hds0vB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jTTO0PB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <visibility xmi:id="_2hds0_B8Eema6uMr0HTvsQ" label="+"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_2hgJEPB8Eema6uMr0HTvsQ" name="JButton" associationsIn="_mpQeAPB8Eema6uMr0HTvsQ _mpUIYPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jTT14PB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_2hgJEfB8Eema6uMr0HTvsQ" position="144.0,-49.0" size="-1.0,-1.0"/>
+    <stereotypes xmi:id="_2hgJEvB8Eema6uMr0HTvsQ" name="Reference">
+      <modelElement href="RiskGame.uml#_jTVEAPB8Eema6uMr0HTvsQ"/>
+    </stereotypes>
+    <visibility xmi:id="_2hgJE_B8Eema6uMr0HTvsQ" label="+"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_mpUvcPB8Eema6uMr0HTvsQ" comments="_mpDpsPB8Eema6uMr0HTvsQ" targetConnectionVisual="_mpEQwPB8Eema6uMr0HTvsQ" name="Console" associationsIn="_mpMMkPB8Eema6uMr0HTvsQ" associationsOut="_mpOo0PB8Eema6uMr0HTvsQ _mpQeAPB8Eema6uMr0HTvsQ _mpSTMPB8Eema6uMr0HTvsQ _mpUIYPB8Eema6uMr0HTvsQ">
+    <modelElement href="RiskGame.uml#_jFDXcPB8Eema6uMr0HTvsQ"/>
+    <visualProperties xmi:id="_mpUvcfB8Eema6uMr0HTvsQ" position="50.0,50.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_mpUvcvB8Eema6uMr0HTvsQ" label="+"/>
+    <attributes xmi:id="_mpUvc_B8Eema6uMr0HTvsQ" name="textField">
+      <modelElement href="RiskGame.uml#_jUmPUPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_054D8PB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_059jgPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_06lOkPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <visibility xmi:id="_mpUvdfB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpUvdvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_mpUvd_B8Eema6uMr0HTvsQ" name="JTextField">
+        <modelElement href="RiskGame.uml#_jTSAsPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_mpUvePB8Eema6uMr0HTvsQ" name="submit">
+      <modelElement href="RiskGame.uml#_jUm2YfB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_06CcAPB8Eema6uMr0HTvsQ" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_06JwwPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_06M0EPB8Eema6uMr0HTvsQ" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_06OpQPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_06nDwPB8Eema6uMr0HTvsQ" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_06nq0PB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <visibility xmi:id="_mpUve_B8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpUvfPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_mpUvffB8Eema6uMr0HTvsQ" name="JButton">
+        <modelElement href="RiskGame.uml#_jTT14PB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_mpUvfvB8Eema6uMr0HTvsQ" name="m">
+      <modelElement href="RiskGame.uml#_jUoEgPB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_06SToPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_06XMIPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_06quIPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <visibility xmi:id="_mpUvgPB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpUvgfB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_mpUvgvB8Eema6uMr0HTvsQ" name="MainClass">
+        <modelElement href="RiskGame.uml#_jEeIoPB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_mpUvg_B8Eema6uMr0HTvsQ" name="exit">
+      <modelElement href="RiskGame.uml#_jVj4ofB8Eema6uMr0HTvsQ"/>
+      <stereotypes xmi:id="_06a2gPB8Eema6uMr0HTvsQ" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_06fH8PB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_06hkMPB8Eema6uMr0HTvsQ" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_06iyUPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_06sjUPB8Eema6uMr0HTvsQ" name="MultiDeclaration"/>
+      <stereotypes xmi:id="_06tKYPB8Eema6uMr0HTvsQ" name="LegacyStyledElement"/>
+      <visibility xmi:id="_mpUvhvB8Eema6uMr0HTvsQ" label="~"/>
+      <cardinality xmi:id="_mpUvh_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_mpUviPB8Eema6uMr0HTvsQ" name="JButton">
+        <modelElement href="RiskGame.uml#_jTT14PB8Eema6uMr0HTvsQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_mpUvifB8Eema6uMr0HTvsQ" name="createConsole">
+      <modelElement href="RiskGame.uml#_jFDXcfB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_mpUvivB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpUvi_B8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+    </operations>
+    <operations xmi:id="_mpUvjPB8Eema6uMr0HTvsQ" name="alert">
+      <modelElement href="RiskGame.uml#_jFDXcvB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_mpUvjfB8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpUvjvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_mpUvj_B8Eema6uMr0HTvsQ" name="arg">
+        <modelElement href="RiskGame.uml#_jFDXc_B8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_mpUvkPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_mpUvkfB8Eema6uMr0HTvsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_mpUvkvB8Eema6uMr0HTvsQ" name="actionPerformed">
+      <modelElement href="RiskGame.uml#_jTVrEPB8Eema6uMr0HTvsQ"/>
+      <visibility xmi:id="_mpUvk_B8Eema6uMr0HTvsQ" label="+"/>
+      <cardinality xmi:id="_mpUvlPB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_mpUvlfB8Eema6uMr0HTvsQ" name="e">
+        <modelElement href="RiskGame.uml#_jTVrEfB8Eema6uMr0HTvsQ"/>
+        <cardinality xmi:id="_mpUvlvB8Eema6uMr0HTvsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_mpUvl_B8Eema6uMr0HTvsQ" name="ActionEvent">
+          <modelElement href="RiskGame.uml#_jSMbkfB8Eema6uMr0HTvsQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

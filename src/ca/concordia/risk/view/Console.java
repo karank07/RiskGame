@@ -74,6 +74,7 @@ public class Console implements ActionListener {
 			{
 				alert(errorFlag);
 			}
+			textField.setText(" ");
 		} else if (e.getSource() == exit) {
 			System.exit(0);
 		}

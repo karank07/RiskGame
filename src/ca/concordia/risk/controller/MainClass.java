@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +22,9 @@ import ca.concordia.risk.view.Console;
 /**
  * This class manages the overall execution of all the phases in the game. Controls various model class object according to the phase. 
  * Includes filename, filereader, list of countries and continents, model class objects, etc as data members
- * @author Karan, Rohan and Pranal
- *
+ * @author Karan
+ * @author Rohan 
+ * @author Pranal
  */
 public class MainClass {
 	private String fileName;
@@ -78,7 +80,6 @@ public class MainClass {
 		countries = new HashMap<Integer, Country>();
 		borders = new HashMap<Integer, ArrayList<Integer>>();
 		mapInstance = Map.getM_instance();
-
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
 
@@ -175,7 +176,7 @@ public class MainClass {
 			return;
 		}
 
-		fileName = "D:\\Project\\RiskGame\\maps\\" + fileName + ".map";
+		fileName = Paths.get("").toAbsolutePath().toString()+"\\maps\\" + fileName;
 
 		try {
 			file = new FileReader(fileName);
@@ -365,7 +366,7 @@ public class MainClass {
 																		// be null
 						errorFlag = "flase";
 						try {
-							mapOperations.addCountry(mapInstance, continents, countries, temp[i + 1], temp[i + 2]);
+							mapOperations.addCountry(mapInstance, continents, countries, borders, temp[i + 1], temp[i + 2]);
 							
 						} catch (Exception e) {
 							e.printStackTrace();
