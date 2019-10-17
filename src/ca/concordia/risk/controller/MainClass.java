@@ -328,15 +328,15 @@ public class MainClass {
 		for(Country c:countryList)
 		{
 			System.out.println("Country: "+c.getCountryName()+" Continent: "+continentList.get(c.getContinentID()-1).getContinentName()+" Country army: "+c.getCountryArmy()+" Owner Name:"
-		+playerList.get(c.getCountryOwner()-1).getPlayerName()+"Neighbours :");
-			System.out.println(getNeighboursName(c.getNeighbours()));
+		+playerList.get(c.getCountryOwner()-1).getPlayerName()+" Neighbours :");
+			System.out.print(getNeighboursName(c.getNeighbours()));
 		}
 	}
 	private List<String> getNeighboursName(int[] neighbours){
 		List <String>list =new ArrayList();
-		for(int i=0;i<neighbours.length;i++)
+		for(int i=1;i<neighbours.length;i++)
 		{
-			list.add(countryList.get(neighbours[i]).getCountryName());
+			list.add(countryList.get(neighbours[i]-1).getCountryName());
 		}
 		return list;
 	}
