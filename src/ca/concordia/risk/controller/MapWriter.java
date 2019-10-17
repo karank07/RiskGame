@@ -229,6 +229,7 @@ public class MapWriter{
 			{
 				sc.close();
 				return false;
+				
 			}
 			
 		} catch (Exception e)
