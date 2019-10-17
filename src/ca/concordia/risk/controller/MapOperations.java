@@ -63,8 +63,9 @@ public class MapOperations{
 	 * @param countries the hashmap of existing countries
 	 * @param country_name the country name to be added
 	 * @param continent_name the continent name in which country needs to be added
+	 * @param borders for the borders
 	 * @return true if country added, else false
-	 * @throws ValidMapException
+	 * @throws ValidMapException to handle exception
 	 */
 	public boolean addCountry(Map map,HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries,HashMap<Integer, ArrayList<Integer>> borders,String country_name, String continent_name ) throws ValidMapException
 	{
@@ -132,8 +133,9 @@ public class MapOperations{
 	 * @param borders the borders hashmap
 	 * @param country_name the name of the country
 	 * @param neighbour_country_name the name of the neighbour country
+	 * @param countries for country
 	 * @return true if border added, else false
-	 * @throws ValidMapException
+	 * @throws ValidMapException handles exceptions
 	 */
 	public boolean addNeighbours(Map map,HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String country_name, String neighbour_country_name) throws ValidMapException
 	{
