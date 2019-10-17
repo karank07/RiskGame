@@ -1,6 +1,4 @@
-/**
- * Reinforcement class provides functions to perform Reinforcement phase in Game 
- */
+
 package ca.concordia.risk.controller;
 
 import java.util.ArrayList;
@@ -12,6 +10,7 @@ import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
 /**
+ * Reinforcement class provides functions to perform Reinforcement phase in Game 
  * @author rohan
  *
  */
@@ -50,7 +49,7 @@ public class ReinforcementPhase {
 						+ mapInstance.getContinents().get(i).getContinentControlValue());
 
 			}
-		}
+		} 
 		// 3rd rule: if player owns 3 cards and want them to exchange with army
 		// String[] countryNameOfCards = new String[3]; // Initialize when user selects
 		// countirs from thes dropdown menu in
@@ -147,6 +146,12 @@ public class ReinforcementPhase {
 
 	}
 
+	/**
+	 * 
+	 * @param player the player object to be checked whether he owns the given country
+	 * @param countryName the country to be checked
+	 * @return true if the player owns the country 
+	 */
 	private boolean countryBelongsToPlayer(Player player, String countryName) {
 
 		for (Country c : player.getPlayerCountries()) {
@@ -196,6 +201,11 @@ public class ReinforcementPhase {
 		}
 	}
 
+/**
+ * 
+ * @param countryName the country to be assigned an army
+ * @param armyNumber the number of armies to be assigned
+ */
 	private void PlaceArmy(String countryName, int armyNumber) {
 
 		Country country = mapInstance.getCountryByName(countryName);

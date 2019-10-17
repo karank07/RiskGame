@@ -36,7 +36,7 @@ public class Map
 	{
 		countries.clear();
 		continents.clear();
-		for(Country c:MainClass.CountryList)
+		for(Country c:MainClass.countryList)
 		{
 			countries.put(c.getCountryNumber(), c);
 		}

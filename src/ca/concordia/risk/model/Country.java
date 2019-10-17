@@ -1,5 +1,5 @@
 /**
- * 
+ * Country class is the model class to store the data of Country entity (continent object)
  */
 package ca.concordia.risk.model;
 
@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * This is a model class for Country object containing data members for storing, assigning and retrieving  name, number,
+ * co-ordinates, armies and continents.
  * @author Karan
  *
  */
@@ -182,7 +184,7 @@ public class Country {
 	}
 
 	/**
-	 * @param neighbours the neighbours to set
+	 * @param neighbours the neighbors to set
 	 */
 	public void setNeighbours(int[] neighbours) {
 
@@ -191,7 +193,7 @@ public class Country {
 	}
 
 	/**
-	 * 
+	 * Override toString to print data members of country
 	 */
 	public String toString() {
 		return "" + countryNumber + " " + countryName + " " + continentID + " " + xCo + " " + yCo + " "
@@ -199,7 +201,8 @@ public class Country {
 	}
 	
 	/**
-	 * 
+	 *@param owner player to be assigned armies
+	 *@param armies number of armies to be assigned
 	 */
 	public void setOwnerArmy(int owner, int armies ) {
 		this.owner = owner;

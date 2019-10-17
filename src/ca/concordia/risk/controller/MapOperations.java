@@ -135,8 +135,11 @@ public class MapOperations{
 	public boolean addNeighbours(Map map,HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String country_name, String neighbour_country_name) throws ValidMapException
 	{
 		
-		boolean country_flag=false,neighbour_flag=false;
+		boolean country_flag = false;
+		boolean neighbour_flag = false;
 		int country_id=0,neighbour_country_id=0;
+		
+		//get the country id from country name
 		for (int n : countries.keySet()) {
 			String coun = countries.get(n).getCountryName();
 			if (country_name.equals(coun)) {
@@ -146,8 +149,9 @@ public class MapOperations{
 			}
 		}
 		
+		
 		if(country_flag==true)
-		{
+		{	//get the neighbour country id from neighbour country name
 			for (int p : countries.keySet()) {
 				String neigh_country = countries.get(p).getCountryName();
 				if (neighbour_country_name.equals(neigh_country)) {
@@ -237,7 +241,7 @@ public class MapOperations{
 	
 	/**
 	 * This method traverses the full map and checks the connectivity
-	 * @param node the vertex of map which is being traversed
+	 * @param node the current vertex of map which is being traversed
 	 */
 	public void traverseMap(int node)
 	{
