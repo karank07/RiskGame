@@ -180,7 +180,7 @@ public class MainClass {
 		}
 
 		fileName = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
-
+		
 		try {
 			file = new FileReader(fileName);
 			br = new BufferedReader(file);
@@ -323,7 +323,15 @@ public class MainClass {
 		for (Player p : playerList)
 			p.setPlayerTotalArmies(sp.getInitialArmies());
 	}
-
+	
+	private void showmapForMapPhase(){
+		for(Country c:countryList)
+		{
+			System.out.println("Country: "+c.getCountryName()+" Continent: "+continentList.get(c.getContinentID()-1).getContinentName()+" Country army: "+c.getCountryArmy());
+			System.out.println(getNeighboursName(c.getNeighbours()));
+		}
+	}
+	
 	private void showmapForGamePhase(){
 		for(Country c:countryList)
 		{
@@ -437,6 +445,9 @@ public class MainClass {
 				e.printStackTrace();
 			}
 			break;
+		
+		case "showmap":
+			showmapForMapPhase();
 			
 		case "editmap":
 			try {
