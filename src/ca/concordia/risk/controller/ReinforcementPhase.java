@@ -33,15 +33,15 @@ public class ReinforcementPhase {
 	 */
 	public void beginReinforcement(Player player) {
 		initialize();
-		assign_army(player);
+		int reinforcementArmyNumber = assign_army(player);
 
 	}
 
-	public void assign_army(Player player) {
+	public int assign_army(Player player) {
 		// 1st rule: country/3...if it's less then 3; then assign 3 army minimum
 		player.setPlayerReinforceArmy(
 				(player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3);
-
+ 
 		// 2nd rule: check if player owns all countries of any of the continents
 		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
 			if (player.getPlayerCountries().equals(set_of_contries.get(i))) {
@@ -57,6 +57,8 @@ public class ReinforcementPhase {
 		// exchangeCardsForArmy(player, countryNameOfCards);
 		System.out.println("Cannot move! Armies available for player " + player.getPlayerId() + " " + player.getPlayerName()
 				+ " to reinforce: " + player.getPlayerReinforceArmy());
+		
+		return player.getPlayerReinforceArmy();
 
 	}
 
@@ -90,8 +92,8 @@ public class ReinforcementPhase {
 	 * Method to execute the 3rd rule: to exchange cards with army, and remove those
 	 * cards from player's cardList
 	 * 
-	 * @param player
-	 * @param countryNameOfCards
+	 * @param player for player
+	 * @param countryNameOfCards for cards of country
 	 */
 	private void exchangeCardsForArmy(Player player, String[] countryNameOfCards) {
 		List<Card> playerCardsList = new ArrayList<Card>();
@@ -167,8 +169,9 @@ public class ReinforcementPhase {
 	 * function for command:- reinforce countryname, number (number is army to be
 	 * placed in that country)
 	 * 
-	 * @param countryName
-	 * @param armyNumber
+	 * @param countryName for country name
+	 * @param armyNumber number of armies
+	 * @param player for player entity
 	 */
 	public void reinforceArmy(Player player, String countryName, int armyNumber) {
 

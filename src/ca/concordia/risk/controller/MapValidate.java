@@ -17,7 +17,7 @@ public class MapValidate {
 	 * This method validates map
 	 * @param file the map file
 	 * @return true if valid else false
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException handles exceptions
 	 */
 	public boolean validateFile(File file) throws FileNotFoundException {
 		
