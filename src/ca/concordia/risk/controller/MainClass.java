@@ -1,6 +1,7 @@
 package ca.concordia.risk.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class MainClass {
 	static Console c;
 	int currentPlayer = 0;
 	static String phase = "loadmap";
-
+	static String mapPhase = "editmap";
 	private boolean gamePlayerSet = false;
 	private boolean placeArmyFlag = false;
 	public static String errorFlag = "false";
@@ -178,11 +179,16 @@ public class MainClass {
 			errorFlag = "invalid command!";
 			return;
 		}
-
+		MapValidate mv = new MapValidate();
 		fileName = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
 
 		try {
 			file = new FileReader(fileName);
+			File fileValidate = new File(fileName);
+			if (!mv.validateFile(fileValidate)) {
+				errorFlag = "Map invalid!";
+				return;
+			}
 			br = new BufferedReader(file);
 
 			while (fileData != null) {
@@ -256,7 +262,7 @@ public class MainClass {
 		if (!phase.contentEquals("populatecountries"))
 			return;
 		sp.populateCountries();
-		phase = "placearmy";
+			phase = "placearmy";
 	}
 
 	/**
@@ -327,15 +333,14 @@ public class MainClass {
 	private void showmapForMapPhase() {
 		for (Country c : countryList) {
 			System.out.println("Country: " + c.getCountryName() + " Continent: "
-					+ continentList.get(c.getContinentID() - 1).getContinentName() + " Country army: "
-					+ c.getCountryArmy());
+					+ continentList.get(c.getContinentID() - 1).getContinentName());
 			System.out.println(getNeighboursName(c.getNeighbours()));
 		}
 	}
 
 	private void showmapForGamePhase() {
 		for (Country c : countryList) {
-			System.out.println("Country: " + c.getCountryName() + " Continent: "
+			System.out.println("\nCountry: " + c.getCountryName() + " Continent: "
 					+ continentList.get(c.getContinentID() - 1).getContinentName() + " Country army: "
 					+ c.getCountryArmy() + " Owner Name:" + playerList.get(c.getCountryOwner() - 1).getPlayerName()
 					+ " Neighbours :");
@@ -367,10 +372,16 @@ public class MainClass {
 
 		switch (temp[0]) {
 		case "editcontinent":
-			for (int i = 0; i < temp.length; i++) {
+			if (!mapPhase.contentEquals("edit")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+			s1 = s1 + " stop";
+			temp = s1.split(" ");
+
+			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-					if (temp[i + 1] != null || temp[i + 2] != null) { // continent name and continent value should not
-																		// be null
+					if (!(temp[i + 1].contentEquals("stop")) && !(temp[i + 2].contentEquals("stop"))) {
 						errorFlag = "false";
 						try {
 							mapOperations.addContinent(mapInstance, continents, temp[i + 1],
@@ -390,11 +401,16 @@ public class MainClass {
 			break;
 
 		case "editcountry":
+			if (!mapPhase.contentEquals("edit")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+			s1 = s1 + " stop";
+			temp = s1.split(" ");
 			for (int i = 0; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
-					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and continent name should not
-																		// be null
-						errorFlag = "flase";
+					if (!(temp[i + 1].contentEquals("stop")) && !(temp[i + 2].contentEquals("stop"))) {
+						errorFlag = "false";
 						try {
 							mapOperations.addCountry(mapInstance, continents, countries, borders, temp[i + 1],
 									temp[i + 2]);
@@ -412,11 +428,16 @@ public class MainClass {
 			break;
 
 		case "editneighbor":
+			if (!mapPhase.contentEquals("edit")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+
 			for (int i = 0; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
 					if (temp[i + 1] != null || temp[i + 2] != null) { // country name and neighbour country name should
 																		// not // be null
-						errorFlag = "flase";
+						errorFlag = "false";
 						try {
 							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 1], temp[i + 2]);
 							mapOperations.addNeighbours(mapInstance, countries, borders, temp[i + 2], temp[i + 1]);
@@ -433,10 +454,16 @@ public class MainClass {
 			break;
 
 		case "savemap":
+			if (!mapPhase.contentEquals("end")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+
 			try {
 				try {
 					mapWriter.writeMapFile(continents, countries, borders, temp[1]);
-					errorFlag = "flase";
+					errorFlag = "false";
+					mapPhase = "end";
 				} catch (ValidMapException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -447,20 +474,45 @@ public class MainClass {
 			}
 			break;
 
-		case "showMap":
-			if (countryList.isEmpty() || continentList.isEmpty() || borders.isEmpty()) {
+		case "showmap":
+			if (!mapPhase.contentEquals("end")) {
+				if (borders.isEmpty()) {
+					errorFlag = "Invalid command!";
+				} else
+					showmapForMapPhase();
+			} else if (playerList.isEmpty()) {
 				errorFlag = "Invalid command!";
 			} else
-				showmapForMapPhase();
+				showmapForGamePhase();
+
 			break;
+		case "validatemap":
+			if (!mapPhase.contentEquals("end")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+
+			if (borders.isEmpty()) {
+				errorFlag = "Invalid!";
+			} else if (mapOperations.isConnected(borders)) {
+				System.out.println("Map valid!");
+			} else
+				errorFlag = "Invalid map!";
+
 		case "editmap":
+			if (!mapPhase.contentEquals("editmap")) {
+				errorFlag = "Invalid command!";
+				return errorFlag;
+			}
+
 			try {
 				if (mapWriter.loadMap(continents, countries, borders, temp[1])) {
 					System.out.println("Loaded");
-					errorFlag = "flase";
+					errorFlag = "false";
+					mapPhase = "edit";
 				} else {
 					System.out.println("Not Loaded!");
-					errorFlag = "flase";
+					errorFlag = "false";
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -473,6 +525,7 @@ public class MainClass {
 				return errorFlag;
 			}
 			phase = "loadmap";
+			mapPhase = "end";
 			fileName = temp[1];
 			try {
 				readMapFile(fileName);
@@ -490,27 +543,29 @@ public class MainClass {
 			}
 			errorFlag = "false";
 			s1 = s1 + " stop";
-			String[] t = new String[3];
 			temp = s1.split(" ");
 
-			System.out.println("\nPlayers:");
 			sp = new StartUpPhase();
 			for (int i = 1; i < temp.length; i++) {
 				if (temp[i].contentEquals("-add")) {
 					if (!temp[i + 1].contentEquals("stop")) {
 						addPlayer(temp[i + 1]);
+						errorFlag = "false";
 					} else {
 						errorFlag = "add a valid name";
 					}
 				} else if (temp[i].contentEquals("-remove")) {
 					if (!temp[i + 1].contentEquals("stop")) {
 						removePlayer(temp[i + 1]);
+						errorFlag = "false";
 					} else {
 						errorFlag = "add a valid name";
 					}
 
 				}
 			}
+			System.out.println("\nPlayers:");
+
 			for (Player p : playerList) {
 				System.out.println(p.getPlayerId() + " " + p.getPlayerName());
 			}
@@ -518,11 +573,9 @@ public class MainClass {
 				gamePlayerSet = true;
 
 			}
-
 			break;
-
 		case "populatecountries":
-			if (gamePlayerSet) {
+			if (gamePlayerSet == true && !playerList.isEmpty()) {
 				phase = "populatecountries";
 			}
 			if (!phase.contentEquals("populatecountries")) {
@@ -533,16 +586,28 @@ public class MainClass {
 			sp = new StartUpPhase();
 
 			populateCountries();
-
 		case "dividearmies":
 			divideInitialArmies();
+			for(Country c:countryList)
+			{
+				for(Player p:playerList)
+				{
+					if(c.getCountryOwner()==p.getPlayerId())
+					{
+						p.setPlayerTotalArmies(p.getPlayerTotalArmies()-1);
+					}
+				}
+			}
 			break;
-
+		
 		case "placearmy":
+			
+		
 			if (!phase.contentEquals("placearmy")) {
 				errorFlag = "Invalid command!";
 				return errorFlag;
 			}
+			//currentPlayer=1;
 			errorFlag = "false";
 			if (temp[1] != "") {
 				placeArmyByCountry(temp[1]);
@@ -614,13 +679,11 @@ public class MainClass {
 
 			break;
 
-		case "showmap":
-			if (countryList.isEmpty() || continentList.isEmpty() || playerList.isEmpty()) {
-				errorFlag = "Invalid command!";
-			} else
-				showmapForGamePhase();
-			break;
-		default:
+		/*
+		 * case "showmap": if (countryList.isEmpty() || continentList.isEmpty() ||
+		 * playerList.isEmpty()) { errorFlag = "Invalid command!"; } else
+		 * showmapForGamePhase(); break;
+		 */default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";
 		}

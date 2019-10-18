@@ -30,7 +30,7 @@ public class StartUpPhase {
 	 * @param player_country_map a hash-map for a player and its owned countries
 	 */
 	private Map<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
-
+	
 	static int playerTurn = 0;// place army
 
 	/**
@@ -84,6 +84,7 @@ public class StartUpPhase {
 
 	public int getInitialArmies() {
 		int numberOfPlayers = MainClass.playerList.size();
+		
 		int setArmy = 0;
 		switch (numberOfPlayers) {
 		case 2:
@@ -101,11 +102,12 @@ public class StartUpPhase {
 		case 6:
 			setArmy = 20;
 			break;
+		default: setArmy=40;
 		}
 		return setArmy;
 
 	}
-
+	
 	/**
 	 * This method allows the player to choose and place the armies in a particular
 	 * country
@@ -113,7 +115,7 @@ public class StartUpPhase {
 	 * @param countryName the country to be assigned armies
 	 */
 	public void placeArmyByCountryName(String countryName) {
-
+		
 		if (MainClass.playerList.get(playerTurn % playerCount).getPlayerTotalArmies() > 0) {
 
 			Player p = MainClass.playerList.get(playerTurn % playerCount);
