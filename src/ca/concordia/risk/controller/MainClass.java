@@ -331,11 +331,14 @@ public class MainClass {
 	}
 
 	private void showmapForMapPhase() {
-		for (Country c : countryList) {
-			System.out.println("Country: " + c.getCountryName() + " Continent: "
-					+ continentList.get(c.getContinentID() - 1).getContinentName());
-			System.out.println(getNeighboursName(c.getNeighbours()));
-		}
+		System.out.println("Continents: ");
+		System.out.println(continents.values().toString());
+
+		System.out.println("Countries: ");
+		System.out.println(countries.values().toString());
+
+		System.out.println("Neighbours: ");
+		System.out.println(borders.toString());
 	}
 
 	private void showmapForGamePhase() {
@@ -347,6 +350,7 @@ public class MainClass {
 			System.out.print(getNeighboursName(c.getNeighbours()));
 		}
 	}
+
 
 	private List<String> getNeighboursName(int[] neighbours) {
 		List<String> list = new ArrayList();
