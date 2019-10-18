@@ -1,24 +1,10 @@
-; Yura Mamyrin
-; Risk Map
-
-; Risk Game Map
-; Dimensions: 677 x 425 Pixels
-
-name Risk Map
-
-[files]
-pic risk_pic.png
-map risk_map.gif
-crd risk.cards
-prv risk.jpg
-
 [continents]
 North-America 5 yellow
 South-America 2 green
 Europe 5 blue
 Africa 3 orange
 Asia 7 pink
-Oceania 2 red
+xyz 4 null
 
 [countries]
 1 Alaska 1 41 55
