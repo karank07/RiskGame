@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -23,7 +22,7 @@ import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
-public class ReinforcementPhaseTest {
+public class MapValidateTest {
 
 	static ReinforcementPhase rP;
 	static Player p;
@@ -36,7 +35,7 @@ public class ReinforcementPhaseTest {
 	static HashMap<Integer, Country> countries;
 	static HashMap<Integer, Continent> continents;
 	static HashMap<Integer, ArrayList<Integer>> borders;
-	
+
 	static Map mapInstance;
 
 	@BeforeClass
@@ -59,46 +58,35 @@ public class ReinforcementPhaseTest {
 		countries = new HashMap<Integer, Country>();
 		continents = new HashMap<Integer, Continent>();
 		borders = new HashMap<Integer, ArrayList<Integer>>();
-		
-		
 
 	}
 
+	/**
+	 * test method to perform tests on Map Phase functions
+	 */
 	@Test
 	public void testMapClass() {
 		try {
+
+			// Test: whether loading the map file is working or not
 			assertTrue(mW.loadMap(continents, countries, borders, "risk.map"));
-			
-			assertTrue(mO.isConnected(borders));
-			
+
 			File file = new File(Paths.get("").toAbsolutePath().toString() + "\\maps\\" + "risk.map");
-			
+
+			// Test: check whether map file is valid in terms of format or not. i.e does it
+			// contains CONTINENT_HEADER, COUNTRIES_HEADER and BORDERS_HEADER
 			assertTrue(mV.validateFile(file));
-			
-			 mapInstance.setContinents(continents);
-			 mapInstance.setCountries(countries);
-			 mapInstance.setBorders(borders);
-			
+
+			// Test : map validation – map is a connected graph
+			assertTrue(mO.isConnected(borders));
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
-
-	@Test
-	public void testReinforcementArmy() {
-		// initial army should be 3 for for each player
-		assertEquals(3, p.getPlayerReinforceArmy());
-		// assertEquals("rohan", "rohan");
-
-		 mapInstance.setContinents(continents);
-		  
-		 rP.assign_army(p);
-		System.out.println(p.getPlayerReinforceArmy());
-		// assertEquals(20 / 3, p.getPlayerReinforceArmy());
-		// as player has now 3 countries
 
 	}
+
+	
 
 }

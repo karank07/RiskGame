@@ -33,11 +33,11 @@ public class ReinforcementPhase {
 	 */
 	public void beginReinforcement(Player player) {
 		initialize();
-		assign_army(player);
+		int reinforcementArmyNumber = assign_army(player);
 
 	}
 
-	public void assign_army(Player player) {
+	public int assign_army(Player player) {
 		// 1st rule: country/3...if it's less then 3; then assign 3 army minimum
 		player.setPlayerReinforceArmy(
 				(player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3);
@@ -57,6 +57,8 @@ public class ReinforcementPhase {
 		// exchangeCardsForArmy(player, countryNameOfCards);
 		System.out.println("Cannot move! Armies available for player " + player.getPlayerId() + " " + player.getPlayerName()
 				+ " to reinforce: " + player.getPlayerReinforceArmy());
+		
+		return player.getPlayerReinforceArmy();
 
 	}
 
