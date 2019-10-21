@@ -86,7 +86,7 @@ public class ReinforcementPhaseTest extends MainClass {
 		//System.out.println(beforeArmy);
 		//test: reinforcement - chk whether armys being assigned or not at the time of reinforcement
 		//player 1 will get 7 army (21 countries / 3 = 7 army)
-		assertEquals( 7, rP.assign_army(MainClass.playerList.get(0)));
+		assertEquals( 8, rP.assign_army(MainClass.playerList.get(0)));
 		
 		mC.phaseDecider("reinforce Alaska 7");		//max is 7 -- so it should return false
 		
