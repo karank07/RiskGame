@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ca.concordia.risk.controller"},{"l":"ca.concordia.risk.controllerTest"},{"l":"ca.concordia.risk.model"},{"l":"ca.concordia.risk.utilities"},{"l":"ca.concordia.risk.view"}]
