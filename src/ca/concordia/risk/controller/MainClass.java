@@ -663,6 +663,11 @@ public class MainClass {
 			}
 			errorFlag = "false";
 			currentPlayer = 1;// for build 1 static player
+			if (temp[1].contentEquals("none")) {
+				System.out.println("Fortification skipped!");
+				phase = "reinforce";
+				break;
+			}
 			if (temp[1] == "" || temp[2] == "" || temp[3] == "") {
 				errorFlag = "Invalid command!";
 				break;

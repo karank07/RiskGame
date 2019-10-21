@@ -122,6 +122,7 @@ public class MapOperations{
 			Country co = new Country(country_num, country_name, continent_id, x_co, y_co);
 			countries.put(country_num +1, co);
 			//country_num+=1;
+			borders.put(country_num, new ArrayList<Integer>());
 			return true;
 		}
 		return false;
