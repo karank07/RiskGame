@@ -69,9 +69,9 @@ public class MapValidateTest {
 		try {
 
 			// Test: whether loading the map file is working or not
-			assertTrue(mW.loadMap(continents, countries, borders, "risk.map"));
+			assertTrue(mW.loadMap(continents, countries, borders, "demo.map"));
 
-			File file = new File(Paths.get("").toAbsolutePath().toString() + "\\maps\\" + "risk.map");
+			File file = new File(Paths.get("").toAbsolutePath().toString() + "\\maps\\" + "demo.map");
 
 			// Test: check whether map file is valid in terms of format or not. i.e does it
 			// contains CONTINENT_HEADER, COUNTRIES_HEADER and BORDERS_HEADER

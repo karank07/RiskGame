@@ -123,6 +123,7 @@ public class MapOperations{
 			countries.put(country_num +1, co);
 			borders.put(country_num, new ArrayList<Integer>());
 			//country_num+=1;
+			borders.put(country_num, new ArrayList<Integer>());
 			return true;
 		}
 		return false;

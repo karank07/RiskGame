@@ -458,7 +458,7 @@ public class MainClass {
 			break;
 
 		case "savemap":
-			if (!mapPhase.contentEquals("end")) {
+			if (mapPhase.contentEquals("end")) {
 				errorFlag = "Invalid command!";
 				return errorFlag;
 			}
@@ -491,18 +491,13 @@ public class MainClass {
 
 			break;
 		case "validatemap":
-			if (!mapPhase.contentEquals("end")) {
-				errorFlag = "Invalid command!";
-				return errorFlag;
-			}
-
 			if (borders.isEmpty()) {
 				errorFlag = "Invalid!";
 			} else if (mapOperations.isConnected(borders)) {
 				System.out.println("Map valid!");
 			} else
 				errorFlag = "Invalid map!";
-
+			break;
 		case "editmap":
 			if (!mapPhase.contentEquals("editmap")) {
 				errorFlag = "Invalid command!";
@@ -668,6 +663,11 @@ public class MainClass {
 			}
 			errorFlag = "false";
 			currentPlayer = 1;// for build 1 static player
+			if (temp[1].contentEquals("none")) {
+				System.out.println("Fortification skipped!");
+				phase = "reinforce";
+				break;
+			}
 			if (temp[1] == "" || temp[2] == "" || temp[3] == "") {
 				errorFlag = "Invalid command!";
 				break;
