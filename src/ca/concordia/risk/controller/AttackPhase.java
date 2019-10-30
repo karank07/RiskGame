@@ -58,16 +58,18 @@ public class AttackPhase
 	 * @param n number of legal dice rolls
 	 * @return list of the result of the rollDice method
 	 */
-	  public List<Integer> roll(Player p,Dice d,int n) 
+	  public void roll(Player p,int n) 
 	  {
-		  d = new Dice(n);
+		  Dice d = new Dice(n);
 		  List<Integer> res = d.rollDice(n, p);
-		  return res;
+		 
 	  }
 	  
 	  public void attack(Country from, Country to, Player attacker, Player defender) 
 	  {
 		  //list for result of comparison taki move armies me check ho paye kitne armies move krne hai
+		  
+		  
 		  List<Integer> attackWins = new ArrayList<Integer>();
 		  int size = attacker.getDiceResult().size() > defender.getDiceResult().size() ? 
 				  attacker.getDiceResult().size() : defender.getDiceResult().size();

@@ -40,6 +40,7 @@ public class MainClass {
 	private FortificationPhase fp;
 	private ReinforcementPhase rp;
 	private StartUpPhase sp;
+	private AttackPhase ap;
 	public static List<Player> playerList;
 	public HashMap<Integer, Continent> continents;
 	public HashMap<Integer, Country> countries;
@@ -76,6 +77,7 @@ public class MainClass {
 		c = new Console();
 		fp = new FortificationPhase();
 		rp = new ReinforcementPhase();
+		AttackPhase ap = new AttackPhase();
 
 		continents = new HashMap<Integer, Continent>();
 		countries = new HashMap<Integer, Country>();
@@ -149,7 +151,7 @@ public class MainClass {
 
 		int k = 0;
 		for (Country obj : countryList) {
- 
+
 			temp2 = borderString.get(k).split(" ");
 			k = k + 1;
 			temp3 = new int[temp2.length];
@@ -262,10 +264,11 @@ public class MainClass {
 		if (!phase.contentEquals("populatecountries"))
 			return;
 		sp.populateCountries();
-			phase = "placearmy";
+		phase = "placearmy";
 	}
 
 	/**
+	 * 
 	 * to place all the armies initially without the player choosing
 	 */
 	private void placeAll() {
@@ -351,7 +354,6 @@ public class MainClass {
 		}
 	}
 
-
 	private List<String> getNeighboursName(int[] neighbours) {
 		List<String> list = new ArrayList();
 		for (int i = 1; i < neighbours.length; i++) {
@@ -360,6 +362,61 @@ public class MainClass {
 		return list;
 	}
 
+	void doAttack(Country countryAttacking, Country countryDefending, int numDice,Player attacker) {
+		
+		if (!ap.canAttack(countryAttacking, countryDefending)) {
+			return;
+		}
+
+		if (!ap.checkDiceRA(numDice, countryAttacking)) {
+			return;
+		}
+
+		ap.roll(attacker,numDice);
+	}
+
+	void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
+		if(!ap.checkDiceRD(numDice, countryDefending )){
+			return;
+		}
+		ap.roll(defender, numDice);
+		
+		ap.attack(countryAttacking, countryDefending, attacker, defender);
+	}
+	
+	void moveArmy(Country countryFrom,Country countryTo,int army){
+		if(countryTo.getCountryArmy()==0) {
+			ap.moveArmies(playerList.get(countryFrom.getCountryOwner()-1), countryFrom, countryTo, army);
+			//remove country for defender from player country map
+		}
+			
+	}
+	
+	void alloutAttack(Country countryAttacking, Country countryDefending,Player attacker,Player defender) {
+		int numDice=3;
+		while(countryAttacking.getCountryArmy()>1 && countryDefending.getCountryArmy()>0) {
+			numDice=(numDice<countryAttacking.getCountryArmy()-1)?numDice:countryAttacking.getCountryArmy()-1;
+			if (!ap.canAttack(countryAttacking, countryDefending)) {
+				return;
+			}
+			if (!ap.checkDiceRA(numDice, countryAttacking)) {
+				return;
+			}
+			ap.roll(attacker,numDice);
+			
+			numDice=2;
+			
+			numDice=(numDice<countryDefending.getCountryArmy())?numDice:1;
+			
+			if(!ap.checkDiceRD(numDice, countryDefending )){
+				return;
+			}
+			ap.roll(defender, numDice);
+			
+			ap.attack(countryAttacking, countryDefending, attacker, defender);
+	
+		}
+	}
 	/**
 	 * 
 	 * @param s1 phase command taken as input from console
@@ -369,6 +426,13 @@ public class MainClass {
 		String[] temp = new String[10];
 		temp = s1.split(" ");
 		int j = 0;
+		
+		Country countryAttacking=null;
+		Country countryDefending=null;
+		Player attacker=null;
+		Player defender=null;
+		
+		
 		System.out.println("\n" + s1);
 		for (int i = 0; i < temp.length; i++) {
 			temp[i] = temp[i].toLowerCase();
@@ -469,11 +533,9 @@ public class MainClass {
 					errorFlag = "false";
 					mapPhase = "end";
 				} catch (ValidMapException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
@@ -587,26 +649,22 @@ public class MainClass {
 			populateCountries();
 		case "dividearmies":
 			divideInitialArmies();
-			for(Country c:countryList)
-			{
-				for(Player p:playerList)
-				{
-					if(c.getCountryOwner()==p.getPlayerId())
-					{
-						p.setPlayerTotalArmies(p.getPlayerTotalArmies()-1);
+			for (Country c : countryList) {
+				for (Player p : playerList) {
+					if (c.getCountryOwner() == p.getPlayerId()) {
+						p.setPlayerTotalArmies(p.getPlayerTotalArmies() - 1);
 					}
 				}
 			}
 			break;
-		
+
 		case "placearmy":
-			
-		
+
 			if (!phase.contentEquals("placearmy")) {
 				errorFlag = "Invalid command!";
 				return errorFlag;
 			}
-			//currentPlayer=1;
+			// currentPlayer=1;
 			errorFlag = "false";
 			if (temp[1] != "") {
 				placeArmyByCountry(temp[1]);
@@ -683,11 +741,30 @@ public class MainClass {
 
 			break;
 
-		/*
-		 * case "showmap": if (countryList.isEmpty() || continentList.isEmpty() ||
-		 * playerList.isEmpty()) { errorFlag = "Invalid command!"; } else
-		 * showmapForGamePhase(); break;
-		 */default:
+		case "attack":
+			String countryFrom=temp[1];
+			String countryTo=temp[2];
+			countryAttacking = mapInstance.getCountryByName(countryFrom);
+			countryDefending = mapInstance.getCountryByName(countryTo);
+			attacker = playerList.get(countryAttacking.getCountryOwner() - 1);
+			
+			if(temp[3].equals("-allout"))
+			{
+				alloutAttack(countryAttacking,countryDefending,attacker,defender);
+			}
+			
+			doAttack(countryAttacking, countryDefending, Integer.parseInt(temp[3]),attacker);
+			break;
+	
+		case "defend":
+			defender = playerList.get(countryDefending.getCountryOwner() - 1);
+			
+			doDefend(Integer.parseInt(temp[1]), attacker, defender, countryAttacking, countryDefending);
+			break;
+		case "move":
+			moveArmy(countryAttacking,countryDefending,Integer.parseInt(temp[1]));
+			break;
+		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";
 		}
