@@ -396,6 +396,7 @@ public class MainClass {
 		int numDice=3;
 		while(countryAttacking.getCountryArmy()>1 && countryDefending.getCountryArmy()>0) {
 			numDice=(numDice<countryAttacking.getCountryArmy()-1)?numDice:countryAttacking.getCountryArmy()-1;
+			System.out.println("attacker: "+numDice+"army: "+countryAttacking.getCountryArmy());
 			if (!ap.canAttack(countryAttacking, countryDefending)) {
 				return;
 			}
@@ -407,7 +408,7 @@ public class MainClass {
 			numDice=2;
 			
 			numDice=(numDice<countryDefending.getCountryArmy())?numDice:1;
-			
+			System.out.println("def: "+numDice+"army: "+countryDefending.getCountryArmy());
 			if(!ap.checkDiceRD(numDice, countryDefending )){
 				return;
 			}
