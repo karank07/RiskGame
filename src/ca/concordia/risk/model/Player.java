@@ -61,6 +61,11 @@ public class Player {
 	private List<Integer> diceResult;
 
 	/**
+	 * @param diceWins store the number of wins in the list
+	 */
+	private List<Integer> diceWins;
+	/**
+	 *
 	 * Constructor to instantiate Player object
 	 * 
 	 * @param playerId
@@ -237,6 +242,20 @@ public class Player {
 	 */
 	public void setDiceResult(List<Integer> diceResult) {
 		this.diceResult = diceResult;
+	}
+
+	/**
+	 * @return the diceWins
+	 */
+	public List<Integer> getDiceWins() {
+		return diceWins;
+	}
+
+	/**
+	 * @param diceWins the diceWins to set
+	 */
+	public void setDiceWins(List<Integer> diceWins) {
+		this.diceWins = diceWins;
 	}
 
 }

@@ -41,9 +41,9 @@ public class MainClass {
 	private ReinforcementPhase rp;
 	private StartUpPhase sp;
 	public static List<Player> playerList;
-	public HashMap<Integer, Continent> continents;
-	public HashMap<Integer, Country> countries;
-	public HashMap<Integer, ArrayList<Integer>> borders;
+	static public HashMap<Integer, Continent> continents;
+	static public HashMap<Integer, Country> countries;
+	static public HashMap<Integer, ArrayList<Integer>> borders;
 	private Map mapInstance;
 
 	private MapOperations mapOperations;

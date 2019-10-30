@@ -29,7 +29,7 @@ public class StartUpPhase {
 	/**
 	 * @param player_country_map a hash-map for a player and its owned countries
 	 */
-	private Map<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
+	static private Map<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
 	
 	static int playerTurn = 0;// place army
 

@@ -3,6 +3,7 @@ package ca.concordia.risk.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
 import ca.concordia.risk.model.Map;
@@ -10,6 +11,8 @@ import ca.concordia.risk.model.Player;
 
 public class AttackPhase 
 {
+	 
+	
 	Map map = new Map();
 	
 	public boolean canAttack(Country from, Country to) {
@@ -58,17 +61,20 @@ public class AttackPhase
 	 * @param n number of legal dice rolls
 	 * @return list of the result of the rollDice method
 	 */
-	  public List<Integer> roll(Player p,Dice d,int n) 
+	  public void roll(Player p,int n) 
 	  {
-		  d = new Dice(n);
+		  Dice d = new Dice(n);
 		  List<Integer> res = d.rollDice(n, p);
-		  return res;
+		  
 	  }
 	  
-	  public void attack(Country from, Country to, Player attacker, Player defender) 
+	  public String attack(Country from, Country to, Player attacker, Player defender) 
 	  {
-		  //list for result of comparison taki move armies me check ho paye kitne armies move krne hai
-		  List<Integer> attackWins = new ArrayList<Integer>();
+		 
+		 
+		  String resultString = "";
+		  List<Integer> attackerWins = new ArrayList<Integer>();
+		  List<Integer> defenderWins = new ArrayList<Integer>();
 		  int size = attacker.getDiceResult().size() > defender.getDiceResult().size() ? 
 				  attacker.getDiceResult().size() : defender.getDiceResult().size();
 		  for(int i=0;i<size;i++)
@@ -78,33 +84,59 @@ public class AttackPhase
 			  
 			  if(a > d)
 			  {
-				  //defender army minus honi chahiye ///country ke army parameter me kya hona chiye?????////////$$$$$$#%#
-				  //defender.remArmies(1);
-				  //attackWins.add(1);
-				  //moveArmies(attacker,from,to,attackWins);
+				 
+				  defender.remArmies(1);
+				  to.setCountryArmy(to.getCountryArmy()-1);
+				  attackerWins.add(1);
+				  attacker.setDiceWins(attackerWins);
 				  System.out.println("Attacker wins");
 			  }
 			  else
 			  {
-				  //attacker army minus honi chhaiye
-				  //attacker.remArmies(1);
+				  
+				  attacker.remArmies(1);
+				  defenderWins.add(1);
+				  defender.setDiceWins(defenderWins);
+				  from.setCountryArmy(from.getCountryArmy()-1);
 				  System.out.println("Defender defends");
 			  }
 		  }
 		  
-		  //Call method to move armies :parameter a ya d
+		  if(attackerWins.size()==defenderWins.size())
+		  {
+			  resultString = "DRAW";
+		  }
+		  else
+		  {
+			  resultString = attackerWins.size()>defenderWins.size() ? "ATTACKER WINS" : "DEFENDER WINS";
+		  }
+		  
+		  
+		 
+		  return resultString;
 	  }
 	 
-	  public void moveArmies(Player p, Country from, Country to, List<Integer> wins)
+	  public void moveArmies(Player p, Country from, Country to, int numOfArmies)
 	  {
-		  //check kitne armies min move krne hai
-		  //check ek army from me bachi honi hi chahiye
-		  //army from se minus
-		  //army to ko plus
 		  
-		  //check puri country oocupy hui ya nai
-		  // if yes then player country list se hatao aur dusre me add wala (++++ totalownedcountries me plus minus)
-		  //mapping else country.setOwnerArmy()
+		  
+		  if(numOfArmies>=p.getDiceWins().size() && (from.getCountryArmy()-numOfArmies)>1)
+		  {
+			  from.setCountryArmy(from.getCountryArmy()-numOfArmies);
+			  to.setCountryArmy(to.getCountryArmy()+numOfArmies);
+			  p.setPlayerTotalCountries(p.getPlayerTotalCountries()+1);
+			  p.getPlayerCountries().add(to);
+			  
+//			  if(map.getCountriesByContinent(MainClass.continents.get(to.getContinentID()-1).getContinentName()).equals(p.getPlayerCountries())) {
+//				  
+//			  }
+				  
+				
+		  }
+		  
+		//CHANGE THE LIST OF COUNTRY IN MAP PLAYER/////
+		  
+		 
 	  }
 	  
 	//Continue till attacker says NOATTACK
