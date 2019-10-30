@@ -84,14 +84,6 @@ public class MainClass {
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
 
-//		Scanner in=new Scanner(System.in);
-//		while(true)
-//		{
-//			String s1=in.nextLine();
-//			phaseDecider(s1);
-
-//
-//		}
 	}
 
 	/**
@@ -663,22 +655,19 @@ public class MainClass {
 			}
 			errorFlag = "false";
 			currentPlayer = 1;// for build 1 static player
-			if (temp[1].contentEquals("none")) {
+			if (temp[1] == "" ) {
+				errorFlag = "Invalid command!";
+			
+			}
+			else if (temp[1].contentEquals("none")) {
 				System.out.println("Fortification skipped!");
 				phase = "reinforce";
-				break;
+			
 			}
-			if (temp[1] == "" || temp[2] == "" || temp[3] == "") {
-				errorFlag = "Invalid command!";
-				break;
-			} else {
-				if (temp[1].contentEquals("none")) {
-					System.out.println("Fortification skipped!");
-					phase = "reinforce";
-				} else {
+			 else {
 					// temp[1]- countryFrom, temp[2]- countryTo, temp[3]- armyCount
 					setFortify(temp[1], temp[2], Integer.parseInt(temp[3]));
-				}
+				
 			}
 
 			break;
