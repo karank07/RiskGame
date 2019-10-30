@@ -50,10 +50,58 @@ public class AttackPhase
 		return check;
 	}
 	
-	/*
-	 * public List<Integer> roll(Player p,Dice d,int n) {
+	/**
 	 * 
-	 * }
+	 * @param p player who rolls the dice
+	 * @param d object of Dice class
+	 * @param n number of legal dice rolls
+	 * @return list of the result of the rollDice method
 	 */
+	  public List<Integer> roll(Player p,Dice d,int n) 
+	  {
+		  d = new Dice(n);
+		  List<Integer> res = d.rollDice(n, p);
+		  return res;
+	  }
+	  
+	  public void attack(Country from, Country to, Player attacker, Player defender) 
+	  {
+		  //list for result of comparison taki movie armies me check ho paye kitne armies move krne hai
+		  int size = attacker.getDiceResult().size() > defender.getDiceResult().size() ? 
+				  attacker.getDiceResult().size() : defender.getDiceResult().size();
+		  for(int i=0;i<size;i++)
+		  {
+			  int a = attacker.getDiceResult().get(i);
+			  int d = defender.getDiceResult().get(i);
+			  
+			  if(a > d)
+			  {
+				  //defender army minus honi chahiye ///country ke army parameter me kya hona chiye?????
+				  System.out.println("Attacker wins");
+			  }
+			  else
+			  {
+				  //attacker army minus honi chhaiye
+				  System.out.println("Defender defends");
+			  }
+		  }
+		  
+		  //Call method to move armies :parameter a ya d
+	  }
+	 
+	  public void moveArmies(Player p, Country from, Country to)
+	  {
+		  //check kitne armies min move krne hai
+		  //check ek army from me bachi honi hi chahiye
+		  //army from se minus
+		  //army to ko plus
+		  
+		  //check puri country oocupy hui ya nai
+		  // if yes then player country list se hatao aur dusre me add wala (++++ totalownedcountries me plus minus)
+		  //mapping else country.setOwnerArmy()
+	  }
+	  
+	//Continue till attacker says NOATTACK
+	//Successful attack pr check kro about continent conquered or not and CARD  
 	
 }
