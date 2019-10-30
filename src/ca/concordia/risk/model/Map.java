@@ -25,7 +25,7 @@ public class Map
 	/**
 	 * Default Constructor
 	 */
-	public Map()
+	private Map()
 	{
 		countries = new HashMap<Integer, Country>();
 		continents = new HashMap<Integer, Continent>();
@@ -36,11 +36,11 @@ public class Map
 	{
 		countries.clear();
 		continents.clear();
-		for(Country c:MainClass.countryList)
+		for(Country c:MainClass.countries.values())
 		{
 			countries.put(c.getCountryNumber(), c);
 		}
-		for(Continent c:MainClass.continentList)
+		for(Continent c:MainClass.continents.values())
 		{
 			continentIndex++;
 			continents.put(continentIndex, c);
