@@ -319,22 +319,25 @@ public class MainClass {
 	void doAttack(Country countryAttacking, Country countryDefending, int numDice,Player attacker) {
 		
 		if (!ap.canAttack(countryAttacking, countryDefending)) {
+			errorFlag="invalid attack";
 			return;
 		}
 
 		if (!ap.checkDiceRA(numDice, countryAttacking)) {
+			errorFlag="invalid attacker dice";
 			return;
 		}
-
+		System.out.println("in do attack");
 		ap.roll(attacker,numDice);
 	}
 
 	void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
 		if(!ap.checkDiceRD(numDice, countryDefending )){
+			errorFlag="invalid defender dice";
 			return;
 		}
 		ap.roll(defender, numDice);
-		
+		System.out.println("in do defend");
 		ap.attack(countryAttacking, countryDefending, attacker, defender);
 	}
 	
@@ -349,7 +352,8 @@ public class MainClass {
 	void alloutAttack(Country countryAttacking, Country countryDefending,Player attacker,Player defender) {
 		int numDice=3;
 		while(countryAttacking.getCountryArmy()>1 && countryDefending.getCountryArmy()>0) {
-			numDice=(numDice<countryAttacking.getCountryArmy()-1)?numDice:countryAttacking.getCountryArmy()-1;
+			numDice=(numDice<=countryAttacking.getCountryArmy()-1)?3:countryAttacking.getCountryArmy()-1;
+			System.out.println(numDice);
 			System.out.println("attacker: "+numDice+"army: "+countryAttacking.getCountryArmy());
 			if (!ap.canAttack(countryAttacking, countryDefending)) {
 				return;
@@ -357,17 +361,18 @@ public class MainClass {
 			if (!ap.checkDiceRA(numDice, countryAttacking)) {
 				return;
 			}
+			System.out.println("numDice for attacker:"+numDice);
 			ap.roll(attacker,numDice);
-			
+			System.out.println(attacker.getDiceResult());
 			numDice=2;
 			
-			numDice=(numDice<countryDefending.getCountryArmy())?numDice:1;
+			numDice=(numDice<=countryDefending.getCountryArmy())?numDice:1;
 			System.out.println("def: "+numDice+"army: "+countryDefending.getCountryArmy());
 			if(!ap.checkDiceRD(numDice, countryDefending )){
 				return;
 			}
 			ap.roll(defender, numDice);
-			
+			System.out.println(defender.getDiceResult());
 			ap.attack(countryAttacking, countryDefending, attacker, defender);
 	
 		}
@@ -377,15 +382,16 @@ public class MainClass {
 	 * @param s1 phase command taken as input from console
 	 * @return errorFlag to indicate successful execution or not
 	 */
+	Country countryAttacking=null;
+	Country countryDefending=null;
+	Player attacker=null;
+	Player defender=null;
+		
 	public String phaseDecider(String s1) {
 		String[] temp = new String[10];
 		temp = s1.split(" ");
 		int j = 0;
 		
-		Country countryAttacking=null;
-		Country countryDefending=null;
-		Player attacker=null;
-		Player defender=null;
 		
 		
 		System.out.println("\n" + s1);
@@ -700,20 +706,29 @@ public class MainClass {
 			String countryFrom=temp[1];
 			String countryTo=temp[2];
 			countryAttacking = mapInstance.getCountryByName(countryFrom);
+
 			countryDefending = mapInstance.getCountryByName(countryTo);
+			System.out.println(countryAttacking.toString());
+			System.out.println(countryDefending.toString());
 			attacker = playerList.get(countryAttacking.getCountryOwner() - 1);
+			defender = playerList.get(countryDefending.getCountryOwner() - 1);
+
+			System.out.println(attacker);
 			
 			if(temp[3].equals("-allout"))
 			{
 				alloutAttack(countryAttacking,countryDefending,attacker,defender);
-			}
-			
-			doAttack(countryAttacking, countryDefending, Integer.parseInt(temp[3]),attacker);
+			}else 
+				doAttack(countryAttacking, countryDefending, Integer.parseInt(temp[3]),attacker);
 			break;
 	
 		case "defend":
-			defender = playerList.get(countryDefending.getCountryOwner() - 1);
+			System.out.println(countryAttacking.toString());
+			System.out.println(countryDefending.toString());
 			
+			System.out.println(defender);
+			
+
 			doDefend(Integer.parseInt(temp[1]), attacker, defender, countryAttacking, countryDefending);
 			break;
 		case "move":

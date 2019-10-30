@@ -77,6 +77,11 @@ public class Player {
 		this.playerName = playerName;
 		this.playerCountries = new ArrayList<Country>();
 		this.playerCards = new ArrayList<Card>();
+		this.diceResult = new ArrayList<>();
+	}
+
+	public Player() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -236,6 +241,10 @@ public class Player {
 	public List<Integer> getDiceResult() {
 		return diceResult;
 	}
+	public void addDiceResult(List<Integer> result) {
+		diceResult.addAll(result);
+	}
+	
 
 	/**
 	 * @param diceResult the diceResult to set
