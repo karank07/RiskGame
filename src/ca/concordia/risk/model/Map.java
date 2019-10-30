@@ -25,7 +25,7 @@ public class Map
 	/**
 	 * Default Constructor
 	 */
-	private Map()
+	public Map()
 	{
 		countries = new HashMap<Integer, Country>();
 		continents = new HashMap<Integer, Continent>();
