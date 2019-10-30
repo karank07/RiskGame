@@ -1,5 +1,6 @@
 package ca.concordia.risk.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.concordia.risk.model.Country;
@@ -66,7 +67,8 @@ public class AttackPhase
 	  
 	  public void attack(Country from, Country to, Player attacker, Player defender) 
 	  {
-		  //list for result of comparison taki movie armies me check ho paye kitne armies move krne hai
+		  //list for result of comparison taki move armies me check ho paye kitne armies move krne hai
+		  List<Integer> attackWins = new ArrayList<Integer>();
 		  int size = attacker.getDiceResult().size() > defender.getDiceResult().size() ? 
 				  attacker.getDiceResult().size() : defender.getDiceResult().size();
 		  for(int i=0;i<size;i++)
@@ -76,12 +78,16 @@ public class AttackPhase
 			  
 			  if(a > d)
 			  {
-				  //defender army minus honi chahiye ///country ke army parameter me kya hona chiye?????
+				  //defender army minus honi chahiye ///country ke army parameter me kya hona chiye?????////////$$$$$$#%#
+				  //defender.remArmies(1);
+				  //attackWins.add(1);
+				  //moveArmies(attacker,from,to,attackWins);
 				  System.out.println("Attacker wins");
 			  }
 			  else
 			  {
 				  //attacker army minus honi chhaiye
+				  //attacker.remArmies(1);
 				  System.out.println("Defender defends");
 			  }
 		  }
@@ -89,7 +95,7 @@ public class AttackPhase
 		  //Call method to move armies :parameter a ya d
 	  }
 	 
-	  public void moveArmies(Player p, Country from, Country to)
+	  public void moveArmies(Player p, Country from, Country to, List<Integer> wins)
 	  {
 		  //check kitne armies min move krne hai
 		  //check ek army from me bachi honi hi chahiye
