@@ -28,25 +28,15 @@ import ca.concordia.risk.view.Console;
  * @author Pranal
  */
 public class MainClass {
-	private String fileName;
-	private String fileData;
-	private FileReader file;
-	BufferedReader br;
-	private List<String> continentString;
-	public static List<Continent> continentList;
-	private List<String> countryString;
-	public static List<Country> countryList;
-	private List<String> BorderString;
 	private FortificationPhase fp;
 	private ReinforcementPhase rp;
 	private StartUpPhase sp;
-	private AttackPhase ap;
 	public static List<Player> playerList;
-	static public HashMap<Integer, Continent> continents;
-	static public HashMap<Integer, Country> countries;
-	static public HashMap<Integer, ArrayList<Integer>> borders;
+	public static HashMap<Integer, Continent> continents;
+	public static HashMap<Integer, Country> countries;
+	public static HashMap<Integer, ArrayList<Integer>> borders;
 	private Map mapInstance;
-
+	AttackPhase ap;
 	private MapOperations mapOperations;
 	private MapWriter mapWriter;
 
@@ -61,112 +51,22 @@ public class MainClass {
 	public static void main(String[] a) throws Exception {
 		new MainClass();
 		c.createConsole();
-
 	}
 
 	public MainClass() {
-		fileData = "";
-		file = null;
-		br = null;
-		playerList = new ArrayList<Player>();
-		continentString = new ArrayList<String>();
-		continentList = new ArrayList<Continent>();
-		countryString = new ArrayList<String>();
-		countryList = new ArrayList<Country>();
-		BorderString = new ArrayList<String>();
 		c = new Console();
 		fp = new FortificationPhase();
 		rp = new ReinforcementPhase();
-		AttackPhase ap = new AttackPhase();
+		ap=new AttackPhase();
 
+		playerList = new ArrayList<Player>();
 		continents = new HashMap<Integer, Continent>();
 		countries = new HashMap<Integer, Country>();
 		borders = new HashMap<Integer, ArrayList<Integer>>();
+		
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
-
-//		Scanner in=new Scanner(System.in);
-//		while(true)
-//		{
-//			String s1=in.nextLine();
-//			phaseDecider(s1);
-
-//
-//		}
-	}
-
-	/**
-	 * This method converts string continent name to continent object
-	 * 
-	 * @param continentString the names of continents
-	 * @param continentList   the list containing the continent entities
-	 */
-	private static void stringToContinent(List<String> continentString, List<Continent> continentList) {
-		String[] temp = new String[3];
-
-		for (String obj : continentString) {
-
-			temp = obj.split(" ");
-
-			Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name, c_value, color
-
-			continentList.add(objContinent);
-
-		}
-
-		for (Continent o : continentList) {
-			System.out.println(o.toString());
-		}
-
-	}
-
-	/**
-	 * This method converts string country name to country object
-	 * 
-	 * @param countryString the names of countries
-	 * @param CountryList   the list of the country objects
-	 */
-	private static void stringToCountry(List<String> countryString, List<Country> CountryList) {
-		String[] temp = new String[3];
-
-		for (String obj : countryString) {
-			temp = obj.split(" ");
-			Country objCountry = new Country(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),
-					Integer.parseInt(temp[3]), Integer.parseInt(temp[4]));
-			CountryList.add(objCountry);
-		}
-
-	}
-
-	/**
-	 * sets the neighbors of the country
-	 * 
-	 * @param countryList  the list of country entities
-	 * @param borderString contains the names of the borders
-	 */
-	private static void setNeigbourCountry(List<Country> countryList, List<String> borderString) {
-		String[] temp2;
-		int[] temp3 = null;
-
-		int k = 0;
-		for (Country obj : countryList) {
-
-			temp2 = borderString.get(k).split(" ");
-			k = k + 1;
-			temp3 = new int[temp2.length];
-			for (int i = 0; i < temp2.length; i++) {
-				temp3[i] = Integer.parseInt(temp2[i]);
-			}
-
-			obj.setNeighbours(temp3);
-
-		}
-
-		for (Country o : countryList) {
-			System.out.println(o.toString());
-
-		}
 
 	}
 
@@ -183,7 +83,10 @@ public class MainClass {
 		}
 		MapValidate mv = new MapValidate();
 		fileName = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
-
+		
+		String fileData="";
+		FileReader file;
+		
 		try {
 			file = new FileReader(fileName);
 			File fileValidate = new File(fileName);
@@ -191,8 +94,11 @@ public class MainClass {
 				errorFlag = "Map invalid!";
 				return;
 			}
-			br = new BufferedReader(file);
 
+			BufferedReader br = new BufferedReader(file);
+			List<String> continentString = new ArrayList<String>();
+			List<String> countryString = new ArrayList<String>();
+			List<String> borderString = new ArrayList<String>();
 			while (fileData != null) {
 				fileData = br.readLine();
 
@@ -203,7 +109,23 @@ public class MainClass {
 						continentString.add(fileData);
 						fileData = br.readLine();
 					}
-					stringToContinent(continentString, continentList);
+					//stringToContinent(continentString, continentList);
+					String[] temp = new String[3];
+					int index=0;
+					for (String obj : continentString) {
+						index++;
+						temp = obj.split(" ");
+
+						Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name, c_value, color
+
+						continents.put(index, objContinent);
+
+					}
+
+					for (Continent o : continents.values()) {
+						System.out.println(o.toString());
+					}
+
 				} else if (fileData.equals("[countries]")) {
 					fileData = br.readLine();
 
@@ -211,25 +133,57 @@ public class MainClass {
 						countryString.add(fileData);
 						fileData = br.readLine();
 					}
-					stringToCountry(countryString, countryList);
+					//stringToCountry(countryString, countryList);
+					String[] temp = new String[3];
+					
+					for (String obj : countryString) {
+						temp = obj.split(" ");
+						Country objCountry = new Country(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),
+								Integer.parseInt(temp[3]), Integer.parseInt(temp[4]));
+						countries.put(objCountry.getCountryNumber(), objCountry);
+					}
+
 				} else if (fileData.equals("[borders]")) {
 					fileData = br.readLine();
 
 					while (fileData != null) {
-						BorderString.add(fileData);
+						borderString.add(fileData);
 						fileData = br.readLine();
 					}
 
-					setNeigbourCountry(countryList, BorderString);
+					//setNeigbourCountry(countries, BorderString);
+					String[] temp2;
+					int[] temp3 = null;
+
+					int k = 0;
+					for (Country obj : countries.values()) {
+			 
+						temp2 = borderString.get(k).split(" ");
+						k = k + 1;
+						temp3 = new int[temp2.length];
+						for (int i = 0; i < temp2.length; i++) {
+							temp3[i] = Integer.parseInt(temp2[i]);
+						}
+
+						obj.setNeighbours(temp3);
+
+					}
+
+					for (Country o : countries.values()) {
+						System.out.println(o.toString());
+
+					}
+
 					break;
 				}
 				errorFlag = "false";
 			}
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
 			errorFlag = "Given Map file doesnot exist!";
+		}
+		finally {
+			
 		}
 
 		phase = "gameplayer";
@@ -315,7 +269,7 @@ public class MainClass {
 		if (!phase.contentEquals("fortify"))
 			return;
 		Country countryTo = null, countryFrom = null;
-		for (Country obj : countryList) {
+		for (Country obj : countries.values()) {
 
 			if (obj.getCountryName().equalsIgnoreCase(from)) {
 				countryFrom = obj;
@@ -345,9 +299,9 @@ public class MainClass {
 	}
 
 	private void showmapForGamePhase() {
-		for (Country c : countryList) {
+		for (Country c : countries.values()) {
 			System.out.println("\nCountry: " + c.getCountryName() + " Continent: "
-					+ continentList.get(c.getContinentID() - 1).getContinentName() + " Country army: "
+					+ continents.get(c.getContinentID() - 1).getContinentName() + " Country army: "
 					+ c.getCountryArmy() + " Owner Name:" + playerList.get(c.getCountryOwner() - 1).getPlayerName()
 					+ " Neighbours :");
 			System.out.print(getNeighboursName(c.getNeighbours()));
@@ -357,7 +311,7 @@ public class MainClass {
 	private List<String> getNeighboursName(int[] neighbours) {
 		List<String> list = new ArrayList();
 		for (int i = 1; i < neighbours.length; i++) {
-			list.add(countryList.get(neighbours[i] - 1).getCountryName());
+			list.add(countries.get(neighbours[i] - 1).getCountryName());
 		}
 		return list;
 	}
@@ -588,7 +542,7 @@ public class MainClass {
 			}
 			phase = "loadmap";
 			mapPhase = "end";
-			fileName = temp[1];
+			String fileName = temp[1];
 			try {
 				readMapFile(fileName);
 			} catch (IOException e1) {
@@ -650,7 +604,7 @@ public class MainClass {
 			populateCountries();
 		case "dividearmies":
 			divideInitialArmies();
-			for (Country c : countryList) {
+			for (Country c : countries.values()) {
 				for (Player p : playerList) {
 					if (c.getCountryOwner() == p.getPlayerId()) {
 						p.setPlayerTotalArmies(p.getPlayerTotalArmies() - 1);
