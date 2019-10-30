@@ -33,17 +33,15 @@ public class MainClass {
 	private FileReader file;
 	BufferedReader br;
 	private List<String> continentString;
-	public static List<Continent> continentList;
 	private List<String> countryString;
-	public static List<Country> countryList;
-	private List<String> BorderString;
+	private List<String> borderString;
 	private FortificationPhase fp;
 	private ReinforcementPhase rp;
 	private StartUpPhase sp;
 	public static List<Player> playerList;
-	public HashMap<Integer, Continent> continents;
-	public HashMap<Integer, Country> countries;
-	public HashMap<Integer, ArrayList<Integer>> borders;
+	public static HashMap<Integer, Continent> continents;
+	public static HashMap<Integer, Country> countries;
+	public static HashMap<Integer, ArrayList<Integer>> borders;
 	private Map mapInstance;
 
 	private MapOperations mapOperations;
@@ -69,10 +67,8 @@ public class MainClass {
 		br = null;
 		playerList = new ArrayList<Player>();
 		continentString = new ArrayList<String>();
-		continentList = new ArrayList<Continent>();
 		countryString = new ArrayList<String>();
-		countryList = new ArrayList<Country>();
-		BorderString = new ArrayList<String>();
+		borderString = new ArrayList<String>();
 		c = new Console();
 		fp = new FortificationPhase();
 		rp = new ReinforcementPhase();
@@ -83,80 +79,6 @@ public class MainClass {
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
-
-	}
-
-	/**
-	 * This method converts string continent name to continent object
-	 * 
-	 * @param continentString the names of continents
-	 * @param continentList   the list containing the continent entities
-	 */
-	private static void stringToContinent(List<String> continentString, List<Continent> continentList) {
-		String[] temp = new String[3];
-
-		for (String obj : continentString) {
-
-			temp = obj.split(" ");
-
-			Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name, c_value, color
-
-			continentList.add(objContinent);
-
-		}
-
-		for (Continent o : continentList) {
-			System.out.println(o.toString());
-		}
-
-	}
-
-	/**
-	 * This method converts string country name to country object
-	 * 
-	 * @param countryString the names of countries
-	 * @param CountryList   the list of the country objects
-	 */
-	private static void stringToCountry(List<String> countryString, List<Country> CountryList) {
-		String[] temp = new String[3];
-
-		for (String obj : countryString) {
-			temp = obj.split(" ");
-			Country objCountry = new Country(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),
-					Integer.parseInt(temp[3]), Integer.parseInt(temp[4]));
-			CountryList.add(objCountry);
-		}
-
-	}
-
-	/**
-	 * sets the neighbors of the country
-	 * 
-	 * @param countryList  the list of country entities
-	 * @param borderString contains the names of the borders
-	 */
-	private static void setNeigbourCountry(List<Country> countryList, List<String> borderString) {
-		String[] temp2;
-		int[] temp3 = null;
-
-		int k = 0;
-		for (Country obj : countryList) {
- 
-			temp2 = borderString.get(k).split(" ");
-			k = k + 1;
-			temp3 = new int[temp2.length];
-			for (int i = 0; i < temp2.length; i++) {
-				temp3[i] = Integer.parseInt(temp2[i]);
-			}
-
-			obj.setNeighbours(temp3);
-
-		}
-
-		for (Country o : countryList) {
-			System.out.println(o.toString());
-
-		}
 
 	}
 
@@ -193,7 +115,23 @@ public class MainClass {
 						continentString.add(fileData);
 						fileData = br.readLine();
 					}
-					stringToContinent(continentString, continentList);
+					//stringToContinent(continentString, continentList);
+					String[] temp = new String[3];
+					int index=0;
+					for (String obj : continentString) {
+						index++;
+						temp = obj.split(" ");
+
+						Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name, c_value, color
+
+						continents.put(index, objContinent);
+
+					}
+
+					for (Continent o : continents.values()) {
+						System.out.println(o.toString());
+					}
+
 				} else if (fileData.equals("[countries]")) {
 					fileData = br.readLine();
 
@@ -201,24 +139,53 @@ public class MainClass {
 						countryString.add(fileData);
 						fileData = br.readLine();
 					}
-					stringToCountry(countryString, countryList);
+					//stringToCountry(countryString, countryList);
+					String[] temp = new String[3];
+					
+					for (String obj : countryString) {
+						temp = obj.split(" ");
+						Country objCountry = new Country(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),
+								Integer.parseInt(temp[3]), Integer.parseInt(temp[4]));
+						countries.put(objCountry.getCountryNumber(), objCountry);
+					}
+
 				} else if (fileData.equals("[borders]")) {
 					fileData = br.readLine();
 
 					while (fileData != null) {
-						BorderString.add(fileData);
+						borderString.add(fileData);
 						fileData = br.readLine();
 					}
 
-					setNeigbourCountry(countryList, BorderString);
+					//setNeigbourCountry(countries, BorderString);
+					String[] temp2;
+					int[] temp3 = null;
+
+					int k = 0;
+					for (Country obj : countries.values()) {
+			 
+						temp2 = borderString.get(k).split(" ");
+						k = k + 1;
+						temp3 = new int[temp2.length];
+						for (int i = 0; i < temp2.length; i++) {
+							temp3[i] = Integer.parseInt(temp2[i]);
+						}
+
+						obj.setNeighbours(temp3);
+
+					}
+
+					for (Country o : countries.values()) {
+						System.out.println(o.toString());
+
+					}
+
 					break;
 				}
 				errorFlag = "false";
 			}
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
 			errorFlag = "Given Map file doesnot exist!";
 		}
 
@@ -304,7 +271,7 @@ public class MainClass {
 		if (!phase.contentEquals("fortify"))
 			return;
 		Country countryTo = null, countryFrom = null;
-		for (Country obj : countryList) {
+		for (Country obj : countries.values()) {
 
 			if (obj.getCountryName().equalsIgnoreCase(from)) {
 				countryFrom = obj;
@@ -334,9 +301,9 @@ public class MainClass {
 	}
 
 	private void showmapForGamePhase() {
-		for (Country c : countryList) {
+		for (Country c : countries.values()) {
 			System.out.println("\nCountry: " + c.getCountryName() + " Continent: "
-					+ continentList.get(c.getContinentID() - 1).getContinentName() + " Country army: "
+					+ continents.get(c.getContinentID() - 1).getContinentName() + " Country army: "
 					+ c.getCountryArmy() + " Owner Name:" + playerList.get(c.getCountryOwner() - 1).getPlayerName()
 					+ " Neighbours :");
 			System.out.print(getNeighboursName(c.getNeighbours()));
@@ -345,9 +312,9 @@ public class MainClass {
 
 
 	private List<String> getNeighboursName(int[] neighbours) {
-		List<String> list = new ArrayList();
+		List<String> list = new ArrayList<String>();
 		for (int i = 1; i < neighbours.length; i++) {
-			list.add(countryList.get(neighbours[i] - 1).getCountryName());
+			list.add(countries.get(neighbours[i] - 1).getCountryName());
 		}
 		return list;
 	}
@@ -579,7 +546,7 @@ public class MainClass {
 			populateCountries();
 		case "dividearmies":
 			divideInitialArmies();
-			for(Country c:countryList)
+			for(Country c:countries.values())
 			{
 				for(Player p:playerList)
 				{

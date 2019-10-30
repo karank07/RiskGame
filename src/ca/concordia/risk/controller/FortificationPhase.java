@@ -14,7 +14,7 @@ import ca.concordia.risk.model.Country;
 public class FortificationPhase {
 	
 
-	MainClass m;
+	
 	boolean adjFlag = false;
 	List<Country> visited = new ArrayList<Country>();
 
@@ -42,14 +42,14 @@ public class FortificationPhase {
 				from.setCountryArmy(from.getCountryArmy() - army);
 				to.setCountryArmy(to.getCountryArmy() + army);
 				System.out.println("\nFortification successful");
-				m.phase = "reinforce";
+				MainClass.phase = "reinforce";
 
 			} else
 				System.out.println("There must be atleast one army in a country!");
 		} else
 			System.out.println("Move not possible");
 		System.out.println("Country and Army Count for Player " + owner);
-		for (Country c : m.countryList) {
+		for (Country c : MainClass.countries.values()) {
 			if (c.getCountryOwner() == owner)
 				System.out.println(c.getCountryName() + " " + c.getCountryArmy());
 
@@ -91,9 +91,9 @@ public class FortificationPhase {
 		if (!arrayContains(listOfNeighbours, to.getCountryNumber())) {
 			visited.add(from);
 			for (int i = 0; i < listOfNeighbours.length; i++) {
-				if (m.countryList.get(i).getCountryOwner() == owner) {
+				if (MainClass.countries.get(i).getCountryOwner() == owner) {
 
-					Country mayBecomeFrom = m.countryList.get(i);
+					Country mayBecomeFrom = MainClass.countries.get(i);
 					if (!visited.contains(mayBecomeFrom)) {
 						searchNeighbors(visited, mayBecomeFrom, to, owner);
 					}
