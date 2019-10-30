@@ -54,6 +54,11 @@ public class Player {
 	 *@param cardExchangeCount- maintains a count of turns in which player has exchanged cards for armies 
 	 */
 	private int cardExchangeCount=0;
+	
+	/**
+	 * @param diceResult stores the list of result of the number of dices rolled for the player
+	 */
+	private List<Integer> diceResult;
 
 	/**
 	 * Constructor to instantiate Player object
@@ -218,6 +223,20 @@ public class Player {
 				playerTotalCountries++;
 			}
 		}
+	}
+
+	/**
+	 * @return the diceResult
+	 */
+	public List<Integer> getDiceResult() {
+		return diceResult;
+	}
+
+	/**
+	 * @param diceResult the diceResult to set
+	 */
+	public void setDiceResult(List<Integer> diceResult) {
+		this.diceResult = diceResult;
 	}
 
 }

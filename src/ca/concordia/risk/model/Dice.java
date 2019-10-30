@@ -30,7 +30,7 @@ public class Dice
     * @param d number of dice
     * @return rollResult the list of the result obtained on rolling the dice
     */
-   public List<Integer> rollDice(int d)
+   public List<Integer> rollDice(int d, Player p )
    
    {
 	   if(d==1)
@@ -45,6 +45,7 @@ public class Dice
 	  
 	   Collections.sort(rollResult);
 	   Collections.reverse(rollResult);
+	   p.setDiceResult(rollResult);
 	   return rollResult;
    }
 }
