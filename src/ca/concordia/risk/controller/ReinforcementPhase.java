@@ -10,8 +10,7 @@ import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
 /**
- * Reinforcement class provides functions to perform Reinforcement phase in Game
- * 
+ * Reinforcement class provides functions to perform Reinforcement phase in Game 
  * @author rohan
  *
  */
@@ -42,7 +41,7 @@ public class ReinforcementPhase {
 		// 1st rule: country/3...if it's less then 3; then assign 3 army minimum
 		player.setPlayerReinforceArmy(
 				(player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3);
-
+ 
 		// 2nd rule: check if player owns all countries of any of the continents
 		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
 			if (player.getPlayerCountries().equals(set_of_contries.get(i))) {
@@ -50,15 +49,15 @@ public class ReinforcementPhase {
 						+ mapInstance.getContinents().get(i).getContinentControlValue());
 
 			}
-		}
+		} 
 		// 3rd rule: if player owns 3 cards and want them to exchange with army
 		// String[] countryNameOfCards = new String[3]; // Initialize when user selects
 		// countirs from thes dropdown menu in
 		// GUI
 		// exchangeCardsForArmy(player, countryNameOfCards);
-		System.out.println("Cannot move! Armies available for player " + player.getPlayerId() + " "
-				+ player.getPlayerName() + " to reinforce: " + player.getPlayerReinforceArmy());
-
+		System.out.println("Cannot move! Armies available for player " + player.getPlayerId() + " " + player.getPlayerName()
+				+ " to reinforce: " + player.getPlayerReinforceArmy());
+		
 		return player.getPlayerReinforceArmy();
 
 	}
@@ -90,96 +89,70 @@ public class ReinforcementPhase {
 	}
 
 	/**
-	 * 
 	 * Method to execute the 3rd rule: to exchange cards with army, and remove those
 	 * cards from player's cardList
 	 * 
-	 * @param player
-	 * @param countOfArtillery
-	 * @param countOfCavalry
-	 * @param countOfInfantry
+	 * @param player for player
+	 * @param countryNameOfCards for cards of country
 	 */
-	private void exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
+	private void exchangeCardsForArmy(Player player, String[] countryNameOfCards) {
+		List<Card> playerCardsList = new ArrayList<Card>();
 
-		// display cards owned by player
-		// Then player will select the card from UI
-		// selected card are given in arguments
+		if (playerCardsList.size() >= 3) {
+			String[] cardType = new String[3];
 
-		if (countOfArtillery <= player.getPlayerCards().get(Card.ARTILLERY)
-				&& countOfCavalry <= player.getPlayerCards().get(Card.CAVALRY)
-				&& countOfInfantry <= player.getPlayerCards().get(Card.INFANTRY)) {
-			// now it's valid card selection
+			// to remove the card later when player exchange it for army
+			int[] used_card_index = new int[3];
 
-			// do exchange cards for army
+			for (int i = 0; i < 3; i++) {
+				for (int j = 0; j < player.getPlayerCards().size(); j++) {
+					if (countryNameOfCards[i]
+							.equals(player.getPlayerCards().get(j).getCountryCard().getCountryName())) {
+						// validCountryCount += 1;
+						cardType[i] = player.getPlayerCards().get(j).getCardType();
 
-			// if user wants to exchange same type of any 3 cards
-			if (countOfArtillery == 3 || countOfCavalry == 0 || countOfInfantry == 0) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
-
-				// remove 3 artillery cards from player's cards
-				player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 3));
-
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 3);
-
-			} else if (countOfArtillery == 0 || countOfCavalry == 3 || countOfInfantry == 0) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
-
-				// remove 3 cavalry cards from player's cards
-				player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 3));
-
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 3);
-
-			} else if (countOfArtillery == 0 || countOfCavalry == 0 || countOfInfantry == 3) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
-
-				// remove 3 Infantry cards from player's cards
-				player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 3));
-
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 3);
-			}
-			// if user wants to exchange 3 different cards
-			else if (countOfArtillery == 1 && countOfCavalry == 1 && countOfInfantry == 1) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
-
-				// remove 1 card of each type from player's cards
-				player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 1));
-				player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 1));
-				player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 1));
-
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 1);
-				MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 1);
-				MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 1);
-
-			} else {
-				System.out.println("cards selection is invalid! Please choose it again");
+						used_card_index[i] = j;
+					}
+				}
 			}
 
+			// now to exchange is validated and initiate the exchange
+			if (cardType[0].equals(Card.INFANTRY) && cardType[1].equals(Card.ARTILLERY)
+					&& cardType[2].equals(Card.CAVALRY)) {
+				player.setPlayerReinforceArmy(
+						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			} else if (cardType[0].equals(Card.INFANTRY) && cardType[1].equals(Card.INFANTRY)
+					&& cardType[2].equals(Card.INFANTRY)) {
+				player.setPlayerReinforceArmy(
+						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			} else if (cardType[0].equals(Card.ARTILLERY) && cardType[1].equals(Card.ARTILLERY)
+					&& cardType[2].equals(Card.ARTILLERY)) {
+				player.setPlayerReinforceArmy(
+						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			} else if (cardType[0].equals(Card.CAVALRY) && cardType[1].equals(Card.CAVALRY)
+					&& cardType[2].equals(Card.CAVALRY)) {
+				player.setPlayerReinforceArmy(
+						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			}
+
+			for (int i = 0; i < 3; i++) {
+				player.getPlayerCards().remove(used_card_index[i]);
+			}
+
+		} else {
+			System.out.println("Exchange is not allowd because you have less than 3 cards!");
 		}
+
+		// increase cardExchangeCount of player object
+		player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
 	}
 
 	/**
 	 * 
-	 * @param player      the player object to be checked whether he owns the given
-	 *                    country
+	 * @param player the player object to be checked whether he owns the given country
 	 * @param countryName the country to be checked
-	 * @return true if the player owns the country
+	 * @return true if the player owns the country 
 	 */
 	private boolean countryBelongsToPlayer(Player player, String countryName) {
 
@@ -197,8 +170,8 @@ public class ReinforcementPhase {
 	 * placed in that country)
 	 * 
 	 * @param countryName for country name
-	 * @param armyNumber  number of armies
-	 * @param player      for player entity
+	 * @param armyNumber number of armies
+	 * @param player for player entity
 	 */
 	public void reinforceArmy(Player player, String countryName, int armyNumber) {
 
@@ -231,11 +204,11 @@ public class ReinforcementPhase {
 		}
 	}
 
-	/**
-	 * 
-	 * @param countryName the country to be assigned an army
-	 * @param armyNumber  the number of armies to be assigned
-	 */
+/**
+ * 
+ * @param countryName the country to be assigned an army
+ * @param armyNumber the number of armies to be assigned
+ */
 	private void PlaceArmy(String countryName, int armyNumber) {
 
 		Country country = mapInstance.getCountryByName(countryName);
