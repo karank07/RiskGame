@@ -1,7 +1,6 @@
 package ca.concordia.risk.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class Player {
 	/**
 	 * @param playerCards -list of cards the player possesses
 	 */
-	private HashMap<String, Integer> playerCards;
+	private List<Card> playerCards;
 
 	/**
 	 * @param player Armies - total armies of the player
@@ -67,7 +66,7 @@ public class Player {
 		this.playerId = playerId;
 		this.playerName = playerName;
 		this.playerCountries = new ArrayList<Country>();
-		this.playerCards = new HashMap<String, Integer>();
+		this.playerCards = new ArrayList<Card>();
 	}
 
 	/**
@@ -115,14 +114,14 @@ public class Player {
 	/**
 	 * @return the playerCards
 	 */
-	public HashMap<String, Integer> getPlayerCards() {
+	public List<Card> getPlayerCards() {
 		return playerCards;
 	}
 
 	/**
 	 * @param playerCards the playerCards to set
 	 */
-	public void setPlayerCards(HashMap<String, Integer> playerCards) {
+	public void setPlayerCards(List<Card> playerCards) {
 		this.playerCards = playerCards;
 	}
 
