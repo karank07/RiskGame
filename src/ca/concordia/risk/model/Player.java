@@ -242,6 +242,7 @@ public class Player {
 		return diceResult;
 	}
 	public void addDiceResult(List<Integer> result) {
+		diceResult.clear();
 		diceResult.addAll(result);
 	}
 	
