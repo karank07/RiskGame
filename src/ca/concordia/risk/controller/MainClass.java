@@ -9,7 +9,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
+import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Map;
@@ -49,6 +51,8 @@ public class MainClass {
 	private MapOperations mapOperations;
 	private MapWriter mapWriter;
 
+	public static HashMap<String, Integer> globalCardDeck;
+
 	static Console c;
 	int currentPlayer = 0;
 	static String phase = "loadmap";
@@ -83,6 +87,8 @@ public class MainClass {
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
+		globalCardDeck = new HashMap<String, Integer>();
+		// globalCardDeck = new ArrayList<Card>();
 
 //		Scanner in=new Scanner(System.in);
 //		while(true)
@@ -149,7 +155,6 @@ public class MainClass {
 
 		int k = 0;
 		for (Country obj : countryList) {
- 
 			temp2 = borderString.get(k).split(" ");
 			k = k + 1;
 			temp3 = new int[temp2.length];
@@ -262,7 +267,7 @@ public class MainClass {
 		if (!phase.contentEquals("populatecountries"))
 			return;
 		sp.populateCountries();
-			phase = "placearmy";
+		phase = "placearmy";
 	}
 
 	/**
@@ -350,7 +355,6 @@ public class MainClass {
 			System.out.print(getNeighboursName(c.getNeighbours()));
 		}
 	}
-
 
 	private List<String> getNeighboursName(int[] neighbours) {
 		List<String> list = new ArrayList();
@@ -528,6 +532,25 @@ public class MainClass {
 			fileName = temp[1];
 			try {
 				readMapFile(fileName);
+				generateDeck();
+
+//				System.out.println("artillery add status: " + addCardToDeck("Artillery"));
+//				System.out.println("calvalery add status: " + addCardToDeck("calvalery"));
+//				System.out.println("cavalry add status: " + addCardToDeck("Cavalry"));
+//				
+//				System.out.println(getDeck());
+
+//				System.out.println(pickUpCardFromDeck().getCardType());
+//				System.out.println(getDeck());
+//				System.out.println(pickUpCardFromDeck().getCardType());
+//				System.out.println(getDeck());
+//				System.out.println(pickUpCardFromDeck().getCardType());
+//				System.out.println(getDeck());
+//				System.out.println(pickUpCardFromDeck().getCardType());
+//				System.out.println(getDeck());
+//				System.out.println(pickUpCardFromDeck().getCardType());
+//				System.out.println(getDeck());
+
 			} catch (IOException e1) {
 				e1.printStackTrace();
 				// set flag for alert("File Not Found!");
@@ -587,26 +610,22 @@ public class MainClass {
 			populateCountries();
 		case "dividearmies":
 			divideInitialArmies();
-			for(Country c:countryList)
-			{
-				for(Player p:playerList)
-				{
-					if(c.getCountryOwner()==p.getPlayerId())
-					{
-						p.setPlayerTotalArmies(p.getPlayerTotalArmies()-1);
+			for (Country c : countryList) {
+				for (Player p : playerList) {
+					if (c.getCountryOwner() == p.getPlayerId()) {
+						p.setPlayerTotalArmies(p.getPlayerTotalArmies() - 1);
 					}
 				}
 			}
 			break;
-		
+
 		case "placearmy":
-			
-		
+
 			if (!phase.contentEquals("placearmy")) {
 				errorFlag = "Invalid command!";
 				return errorFlag;
 			}
-			//currentPlayer=1;
+			// currentPlayer=1;
 			errorFlag = "false";
 			if (temp[1] != "") {
 				placeArmyByCountry(temp[1]);
@@ -692,5 +711,143 @@ public class MainClass {
 			errorFlag = "Check commands again!";
 		}
 		return errorFlag;
+	}
+
+	/**
+	 * This function is generating the global deck of cards of all the type
+	 * gloabalCardArray 0th position value describes: Infantry type of card
+	 * gloabalCardArray 1st position value describes: Cavalry type of card
+	 * gloabalCardArray 2nd position value describes: Artillery type of card
+	 * 
+	 */
+	public void generateDeck() {
+		// System.out.println("in generate deck: :: Countries size: " +
+		// countryList.size());
+		// gloabalCardArray = new int[3];
+
+		// int numberOfTotalCards = countryList.size();
+		int numberOfTotalCards = 40;
+
+		if (numberOfTotalCards > 0) {
+
+			// preparing the global card deck
+			int divison = (int) Math.ceil(numberOfTotalCards / 3);
+			globalCardDeck.put(Card.INFANTRY, Integer.valueOf(divison));
+
+			numberOfTotalCards -= divison;
+			int divison2 = (int) Math.ceil(numberOfTotalCards / 2);
+			globalCardDeck.put(Card.CAVALRY, Integer.valueOf(divison2));
+
+			numberOfTotalCards -= divison2;
+			int divison3 = (int) Math.ceil(numberOfTotalCards);
+			globalCardDeck.put(Card.ARTILLERY, Integer.valueOf(divison3));
+			System.out.println(globalCardDeck);
+
+		}
+
+	}
+
+	public HashMap<String, Integer> getDeck() {
+		return globalCardDeck;
+	}
+
+	public boolean removeCardFromDeck(String cardType) {
+
+		boolean removalSuccess = false;
+		int new_val = 0;
+		switch (cardType) {
+
+		case Card.ARTILLERY:
+			new_val = globalCardDeck.get(Card.ARTILLERY) - 1;
+			globalCardDeck.replace(Card.ARTILLERY, new_val);
+			removalSuccess = true;
+			break;
+
+		case Card.CAVALRY:
+			new_val = globalCardDeck.get(Card.CAVALRY) - 1;
+			globalCardDeck.replace(Card.CAVALRY, new_val);
+			removalSuccess = true;
+			break;
+
+		case Card.INFANTRY:
+			new_val = globalCardDeck.get(Card.INFANTRY) - 1;
+			globalCardDeck.replace(Card.INFANTRY, new_val);
+			removalSuccess = true;
+			break;
+
+		default:
+			removalSuccess = false;
+		}
+
+		return removalSuccess;
+
+	}
+
+	public boolean addCardToDeck(String cardType) {
+
+		boolean additionSuccess = false;
+		int new_val = 0;
+		switch (cardType) {
+
+		case Card.ARTILLERY:
+			new_val = globalCardDeck.get(Card.ARTILLERY) + 1;
+			globalCardDeck.replace(Card.ARTILLERY, new_val);
+			additionSuccess = true;
+			break;
+
+		case Card.CAVALRY:
+			new_val = globalCardDeck.get(Card.CAVALRY) + 1;
+			globalCardDeck.replace(Card.CAVALRY, new_val);
+			additionSuccess = true;
+			break;
+
+		case Card.INFANTRY:
+			new_val = globalCardDeck.get(Card.INFANTRY) + 1;
+			globalCardDeck.replace(Card.INFANTRY, new_val);
+			additionSuccess = true;
+			break;
+
+		default:
+			additionSuccess = false;
+		}
+
+		return additionSuccess;
+
+	}
+
+	/**
+	 * This method is used to pick one card from global card deck
+	 * 
+	 * @return Card object
+	 */
+	public Card pickUpCardFromDeck() {
+		String[] cardTypeArray = { "Artillery", "Cavalry", "Infantry" };
+
+		int pickUpIndex = (new Random().nextInt(cardTypeArray.length));
+		// System.out.println("pickupIndex:" + pickUpIndex);
+		Card card = new Card(cardTypeArray[pickUpIndex]);
+
+		removeCardFromDeck(card.getCardType());
+
+		return card;
+
+	}
+
+	/**
+	 * This method is used to assign card to player
+	 * @param player
+	 * @param card
+	 */
+	public void assignCardToPlayer(Player player, Card card) {
+		if(player.getPlayerCards().containsKey(card.getCardType())) {
+			//if it already contains that type of card than we need to increase to count of that card
+			player.getPlayerCards().replace(card.getCardType(), player.getPlayerCards().get(card.getCardType()) + 1);
+		}
+		else {
+			//add new entry of this type of card
+			player.getPlayerCards().put(card.getCardType(),  1);
+		}
+			
+		removeCardFromDeck(card.getCardType());
 	}
 }
