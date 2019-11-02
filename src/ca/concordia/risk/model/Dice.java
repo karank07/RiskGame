@@ -45,7 +45,7 @@ public class Dice
 	  
 	   Collections.sort(rollResult);
 	   Collections.reverse(rollResult);
-	   p.setDiceResult(rollResult);
+	   p.addDiceResult(rollResult);
 	   return rollResult;
    }
 }

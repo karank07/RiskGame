@@ -14,8 +14,17 @@ public class AttackPhase {
 	Map map = new Map();
 
 	public boolean canAttack(Country from, Country to) {
-		boolean canAttack;
-		canAttack = map.getNeighbourCountries(from).contains(to) && from.getCountryOwner() != to.getCountryOwner()
+		boolean canAttack=false;
+		boolean neighbourFlag=false;
+		System.out.println(from.getCountryArmy());
+		System.out.println(to.getCountryArmy());
+		int[] neighbours=from.getNeighbours();
+		for(int i=0;i<neighbours.length;i++)
+		{
+			if(neighbours[i]==to.getCountryNumber())
+				neighbourFlag=true;
+		}
+		canAttack =neighbourFlag && from.getCountryOwner() != to.getCountryOwner()
 				&& from.getCountryArmy() >= 2 && to.getCountryArmy() > 0 ? true : false;
 		return canAttack;
 	}
@@ -45,10 +54,10 @@ public class AttackPhase {
 	 */
 	public boolean checkDiceRD(int num, Country c) {
 		boolean check = true;
-		if (num > 2)
+		if (num > 2 && num > c.getCountryArmy())
 			check = false;
-		else if (num < 1 || num > c.getCountryArmy() - 1)
-			check = false;
+		else {check=true;}
+
 		return check;
 	}
 
@@ -69,7 +78,7 @@ public class AttackPhase {
 		String resultString = "";
 		List<Integer> attackerWins = new ArrayList<Integer>();
 		List<Integer> defenderWins = new ArrayList<Integer>();
-		int size = attacker.getDiceResult().size() > defender.getDiceResult().size() ? attacker.getDiceResult().size()
+		int size = attacker.getDiceResult().size() < defender.getDiceResult().size() ? attacker.getDiceResult().size()
 				: defender.getDiceResult().size();
 		for (int i = 0; i < size; i++) {
 			int a = attacker.getDiceResult().get(i);
