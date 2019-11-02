@@ -94,7 +94,7 @@ public class MainClass {
 				errorFlag = "Map invalid!";
 				return;
 			}
-
+			
 			BufferedReader br = new BufferedReader(file);
 			List<String> continentString = new ArrayList<String>();
 			List<String> countryString = new ArrayList<String>();
