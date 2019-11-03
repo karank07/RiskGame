@@ -279,9 +279,124 @@ public class MapOperations{
 		{
 			return false;
 		}
-}
-
+	}
+	
+	
+	/**
+	 * This method removes the country specified
+	 * @param countries the hashmap of countries
+	 * @param borders the hashmap of borders
+	 * @param countryName the name of the country to be removed
+	 * @return true if the country is removed else false
+	 */
+	public boolean deleteCountry(HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders , String countryName )
+	{
+		int removeFlag=0;
 		
+		Iterator<Entry<Integer, Country>> iteratorCountry = countries.entrySet().iterator();
+		Iterator<Entry<Integer, ArrayList<Integer>>> iteratorBorder = borders.entrySet().iterator();
+		
+		while(iteratorCountry.hasNext())
+		{
+			Entry<Integer, Country> entryCountry = iteratorCountry.next();
+			Country co = entryCountry.getValue();
+			
+			if(co.getCountryName().equalsIgnoreCase(countryName))
+			{
+				iteratorCountry.remove();
+				removeFlag=1;
+			}
+			
+			while(iteratorBorder.hasNext())
+			{
+				Entry<Integer, ArrayList<Integer>> entryBorder = iteratorBorder.next();
+				ArrayList<Integer> borderList = entryBorder.getValue();
+				
+				if(entryBorder.getKey() == entryCountry.getKey())
+				{
+					iteratorBorder.remove();
+					removeFlag=2;
+				}
+				else
+				{
+					if(borderList.contains(entryCountry.getKey()))
+					{
+						borderList.remove(Integer.valueOf(entryCountry.getKey()));
+					}
+				}
+			}
+		}
+		
+		if(removeFlag == 2)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	
+	/**
+	 * This method removes the neighbour country
+	 * @param countries the hashmap of countries
+	 * @param borders the hashmap of borders
+	 * @param countryName the name of the country
+	 * @param neighbourName the name of the neighbour country
+	 * @return true if the neighbour is removed else false
+	 */
+	public boolean deleteNeighbour(HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String countryName, String neighbourName)
+	{
+		int cNum=0, nNum=0;
+		boolean cFlag=false, nFlag=false;
+		
+		for(int c : countries.keySet())
+		{
+			String str = countries.get(c).getCountryName();
+			if (countryName.equalsIgnoreCase(str))
+			{
+				cNum=c;
+				cFlag=true;
+				break;
+			}
+		}
+		
+		if(cFlag)
+		{
+			for (int p : countries.keySet())
+			{
+				String q = countries.get(p).getCountryName();
+				if(neighbourName.equalsIgnoreCase(q))
+				{
+					nNum=p;
+					nFlag=true;
+					break;
+				}
+			}
+			
+			if(nFlag)
+			{				
+				if(borders.get(cNum).contains(nNum))
+				{
+					borders.get(cNum).remove(Integer.valueOf(nNum));
+					return true;
+				}
+				else
+				{
+					return false;
+				}								
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	/**
 	 * This method checks if the map is connected or not
