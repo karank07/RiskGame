@@ -18,9 +18,9 @@ public class Map
 	public static Map m_instance=null;
 	
 	
-	private static HashMap<Integer, Country> countries;
-	private static HashMap<Integer, Continent> continents;
-	private static HashMap<Integer, ArrayList<Integer>> borders;
+	private HashMap<Integer, Country> countries;
+	private HashMap<Integer, Continent> continents;
+	private HashMap<Integer, ArrayList<Integer>> borders;
 	int continentIndex=0;
 	/**
 	 * Default Constructor
@@ -32,21 +32,13 @@ public class Map
 		borders= new HashMap<Integer, ArrayList<Integer>>();
 	}
 	
-	public void initializeList()
-	{
-		countries.clear();
-		continents.clear();
-		for(Country c:MainClass.countries.values())
-		{
-			countries.put(c.getCountryNumber(), c);
-		}
-		for(Continent c:MainClass.continents.values())
-		{
-			continentIndex++;
-			continents.put(continentIndex, c);
-		}
-	}
-	
+	/*
+	 * public void initializeList() { countries.clear(); continents.clear();
+	 * for(Country c:MainClass.countries.values()) {
+	 * countries.put(c.getCountryNumber(), c); } for(Continent
+	 * c:MainClass.continents.values()) { continentIndex++;
+	 * continents.put(continentIndex, c); } }
+	 */
 	/**
 	 * Only One instance of Map so Singleton
 	 * 
@@ -64,15 +56,15 @@ public class Map
 	}
 
 	public void setCountries(HashMap<Integer, Country> countries) {
-		Map.countries = countries;
+		this.countries = countries;
 	}
 
-	public static HashMap<Integer, Continent> getContinents() {
+	public HashMap<Integer, Continent> getContinents() {
 		return continents;
 	}
 
-	public static void setContinents(HashMap<Integer, Continent> continents) {
-		Map.continents = continents;
+	public void setContinents(HashMap<Integer, Continent> continents) {
+		this.continents = continents;
 	}
 
 	public HashMap<Integer, ArrayList<Integer>> getBorders() {
@@ -128,7 +120,7 @@ public class Map
 	 * @param continentName the name of continent whose countries are to be listed
 	 * @return list of countries in given continent name
 	 */
-	public static List<Country> getCountriesByContinent(String continentName)
+	public List<Country> getCountriesByContinent(String continentName)
 	{
 		int id=0;
 		List<Country> countryList = new ArrayList<Country>();
@@ -167,4 +159,34 @@ public class Map
 		
 		return neighbourCountry;
 	}
+	
+	/**
+	 * Method to make the sets of countries in each continents - will be use later
+	 * to check the 2nd rule of the reinforcement phase.
+	 */
+	public ArrayList<ArrayList<Country>> getCountriesOfContinent () {
+		ArrayList<ArrayList<Country>> set_of_countries;
+		ArrayList<Continent> name_of_continents = new ArrayList<Continent>();
+
+		for (Continent c : getContinents().values()) {
+			name_of_continents.add(c);
+		}
+		set_of_countries = new ArrayList<ArrayList<Country>>(getContinents().size());
+
+		for (int i = 0; i < getContinents().size(); i++) {
+			ArrayList<Country> temp_country_list = new ArrayList<Country>();
+			temp_country_list = (ArrayList<Country>) getCountriesByContinent(name_of_continents.get(i).getContinentName().toString());
+			set_of_countries.add(temp_country_list);
+		}
+		return set_of_countries;
+
+		// printing set of countries
+		/*
+		 * for(ArrayList<Country> c : set_of_contries) {
+		 * System.out.println(c.toString()); }
+		 */
+
+	}
+
+
 }

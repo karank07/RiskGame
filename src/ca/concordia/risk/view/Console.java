@@ -3,11 +3,10 @@ package ca.concordia.risk.view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.io.IOException;
 
 import javax.swing.*;
 
+import ca.concordia.risk.controller.ConsoleViewHandler;
 import ca.concordia.risk.controller.MainClass;
 
 /**
@@ -26,15 +25,16 @@ public class Console implements ActionListener {
  */
 	JButton submit, exit;
 /**
- *  @param m instance of the main class
+ *  @param cvh instance of the ConsoleViewHandler class
  */
-	MainClass m;
+	
+	ConsoleViewHandler cvh;
 
 /**
 * This method creates and sets up a console for getting input commands and displaying messages/alerts accordingly.
 */
 	public void createConsole() {
-		m = new MainClass();
+		cvh=new ConsoleViewHandler();
 		JFrame frame = new JFrame("Console");
 		textField = new JTextField();
 		textField.setBounds(50, 100, 400, 30);
@@ -64,10 +64,9 @@ public class Console implements ActionListener {
  */
 	public void actionPerformed(ActionEvent e) {
 		String s1 = textField.getText();
-		String errorFlag;
-		
+		String errorFlag="no input";
 		if (e.getSource() == submit) {
-			errorFlag=m.phaseDecider(s1);
+			errorFlag=cvh.phaseDecider(s1);
 			if(!errorFlag.contentEquals("false"))
 			{
 				alert(errorFlag);

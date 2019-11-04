@@ -21,7 +21,7 @@ public class Country {
 	/**
 	 * @param countryNumber - for unique Country Number
 	 */
-	private int countryNumber;
+	private int countryID;
 
 	/**
 	 * @param xCo - x coordinate to plot on map
@@ -43,11 +43,7 @@ public class Country {
 	 */
 	private int owner;
 
-	/**
-	 * @param neigbours - list of neighbouring countries
-	 */
-	private int[] neighbours;
-
+	
 	int countryArmy = 0;
 
 	public int getCountryArmy() {
@@ -67,9 +63,9 @@ public class Country {
 	 * @param xCo
 	 * @param yCo
 	 */
-	public Country(int countryNumber, String countryName, int continentID, int xCo, int yCo) {
+	public Country(int countryID, String countryName, int continentID, int xCo, int yCo) {
 		this.countryName = countryName;
-		this.countryNumber = countryNumber;
+		this.countryID= countryID;
 		this.xCo = xCo;
 		this.yCo = yCo;
 		this.continentID = continentID;
@@ -109,15 +105,15 @@ public class Country {
 	/**
 	 * @return the countryNumber
 	 */
-	public int getCountryNumber() {
-		return countryNumber;
+	public int getCountryID() {
+		return countryID;
 	}
 
 	/**
 	 * @param countryNumber the countryNumber to set
 	 */
-	public void setCountryNumber(int countryNumber) {
-		this.countryNumber = countryNumber;
+	public void setCountryID(int countryID) {
+		this.countryID = countryID;
 	}
 
 	/**
@@ -176,39 +172,7 @@ public class Country {
 		this.owner = owner;
 	}
 
-	/**
-	 * @return the neighbours
-	 */
-	public int[] getNeighbours() {
-		return neighbours;
-	}
-
-	/**
-	 * @param neighbours the neighbors to set
-	 */
-	public void setNeighbours(int[] neighbours) {
-
-		this.neighbours = new int[neighbours.length];
-		this.neighbours = neighbours;
-	}
-
-	/**
-	 * Override toString to print data members of country
-	 */
-	public String toString() {
-		return "" + countryNumber + " " + countryName + " " + continentID + " " + xCo + " " + yCo + " "
-				+ Arrays.toString(this.getNeighbours());
-	}
 	
-	/**
-	 *@param owner player to be assigned armies
-	 *@param armies number of armies to be assigned
-	 */
-	public void setOwnerArmy(int owner, int armies ) {
-		this.owner = owner;
-		this.countryArmy = armies;
-		
-	}
 	
 	/**
 	 * @param addN number of armies to be added
@@ -228,7 +192,12 @@ public class Country {
 		this.countryArmy-= n;
 	}
 	
-	
+	/**
+	 * Override toString to print data members of country
+	 */
+	public String toString() {
+		return "" + countryID + " " + countryName + " " + continentID + " " + xCo + " " + yCo + " ";
+	}
 	/*
 	 * Get the continent name of country
 	 * @return returns the continent name of the country.
