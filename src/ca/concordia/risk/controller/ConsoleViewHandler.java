@@ -119,7 +119,7 @@ public class ConsoleViewHandler {
 		case "fortify":
 		case "defend":
 		case "attackmove":
-			main.startGamePhase(inputCommand);
+			errorFlag=main.startGamePhase(inputCommand);
 			break;
 		case "editcontinent":
 			main.editcontinent(inputCommand);

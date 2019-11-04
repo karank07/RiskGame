@@ -465,7 +465,7 @@ public class MainClass {
 	Player attacker = null;
 	Player defender = null;
 
-	public void startGamePhase(String inputCommand) {
+	public String startGamePhase(String inputCommand) {
 
 		String[] commands = inputCommand.split(" ");
 		Player p = playerList.get(getPlayerTurn() - 1);
@@ -474,15 +474,13 @@ public class MainClass {
 		switch (commands[0]) {
 
 		case "reinforce":
-			if (p.getCurrentPhase() != GamePhase.REINFORCEMENT) {
-				errorFlag = "Invalid command!";
-
-			} else
+			if (commands.length == 3 && p.getCurrentPhase() == GamePhase.REINFORCEMENT) {
 				errorFlag = p.reinforceArmy(commands[1], Integer.parseInt(commands[2]));
+				if (p.getPlayerReinforceArmy() == 0) {
+					p.setCurrentPhase(GamePhase.ATTACK);
+				}
 
-			if (p.getPlayerReinforceArmy() == 0) {
-				p.setCurrentPhase(GamePhase.ATTACK);
-			}
+				} else 	errorFlag = "Invalid command!";
 			break;
 		case "attack":
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
@@ -512,7 +510,7 @@ public class MainClass {
 
 			break;
 		case "defend":
-			if (commands.length == 2) {
+			if (commands.length == 2 && p.getCurrentPhase()==GamePhase.ATTACK) {
 				if (!attacker.getDiceResult().isEmpty()) {
 					doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
 					System.out.println(attackResult(countryAttacking, countryDefending, attacker));
@@ -523,22 +521,33 @@ public class MainClass {
 
 			break;
 		case "attackmove":
-			if (commands.length == 2) {
+			if (commands.length == 2 && p.getCurrentPhase()==GamePhase.ATTACK) {
 				if (countryDefending.getCountryArmy() == 0) {
 					moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 				}
-			} else errorFlag="Invalid command!";
+			} else
+				errorFlag = "Invalid command!";
 			break;
 		case "fortify":
-			
-			Country from = mapInstance.getCountryByName(commands[1]);
-			Country to = mapInstance.getCountryByName(commands[2]);
-			p.fortify(from, to, Integer.parseInt(commands[3]));
-			p.setCurrentPhase(GamePhase.REINFORCEMENT);
-			p.setPlayerReinforceArmy(assign_army(p));
-			setNextPlayerTurn();
+			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
+				if (commands.length == 2 && commands[1].equals("none")) {
+					System.out.println("Fortification over!");
+				} else if (commands.length == 4) {
+					Country from = mapInstance.getCountryByName(commands[1]);
+					Country to = mapInstance.getCountryByName(commands[2]);
+					p.fortify(from, to, Integer.parseInt(commands[3]));
+					p.setCurrentPhase(GamePhase.REINFORCEMENT);
+					p.setPlayerReinforceArmy(assign_army(p));
+					setNextPlayerTurn();
+
+				} else
+					errorFlag = "Invalid command!";
+
+			} else
+				errorFlag = "Invalid command!";
 			break;
 		}
+		return errorFlag;
 
 	}
 
