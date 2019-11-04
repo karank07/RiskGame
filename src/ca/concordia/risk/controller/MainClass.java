@@ -495,7 +495,7 @@ public class MainClass {
 				errorFlag="Invalid command!";
 				break;
 			}
-			if(commands[3].equals("-allout")) {
+			if(commands[3].equals("-noattack")) {
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 			}
