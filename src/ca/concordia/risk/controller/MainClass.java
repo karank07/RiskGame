@@ -470,8 +470,7 @@ public class MainClass {
 
 		String[] commands = inputCommand.split(" ");
 		Player p = playerList.get(getPlayerTurn() - 1);
-		System.out.println("player army in startgamephase: " + p.getPlayerTotalArmies());
-
+		
 		switch (commands[0]) {
 
 		case "reinforce":
