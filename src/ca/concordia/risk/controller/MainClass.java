@@ -486,25 +486,33 @@ public class MainClass {
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
 				errorFlag = "Invalid command!";
 
-			} else if (commands.length == 2 && commands[1].equals("-noattack")) {
+			} 
+			
+			else if (commands.length == 2 && commands[1].equals("-noattack")) {
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
 			} else if (commands.length == 4) {
+				
+				if(!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))) {
+					
+					errorFlag = ""+commands[1] + " is not yours!";
+				}else {
+					countryAttacking = mapInstance.getCountryByName(commands[1]);
+					countryDefending = mapInstance.getCountryByName(commands[2]);
 
-				countryAttacking = mapInstance.getCountryByName(commands[1]);
-				countryDefending = mapInstance.getCountryByName(commands[2]);
+					attacker = playerList.get(countryAttacking.getCountryOwner() - 1);
+					defender = playerList.get(countryDefending.getCountryOwner() - 1);
+					if (commands[3].equals("-allout")) {
+						alloutAttack(countryAttacking, countryDefending, attacker, defender);
+						System.out.println(attackResult(countryAttacking, countryDefending, attacker));
 
-				attacker = playerList.get(countryAttacking.getCountryOwner() - 1);
-				defender = playerList.get(countryDefending.getCountryOwner() - 1);
-				if (commands[3].equals("-allout")) {
-					alloutAttack(countryAttacking, countryDefending, attacker, defender);
-					System.out.println(attackResult(countryAttacking, countryDefending, attacker));
-
-				} else {
-					doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
-					System.out.println("Defender's Turn :" + defender.getPlayerName());
+					} else {
+						doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
+						System.out.println("Defender's Turn :" + defender.getPlayerName());
+					}
 				}
+				
 			} else
 				errorFlag = "Invalid command!";
 
