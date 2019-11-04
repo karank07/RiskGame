@@ -54,7 +54,7 @@ public class ConsoleViewHandler {
 			 * if (!phase.contentEquals("gameplayer")) { errorFlag = "Invalid command!";
 			 * return errorFlag; }
 			 */
-			if (commands.length>3 && commands.length % 2 != 0) {
+			if (commands.length>=3 && commands.length % 2 != 0) {
 				errorFlag="false";
 				main.gamePlayer(inputCommand);
 			}
