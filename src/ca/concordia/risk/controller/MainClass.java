@@ -1125,16 +1125,18 @@ public class MainClass {
 	}
 
 	public boolean canAttack(Country from, Country to) {
-		boolean canAttack = false;
-		boolean neighbourFlag = false;
-		System.out.println(from.getCountryArmy());
-		System.out.println(to.getCountryArmy());
 
-		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
-			neighbourFlag = true;
+		boolean canAttack=false;
+		boolean neighbourFlag=false;
+//		System.out.println(from.getCountryArmy());
+//		System.out.println(to.getCountryArmy());
+		
+		if(mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
+			neighbourFlag=true;
+		
+		canAttack =neighbourFlag && from.getCountryOwner() != to.getCountryOwner()
+				&& from.getCountryArmy() >= 2 && to.getCountryArmy() > 0 ? true : false;
 
-		canAttack = neighbourFlag && from.getCountryOwner() != to.getCountryOwner() && from.getCountryArmy() >= 2
-				&& to.getCountryArmy() > 0 ? true : false;
 		return canAttack;
 	}
 
