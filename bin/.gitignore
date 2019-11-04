@@ -1,6 +1,10 @@
+/.classpath
+/.project
+/.settings/
+/Additionaldocuments/
+/LICENSE
+/UMLfiles/
 /doc/
 /ca/
 /maps/
 /test/
-/bin/
-.class

@@ -1108,8 +1108,8 @@ public class MainClass {
 	public boolean canAttack(Country from, Country to) {
 		boolean canAttack=false;
 		boolean neighbourFlag=false;
-		System.out.println(from.getCountryArmy());
-		System.out.println(to.getCountryArmy());
+//		System.out.println(from.getCountryArmy());
+//		System.out.println(to.getCountryArmy());
 		
 		if(mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
 			neighbourFlag=true;
