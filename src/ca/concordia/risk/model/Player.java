@@ -308,10 +308,13 @@ public class Player {
 		List<Integer> defenderWins = new ArrayList<Integer>();
 		int size = this.getDiceResult().size() < defender.getDiceResult().size() ? this.getDiceResult().size()
 				: defender.getDiceResult().size();
+		
+		System.out.println("Attacker rolls: "+this.diceResult);
+		System.out.println("Defender rolls: "+defender.diceResult);
 		for (int i = 0; i < size; i++) {
 			int a = this.getDiceResult().get(i);
 			int d = defender.getDiceResult().get(i);
-
+			
 			if (a > d) {
 
 				defender.remArmies(1);

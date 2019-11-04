@@ -291,8 +291,8 @@ public class MainClass {
 		for (Country country : mapInstance.getCountries().values()) {
 			Player player = playerList.get(j % playerCount);
 			setNewCountryRuler(player, country, 1);
-			HashMap<String, Object> countryPopulated = new HashMap<>();
-			countryPopulated.put("countryName", country.getCountryName());
+//			HashMap<String, Object> countryPopulated = new HashMap<>();
+//			countryPopulated.put("countryName", country.getCountryName());
 			player.setPlayerCountries(player_country_map.get(player));
 		
 			j++;
@@ -355,7 +355,7 @@ public class MainClass {
 		if (co.getCountryArmy() != 0)
 			return false;
 		co.setCountryArmy(armies);
-		pl.setPlayerTotalArmies(pl.getPlayerTotalArmies() - 1);
+		pl.remArmies(1);;
 		mapPlayerToCountry(pl, co);
 		return true;
 
@@ -438,10 +438,10 @@ public class MainClass {
 				Player p = playerList.get(getPlayerTurn()-1);
 				List<Country> playerCountryList = getCountriesConqueredBy(p);
 				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
-				playerList.get(getPlayerTurn() - 1).remArmies(1);
+				p.remArmies(1);
 				randomCountry.addCountryArmies(1);
-				HashMap<String, Object> eventPayload = new HashMap<>();
-				eventPayload.put("countryName", randomCountry.getCountryName());
+//				HashMap<String, Object> eventPayload = new HashMap<>();
+//				eventPayload.put("countryName", randomCountry.getCountryName());
 			} else {
 				playersLeftForAssign--;
 			}
@@ -454,6 +454,7 @@ public class MainClass {
 			}
 		}
 		System.out.println();
+		
 		resetPlayerTurn();
 
 	}
@@ -466,10 +467,11 @@ public class MainClass {
 		
 		String[] commands=inputCommand.split(" ");
 		Player p=playerList.get(getPlayerTurn()-1);
+		System.out.println("player army in startgamephase: "+p.getPlayerTotalArmies());
+		
 		switch(commands[0]) {
 		
 		case "reinforce":
-			
 			p.setPlayerReinforceArmy(assign_army(p));
 			
 			/*
@@ -489,7 +491,14 @@ public class MainClass {
 				errorFlag="Invalid command!";
 				break;
 			}
-			
+			if(inputCommand.length()!=4) {
+				errorFlag="Invalid command!";
+				break;
+			}
+			if(commands[3].equals("-allout")) {
+				System.out.println("Attack Over!");
+				p.setCurrentPhase(GamePhase.FORTIFICATION);
+			}
 			countryAttacking=mapInstance.getCountryByName(commands[1]);
 			countryDefending=mapInstance.getCountryByName(commands[2]);
 			
@@ -498,7 +507,7 @@ public class MainClass {
 			if(commands[3].equals("-allout"))
 			{
 				alloutAttack(countryAttacking,countryDefending,attacker,defender);
-				System.out.println(attackResult(countryAttacking,countryDefending));
+				System.out.println(attackResult(countryAttacking,countryDefending,attacker));
 				
 			}
 			else {
@@ -508,7 +517,7 @@ public class MainClass {
 			break;
 		case "defend":
 				doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
-				System.out.println(attackResult(countryAttacking,countryDefending));
+				System.out.println(attackResult(countryAttacking,countryDefending,attacker));
 				break;
 		case "attackmove":
 				moveArmies(attacker,countryAttacking,countryDefending,Integer.parseInt(commands[1]));
@@ -519,14 +528,14 @@ public class MainClass {
 			Country from=mapInstance.getCountryByName(commands[1]);
 			Country to=mapInstance.getCountryByName(commands[2]);
 			p.fortify(from, to, Integer.parseInt(commands[3]));
-			
+			p.setCurrentPhase(GamePhase.REINFORCEMENT);
 			setNextPlayerTurn();
 			break;
 		}
 		
 	}
 
-	public String attackResult(Country attackingCountry,Country defendingCountry){
+	public String attackResult(Country attackingCountry,Country defendingCountry,Player attacker){
 		if(countryAttacking.getCountryArmy()==1) {
 			return "Defender won!";
 		}

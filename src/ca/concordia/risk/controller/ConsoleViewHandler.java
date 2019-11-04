@@ -102,6 +102,7 @@ public class ConsoleViewHandler {
 			 * if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0) phase =
 			 * "reinforce";
 			 */
+			break;
 		case "reinforce":
 		case "attack":
 		case "fortify":
