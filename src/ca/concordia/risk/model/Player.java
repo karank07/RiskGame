@@ -273,7 +273,7 @@ public class Player {
 		String errorFlag="false";
 		if (currentlyUnplacedArmy > 0) {
 			// check whether entered country name (through console) is valid or not
-			if (main.countryBelongsToPlayer(main.playerList.get(this.getPlayerId()-1), countryName)) {
+			if (main.countryBelongsToPlayer(this, countryName)) {
 
 				if (armyNumber <= currentlyUnplacedArmy) {
 
@@ -293,7 +293,7 @@ public class Player {
 		}
 
 		// Printing LOG _ The status of new army with number of army it contains
-		for (int i = -0; i < this.getPlayerTotalCountries(); i++) {
+		for (int i = 0; i < this.getPlayerTotalCountries(); i++) {
 			System.out.println("Country: " + this.getPlayerCountries().get(i).getCountryName() + "-->>"
 					+ this.getPlayerCountries().get(i).getCountryArmy());
 		}
@@ -317,16 +317,14 @@ public class Player {
 			
 			if (a > d) {
 
-				defender.remArmies(1);
-				to.setCountryArmy(to.getCountryArmy() - 1);
+				to.remCountryArmies(1);
 				attackerWins.add(1);
 				this.setDiceWins(attackerWins);
 			} else {
 
-				this.remArmies(1);
 				defenderWins.add(1);
 				defender.setDiceWins(defenderWins);
-				from.setCountryArmy(from.getCountryArmy() - 1);
+				from.remCountryArmies(1);
 			}
 		}
 
@@ -356,23 +354,16 @@ public class Player {
 		System.out.println("player " + this.getPlayerId());
 		if (adjFlag) {
 			if (from.getCountryArmy() - army >= 1) {
-				from.setCountryArmy(from.getCountryArmy() - army);
-				to.setCountryArmy(to.getCountryArmy() + army);
+				from.remCountryArmies(army);
+				to.addCountryArmies(army);
 				System.out.println("\nFortification successful");
-				//MainClass.phase = "reinforce";
+				
 
 			} else
 				System.out.println("There must be atleast one army in a country!");
 		} else
 			System.out.println("Move not possible");
-		System.out.println("Country and Army Count for Player " + this.getPlayerId());
-		/*
-		 * for (Country c : mapInstance.getCountries().values()) { if
-		 * (c.getCountryOwner() == owner) System.out.println(c.getCountryName() + " " +
-		 * c.getCountryArmy());
-		 * 
-		 * }
-		 */
+		
 	}
 	
 	public void setCurrentPhase(GamePhase phase) {

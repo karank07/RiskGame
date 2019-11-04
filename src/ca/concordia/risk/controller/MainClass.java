@@ -433,12 +433,13 @@ public class MainClass {
 
 		while (playersLeftForAssign > 0) {
 
-			if (playerList.get(getPlayerTurn() % playerList.size()).getPlayerTotalArmies() > 0) {
+			Player p = playerList.get(getPlayerTurn() - 1);
+			if (p.getPlayerTotalArmies() > 0) {
 
-				Player p = playerList.get(getPlayerTurn() - 1);
 				List<Country> playerCountryList = getCountriesConqueredBy(p);
 				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
 				p.remArmies(1);
+				System.out.println("player armies in placeall: "+p.getPlayerTotalArmies());
 				randomCountry.addCountryArmies(1);
 //				HashMap<String, Object> eventPayload = new HashMap<>();
 //				eventPayload.put("countryName", randomCountry.getCountryName());
