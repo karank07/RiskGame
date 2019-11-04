@@ -487,17 +487,19 @@ public class MainClass {
 			p.setCurrentPhase(GamePhase.ATTACK);
 			break;
 		case "attack":
-			if(p.getCurrentPhase()!=GamePhase.ATTACK) {
-				errorFlag="Invalid command!";
-				break;
-			}
-			if(inputCommand.length()!=4) {
-				errorFlag="Invalid command!";
-				break;
-			}
-			if(commands[3].equals("-noattack")) {
+//			if(p.getCurrentPhase()!=GamePhase.ATTACK) {
+//				errorFlag="Invalid command!";
+//				break;
+//			}
+//			
+			if(inputCommand.length()==2 && commands[1].equals("-noattack")) {
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
+				break;
+			}
+			else if(inputCommand.length()!=4) {
+				errorFlag="Invalid command!";
+				break;
 			}
 			countryAttacking=mapInstance.getCountryByName(commands[1]);
 			countryDefending=mapInstance.getCountryByName(commands[2]);
