@@ -17,31 +17,36 @@ public class ConsoleViewHandler {
 	public static void main(String[] args) {
 		c = new Console();
 		c.createConsole();
-		
+
 	}
-	public ConsoleViewHandler(){
-		main=new MainClass();
-		
+
+	public ConsoleViewHandler() {
+		main = new MainClass();
+
 	}
 
 	public String phaseDecider(String inputCommand) {
-		inputCommand=inputCommand.toLowerCase();
+		inputCommand = inputCommand.toLowerCase();
 		System.out.println(inputCommand);
 		String[] commands = inputCommand.split(" ");
 		String errorFlag = "false";
-		
+
 		switch (commands[0]) {
 		case "loadmap":
 			/*
 			 * if (!phase.contentEquals("loadmap")) { errorFlag = "Invalid command!"; return
 			 * errorFlag; } phase = "loadmap"; mapPhase = "end";
 			 */
-			String fileName = commands[1];
-			try {
-				main.readMapFile(fileName);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			if (commands.length == 2) {
+				String fileName = commands[1];
+				try {
+					main.readMapFile(fileName);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			} else
+				errorFlag = "Invalid command!";
 			break;
 
 		case "gameplayer":
@@ -49,7 +54,11 @@ public class ConsoleViewHandler {
 			 * if (!phase.contentEquals("gameplayer")) { errorFlag = "Invalid command!";
 			 * return errorFlag; }
 			 */
-			main.gamePlayer(inputCommand);
+			if (commands.length>3 && commands.length % 2 != 0) {
+				errorFlag="false";
+				main.gamePlayer(inputCommand);
+			}
+			else errorFlag="Invalid command!";
 			break;
 
 		case "populatecountries":
@@ -61,15 +70,12 @@ public class ConsoleViewHandler {
 			 * if (!phase.contentEquals("populatecountries")) { errorFlag =
 			 * "Invalid command!"; return errorFlag; }
 			 */
-			errorFlag = "false";
-			main.startupPhase();
-			
-		case "dividearmies":
-			/*
-			 * main.divideInitialArmies(); for (Country c : countries.values()) { for
-			 * (Player p : playerList) { if (c.getCountryOwner() == p.getPlayerId()) {
-			 * p.setPlayerTotalArmies(p.getPlayerTotalArmies() - 1); } } }
-			 */
+			if (commands.length == 1) {
+				errorFlag = "false";
+				main.startupPhase();
+
+			} else
+				errorFlag = "Invalid command!";
 			break;
 
 		case "placearmy":
@@ -79,12 +85,13 @@ public class ConsoleViewHandler {
 			 * return errorFlag; }
 			 */
 			// currentPlayer=1;
-			errorFlag = "false";
-			if (commands[1] != "") {
-				errorFlag=main.placeArmyByCountryName(commands[1]);
+
+			if (commands.length == 2) {
+				errorFlag = "false";
+				errorFlag = main.placeArmyByCountryName(commands[1]);
 			} else {
 				errorFlag = "Check the country name entered!";
-			} 
+			}
 			/*
 			 * if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0) placeArmyFlag
 			 * = true;
@@ -96,8 +103,12 @@ public class ConsoleViewHandler {
 			 * if (!phase.contentEquals("placearmy")) { errorFlag = "Invalid command!";
 			 * return errorFlag; }
 			 */
-			errorFlag = "false";
-			main.placeAll();
+			if (commands.length == 1) {
+				errorFlag = "false";
+				main.placeAll();
+				
+			} else
+				errorFlag = "Invalid command!";
 			/*
 			 * if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0) phase =
 			 * "reinforce";
@@ -108,7 +119,7 @@ public class ConsoleViewHandler {
 		case "fortify":
 		case "defend":
 		case "attackmove":
-			main.startGamePhase(inputCommand);
+			errorFlag=main.startGamePhase(inputCommand);
 			break;
 		case "editcontinent":
 			main.editcontinent(inputCommand);
@@ -139,7 +150,7 @@ public class ConsoleViewHandler {
 			break;
 
 		case "showmap":
-			//if (!mapPhase.contentEquals("end")) {
+			// if (!mapPhase.contentEquals("end")) {
 			main.showmap();
 			break;
 		case "validatemap":
@@ -158,7 +169,7 @@ public class ConsoleViewHandler {
 			errorFlag = "Check commands again!";
 		}
 		return errorFlag;
-	
+
 	}
-	
+
 }
