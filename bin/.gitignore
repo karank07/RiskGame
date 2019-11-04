@@ -1,7 +1,5 @@
-
-
+/.metadata/
+/.gitignore
 /ca/
 /d/
-/doc/
-/maps/
 /test/
