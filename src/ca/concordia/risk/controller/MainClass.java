@@ -43,9 +43,8 @@ public class MainClass {
 	private boolean gamePlayerSet = false;
 	private boolean placeArmyFlag = false;
 	public static String errorFlag = "false";
-	
-	public static MainClass main_instance=null;
-	
+
+	public static MainClass main_instance = null;
 
 	boolean adjFlag = false;
 	List<Country> visited = new ArrayList<Country>();
@@ -53,9 +52,8 @@ public class MainClass {
 	/**
 	 * @param player_country_map a hash-map for a player and its owned countries
 	 */
-	private static  HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
+	private static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
 	public static HashMap<String, Integer> globalCardDeck;
-
 
 	static int playerTurn = 0;// place army
 
@@ -69,13 +67,13 @@ public class MainClass {
 		mapWriter = new MapWriter();
 
 	}
+
 	public static MainClass getM_instance() {
 		if (main_instance == null) {
 			main_instance = new MainClass();
 		}
 		return main_instance;
 	}
-
 
 	/**
 	 * reads the map file to be loaded
@@ -294,7 +292,7 @@ public class MainClass {
 //			HashMap<String, Object> countryPopulated = new HashMap<>();
 //			countryPopulated.put("countryName", country.getCountryName());
 			player.setPlayerCountries(player_country_map.get(player));
-		
+
 			j++;
 		}
 
@@ -304,7 +302,7 @@ public class MainClass {
 			for (Country c : player_country_map.get(p)) {
 				System.out.println(c.getCountryName());
 			}
-
+			p.setPlayerReinforceArmy(assign_army(p));
 		}
 	}
 
@@ -355,7 +353,8 @@ public class MainClass {
 		if (co.getCountryArmy() != 0)
 			return false;
 		co.setCountryArmy(armies);
-		pl.remArmies(1);;
+		pl.remArmies(1);
+		;
 		mapPlayerToCountry(pl, co);
 		return true;
 
@@ -374,9 +373,9 @@ public class MainClass {
 		}
 		cList.add(c);
 		player_country_map.put(p, cList);
-		
 
 	}
+
 	/**
 	 * 
 	 * @param p player whose conquered countries are to be known
@@ -393,8 +392,8 @@ public class MainClass {
 	 * @param countryName the country to be assigned armies
 	 */
 	public String placeArmyByCountryName(String countryName) {
-		if (playerList.get(getPlayerTurn() - 1).getPlayerTotalArmies() > 0) {
-			Player p = playerList.get(getPlayerTurn() - 1);
+		Player p = playerList.get(getPlayerTurn() - 1);
+		if (p.getPlayerTotalArmies() > 0) {
 			Country c1 = mapInstance.getCountryByName(countryName);
 			List<Country> playerCountryList = getCountriesConqueredBy(p);
 			for (Country obj : playerCountryList) {
@@ -402,21 +401,22 @@ public class MainClass {
 					c1.addCountryArmies(1);
 					playerList.get(p.getPlayerId() - 1).setPlayerTotalArmies(p.getPlayerTotalArmies() - 1);
 					System.out.println("Remaining Armies: " + p.getPlayerTotalArmies());
-					errorFlag="false";
+					errorFlag = "false";
 					break;
 
 				} else
 					errorFlag = "Not your country!";
-				
+				if (p.getPlayerTotalArmies() == 0) {
+					p.setCurrentPhase(GamePhase.REINFORCEMENT);
+				}
 			}
 
 		} else {
 			errorFlag = "No armies left!";
 		}
-		if(errorFlag.equals("false"))
-		{
+		if (errorFlag.equals("false")) {
 			setNextPlayerTurn();
-			if(playerList.get(playerTurn).getPlayerTotalArmies()==0) {
+			if (playerList.get(playerTurn).getPlayerTotalArmies() == 0) {
 				resetPlayerTurn();
 			}
 		}
@@ -432,10 +432,10 @@ public class MainClass {
 		int playersLeftForAssign = playerList.size();
 
 		while (playersLeftForAssign > 0) {
-			
+
 			if (playerList.get(getPlayerTurn() % playerList.size()).getPlayerTotalArmies() > 0) {
 
-				Player p = playerList.get(getPlayerTurn()-1);
+				Player p = playerList.get(getPlayerTurn() - 1);
 				List<Country> playerCountryList = getCountriesConqueredBy(p);
 				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
 				p.remArmies(1);
@@ -448,138 +448,142 @@ public class MainClass {
 			setNextPlayerTurn();
 		}
 		for (Player p : playerList) {
+			p.setCurrentPhase(GamePhase.REINFORCEMENT);
 			System.out.println("\nFor player : " + p.getPlayerId() + " " + p.getPlayerName());
 			for (Country c : player_country_map.get(p)) {
 				System.out.println("Owns Country : " + c.getCountryName() + " and has Armies : " + c.getCountryArmy());
 			}
 		}
 		System.out.println();
-		
+
 		resetPlayerTurn();
 
 	}
-	Country countryAttacking=null; 
-	Country countryDefending=null;
-	Player attacker=null;
-	Player defender=null;
-	
+
+	Country countryAttacking = null;
+	Country countryDefending = null;
+	Player attacker = null;
+	Player defender = null;
+
 	public void startGamePhase(String inputCommand) {
-		
-		String[] commands=inputCommand.split(" ");
-		Player p=playerList.get(getPlayerTurn()-1);
-		System.out.println("player army in startgamephase: "+p.getPlayerTotalArmies());
-		
-		switch(commands[0]) {
-		
+
+		String[] commands = inputCommand.split(" ");
+		Player p = playerList.get(getPlayerTurn() - 1);
+		System.out.println("player army in startgamephase: " + p.getPlayerTotalArmies());
+
+		switch (commands[0]) {
+
 		case "reinforce":
-			p.setPlayerReinforceArmy(assign_army(p));
-			
-			/*
-			 * if (!phase.contentEquals("reinforce")) return;
-			 */
-			
-			errorFlag=p.reinforceArmy(commands[1], Integer.parseInt(commands[2]));
-			
-			/*
-			 * if (playerList.get(currentPlayer - 1).getPlayerReinforceArmy() == 0) { phase
-			 * = "fortify"; }
-			 */
-			p.setCurrentPhase(GamePhase.ATTACK);
+			if (p.getCurrentPhase() != GamePhase.REINFORCEMENT) {
+				errorFlag = "Invalid command!";
+
+			} else
+				errorFlag = p.reinforceArmy(commands[1], Integer.parseInt(commands[2]));
+
+			if (p.getPlayerReinforceArmy() == 0) {
+				p.setCurrentPhase(GamePhase.ATTACK);
+			}
 			break;
 		case "attack":
-//			if(p.getCurrentPhase()!=GamePhase.ATTACK) {
-//				errorFlag="Invalid command!";
-//				break;
-//			}
-//			
-			if(inputCommand.length()==2 && commands[1].equals("-noattack")) {
+			if (p.getCurrentPhase() != GamePhase.ATTACK) {
+				errorFlag = "Invalid command!";
+
+			} else if (commands.length == 2 && commands[1].equals("-noattack")) {
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
-				break;
-			}
-			else if(inputCommand.length()!=4) {
-				errorFlag="Invalid command!";
-				break;
-			}
-			countryAttacking=mapInstance.getCountryByName(commands[1]);
-			countryDefending=mapInstance.getCountryByName(commands[2]);
-			
-			attacker = playerList.get(countryAttacking.getCountryOwner() - 1);
-			defender = playerList.get(countryDefending.getCountryOwner() - 1);
-			if(commands[3].equals("-allout"))
-			{
-				alloutAttack(countryAttacking,countryDefending,attacker,defender);
-				System.out.println(attackResult(countryAttacking,countryDefending,attacker));
-				
-			}
-			else {
-				doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
-				System.out.println("Defender's Turn :"+defender.getPlayerName());
-			}
+
+			} else if (commands.length == 4) {
+
+				countryAttacking = mapInstance.getCountryByName(commands[1]);
+				countryDefending = mapInstance.getCountryByName(commands[2]);
+
+				attacker = playerList.get(countryAttacking.getCountryOwner() - 1);
+				defender = playerList.get(countryDefending.getCountryOwner() - 1);
+				if (commands[3].equals("-allout")) {
+					alloutAttack(countryAttacking, countryDefending, attacker, defender);
+					System.out.println(attackResult(countryAttacking, countryDefending, attacker));
+
+				} else {
+					doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
+					System.out.println("Defender's Turn :" + defender.getPlayerName());
+				}
+			} else
+				errorFlag = "Invalid command!";
+
 			break;
 		case "defend":
-				doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
-				System.out.println(attackResult(countryAttacking,countryDefending,attacker));
-				break;
+			if (commands.length == 2) {
+				if (!attacker.getDiceResult().isEmpty()) {
+					doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
+					System.out.println(attackResult(countryAttacking, countryDefending, attacker));
+				} else
+					errorFlag = "wait for attacker's turn";
+			} else
+				errorFlag = "Invalid flag!";
+
+			break;
 		case "attackmove":
-				moveArmies(attacker,countryAttacking,countryDefending,Integer.parseInt(commands[1]));
-				break;
+			if (commands.length == 2) {
+				if (countryDefending.getCountryArmy() == 0) {
+					moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
+				}
+			} else errorFlag="Invalid command!";
+			break;
 		case "fortify":
 			
-			
-			Country from=mapInstance.getCountryByName(commands[1]);
-			Country to=mapInstance.getCountryByName(commands[2]);
+			Country from = mapInstance.getCountryByName(commands[1]);
+			Country to = mapInstance.getCountryByName(commands[2]);
 			p.fortify(from, to, Integer.parseInt(commands[3]));
 			p.setCurrentPhase(GamePhase.REINFORCEMENT);
+			p.setPlayerReinforceArmy(assign_army(p));
 			setNextPlayerTurn();
 			break;
 		}
-		
+
 	}
 
-	public String attackResult(Country attackingCountry,Country defendingCountry,Player attacker){
-		if(countryAttacking.getCountryArmy()==1) {
+	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
+		if (countryAttacking.getCountryArmy() == 1) {
 			return "Defender won!";
-		}
-		else if(countryDefending.getCountryArmy()==0) {
+		} else if (countryDefending.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, countryDefending);
-			unmapPlayerToCountry(defender,countryDefending);
+			unmapPlayerToCountry(defender, countryDefending);
 			return "Attacker won! Country conquered";
-			
-		}
-		else return "";
+
+		} else
+			return "continue attacking?";
 	}
 
 	private void unmapPlayerToCountry(Player player, Country country) {
 		player_country_map.get(player).remove(country);
 	}
+
 	void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
-		if(!checkDiceRD(numDice, countryDefending )){
-			errorFlag="invalid defender dice";
+		if (!checkDiceRD(numDice, countryDefending)) {
+			errorFlag = "invalid defender dice";
 			return;
 		}
 		roll(defender, numDice);
 		attacker.attack(countryAttacking, countryDefending, defender);
 	}
-	
-	
 
 	public int assign_army(Player player) {
 		int reinforceAmry;
-		
+
 		// 1st rule: country/3...if it's less then 3; then assign 3 army minimum
-		reinforceAmry=(player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3;
+		reinforceAmry = (player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3;
 
 		// 2nd rule: check if player owns all countries of any of the continents
 		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
 			if (player.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
-				reinforceAmry=reinforceAmry+ mapInstance.getContinents().get(i).getContinentControlValue();
+				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i).getContinentControlValue();
 			}
 		}
-		
+
 		return reinforceAmry;
 
 	}
+
 	/**
 	 * 
 	 * Method to execute the 3rd rule: to exchange cards with army, and remove those
@@ -673,14 +677,13 @@ public class MainClass {
 	 * @return true if the player owns the country
 	 */
 	public boolean countryBelongsToPlayer(Player player, String countryName) {
-		if(player_country_map.get(player).contains(mapInstance.getCountryByName(countryName)))
-				return true;
-		else return false;
-		
-		
+		if (player_country_map.get(player).contains(mapInstance.getCountryByName(countryName)))
+			return true;
+		else
+			return false;
+
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param countryName the country to be assigned an army
@@ -814,65 +817,63 @@ public class MainClass {
 
 	/**
 	 * This method is used to assign card to player
+	 * 
 	 * @param player
 	 * @param card
 	 */
 	public void assignCardToPlayer(Player player, Card card) {
-		if(player.getPlayerCards().containsKey(card.getCardType())) {
-			//if it already contains that type of card than we need to increase to count of that card
+		if (player.getPlayerCards().containsKey(card.getCardType())) {
+			// if it already contains that type of card than we need to increase to count of
+			// that card
 			player.getPlayerCards().replace(card.getCardType(), player.getPlayerCards().get(card.getCardType()) + 1);
+		} else {
+			// add new entry of this type of card
+			player.getPlayerCards().put(card.getCardType(), 1);
 		}
-		else {
-			//add new entry of this type of card
-			player.getPlayerCards().put(card.getCardType(),  1);
-		}
-			
+
 		removeCardFromDeck(card.getCardType());
 	}
 
-	
-	void alloutAttack(Country countryAttacking, Country countryDefending,Player attacker,Player defender) {
-		int numDice=3;
-		while(countryAttacking.getCountryArmy()>1 && countryDefending.getCountryArmy()>0) {
-			numDice=(numDice<=countryAttacking.getCountryArmy()-1)?3:countryAttacking.getCountryArmy()-1;
+	void alloutAttack(Country countryAttacking, Country countryDefending, Player attacker, Player defender) {
+		int numDice = 3;
+		while (countryAttacking.getCountryArmy() > 1 && countryDefending.getCountryArmy() > 0) {
+			numDice = (numDice <= countryAttacking.getCountryArmy() - 1) ? 3 : countryAttacking.getCountryArmy() - 1;
 			if (!canAttack(countryAttacking, countryDefending)) {
 				return;
 			}
 			if (!checkDiceRA(numDice, countryAttacking)) {
 				return;
 			}
-			System.out.println("numDice for attacker: "+numDice);
-			roll(attacker,numDice);
+			System.out.println("numDice for attacker: " + numDice);
+			roll(attacker, numDice);
 			System.out.println(attacker.getDiceResult());
-			numDice=2;
-			
-			numDice=(numDice<=countryDefending.getCountryArmy())?numDice:1;
-			if(!checkDiceRD(numDice, countryDefending )){
+			numDice = 2;
+
+			numDice = (numDice <= countryDefending.getCountryArmy()) ? numDice : 1;
+			if (!checkDiceRD(numDice, countryDefending)) {
 				return;
 			}
-			System.out.println("numDice for defender: "+numDice);
+			System.out.println("numDice for defender: " + numDice);
 			roll(defender, numDice);
 			System.out.println(defender.getDiceResult());
-			attacker.attack(countryAttacking, countryDefending,  defender);
-	
+			attacker.attack(countryAttacking, countryDefending, defender);
+
 		}
 	}
 
-	void doAttack(Country countryAttacking, Country countryDefending, int numDice,Player attacker) {
-		
+	void doAttack(Country countryAttacking, Country countryDefending, int numDice, Player attacker) {
+
 		if (!canAttack(countryAttacking, countryDefending)) {
-			errorFlag="invalid attack";
+			errorFlag = "invalid attack";
 			return;
 		}
 
 		if (!checkDiceRA(numDice, countryAttacking)) {
-			errorFlag="invalid attacker dice";
+			errorFlag = "invalid attacker dice";
 			return;
 		}
-		roll(attacker,numDice);
+		roll(attacker, numDice);
 	}
-
-	
 
 	/**
 	 * Fortification base method
@@ -896,7 +897,7 @@ public class MainClass {
 			}
 
 		}
-		playerList.get(playerTurn-1).fortify(countryFrom, countryTo, army);
+		playerList.get(playerTurn - 1).fortify(countryFrom, countryTo, army);
 	}
 
 	/**
@@ -960,31 +961,29 @@ public class MainClass {
 
 	public void showmapForMapPhase() {
 		for (Country c : mapInstance.getCountries().values()) {
-			System.out.println("\nCountry: " + c.getCountryName() + 
-					" || Continent: " + mapInstance.getContinents().get(c.getContinentID()).getContinentName() 
-					+ " ||\nNeighbours :");
-				showNeighbors(c) ;
+			System.out.println("\nCountry: " + c.getCountryName() + " || Continent: "
+					+ mapInstance.getContinents().get(c.getContinentID()).getContinentName() + " ||\nNeighbours :");
+			showNeighbors(c);
 		}
 	}
 
 	public void showmapForGamePhase() {
-		
+
 		for (Country c : mapInstance.getCountries().values()) {
-			System.out.println("\nCountry: " + c.getCountryName() + 
-					" || Continent: " + mapInstance.getContinents().get(c.getContinentID()).getContinentName() 
-					+ " || Country army: "+ c.getCountryArmy() 
-					+ " || Owner Name:" + playerList.get(c.getCountryOwner() - 1).getPlayerName()
+			System.out.println("\nCountry: " + c.getCountryName() + " || Continent: "
+					+ mapInstance.getContinents().get(c.getContinentID()).getContinentName() + " || Country army: "
+					+ c.getCountryArmy() + " || Owner Name:" + playerList.get(c.getCountryOwner() - 1).getPlayerName()
 					+ " ||\nNeighbours :");
-				showNeighbors(c) ;
+			showNeighbors(c);
 
 		}
 	}
-	
+
 	public void showNeighbors(Country c) {
-		for(int b : mapInstance.getBorders().get(c.getCountryID())) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
-		
+
 	}
 
 	public void validatemap() {
@@ -1115,18 +1114,18 @@ public class MainClass {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean canAttack(Country from, Country to) {
-		boolean canAttack=false;
-		boolean neighbourFlag=false;
+		boolean canAttack = false;
+		boolean neighbourFlag = false;
 		System.out.println(from.getCountryArmy());
 		System.out.println(to.getCountryArmy());
-		
-		if(mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
-			neighbourFlag=true;
-		
-		canAttack =neighbourFlag && from.getCountryOwner() != to.getCountryOwner()
-				&& from.getCountryArmy() >= 2 && to.getCountryArmy() > 0 ? true : false;
+
+		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
+			neighbourFlag = true;
+
+		canAttack = neighbourFlag && from.getCountryOwner() != to.getCountryOwner() && from.getCountryArmy() >= 2
+				&& to.getCountryArmy() > 0 ? true : false;
 		return canAttack;
 	}
 
@@ -1157,7 +1156,9 @@ public class MainClass {
 		boolean check = true;
 		if (num > 2 && num > c.getCountryArmy())
 			check = false;
-		else {check=true;}
+		else {
+			check = true;
+		}
 
 		return check;
 	}
@@ -1175,19 +1176,19 @@ public class MainClass {
 	}
 
 	public void moveArmies(Player p, Country from, Country to, int numOfArmies) {
-		System.out.println("from army before: "+from.getCountryArmy());
+		System.out.println("from army before: " + from.getCountryArmy());
 		if (numOfArmies >= p.getDiceWins().size() && (from.getCountryArmy() - numOfArmies) > 1) {
 			from.setCountryArmy(from.getCountryArmy() - numOfArmies);
 			to.setCountryArmy(to.getCountryArmy() + numOfArmies);
 			p.setPlayerTotalCountries(p.getPlayerTotalCountries() + 1);
 			p.getPlayerCountries().add(to);
-			
+
 //			  if(map.getCountriesByContinent(MainClass.continents.get(to.getContinentID()-1).getContinentName()).equals(p.getPlayerCountries())) {
 //				  
 //			  }
 
 		}
-		System.out.println("from army: "+from.getCountryArmy());
+		System.out.println("from army: " + from.getCountryArmy());
 		System.out.println(to.getCountryArmy());
 
 		// CHANGE THE LIST OF COUNTRY IN MAP PLAYER/////
@@ -1196,9 +1197,6 @@ public class MainClass {
 
 	// Continue till attacker says NOATTACK
 	// Successful attack pr check kro about continent conquered or not and CARD
-
-
-	
 
 	/**
 	 * 
