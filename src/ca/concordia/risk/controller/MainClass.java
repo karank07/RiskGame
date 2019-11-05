@@ -185,7 +185,7 @@ public class MainClass {
 			return;
 		}
 		MapValidate mv = new MapValidate();
-		fileName = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
+		fileName = Paths.get("").toAbsolutePath().normalize().toString() + File.separator + "maps" +File.separator+ fileName;
 
 		try {
 			file = new FileReader(fileName);
