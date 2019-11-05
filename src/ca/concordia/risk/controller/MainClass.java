@@ -20,6 +20,7 @@ import ca.concordia.risk.model.Player;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 import ca.concordia.risk.view.Console;
+import ca.concordia.risk.view.GameView;
 
 /**
  * This class manages the overall execution of all the phases in the game.
@@ -52,8 +53,9 @@ public class MainClass {
 	/**
 	 * @param player_country_map a hash-map for a player and its owned countries
 	 */
-	private static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
+	public static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
 	public static HashMap<String, Integer> globalCardDeck;
+	GameView gameview;
 
 	static int playerTurn = 0;// place army
 
@@ -87,7 +89,7 @@ public class MainClass {
 		 * return; }
 		 */
 		MapValidate mv = new MapValidate();
-		fileName = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
+		fileName = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + fileName;
 
 		String fileData = "";
 		FileReader file;
@@ -276,14 +278,22 @@ public class MainClass {
 		}
 	}
 
+
 	/**
 	 * all countries are randomly assigned to players for initial startup
 	 */
 	public void startupPhase() {
+		for (Player p : playerList) {
+			if (gamePlayerSet) {
+				p.setCurrentPhase(GamePhase.STARTUP);
+			}
+
+		}
+		for (Player p : playerList) {
+			p.setPlayerTotalArmies(getInitialArmies());
+		}
 		generateDeck();
 		resetPlayerTurn();
-		for (Player p : playerList)
-			p.setPlayerTotalArmies(getInitialArmies());
 		int playerCount = playerList.size();
 		int j = 0;
 		for (Country country : mapInstance.getCountries().values()) {
@@ -439,7 +449,7 @@ public class MainClass {
 				List<Country> playerCountryList = getCountriesConqueredBy(p);
 				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
 				p.remArmies(1);
-				System.out.println("player armies in placeall: "+p.getPlayerTotalArmies());
+				System.out.println("player armies in placeall: " + p.getPlayerTotalArmies());
 				randomCountry.addCountryArmies(1);
 //				HashMap<String, Object> eventPayload = new HashMap<>();
 //				eventPayload.put("countryName", randomCountry.getCountryName());
@@ -470,7 +480,7 @@ public class MainClass {
 
 		String[] commands = inputCommand.split(" ");
 		Player p = playerList.get(getPlayerTurn() - 1);
-		
+
 		switch (commands[0]) {
 
 		case "reinforce":
@@ -480,24 +490,25 @@ public class MainClass {
 					p.setCurrentPhase(GamePhase.ATTACK);
 				}
 
-				} else 	errorFlag = "Invalid command!";
+			} else
+				errorFlag = "Invalid command!";
 			break;
 		case "attack":
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
 				errorFlag = "Invalid command!";
 
-			} 
-			
+			}
+
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
 			} else if (commands.length == 4) {
-				
-				if(!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))) {
-					
-					errorFlag = ""+commands[1] + " is not yours!";
-				}else {
+
+				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))) {
+
+					errorFlag = "" + commands[1] + " is not yours!";
+				} else {
 					countryAttacking = mapInstance.getCountryByName(commands[1]);
 					countryDefending = mapInstance.getCountryByName(commands[2]);
 
@@ -512,13 +523,13 @@ public class MainClass {
 						System.out.println("Defender's Turn :" + defender.getPlayerName());
 					}
 				}
-				
+
 			} else
 				errorFlag = "Invalid command!";
 
 			break;
 		case "defend":
-			if (commands.length == 2 && p.getCurrentPhase()==GamePhase.ATTACK) {
+			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK) {
 				if (!attacker.getDiceResult().isEmpty()) {
 					doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
 					System.out.println(attackResult(countryAttacking, countryDefending, attacker));
@@ -529,7 +540,7 @@ public class MainClass {
 
 			break;
 		case "attackmove":
-			if (commands.length == 2 && p.getCurrentPhase()==GamePhase.ATTACK) {
+			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK) {
 				if (countryDefending.getCountryArmy() == 0) {
 					moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 				}
@@ -1134,16 +1145,16 @@ public class MainClass {
 
 	public boolean canAttack(Country from, Country to) {
 
-		boolean canAttack=false;
-		boolean neighbourFlag=false;
+		boolean canAttack = false;
+		boolean neighbourFlag = false;
 //		System.out.println(from.getCountryArmy());
 //		System.out.println(to.getCountryArmy());
-		
-		if(mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
-			neighbourFlag=true;
-		
-		canAttack =neighbourFlag && from.getCountryOwner() != to.getCountryOwner()
-				&& from.getCountryArmy() >= 2 && to.getCountryArmy() > 0 ? true : false;
+
+		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
+			neighbourFlag = true;
+
+		canAttack = neighbourFlag && from.getCountryOwner() != to.getCountryOwner() && from.getCountryArmy() >= 2
+				&& to.getCountryArmy() > 0 ? true : false;
 
 		return canAttack;
 	}
