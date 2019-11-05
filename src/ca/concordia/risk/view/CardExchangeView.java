@@ -10,12 +10,7 @@ import javax.swing.JTextArea;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.DropMode;
-import javax.swing.SwingConstants;<<<<<<<Updated upstream=======
-
-import ca.concordia.risk.controller.MainClass;
-import ca.concordia.risk.controller.ReinforcementPhase;
-
->>>>>>>Stashed changes
+import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 public class CardExchangeView implements ActionListener {
