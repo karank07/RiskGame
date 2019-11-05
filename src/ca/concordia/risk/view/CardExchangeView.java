@@ -11,6 +11,13 @@ import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.DropMode;
 import javax.swing.SwingConstants;
+<<<<<<< Updated upstream
+=======
+
+import ca.concordia.risk.controller.MainClass;
+import ca.concordia.risk.controller.ReinforcementPhase;
+
+>>>>>>> Stashed changes
 import javax.swing.JButton;
 
 public class CardExchangeView implements ActionListener {
@@ -132,7 +139,15 @@ public class CardExchangeView implements ActionListener {
 				if ((Integer.parseInt(aCards) <= Integer.parseInt(textField_1.getText().toString().strip()))
 						&& (Integer.parseInt(cCards) <= Integer.parseInt(textField_2.getText().toString().strip()))
 						&& (Integer.parseInt(iCards) <= Integer.parseInt(textField_3.getText().toString().strip()))) {
+<<<<<<< Updated upstream
 				}
+=======
+					ReinforcementPhase r = new  ReinforcementPhase();
+					r.exchangeCardsForArmy(, countOfArtillery, countOfCavalry, countOfInfantry);
+				}
+				
+				
+>>>>>>> Stashed changes
 			} catch (NumberFormatException n) {
 				System.out.println("Entered number is in inavlid format!");
 			}
