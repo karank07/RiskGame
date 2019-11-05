@@ -99,7 +99,7 @@ public class ReinforcementPhase {
 	 * @param countOfCavalry
 	 * @param countOfInfantry
 	 */
-	private void exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
+	public void exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
 
 		// display cards owned by player
 		// Then player will select the card from UI

@@ -54,8 +54,6 @@ public class Console implements ActionListener {
 		submit.addActionListener(this);
 		//frame.getRootPane().setDefaultButton();
 		exit.addActionListener(this);
-		
-
 	}
 
 /**
