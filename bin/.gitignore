@@ -1,4 +1,6 @@
 
 *.class
-/ca/
+bin/ca/concordia/risk/controller/MapOperations.class
+bin/ca/concordia/risk/controller/MainClass.class
 /test/
+/ca/
