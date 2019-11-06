@@ -480,6 +480,7 @@ public class MainClass {
 
 		String[] commands = inputCommand.split(" ");
 		Player p = playerList.get(getPlayerTurn() - 1);
+		
 
 		switch (commands[0]) {
 
