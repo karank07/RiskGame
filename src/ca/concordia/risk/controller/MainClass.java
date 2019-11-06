@@ -53,7 +53,7 @@ public class MainClass {
 	/**
 	 * @param player_country_map a hash-map for a player and its owned countries
 	 */
-	public static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
+	static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
 	public static HashMap<String, Integer> globalCardDeck;
 	//GameView gameview;
 
@@ -872,18 +872,19 @@ public class MainClass {
 			if (!checkDiceRA(numDice, countryAttacking)) {
 				return;
 			}
+			System.out.println("Attacking country has " +countryAttacking.getCountryArmy()+" armies");
 			System.out.println("numDice for attacker: " + numDice);
 			roll(attacker, numDice);
-			System.out.println(attacker.getDiceResult());
 			numDice = 2;
 
 			numDice = (numDice <= countryDefending.getCountryArmy()) ? numDice : 1;
 			if (!checkDiceRD(numDice, countryDefending)) {
 				return;
 			}
+
+			System.out.println("Defending country has " +countryDefending.getCountryArmy()+" armies");
 			System.out.println("numDice for defender: " + numDice);
 			roll(defender, numDice);
-			System.out.println(defender.getDiceResult());
 			attacker.attack(countryAttacking, countryDefending, defender);
 
 		}
@@ -1213,20 +1214,19 @@ public class MainClass {
 	 * @param numOfArmies number of armies to be moved
 	 */
 	public void moveArmies(Player p, Country from, Country to, int numOfArmies) {
-		System.out.println("from army before: " + from.getCountryArmy());
+		System.out.println("Attacking Country army before: " + from.getCountryArmy());
 		if (numOfArmies >= p.getDiceWins().size() && (from.getCountryArmy() - numOfArmies) > 1) {
-			from.setCountryArmy(from.getCountryArmy() - numOfArmies);
-			to.setCountryArmy(to.getCountryArmy() + numOfArmies);
-			p.setPlayerTotalCountries(p.getPlayerTotalCountries() + 1);
-			p.getPlayerCountries().add(to);
+			from.remCountryArmies(numOfArmies);
+			to.addCountryArmies(numOfArmies);
 
 //			  if(map.getCountriesByContinent(MainClass.continents.get(to.getContinentID()-1).getContinentName()).equals(p.getPlayerCountries())) {
 //				  
 //			  }
-
+			errorFlag="false";
 		}
-		System.out.println("from army: " + from.getCountryArmy());
-		System.out.println(to.getCountryArmy());
+		else errorFlag="Invalid Command!";
+		System.out.println("Attacking Country army: " + from.getCountryArmy());
+		System.out.println("Attacked Country army: "+to.getCountryArmy());
 
 		
 
