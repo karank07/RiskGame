@@ -20,7 +20,7 @@ import ca.concordia.risk.model.Player;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 import ca.concordia.risk.view.Console;
-import ca.concordia.risk.view.GameView;
+//import ca.concordia.risk.view.GameView;
 
 /**
  * This class manages the overall execution of all the phases in the game.
@@ -55,7 +55,7 @@ public class MainClass {
 	 */
 	public static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
 	public static HashMap<String, Integer> globalCardDeck;
-	GameView gameview;
+	//GameView gameview;
 
 	static int playerTurn = 0;// place army
 
@@ -1194,7 +1194,7 @@ public class MainClass {
 	}
 
 	/**
-	 * 
+	 * Rolls the dice for the attack phase
 	 * @param p player who rolls the dice
 	 * @param d object of Dice class
 	 * @param n number of legal dice rolls
@@ -1205,6 +1205,13 @@ public class MainClass {
 		List<Integer> res = d.rollDice(n, p);
 	}
 
+	/**
+	 * for moving number of armies to conquered country
+	 * @param p player who attacked
+	 * @param from the country from where the attack took place
+	 * @param to the country attacked
+	 * @param numOfArmies number of armies to be moved
+	 */
 	public void moveArmies(Player p, Country from, Country to, int numOfArmies) {
 		System.out.println("from army before: " + from.getCountryArmy());
 		if (numOfArmies >= p.getDiceWins().size() && (from.getCountryArmy() - numOfArmies) > 1) {
@@ -1221,11 +1228,11 @@ public class MainClass {
 		System.out.println("from army: " + from.getCountryArmy());
 		System.out.println(to.getCountryArmy());
 
-		// CHANGE THE LIST OF COUNTRY IN MAP PLAYER/////
+		
 
 	}
 
-	// Continue till attacker says NOATTACK
+	
 	// Successful attack pr check kro about continent conquered or not and CARD
 
 	/**
