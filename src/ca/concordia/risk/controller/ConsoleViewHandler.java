@@ -1,9 +1,12 @@
 package ca.concordia.risk.controller;
 
+import ca.concordia.risk.model.Map;
+import ca.concordia.risk.model.Player;
 import ca.concordia.risk.utilities.*;
 import java.io.IOException;
 
 import ca.concordia.risk.view.Console;
+import ca.concordia.risk.view.GameView;
 
 /**
  * @author Karan
@@ -13,11 +16,11 @@ public class ConsoleViewHandler {
 
 	static Console c;
 	MainClass main;
+	static GameView gameView;
 
 	public static void main(String[] args) {
 		c = new Console();
 		c.createConsole();
-
 	}
 
 	public ConsoleViewHandler() {
@@ -27,17 +30,18 @@ public class ConsoleViewHandler {
 
 	public String phaseDecider(String inputCommand) {
 		inputCommand = inputCommand.toLowerCase();
-		System.out.println(inputCommand);
+		System.out.println(inputCommand+"\n");
 		String[] commands = inputCommand.split(" ");
 		String errorFlag = "false";
 
 		switch (commands[0]) {
+
 		case "loadmap":
 			/*
 			 * if (!phase.contentEquals("loadmap")) { errorFlag = "Invalid command!"; return
 			 * errorFlag; } phase = "loadmap"; mapPhase = "end";
 			 */
-			if (commands.length == 2) {
+			if (commands.length == 2 && MainClass.playerList.isEmpty()) {
 				String fileName = commands[1];
 				try {
 					main.readMapFile(fileName);
@@ -54,11 +58,11 @@ public class ConsoleViewHandler {
 			 * if (!phase.contentEquals("gameplayer")) { errorFlag = "Invalid command!";
 			 * return errorFlag; }
 			 */
-			if (commands.length>=3 && commands.length % 2 != 0) {
-				errorFlag="false";
+			if (commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+				errorFlag = "false";
 				main.gamePlayer(inputCommand);
-			}
-			else errorFlag="Invalid command!";
+			} else
+				errorFlag = "Invalid command!";
 			break;
 
 		case "populatecountries":
@@ -70,10 +74,9 @@ public class ConsoleViewHandler {
 			 * if (!phase.contentEquals("populatecountries")) { errorFlag =
 			 * "Invalid command!"; return errorFlag; }
 			 */
-			if (commands.length == 1) {
+			if (commands.length == 1 && !MainClass.playerList.isEmpty()) {
 				errorFlag = "false";
 				main.startupPhase();
-
 			} else
 				errorFlag = "Invalid command!";
 			break;
@@ -86,7 +89,7 @@ public class ConsoleViewHandler {
 			 */
 			// currentPlayer=1;
 
-			if (commands.length == 2) {
+			if (commands.length == 2 && !MainClass.playerList.isEmpty() && !MainClass.player_country_map.isEmpty()) {
 				errorFlag = "false";
 				errorFlag = main.placeArmyByCountryName(commands[1]);
 			} else {
@@ -103,10 +106,10 @@ public class ConsoleViewHandler {
 			 * if (!phase.contentEquals("placearmy")) { errorFlag = "Invalid command!";
 			 * return errorFlag; }
 			 */
-			if (commands.length == 1) {
+			if (commands.length == 1 && !MainClass.playerList.isEmpty() && !MainClass.player_country_map.isEmpty()) {
 				errorFlag = "false";
 				main.placeAll();
-				
+
 			} else
 				errorFlag = "Invalid command!";
 			/*
@@ -119,7 +122,7 @@ public class ConsoleViewHandler {
 		case "fortify":
 		case "defend":
 		case "attackmove":
-			errorFlag=main.startGamePhase(inputCommand);
+			errorFlag = main.startGamePhase(inputCommand);
 			break;
 		case "editcontinent":
 			main.editcontinent(inputCommand);
