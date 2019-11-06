@@ -146,16 +146,16 @@ public class CardExchangeView implements ActionListener, Observer {
 			
 			try {
 
-				int inputOfArtilleyCards = Integer.parseInt(userInputArtilleryCards.getText().strip());
-				int inputOfCavalryCards = Integer.parseInt(userInputCavalryCards.getText().strip());
+				int inputOfArtilleyCards = Integer.parseInt(userInputArtilleryCards.getText().trim());
+				int inputOfCavalryCards = Integer.parseInt(userInputCavalryCards.getText().trim());
 
-				int inputOfInfantryCards = Integer.parseInt(userInputInfantryCards.getText().strip());
+				int inputOfInfantryCards = Integer.parseInt(userInputInfantryCards.getText().trim());
 
 				System.out.println(aCardCount + " , input-> " + inputOfArtilleyCards);
 				System.out.println(cCardCount + " , input-> " + inputOfCavalryCards);
 				System.out.println(iCardCount + " , input-> " + inputOfInfantryCards);
 
-				if ((userInputArtilleryCards.getText().strip() != null && userInputCavalryCards != null
+				if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
 						&& userInputInfantryCards != null)
 						&& ((inputOfArtilleyCards <= aCardCount) && (inputOfCavalryCards <= cCardCount)
 								&& (inputOfInfantryCards <= iCardCount))) {

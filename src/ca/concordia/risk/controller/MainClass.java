@@ -571,7 +571,8 @@ public class MainClass {
 			break;
 		case "attackmove":
 			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK
-					&& countryDefending.getCountryArmy() == 0) {
+					) {
+				//&& countryDefending.getCountryArmy() == 0
 				moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 			} else {
 				errorFlag = "Invalid command!";

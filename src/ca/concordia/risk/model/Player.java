@@ -424,6 +424,7 @@ public class Player implements Subject {
 	 */
 	public void setIntialArmies(int intialArmies) {
 		this.intialArmies = intialArmies;
+	}
 	@Override
 	public void notify_observer() {
 		if (o != null) {
