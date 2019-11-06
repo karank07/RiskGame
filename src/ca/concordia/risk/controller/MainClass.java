@@ -528,11 +528,12 @@ public class MainClass {
 			}
 
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
-				if (countryDefending.getCountryArmy() != 0) {
+				errorFlag = "false";
+
 					System.out.println("Attack Over!");
 					p.setCurrentPhase(GamePhase.FORTIFICATION);
 
-				}else errorFlag="Cannot Skip Attack, Move armies to Conquered Country!";
+
 
 			} else if (commands.length == 4) {
 
@@ -571,9 +572,9 @@ public class MainClass {
 
 			break;
 		case "attackmove":
-			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK
+			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK && countryDefending.getCountryArmy() == 0
 					) {
-				//&& countryDefending.getCountryArmy() == 0
+				
 				moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 			} else {
 				errorFlag = "Invalid command!";
@@ -612,6 +613,7 @@ public class MainClass {
 			unmapPlayerToCountry(defender, countryDefending);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			gameOver(attacker);
+			errorFlag="You have to move armies";
 			return "Attacker won! Country conquered";
 
 		} else
