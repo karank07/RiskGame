@@ -449,7 +449,6 @@ public class MainClass {
 				List<Country> playerCountryList = getCountriesConqueredBy(p);
 				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
 				p.remArmies(1);
-				System.out.println("player armies in placeall: " + p.getPlayerTotalArmies());
 				randomCountry.addCountryArmies(1);
 //				HashMap<String, Object> eventPayload = new HashMap<>();
 //				eventPayload.put("countryName", randomCountry.getCountryName());
