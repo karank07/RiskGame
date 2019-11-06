@@ -6,7 +6,7 @@ import ca.concordia.risk.utilities.*;
 import java.io.IOException;
 
 import ca.concordia.risk.view.Console;
-import ca.concordia.risk.view.GameView;
+//import ca.concordia.risk.view.GameView;
 
 /**
  * @author Karan
@@ -16,7 +16,7 @@ public class ConsoleViewHandler {
 
 	static Console c;
 	MainClass main;
-	static GameView gameView;
+	//static GameView gameView;
 
 	public static void main(String[] args) {
 		c = new Console();
