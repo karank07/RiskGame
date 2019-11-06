@@ -83,6 +83,7 @@ public class ConsoleViewHandler {
 				errorFlag = "Invalid command!";
 			break;
 		case "reinforce":
+		case "exchangecards":
 		case "attack":
 		case "fortify":
 		case "defend":
