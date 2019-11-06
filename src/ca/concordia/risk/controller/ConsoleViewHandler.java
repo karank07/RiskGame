@@ -115,6 +115,7 @@ public class ConsoleViewHandler {
 			 */
 			break;
 		case "reinforce":
+		case "exchangecards":
 		case "attack":
 		case "fortify":
 		case "defend":

@@ -87,7 +87,7 @@ public class MainClass {
 		 * return; }
 		 */
 		MapValidate mv = new MapValidate();
-		fileName = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
+		fileName = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + fileName;
 
 		String fileData = "";
 		FileReader file;
@@ -439,7 +439,7 @@ public class MainClass {
 				List<Country> playerCountryList = getCountriesConqueredBy(p);
 				Country randomCountry = playerCountryList.get(new Random().nextInt(playerCountryList.size()));
 				p.remArmies(1);
-				System.out.println("player armies in placeall: "+p.getPlayerTotalArmies());
+				System.out.println("player armies in placeall: " + p.getPlayerTotalArmies());
 				randomCountry.addCountryArmies(1);
 //				HashMap<String, Object> eventPayload = new HashMap<>();
 //				eventPayload.put("countryName", randomCountry.getCountryName());
@@ -470,34 +470,64 @@ public class MainClass {
 
 		String[] commands = inputCommand.split(" ");
 		Player p = playerList.get(getPlayerTurn() - 1);
-		
+
 		switch (commands[0]) {
 
 		case "reinforce":
+
 			if (commands.length == 3 && p.getCurrentPhase() == GamePhase.REINFORCEMENT) {
-				errorFlag = p.reinforceArmy(commands[1], Integer.parseInt(commands[2]));
-				if (p.getPlayerReinforceArmy() == 0) {
-					p.setCurrentPhase(GamePhase.ATTACK);
+				//If player has more then 5 cards then he/she must have to exchange the cards first
+				if (!p.hasMoreThanFiveCards()) {
+					errorFlag = p.reinforceArmy(commands[1], Integer.parseInt(commands[2]));
+					if (p.getPlayerReinforceArmy() == 0) {
+						p.setCurrentPhase(GamePhase.ATTACK);
+					}
+				} else {
+					errorFlag = "Please exchnage the cards first";
 				}
 
-				} else 	errorFlag = "Invalid command!";
+			} else
+				errorFlag = "Invalid command!";
+
 			break;
+
+		case "exchangecards":
+			try {
+			if ((commands.length == 4 || (commands.length == 2 && commands[1].equalsIgnoreCase("-none")) && p.getCurrentPhase() == GamePhase.REINFORCEMENT)) {
+				if (commands.length == 4) {
+					errorFlag = MainClass.getM_instance().exchangeCardsForArmy(p, Integer.parseInt(commands[1]),
+							Integer.parseInt(commands[2]), Integer.parseInt(commands[3]))
+									? "Successfully exchanged the cards"
+									: "Not have enough cards!";
+				} 
+			}
+			else {
+				errorFlag  = "Invalid Command";
+
+			}
+			}catch(NumberFormatException e) {
+				errorFlag = "Not A Valid Input!";
+			}
+			
+
+			break;
+
 		case "attack":
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
 				errorFlag = "Invalid command!";
 
-			} 
-			
+			}
+
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
 			} else if (commands.length == 4) {
-				
-				if(!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))) {
-					
-					errorFlag = ""+commands[1] + " is not yours!";
-				}else {
+
+				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))) {
+
+					errorFlag = "" + commands[1] + " is not yours!";
+				} else {
 					countryAttacking = mapInstance.getCountryByName(commands[1]);
 					countryDefending = mapInstance.getCountryByName(commands[2]);
 
@@ -512,13 +542,13 @@ public class MainClass {
 						System.out.println("Defender's Turn :" + defender.getPlayerName());
 					}
 				}
-				
+
 			} else
 				errorFlag = "Invalid command!";
 
 			break;
 		case "defend":
-			if (commands.length == 2 && p.getCurrentPhase()==GamePhase.ATTACK) {
+			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK) {
 				if (!attacker.getDiceResult().isEmpty()) {
 					doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
 					System.out.println(attackResult(countryAttacking, countryDefending, attacker));
@@ -529,7 +559,7 @@ public class MainClass {
 
 			break;
 		case "attackmove":
-			if (commands.length == 2 && p.getCurrentPhase()==GamePhase.ATTACK) {
+			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK) {
 				if (countryDefending.getCountryArmy() == 0) {
 					moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 				}
@@ -611,79 +641,79 @@ public class MainClass {
 	 * @param countOfCavalry
 	 * @param countOfInfantry
 	 */
-	private void exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
+	public boolean exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
 
 		// display cards owned by player
 		// Then player will select the card from UI
 		// selected card are given in arguments
 
-		if (countOfArtillery <= player.getPlayerCards().get(Card.ARTILLERY)
-				&& countOfCavalry <= player.getPlayerCards().get(Card.CAVALRY)
-				&& countOfInfantry <= player.getPlayerCards().get(Card.INFANTRY)) {
-			// now it's valid card selection
+		// now it's valid card selection
 
-			// do exchange cards for army
+		// do exchange cards for army
 
-			// if user wants to exchange same type of any 3 cards
-			if (countOfArtillery == 3 || countOfCavalry == 0 || countOfInfantry == 0) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
+		// if user wants to exchange same type of any 3 cards
 
-				// remove 3 artillery cards from player's cards
-				player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 3));
+		boolean operationStatus = false;
 
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 3);
+		if (countOfArtillery == 3 && countOfCavalry == 0 && countOfInfantry == 0) {
+			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			// increase cardExchangeCount of player object
+			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-			} else if (countOfArtillery == 0 || countOfCavalry == 3 || countOfInfantry == 0) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
+			// remove 3 artillery cards from player's cards
+			player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 3));
 
-				// remove 3 cavalry cards from player's cards
-				player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 3));
+			operationStatus = true;
+			// add these cards in global deck
+			MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 3);
 
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 3);
+		} else if (countOfArtillery == 0 && countOfCavalry == 3 && countOfInfantry == 0) {
+			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			// increase cardExchangeCount of player object
+			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-			} else if (countOfArtillery == 0 || countOfCavalry == 0 || countOfInfantry == 3) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
+			// remove 3 cavalry cards from player's cards
+			player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 3));
 
-				// remove 3 Infantry cards from player's cards
-				player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 3));
+			operationStatus = true;
+			// add these cards in global deck
+			MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 3);
 
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 3);
-			}
-			// if user wants to exchange 3 different cards
-			else if (countOfArtillery == 1 && countOfCavalry == 1 && countOfInfantry == 1) {
-				player.setPlayerReinforceArmy(
-						player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-				// increase cardExchangeCount of player object
-				player.setCardExchangeCount(player.getCardExchangeCount() + 1);
+		} else if (countOfArtillery == 0 && countOfCavalry == 0 && countOfInfantry == 3) {
+			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			// increase cardExchangeCount of player object
+			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-				// remove 1 card of each type from player's cards
-				player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 1));
-				player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 1));
-				player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 1));
+			// remove 3 Infantry cards from player's cards
+			player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 3));
 
-				// add these cards in global deck
-				MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 1);
-				MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 1);
-				MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 1);
+			operationStatus = true;
 
-			} else {
-				System.out.println("cards selection is invalid! Please choose it again");
-			}
+			// add these cards in global deck
+			MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 3);
+		}
+		// if user wants to exchange 3 different cards
+		else if (countOfArtillery == 1 && countOfCavalry == 1 && countOfInfantry == 1) {
+			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
+			// increase cardExchangeCount of player object
+			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
+			// remove 1 card of each type from player's cards
+			player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 1));
+			player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 1));
+			player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 1));
+
+			operationStatus = true;
+			// add these cards in global deck
+			MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 1);
+			MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 1);
+			MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 1);
+
+		} else {
+			System.out.println("cards selection is invalid! Please choose it again");
 		}
 
+		return operationStatus;
 	}
 
 	/**
@@ -1134,16 +1164,16 @@ public class MainClass {
 
 	public boolean canAttack(Country from, Country to) {
 
-		boolean canAttack=false;
-		boolean neighbourFlag=false;
+		boolean canAttack = false;
+		boolean neighbourFlag = false;
 //		System.out.println(from.getCountryArmy());
 //		System.out.println(to.getCountryArmy());
-		
-		if(mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
-			neighbourFlag=true;
-		
-		canAttack =neighbourFlag && from.getCountryOwner() != to.getCountryOwner()
-				&& from.getCountryArmy() >= 2 && to.getCountryArmy() > 0 ? true : false;
+
+		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
+			neighbourFlag = true;
+
+		canAttack = neighbourFlag && from.getCountryOwner() != to.getCountryOwner() && from.getCountryArmy() >= 2
+				&& to.getCountryArmy() > 0 ? true : false;
 
 		return canAttack;
 	}

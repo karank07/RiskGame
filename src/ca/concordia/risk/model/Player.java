@@ -6,6 +6,7 @@ import java.util.List;
 
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.utilities.GamePhase;
+import ca.concordia.risk.view.CardExchangeView;
 
 /**
  * This is a model class for a Player with member variables for id, name,
@@ -15,7 +16,7 @@ import ca.concordia.risk.utilities.GamePhase;
  *
  */
 
-public class Player {
+public class Player implements Subject {
 
 	/**
 	 * @param playerId - for unique player id
@@ -32,7 +33,6 @@ public class Player {
 	 */
 	private List<Country> playerCountries;
 
-	
 	/**
 	 * @param player Armies - total armies of the player
 	 */
@@ -48,14 +48,16 @@ public class Player {
 	 */
 	private int playerReinforceArmy = 3;
 	/**
-	 *@param cardExchangeCount- maintains a count of turns in which player has exchanged cards for armies 
+	 * @param cardExchangeCount- maintains a count of turns in which player has
+	 *                           exchanged cards for armies
 	 */
-	private int cardExchangeCount=0;
-	
+	private int cardExchangeCount = 0;
+
 	/**
-	 * @param diceResult stores the list of result of the number of dices rolled for the player
+	 * @param diceResult stores the list of result of the number of dices rolled for
+	 *                   the player
 	 */
-	private List<Integer> diceResult=new ArrayList<Integer>();
+	private List<Integer> diceResult = new ArrayList<Integer>();
 
 	/**
 	 * @param diceWins store the number of wins in the list
@@ -66,7 +68,9 @@ public class Player {
 	 */
 	private HashMap<String, Integer> playerCards;
 
-	MainClass main=MainClass.getM_instance();
+	private Observer o;
+
+	MainClass main = MainClass.getM_instance();
 	public GamePhase gamePhase;
 
 	/**
@@ -81,6 +85,12 @@ public class Player {
 		this.playerName = playerName;
 		this.playerCountries = new ArrayList<Country>();
 		this.playerCards = new HashMap<String, Integer>();
+		
+		this.getPlayerCards().put(Card.ARTILLERY, 0);
+		this.getPlayerCards().put(Card.CAVALRY, 0);
+		this.getPlayerCards().put(Card.INFANTRY, 0);
+		
+		
 	}
 
 	/**
@@ -128,14 +138,14 @@ public class Player {
 	/**
 	 * @return the playerCards
 	 */
-	public HashMap<String,Integer> getPlayerCards() {
+	public HashMap<String, Integer> getPlayerCards() {
 		return playerCards;
 	}
 
 	/**
 	 * @param playerCards the playerCards to set
 	 */
-	public void setPlayerCards(HashMap<String,Integer> playerCards) {
+	public void setPlayerCards(HashMap<String, Integer> playerCards) {
 		this.playerCards = playerCards;
 	}
 
@@ -225,18 +235,19 @@ public class Player {
 			}
 		}
 	}
+
 	/**
 	 * @return the diceResult
 	 */
 	public List<Integer> getDiceResult() {
 		return diceResult;
 	}
+
 	public void addDiceResult(List<Integer> result) {
-		if(!diceResult.isEmpty())
+		if (!diceResult.isEmpty())
 			diceResult.clear();
 		diceResult.addAll(result);
 	}
-	
 
 	/**
 	 * @param diceResult the diceResult to set
@@ -259,7 +270,6 @@ public class Player {
 		this.diceWins = diceWins;
 	}
 
-		
 	/**
 	 * function for command:- reinforce countryname, number (number is army to be
 	 * placed in that country)
@@ -269,8 +279,9 @@ public class Player {
 	 * @param player      for player entity
 	 */
 	public String reinforceArmy(String countryName, int armyNumber) {
+
 		int currentlyUnplacedArmy = this.getPlayerReinforceArmy();
-		String errorFlag="false";
+		String errorFlag = "false";
 		if (currentlyUnplacedArmy > 0) {
 			// check whether entered country name (through console) is valid or not
 			if (main.countryBelongsToPlayer(this, countryName)) {
@@ -281,14 +292,14 @@ public class Player {
 					currentlyUnplacedArmy -= armyNumber;
 					this.setPlayerReinforceArmy(currentlyUnplacedArmy);
 				}
-				errorFlag="false";
+				errorFlag = "false";
 
 			} else {
-				errorFlag="This country does not belongs to you!";
+				errorFlag = "This country does not belongs to you!";
 			}
 
-			System.out.println("Armies available to reinforce for :" + this.getPlayerId() + " "
-					+ this.getPlayerName() + " are " + this.getPlayerReinforceArmy());
+			System.out.println("Armies available to reinforce for :" + this.getPlayerId() + " " + this.getPlayerName()
+					+ " are " + this.getPlayerReinforceArmy());
 
 		}
 
@@ -299,22 +310,31 @@ public class Player {
 		}
 		return errorFlag;
 	}
-	
+
+	public boolean hasMoreThanFiveCards() {
+		if (this.getPlayerCards().get(Card.ARTILLERY) + this.getPlayerCards().get(Card.CAVALRY)
+				+ this.getPlayerCards().get(Card.INFANTRY) >= 5) {
+			return true;
+		}
+		return false;
+	}
 
 	public String attack(Country from, Country to, Player defender) {
+		// notify method to close the card exchange view dialogue if it is still oprn
+		notify_observer();
 
 		String resultString = "";
 		List<Integer> attackerWins = new ArrayList<Integer>();
 		List<Integer> defenderWins = new ArrayList<Integer>();
 		int size = this.getDiceResult().size() < defender.getDiceResult().size() ? this.getDiceResult().size()
 				: defender.getDiceResult().size();
-		
-		System.out.println("Attacker rolls: "+this.diceResult);
-		System.out.println("Defender rolls: "+defender.diceResult);
+
+		System.out.println("Attacker rolls: " + this.diceResult);
+		System.out.println("Defender rolls: " + defender.diceResult);
 		for (int i = 0; i < size; i++) {
 			int a = this.getDiceResult().get(i);
 			int d = defender.getDiceResult().get(i);
-			
+
 			if (a > d) {
 
 				to.remCountryArmies(1);
@@ -339,6 +359,7 @@ public class Player {
 
 		return resultString;
 	}
+
 	/**
 	 * fortification-move armies to another country that belongs to the player
 	 * 
@@ -361,17 +382,49 @@ public class Player {
 
 			} else
 				System.out.println("There must be atleast one army in a country!");
+			
+			//now as the phase will be the  reinforcement Card Exchange View should be there
+			this.attach(new CardExchangeView(this));
+			HashMap<String, Integer> demoCards = new HashMap<String, Integer>();
+			demoCards.put(Card.ARTILLERY, Integer.valueOf(5));
+			demoCards.put(Card.CAVALRY, Integer.valueOf(2));
+			demoCards.put(Card.INFANTRY, Integer.valueOf(0));
+			this.setPlayerCards(demoCards);
+			
+			
+			notify_observer();
+			
+		
 		} else
 			System.out.println("Move not possible");
-		
+
 	}
-	
+
 	public void setCurrentPhase(GamePhase phase) {
-		this.gamePhase=phase;
+		this.gamePhase = phase;
 	}
 
 	public GamePhase getCurrentPhase() {
 		return gamePhase;
+	}
+
+	@Override
+	public void notify_observer() {
+		if (o != null) {
+			o.update(this);
+		}
+
+	}
+
+	@Override
+	public void attach(Observer o) {
+
+		this.o = o;
+	}
+
+	@Override
+	public void detach(Observer o) {
+
 	}
 
 }
