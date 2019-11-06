@@ -1214,7 +1214,7 @@ public class MainClass {
 	 */
 	public void moveArmies(Player p, Country from, Country to, int numOfArmies) {
 		System.out.println("Attacking Country army before: " + from.getCountryArmy());
-		if (numOfArmies >= p.getDiceWins().size() && (from.getCountryArmy() - numOfArmies) > 1) {
+		if (numOfArmies >= p.getDiceWins().size() && (from.getCountryArmy() - numOfArmies) >= 1) {
 			from.remCountryArmies(numOfArmies);
 			to.addCountryArmies(numOfArmies);
 
