@@ -30,17 +30,13 @@ public class ConsoleViewHandler {
 
 	public String phaseDecider(String inputCommand) {
 		inputCommand = inputCommand.toLowerCase();
-		System.out.println(inputCommand+"\n");
+		System.out.println(inputCommand + "\n");
 		String[] commands = inputCommand.split(" ");
 		String errorFlag = "false";
 
 		switch (commands[0]) {
 
 		case "loadmap":
-			/*
-			 * if (!phase.contentEquals("loadmap")) { errorFlag = "Invalid command!"; return
-			 * errorFlag; } phase = "loadmap"; mapPhase = "end";
-			 */
 			if (commands.length == 2 && MainClass.playerList.isEmpty()) {
 				String fileName = commands[1];
 				try {
@@ -54,10 +50,6 @@ public class ConsoleViewHandler {
 			break;
 
 		case "gameplayer":
-			/*
-			 * if (!phase.contentEquals("gameplayer")) { errorFlag = "Invalid command!";
-			 * return errorFlag; }
-			 */
 			if (commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
 				errorFlag = "false";
 				main.gamePlayer(inputCommand);
@@ -66,14 +58,6 @@ public class ConsoleViewHandler {
 			break;
 
 		case "populatecountries":
-			/*
-			 * if (gamePlayerSet == true && !playerList.isEmpty()) { phase =
-			 * "populatecountries"; }
-			 */
-			/*
-			 * if (!phase.contentEquals("populatecountries")) { errorFlag =
-			 * "Invalid command!"; return errorFlag; }
-			 */
 			if (commands.length == 1 && !MainClass.playerList.isEmpty()) {
 				errorFlag = "false";
 				main.startupPhase();
@@ -82,40 +66,21 @@ public class ConsoleViewHandler {
 			break;
 
 		case "placearmy":
-
-			/*
-			 * if (!phase.contentEquals("placearmy")) { errorFlag = "Invalid command!";
-			 * return errorFlag; }
-			 */
-			// currentPlayer=1;
-
 			if (commands.length == 2 && !MainClass.playerList.isEmpty() && !MainClass.player_country_map.isEmpty()) {
 				errorFlag = "false";
 				errorFlag = main.placeArmyByCountryName(commands[1]);
 			} else {
 				errorFlag = "Check the country name entered!";
 			}
-			/*
-			 * if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0) placeArmyFlag
-			 * = true;
-			 */
 			break;
 
 		case "placeall":
-			/*
-			 * if (!phase.contentEquals("placearmy")) { errorFlag = "Invalid command!";
-			 * return errorFlag; }
-			 */
 			if (commands.length == 1 && !MainClass.playerList.isEmpty() && !MainClass.player_country_map.isEmpty()) {
 				errorFlag = "false";
 				main.placeAll();
 
 			} else
 				errorFlag = "Invalid command!";
-			/*
-			 * if (playerList.get(currentPlayer).getPlayerTotalArmies() == 0) phase =
-			 * "reinforce";
-			 */
 			break;
 		case "reinforce":
 		case "attack":
@@ -129,18 +94,10 @@ public class ConsoleViewHandler {
 			break;
 
 		case "editcountry":
-			/*
-			 * if (!mapPhase.contentEquals("edit")) { errorFlag = "Invalid command!"; return
-			 * errorFlag; }
-			 */
 			main.editcountry(inputCommand);
 			break;
 
 		case "editneighbor":
-			/*
-			 * if (!mapPhase.contentEquals("edit")) { errorFlag = "Invalid command!"; return
-			 * errorFlag; }
-			 */
 			main.editneigbor(inputCommand);
 			break;
 
