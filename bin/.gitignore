@@ -1,4 +1,9 @@
 /.metadata/
-
-/test/
+/.gitignore
+/.project
+/.settings/
+/LICENSE
 /ca/
+/d/
+/maps/
+/test/
