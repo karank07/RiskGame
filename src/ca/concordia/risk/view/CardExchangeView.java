@@ -6,49 +6,65 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import java.awt.BorderLayout;
+import java.awt.DisplayMode;
+
 import javax.swing.JTextField;
 import javax.swing.DropMode;
 import javax.swing.SwingConstants;
+
+import org.hamcrest.core.IsInstanceOf;
+
+import ca.concordia.risk.controller.MainClass;
+import ca.concordia.risk.model.Card;
+import ca.concordia.risk.model.Observer;
+import ca.concordia.risk.model.Player;
+import ca.concordia.risk.utilities.GamePhase;
+
 import javax.swing.JButton;
 
-public class CardExchangeView implements ActionListener {
+public class CardExchangeView implements ActionListener, Observer {
 
 	private JFrame frame;
 	private JTextField textField;
-	private JTextField textField_1, textField_2, textField_3;
+	private JTextField availableArtilleryCards, availableCavalryCards, availableInfantryCards;
 	private JButton btnExchangeCards;
-	private JTextField textField_input1, textField_input2, textField_input3;
+	private JTextField userInputArtilleryCards, userInputCavalryCards, userInputInfantryCards;
+	private Player p;
+	private int aCardCount = 0, cCardCount = 0, iCardCount = 0;
 
 	/**
 	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CardExchangeView window = new CardExchangeView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	 *//*
+		 * public static void main(String[] args) { EventQueue.invokeLater(new
+		 * Runnable() { public void run() { try { CardExchangeView window = new
+		 * CardExchangeView(); window.frame.setVisible(true); } catch (Exception e) {
+		 * e.printStackTrace(); } } }); }
+		 */
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
-	public CardExchangeView() {
-		initialize();
+	public CardExchangeView(Player p) {
+		this.p = p;
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 
-	private void initialize() {
+	private void initialize(Player p) {
+		aCardCount = (int) ((boolean) ((p.getPlayerCards().get(Card.ARTILLERY) == null)) ? 0
+				: (p.getPlayerCards().get(Card.ARTILLERY)));
+		iCardCount = (int) ((boolean) ((p.getPlayerCards().get(Card.INFANTRY) == null)) ? 0
+				: (p.getPlayerCards().get(Card.INFANTRY)));
+		cCardCount = (int) ((boolean) ((p.getPlayerCards().get(Card.CAVALRY) == null)) ? 0
+				: (p.getPlayerCards().get(Card.CAVALRY)));
+
 		frame = new JFrame("Card Exchange View");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 350);
@@ -59,53 +75,53 @@ public class CardExchangeView implements ActionListener {
 		jLabel.setBounds(26, 41, 150, 50);
 		frame.getContentPane().add(jLabel);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(176, 41, 50, 50);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		textField_1.setText("0");
-		textField_1.setEditable(false);
+		availableArtilleryCards = new JTextField();
+		availableArtilleryCards.setBounds(176, 41, 50, 50);
+		frame.getContentPane().add(availableArtilleryCards);
+		availableArtilleryCards.setColumns(10);
+		availableArtilleryCards.setText(String.valueOf(aCardCount));
+		availableArtilleryCards.setEditable(false);
 
-		textField_input1 = new JTextField();
-		textField_input1.setBounds(266, 41, 50, 50);
-		frame.getContentPane().add(textField_input1);
-		textField_input1.setColumns(10);
-		textField_input1.setEditable(true);
+		userInputArtilleryCards = new JTextField();
+		userInputArtilleryCards.setBounds(266, 41, 50, 50);
+		frame.getContentPane().add(userInputArtilleryCards);
+		userInputArtilleryCards.setColumns(10);
+		userInputArtilleryCards.setEditable(true);
 
 		JLabel JLabel2 = new JLabel("Cavalry Card(s):");
 		JLabel2.setBounds(26, 109, 150, 50);
 		frame.getContentPane().add(JLabel2);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(176, 109, 50, 50);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		textField_2.setText("0");
-		textField_2.setEditable(false);
+		availableCavalryCards = new JTextField();
+		availableCavalryCards.setBounds(176, 109, 50, 50);
+		frame.getContentPane().add(availableCavalryCards);
+		availableCavalryCards.setColumns(10);
+		availableCavalryCards.setText(String.valueOf(cCardCount));
+		availableCavalryCards.setEditable(false);
 
-		textField_input2 = new JTextField();
-		textField_input2.setBounds(266, 109, 50, 50);
-		frame.getContentPane().add(textField_input2);
-		textField_input2.setColumns(10);
-		textField_input2.setEditable(true);
+		userInputCavalryCards = new JTextField();
+		userInputCavalryCards.setBounds(266, 109, 50, 50);
+		frame.getContentPane().add(userInputCavalryCards);
+		userInputCavalryCards.setColumns(10);
+		userInputCavalryCards.setEditable(true);
 
 		JLabel JLabel3 = new JLabel("Infantry Card(s):");
 		JLabel3.setBounds(26, 179, 160, 50);
 		frame.getContentPane().add(JLabel3);
 
-		textField_3 = new JTextField();
-		textField_3.setBounds(176, 179, 50, 50);
-		jLabel.setLabelFor(textField_3);
-		textField_3.setColumns(10);
-		textField_3.setText("0");
-		textField_3.setEditable(false);
-		frame.getContentPane().add(textField_3);
+		availableInfantryCards = new JTextField();
+		availableInfantryCards.setBounds(176, 179, 50, 50);
+		jLabel.setLabelFor(availableInfantryCards);
+		availableInfantryCards.setColumns(10);
+		availableInfantryCards.setText(String.valueOf(iCardCount));
+		availableInfantryCards.setEditable(false);
+		frame.getContentPane().add(availableInfantryCards);
 
-		textField_input3 = new JTextField();
-		textField_input3.setBounds(266, 179, 50, 50);
-		textField_input3.setColumns(10);
-		textField_input3.setEditable(true);
-		frame.getContentPane().add(textField_input3);
+		userInputInfantryCards = new JTextField();
+		userInputInfantryCards.setBounds(266, 179, 50, 50);
+		userInputInfantryCards.setColumns(10);
+		userInputInfantryCards.setEditable(true);
+		frame.getContentPane().add(userInputInfantryCards);
 
 		btnExchangeCards = new JButton("Exchange Cards");
 		btnExchangeCards.setBounds(166, 253, 150, 29);
@@ -119,28 +135,73 @@ public class CardExchangeView implements ActionListener {
 		lblEnterCardsFor.setBounds(256, 23, 160, 16);
 		frame.getContentPane().add(lblEnterCardsFor);
 
+		frame.setVisible(true);
+		btnExchangeCards.addActionListener(this);
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnExchangeCards) {
-			String aCards = textField_input1.getText().strip().toString();
-			String cCards = textField_input2.getText().strip().toString();
-			String iCards = textField_input3.getText().strip().toString();
-
+			
 			try {
-				if ((Integer.parseInt(aCards) <= Integer.parseInt(textField_1.getText().toString().strip()))
-						&& (Integer.parseInt(cCards) <= Integer.parseInt(textField_2.getText().toString().strip()))
-						&& (Integer.parseInt(iCards) <= Integer.parseInt(textField_3.getText().toString().strip()))) {
 
+				int inputOfArtilleyCards = Integer.parseInt(userInputArtilleryCards.getText().trim());
+				int inputOfCavalryCards = Integer.parseInt(userInputCavalryCards.getText().trim());
+
+				int inputOfInfantryCards = Integer.parseInt(userInputInfantryCards.getText().trim());
+
+				System.out.println(aCardCount + " , input-> " + inputOfArtilleyCards);
+				System.out.println(cCardCount + " , input-> " + inputOfCavalryCards);
+				System.out.println(iCardCount + " , input-> " + inputOfInfantryCards);
+
+				if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
+						&& userInputInfantryCards != null)
+						&& ((inputOfArtilleyCards <= aCardCount) && (inputOfCavalryCards <= cCardCount)
+								&& (inputOfInfantryCards <= iCardCount))) {
+
+					MainClass.getM_instance().exchangeCardsForArmy(p, inputOfArtilleyCards, inputOfCavalryCards,
+							inputOfInfantryCards);
+					
+					frame.setVisible(false);
+					if(p.hasMoreThanFiveCards()) {
+						initialize(p);
+					}
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid Operation!");
 				}
-
-				// r.exchangeCardsForArmy(, countOfArtillery, countOfCavalry, countOfInfantry);
 			}
 
 			catch (NumberFormatException n) {
+				JOptionPane.showMessageDialog(null, "Invalid Operation!");
 				System.out.println("Entered number is in inavlid format!");
 			}
+		}
+
+	}
+
+	@Override
+	public void update(Object o) {
+		if (o instanceof Player) {
+			Player p = (Player) o;
+			if(p.getCurrentPhase() == GamePhase.FORTIFICATION) {
+				if (frame != null && frame.isActive()) {
+					frame.dispose();
+					initialize((Player) o);
+				}
+				else {
+					initialize((Player) o);
+				}
+			}
+			else if(p.getCurrentPhase() == GamePhase.REINFORCEMENT) {
+				if (frame != null && frame.isActive()) {
+					frame.dispose();
+				}
+			}
+			
+			
+
 		}
 
 	}
