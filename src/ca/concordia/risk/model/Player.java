@@ -65,6 +65,8 @@ public class Player {
 	 * @param playerCards -list of cards the player possesses
 	 */
 	private HashMap<String, Integer> playerCards;
+	
+	private int intialArmies;
 
 	MainClass main=MainClass.getM_instance();
 	public GamePhase gamePhase;
@@ -276,7 +278,7 @@ public class Player {
 			if (main.countryBelongsToPlayer(this, countryName)) {
 
 				if (armyNumber <= currentlyUnplacedArmy) {
-
+					
 					main.PlaceArmy(countryName, armyNumber);
 					currentlyUnplacedArmy -= armyNumber;
 					this.setPlayerReinforceArmy(currentlyUnplacedArmy);
@@ -316,12 +318,14 @@ public class Player {
 			int d = defender.getDiceResult().get(i);
 			
 			if (a > d) {
-
+				
 				to.remCountryArmies(1);
 				attackerWins.add(1);
+				defender.remArmies(1);
 				this.setDiceWins(attackerWins);
 			} else {
 
+				this.remArmies(1);
 				defenderWins.add(1);
 				defender.setDiceWins(defenderWins);
 				from.remCountryArmies(1);
@@ -372,6 +376,20 @@ public class Player {
 
 	public GamePhase getCurrentPhase() {
 		return gamePhase;
+	}
+
+	/**
+	 * @return the intialArmies
+	 */
+	public int getIntialArmies() {
+		return intialArmies;
+	}
+
+	/**
+	 * @param intialArmies the intialArmies to set
+	 */
+	public void setIntialArmies(int intialArmies) {
+		this.intialArmies = intialArmies;
 	}
 
 }
