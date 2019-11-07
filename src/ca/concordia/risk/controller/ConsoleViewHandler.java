@@ -107,7 +107,7 @@ public class ConsoleViewHandler {
 			break;
 
 		case "showmap":
-			// if (!mapPhase.contentEquals("end")) {
+		
 			main.showmap();
 			break;
 		case "validatemap":

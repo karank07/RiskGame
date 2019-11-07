@@ -54,7 +54,7 @@ public class MapOperations{
 			String cont_name = continents.get(n).getContinentName();
 			if (cont_name.equalsIgnoreCase(continent_name))
 			{
-				throw new ValidMapException("The Continent with name "+ continent_name + "already exists" );
+				throw new ValidMapException("The Continent with name "+ continent_name + " already exists" );
 			} 
 		}
 		color=null;
@@ -112,7 +112,7 @@ public class MapOperations{
 				for (int n : countries.keySet()) {
 					String co = countries.get(n).getCountryName();
 					if (co.equalsIgnoreCase(country_name)) {					
-						throw new ValidMapException("Country with name:"+ country_name +" already exists!");
+						throw new ValidMapException("Country with name: "+ country_name +" already exists!");
 					}
 					else
 					{
@@ -132,7 +132,7 @@ public class MapOperations{
 		
 		else
 		{
-			throw new ValidMapException("The Continent:"+continent_name +"does not exist!");
+			throw new ValidMapException("The Continent: "+continent_name +" does not exist!");
 		}
 		
 		if(countryFlag == true)
@@ -217,7 +217,7 @@ public class MapOperations{
 			}
 			else
 			{
-				throw new ValidMapException("THe neighbour country named "+ neighbour_country_name +" does not exist. Please add the country and then try to add the neighbour");
+				throw new ValidMapException("The neighbour country named "+ neighbour_country_name +" does not exist. Please add the country and then try to add the neighbour");
 			}
 		}
 		else
