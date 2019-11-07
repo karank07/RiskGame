@@ -598,9 +598,7 @@ public class MainClass {
 				if (commands.length == 2 && commands[1].equals("none")) {
 					errorFlag = "false";
 					p.setFortificationDone(true);
-					p.setPlayerReinforceArmy(p.assign_army());
-					p.addArmies(p.getPlayerReinforceArmy());
-					setNextPlayerTurn();
+					
 					System.out.println("Fortification over!");
 					p.setPlayerReinforceArmy(assign_army(p));
 					p.addArmies(p.getPlayerReinforceArmy());

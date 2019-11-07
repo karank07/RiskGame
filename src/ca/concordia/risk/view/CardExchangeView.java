@@ -156,10 +156,9 @@ public class CardExchangeView implements ActionListener, Observer {
 				System.out.println(cCardCount + " , input-> " + inputOfCavalryCards);
 				System.out.println(iCardCount + " , input-> " + inputOfInfantryCards);
 
-				if(inputOfArtilleyCards == 0 && inputOfCavalryCards == 0 && inputOfInfantryCards == 0) {
+				if (inputOfArtilleyCards == 0 && inputOfCavalryCards == 0 && inputOfInfantryCards == 0) {
 					JOptionPane.showMessageDialog(null, "OH! You must Exhange more then 0 cards");
-				}
-				else if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
+				} else if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
 						&& userInputInfantryCards != null)
 						&& (inputOfArtilleyCards > 0 && inputOfCavalryCards >= 0 && inputOfInfantryCards >= 0)
 						&& ((inputOfArtilleyCards <= aCardCount) && (inputOfCavalryCards <= cCardCount)
@@ -170,7 +169,9 @@ public class CardExchangeView implements ActionListener, Observer {
 
 					frame.setVisible(false);
 					if (p.hasMoreThanFiveCards()) {
-						initialize(p);
+						if (frame != null) {
+							initialize(p);
+						}
 					}
 
 				} else {
@@ -190,7 +191,7 @@ public class CardExchangeView implements ActionListener, Observer {
 	public void update(Object o) {
 		if (o instanceof Player) {
 			Player p = (Player) o;
-			System.out.println("in uodate method to close or open the ui, stsus: " + p.armyAssigning);
+			
 			if (p.armyAssigning == true) {
 				if (frame != null) {
 					frame.dispose();
@@ -201,8 +202,6 @@ public class CardExchangeView implements ActionListener, Observer {
 					initialize((Player) o);
 				}
 			} else if (p.armyAssigning == false) {
-				System.out.println("closing the UI");
-				System.out.println();
 				if (frame != null) {
 					frame.setVisible(false);
 					frame = null;

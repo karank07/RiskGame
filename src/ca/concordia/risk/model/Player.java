@@ -313,6 +313,7 @@ public class Player implements Subject {
 	 */
 	public void addArmies(int addN) {
 		this.playerTotalArmies += addN;
+		attach(gameView);
 		notify_observer();
 	}
 
@@ -322,6 +323,7 @@ public class Player implements Subject {
 	 */
 	public void remArmies(int n) {
 		this.playerTotalArmies -= n;
+		attach(gameView);
 		notify_observer();
 	}
 
@@ -351,6 +353,7 @@ public class Player implements Subject {
 	 */
 	public void setPlayerReinforceArmy(int playerReinforceArmy) {
 		this.playerReinforceArmy = playerReinforceArmy;
+		attach(gameView);
 		notify_observer();
 	}
 
@@ -493,6 +496,7 @@ public class Player implements Subject {
 				+ this.getPlayerCards().get(Card.INFANTRY) >= 5) {
 			return true;
 		}
+	
 		return false;
 	}
 
