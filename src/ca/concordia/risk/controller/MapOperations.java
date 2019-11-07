@@ -27,6 +27,7 @@ public class MapOperations{
 	HashMap<Integer, ArrayList<Integer>> hMap;
 	private boolean[] visited;
 	private int flag;
+	int co_id;
 	/**
 	 * This method adds continent to map
 	 * @param map current map object
@@ -39,6 +40,15 @@ public class MapOperations{
 	 */
 	public boolean addContinent(Map map, HashMap<Integer, Continent> continents, String continent_name, int control_val, String color) throws ValidMapException 
 	{
+		if(continents.size()>0)
+		{
+			co_id=continents.size();
+		}
+		else
+		{
+			co_id=0;
+		}
+		
 		for (int n : continents.keySet()) 
 		{
 			String cont_name = continents.get(n).getContinentName();
@@ -48,9 +58,9 @@ public class MapOperations{
 			} 
 		}
 		color=null;
-		continent_num=continents.size();
+		continent_num=co_id;
 		Continent cont = new Continent(continent_name, control_val, color);
-		continents.put(continent_num, cont);
+		continents.put(++continent_num, cont);
 		return true;
 	}
 	
@@ -77,6 +87,14 @@ public class MapOperations{
 		boolean continentFlag=false,countryFlag=false;
 		int continent_id=0;
 		
+		if(countries.size()>0)
+		{
+			country_num=countries.size();
+		}
+		else
+		{
+			country_num=0;
+		}
 		for (int i : continents.keySet()) {
 			String con_name = continents.get(i).getContinentName();
 			if (con_name.equalsIgnoreCase(continent_name)) 
@@ -105,7 +123,7 @@ public class MapOperations{
 			else
 			{
 				Country co = new Country(country_num, country_name, continent_id, x_co, y_co);
-				countries.put(country_num+1, co);
+				countries.put(++country_num, co);
 				borders.put(country_num, new ArrayList<Integer>());
 				return true;
 			}
@@ -120,8 +138,7 @@ public class MapOperations{
 		if(countryFlag == true)
 		{
 			Country co = new Country(country_num, country_name, continent_id, x_co, y_co);
-			countries.put(country_num +1, co);
-			//country_num+=1;
+			countries.put(++country_num, co);
 			borders.put(country_num, new ArrayList<Integer>());
 			return true;
 		}

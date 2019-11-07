@@ -1051,7 +1051,7 @@ public class MainClass {
 	}
 
 	public void showNeighbors(Country c) {
-		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID()+1)) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
@@ -1067,7 +1067,7 @@ public class MainClass {
 
 	}
 
-	public void editmap(String s1) {
+	public String editmap(String s1) {
 		String[] temp = s1.split(" ");
 		try {
 			if (mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(),
@@ -1080,9 +1080,9 @@ public class MainClass {
 				errorFlag = "false";
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			errorFlag = e.getLocalizedMessage().toString();
 		}
-
+		return errorFlag;
 	}
 
 	private List<String> getNeighboursName(int[] neighbours) {
@@ -1093,7 +1093,7 @@ public class MainClass {
 		return list;
 	}
 
-	public void editcontinent(String s1) {
+	public String editcontinent(String s1) {
 		s1 = s1 + " stop";
 		String[] temp = s1.split(" ");
 
@@ -1116,10 +1116,10 @@ public class MainClass {
 
 			}
 		}
-
+		return errorFlag;
 	}
 
-	public void editcountry(String s1) {
+	public String editcountry(String s1) {
 		s1 = s1 + " stop";
 		String[] temp = s1.split(" ");
 		for (int i = 0; i < temp.length; i++) {
@@ -1131,7 +1131,7 @@ public class MainClass {
 								mapInstance.getBorders(), temp[i + 1], temp[i + 2]);
 
 					} catch (Exception e) {
-						e.printStackTrace();
+						errorFlag = e.getLocalizedMessage().toString();
 					}
 				} else {
 					errorFlag = "Enter a valid command";
@@ -1140,10 +1140,11 @@ public class MainClass {
 
 			}
 		}
+		return errorFlag;
 
 	}
 
-	public void editneigbor(String s1) {
+	public String editneigbor(String s1) {
 		String[] temp = s1.split(" ");
 		for (int i = 0; i < temp.length; i++) {
 			if (temp[i].contentEquals("-add")) {
@@ -1156,7 +1157,7 @@ public class MainClass {
 						mapOperations.addNeighbours(mapInstance, mapInstance.getCountries(), mapInstance.getBorders(),
 								temp[i + 2], temp[i + 1]);
 					} catch (Exception e) {
-						e.printStackTrace();
+						errorFlag = e.getLocalizedMessage().toString();
 					}
 				} else {
 					errorFlag = "Enter a valid command";
@@ -1165,10 +1166,10 @@ public class MainClass {
 
 			}
 		}
-
+		return errorFlag;
 	}
 
-	public void savemap(String s1) {
+	public String savemap(String s1) {
 		String[] temp = s1.split(" ");
 		try {
 			try {
@@ -1178,12 +1179,13 @@ public class MainClass {
 				// mapPhase = "end";
 			} catch (ValidMapException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				errorFlag = e.getLocalizedMessage().toString();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorFlag = e.getLocalizedMessage().toString();
 		}
+		return errorFlag;
 	}
 
 	public boolean canAttack(Country from, Country to) {
