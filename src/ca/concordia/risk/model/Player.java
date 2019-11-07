@@ -7,6 +7,7 @@ import java.util.List;
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.view.CardExchangeView;
+import ca.concordia.risk.view.GameView;
 
 /**
  * This is a model class for a Player with member variables for id, name,
@@ -18,6 +19,33 @@ import ca.concordia.risk.view.CardExchangeView;
 
 public class Player implements Subject {
 
+	String fortifyCountry;
+	public String getFortifyCountry() {
+		return fortifyCountry;
+	}
+
+	public void setFortifyCountry(String fortifyCountry) {
+		this.fortifyCountry = fortifyCountry;
+	}
+
+	public String getFortifiedCountry() {
+		return fortifiedCountry;
+	}
+
+	public void setFortifiedCountry(String fortifiedCountry) {
+		this.fortifiedCountry = fortifiedCountry;
+	}
+
+	public int getFortifyArmies() {
+		return fortifyArmies;
+	}
+
+	public void setFortifyArmies(int fortifyArmies) {
+		this.fortifyArmies = fortifyArmies;
+	}
+
+	String fortifiedCountry;
+	int fortifyArmies;
 	/**
 	 * @param playerId - for unique player id
 	 */
@@ -59,6 +87,16 @@ public class Player implements Subject {
 	 */
 	private List<Integer> diceResult = new ArrayList<Integer>();
 
+
+	private List<Integer> defenderDiceResult = new ArrayList<Integer>();
+	public List<Integer> getDefenderDiceResult() {
+		return defenderDiceResult;
+	}
+
+	public void setDefenderDiceResult(List<Integer> defenderDiceResult) {
+		this.defenderDiceResult = defenderDiceResult;
+	}
+
 	/**
 	 * @param diceWins store the number of wins in the list
 	 */
@@ -66,11 +104,41 @@ public class Player implements Subject {
 	/**
 	 * @param playerCards -list of cards the player possesses
 	 */
+	String reinforceCountry;
+	String attackingCountry;
+	String defendingCountry;
+	
+	public String getAttackingCountry() {
+		return attackingCountry;
+	}
+
+	public void setAttackingCountry(String attackingCountry) {
+		this.attackingCountry = attackingCountry;
+	}
+
+	public String getDefendingCountry() {
+		return defendingCountry;
+	}
+
+	public void setDefendingCountry(String defendingCountry) {
+		this.defendingCountry = defendingCountry;
+	}
+
+	public String getReinforceCountry() {
+		return reinforceCountry;
+	}
+
+	public void setReinforceCountry(String reinforceCountry) {
+		notify_observer();
+		this.reinforceCountry = reinforceCountry;
+	}
+
 	private HashMap<String, Integer> playerCards;
 	
 	private int intialArmies;
 
 	private Observer o;
+	private GameView gameView=GameView.get_instance();
 
 	MainClass main = MainClass.getM_instance();
 	public GamePhase gamePhase;
@@ -87,7 +155,7 @@ public class Player implements Subject {
 		this.playerName = playerName;
 		this.playerCountries = new ArrayList<Country>();
 		this.playerCards = new HashMap<String, Integer>();
-		
+		this.fortifyArmies=0;
 		this.getPlayerCards().put(Card.ARTILLERY, 0);
 		this.getPlayerCards().put(Card.CAVALRY, 0);
 		this.getPlayerCards().put(Card.INFANTRY, 0);
@@ -281,11 +349,12 @@ public class Player implements Subject {
 	 * @param player      for player entity
 	 */
 	public String reinforceArmy(String countryName, int armyNumber) {
-
+		this.reinforceCountry=countryName;
+		notify_observer();
 		int currentlyUnplacedArmy = this.getPlayerReinforceArmy();
 		String errorFlag = "false";
 		if (currentlyUnplacedArmy > 0) {
-			// check whether entered country name (through console) is valid or not
+			
 			if (main.countryBelongsToPlayer(this, countryName)) {
 
 				if (armyNumber <= currentlyUnplacedArmy) {
@@ -305,7 +374,7 @@ public class Player implements Subject {
 
 		}
 
-		// Printing LOG _ The status of new army with number of army it contains
+		
 		for (int i = 0; i < this.getPlayerTotalCountries(); i++) {
 			System.out.println("Country: " + this.getPlayerCountries().get(i).getCountryName() + "-->>"
 					+ this.getPlayerCountries().get(i).getCountryArmy());
@@ -323,11 +392,13 @@ public class Player implements Subject {
 
 	public String attack(Country from, Country to, Player defender) {
 		// notify method to close the card exchange view dialogue if it is still oprn
-		notify_observer();
-
+		this.attackingCountry=from.getCountryName();
+		this.defendingCountry=to.getCountryName();
 		String resultString = "";
 		List<Integer> attackerWins = new ArrayList<Integer>();
 		List<Integer> defenderWins = new ArrayList<Integer>();
+		setDefenderDiceResult(defender.getDiceResult());
+		
 		int size = this.getDiceResult().size() < defender.getDiceResult().size() ? this.getDiceResult().size()
 				: defender.getDiceResult().size();
 
@@ -360,7 +431,8 @@ public class Player implements Subject {
 		System.out.println("attacker :" + attackerWins);
 		System.out.println("defender: " + defenderWins);
 		System.out.println(resultString);
-
+		notify_observer();
+		
 		return resultString;
 	}
 
@@ -374,7 +446,9 @@ public class Player implements Subject {
 	 */
 
 	public void fortify(Country from, Country to, int army) {
-
+		this.fortifiedCountry=to.getCountryName();
+		this.fortifyCountry=from.getCountryName();
+		this.fortifyArmies=army;
 		boolean adjFlag = main.checkNeighbours(from, to, this.getPlayerId());
 		System.out.println("player " + this.getPlayerId());
 		if (adjFlag) {
@@ -387,7 +461,7 @@ public class Player implements Subject {
 			} else
 				System.out.println("There must be atleast one army in a country!");
 			
-			//now as the phase will be the  reinforcement Card Exchange View should be there
+			
 			this.attach(new CardExchangeView(this));
 			notify_observer();
 			
@@ -399,6 +473,8 @@ public class Player implements Subject {
 
 	public void setCurrentPhase(GamePhase phase) {
 		this.gamePhase = phase;
+		this.attach(gameView);
+		notify_observer();
 	}
 
 	public GamePhase getCurrentPhase() {
