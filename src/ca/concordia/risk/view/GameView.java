@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.CompoundBorder;
 
 /**
+ * This class manages the player's World Domination View and all the information necessary to 
+ * play the phases
  * @author Karan
  *
  */
@@ -45,12 +47,18 @@ public class GameView implements Observer {
 	private JTable playerTable;
 	private JTable continentTable;
 
+	/**
+	 * default constructor
+	 */
 	public GameView() {
 		createView();
 	}
 
 	static GameView gv;
 
+	/**
+	 * @return the static instance of the Game View
+	 */
 	public static GameView get_instance() {
 		if (gv == null) {
 			gv = new GameView();
@@ -60,6 +68,9 @@ public class GameView implements Observer {
 			return gv;
 	}
 
+	/**
+	 * This method creates the actual Jframe to display the information for the Domination View
+	 */
 	public void createView() {
 		JFrame frame = new JFrame("Player World Domination View");
 		frame.getContentPane().setLayout(null);
@@ -275,6 +286,9 @@ public class GameView implements Observer {
 
 	}
 
+	/**
+	 * This method clears the various Jframe textFields mentioned
+	 */
 	private void clearall() {
 		phaseField.setText("");
 		infantryField.setText("");
@@ -293,6 +307,10 @@ public class GameView implements Observer {
 
 	}
 
+	/**
+	 *Updates various Jframe field according to the observer pattern flow that is 
+	 *when notified about a change
+	 */
 	@Override
 	public void update(Object o) {
 		if (o instanceof Player) {
