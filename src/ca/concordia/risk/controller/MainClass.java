@@ -606,10 +606,7 @@ public class MainClass {
 					p.addArmies(p.getPlayerReinforceArmy());
 					setNextPlayerTurn();
 					System.out.println("Fortification over!");
-					p.setPlayerReinforceArmy(assign_army(p));
-					p.addArmies(p.getPlayerReinforceArmy());
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-					setNextPlayerTurn();
 				} else if (commands.length == 4 && Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0) {
 					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
 							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2]))) {
@@ -1095,7 +1092,7 @@ public class MainClass {
 	}
 
 	public void showNeighbors(Country c) {
-		for (int b : mapInstance.getBorders().get(c.getCountryID() + 1)) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 

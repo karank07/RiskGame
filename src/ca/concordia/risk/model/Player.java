@@ -492,7 +492,7 @@ public class Player implements Subject {
 		if (this.getPlayerCards().get(Card.ARTILLERY) + this.getPlayerCards().get(Card.CAVALRY)
 				+ this.getPlayerCards().get(Card.INFANTRY) >= 5) {
 			return true;
-		}
+		}else 
 		return false;
 	}
 

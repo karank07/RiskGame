@@ -190,7 +190,6 @@ public class CardExchangeView implements ActionListener, Observer {
 	public void update(Object o) {
 		if (o instanceof Player) {
 			Player p = (Player) o;
-			System.out.println("in uodate method to close or open the ui, stsus: " + p.armyAssigning);
 			if (p.armyAssigning == true) {
 				if (frame != null) {
 					frame.dispose();
@@ -201,8 +200,6 @@ public class CardExchangeView implements ActionListener, Observer {
 					initialize((Player) o);
 				}
 			} else if (p.armyAssigning == false) {
-				System.out.println("closing the UI");
-				System.out.println();
 				if (frame != null) {
 					frame.setVisible(false);
 					frame = null;
