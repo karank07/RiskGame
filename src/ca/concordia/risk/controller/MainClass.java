@@ -595,7 +595,6 @@ public class MainClass {
 			} else {
 				errorFlag = "Invalid command!";
 			}
-
 			break;
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
