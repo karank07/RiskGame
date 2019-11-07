@@ -301,7 +301,6 @@ public class MainClass {
 			Player player = playerList.get(j % playerCount);
 			setNewCountryRuler(player, country, 1);
 			player.setPlayerCountries(player_country_map.get(player));
-
 			j++;
 		}
 
@@ -382,7 +381,6 @@ public class MainClass {
 		}
 		cList.add(c);
 		player_country_map.put(p, cList);
-
 	}
 
 	/**
@@ -534,7 +532,6 @@ public class MainClass {
 
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
-
 
 
 			} else if (commands.length == 4) {

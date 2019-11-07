@@ -285,12 +285,15 @@ public class MapOperations{
 								}
 							}							
 						}
+						break;
 					}
-				}				
+				}
+				break;
 			}
+			
+			
 		}
 		
-		System.out.println("STATE:" + state);
 		if(state==1)
 		{
 			return "Continent removed successfully";
