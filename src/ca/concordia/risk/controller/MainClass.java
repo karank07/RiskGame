@@ -301,7 +301,6 @@ public class MainClass {
 			Player player = playerList.get(j % playerCount);
 			setNewCountryRuler(player, country, 1);
 			player.setPlayerCountries(player_country_map.get(player));
-
 			j++;
 		}
 
@@ -382,7 +381,6 @@ public class MainClass {
 		}
 		cList.add(c);
 		player_country_map.put(p, cList);
-
 	}
 
 	/**
@@ -531,11 +529,11 @@ public class MainClass {
 
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
 				errorFlag = "false";
-//				if (countryDefending.getCountryArmy() != 0) {
+				//if (countryDefending.getCountryArmy() != 0) {
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
-//				}else errorFlag="Cannot Skip Attack, Move armies to Conquered Country!";
+				//}else errorFlag="Cannot Skip Attack, Move armies to Conquered Country!";
 
 			} else if (commands.length == 4) {
 
