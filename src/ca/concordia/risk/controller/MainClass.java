@@ -588,8 +588,9 @@ public class MainClass {
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
 				if (commands.length == 2 && commands[1].equals("none")) {
-
+					errorFlag="false";
 					System.out.println("Fortification over!");
+					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 				} else if (commands.length == 4) {
 					if(p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1])) 
 							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2])))
@@ -1044,11 +1045,17 @@ public class MainClass {
 					+ mapInstance.getContinents().get(c.getContinentID()).getContinentName() + " || Country army: "
 					+ c.getCountryArmy() + " || Owner Name:" + playerList.get(c.getCountryOwner() - 1).getPlayerName()
 					+ " ||\nNeighbours :");
-			showNeighbors(c);
+			showNeighborsForGame(c);
 
 		}
 	}
+	public void showNeighborsForGame(Country c) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
+			System.out.println(mapInstance.getCountries().get(b).getCountryName());
+		}
 
+	}
+	
 	public void showNeighbors(Country c) {
 		for (int b : mapInstance.getBorders().get(c.getCountryID()+1)) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
