@@ -156,10 +156,9 @@ public class CardExchangeView implements ActionListener, Observer {
 				System.out.println(cCardCount + " , input-> " + inputOfCavalryCards);
 				System.out.println(iCardCount + " , input-> " + inputOfInfantryCards);
 
-				if(inputOfArtilleyCards == 0 && inputOfCavalryCards == 0 && inputOfInfantryCards == 0) {
+				if (inputOfArtilleyCards == 0 && inputOfCavalryCards == 0 && inputOfInfantryCards == 0) {
 					JOptionPane.showMessageDialog(null, "OH! You must Exhange more then 0 cards");
-				}
-				else if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
+				} else if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
 						&& userInputInfantryCards != null)
 						&& (inputOfArtilleyCards > 0 && inputOfCavalryCards >= 0 && inputOfInfantryCards >= 0)
 						&& ((inputOfArtilleyCards <= aCardCount) && (inputOfCavalryCards <= cCardCount)
@@ -170,7 +169,9 @@ public class CardExchangeView implements ActionListener, Observer {
 
 					frame.setVisible(false);
 					if (p.hasMoreThanFiveCards()) {
-						initialize(p);
+						if (frame != null) {
+							initialize(p);
+						}
 					}
 
 				} else {

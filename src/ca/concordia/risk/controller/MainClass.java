@@ -602,9 +602,7 @@ public class MainClass {
 				if (commands.length == 2 && commands[1].equals("none")) {
 					errorFlag = "false";
 					p.setFortificationDone(true);
-					p.setPlayerReinforceArmy(p.assign_army());
-					p.addArmies(p.getPlayerReinforceArmy());
-					setNextPlayerTurn();
+					
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 				} else if (commands.length == 4 && Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0) {
