@@ -351,17 +351,18 @@ public class GameView implements Observer {
 			if (p.getCurrentPhase().equals(GamePhase.REINFORCEMENT)) {
 				clearall();
 				phaseField.setText(p.getCurrentPhase().toString());
-
 				reinforceArmiesField.setText(String.valueOf(p.getPlayerReinforceArmy()));
+		
 				reinforceCountryField.setText(p.getReinforceCountry());
 			}
-			if (p.getCurrentPhase().equals(GamePhase.ATTACK) && !p.getDefenderDiceResult().isEmpty()) {
+			if (p.getCurrentPhase().equals(GamePhase.ATTACK) && !p.getAttackResult().equalsIgnoreCase("null") ){
 				phaseField.setText(p.getCurrentPhase().toString());
 				attackingCountryField.setText(p.getAttackingCountry());
 				defendingCountryField.setText(p.getDefendingCountry());
 				attackerRollsField.setText(p.getDiceResult().toString());
 				defenderRollsField.setText(p.getDefenderDiceResult().toString());
-				// resultField.setText(p.getDiceWins().toString());
+				System.out.println(p.getAttackResult());
+				resultField.setText(p.getAttackResult());
 			}
 			if (p.getFortifyArmies() != 0) {
 				phaseField.setText(p.getCurrentPhase().toString());

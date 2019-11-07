@@ -551,7 +551,9 @@ public class MainClass {
 					defender = playerList.get(countryDefending.getCountryOwner() - 1);
 					if (commands[3].equals("-allout")) {
 						alloutAttack(countryAttacking, countryDefending, attacker, defender);
-						System.out.println(attackResult(countryAttacking, countryDefending, attacker));
+						String s=attackResult(countryAttacking, countryDefending, attacker);
+						attacker.setAttackResult(s);
+						System.out.println(s);
 
 					} else {
 						doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
@@ -626,6 +628,8 @@ public class MainClass {
 	 */
 	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
 		if (countryAttacking.getCountryArmy() == 1) {
+			attacker.setAttackResult("Defender won!");
+			
 			return "Defender won!";
 		} else if (countryDefending.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, countryDefending);
@@ -633,6 +637,7 @@ public class MainClass {
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			gameOver(attacker);
 			errorFlag = "You have to move armies";
+			attacker.setAttackResult("Attacker won! Country conquered");
 			return "Attacker won! Country conquered";
 
 		} else

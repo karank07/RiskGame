@@ -101,21 +101,21 @@ public class ConsoleViewHandler {
 			errorFlag = main.startGamePhase(inputCommand);
 			break;
 		case "editcontinent":
-			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
 				errorFlag = main.editcontinent(inputCommand);
 			} else
 				errorFlag = "Invalid command!";
 			break;
 
 		case "editcountry":
-			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands.length >= 3 && !Map.m_instance.getBorders().isEmpty()) {
 				errorFlag =main.editcountry(inputCommand);
 			} else
 				errorFlag = "Invalid command!";
 			break;
 
 		case "editneighbor":
-			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands.length >= 3 && !Map.m_instance.getBorders().isEmpty()) {
 				errorFlag = errorFlag = main.editneigbor(inputCommand);
 				
 			} else
