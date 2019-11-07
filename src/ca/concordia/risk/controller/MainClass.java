@@ -1102,7 +1102,7 @@ public class MainClass {
 					try {
 						mapOperations.addContinent(mapInstance, mapInstance.getContinents(), temp[i + 1],
 								Integer.parseInt(temp[i + 2]), null);
-						// mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+						
 					} catch (Exception e) {
 						errorFlag=e.getMessage();
 					}
@@ -1111,6 +1111,17 @@ public class MainClass {
 					errorFlag = "Enter a valid command";
 				}
 			} else if (temp[i].contentEquals("-remove")) {
+				if (!(temp[i + 1].contentEquals("stop"))) {
+					errorFlag = "false";
+					try {
+						errorFlag = mapOperations.deleteContinent(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1]);
+					} catch (Exception e) {
+						errorFlag=e.getMessage().toString();
+					}
+
+				} else {
+					errorFlag = "Enter a valid command";
+				}
 
 			}
 		}
@@ -1135,7 +1146,17 @@ public class MainClass {
 					errorFlag = "Enter a valid command";
 				}
 			} else if (temp[i].contentEquals("-remove")) {
+				if (!(temp[i + 1].contentEquals("stop"))) {
+					errorFlag = "false";
+					try {
+						errorFlag = mapOperations.deleteCountry(mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1]);
+					} catch (Exception e) {
+						errorFlag=e.getMessage().toString();
+					}
 
+				} else {
+					errorFlag = "Enter a valid command";
+				}
 			}
 		}
 		return errorFlag;
@@ -1161,7 +1182,18 @@ public class MainClass {
 					errorFlag = "Enter a valid command";
 				}
 			} else if (temp[i].contentEquals("-remove")) {
+				if (!(temp[i + 1].contentEquals("stop")) && !(temp[i + 2].contentEquals("stop"))) {
+					errorFlag = "false";
+					try {
+						mapOperations.deleteNeighbour(mapInstance.getCountries(), mapInstance.getBorders(), temp[i+1], temp[i+2]);
+						
+					} catch (Exception e) {
+						errorFlag=e.getMessage();
+					}
 
+				} else {
+					errorFlag = "Enter a valid command";
+				}
 			}
 		}
 		return errorFlag;
@@ -1174,7 +1206,6 @@ public class MainClass {
 				mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(),
 						mapInstance.getBorders(), temp[1]);
 				errorFlag = "false";
-				// mapPhase = "end";
 			} catch (ValidMapException e) {
 				// TODO Auto-generated catch block
 				errorFlag = e.getLocalizedMessage().toString();
