@@ -267,26 +267,21 @@ public class MapOperations{
 						
 						while (iteratorBoundries.hasNext()) 
 						{
-							System.out.println("Inside While");
 							Entry<Integer, ArrayList<Integer>> entryBoundries=iteratorBoundries.next();
 							
 							ArrayList<Integer> list = entryBoundries.getValue();
 							
 							if (entryBoundries.getKey() == entryCountries.getKey()) 
 							{
-								System.out.println("Inside if");
 								iteratorBoundries.remove();
 								state=3;
-								System.out.println("out if:"+ state);
 								break;
 							}
 							else
 							{							
 								if(list.contains(entryCountries.getKey()))
 								{
-									System.out.println("Inside else if");
 									list.remove(Integer.valueOf(entryCountries.getKey()));
-									System.out.println("out elseif : "+ entryCountries.getKey());
 								}
 							}							
 						}
