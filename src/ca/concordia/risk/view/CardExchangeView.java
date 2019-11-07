@@ -191,7 +191,6 @@ public class CardExchangeView implements ActionListener, Observer {
 	public void update(Object o) {
 		if (o instanceof Player) {
 			Player p = (Player) o;
-			
 			if (p.armyAssigning == true) {
 				if (frame != null) {
 					frame.dispose();

@@ -536,18 +536,22 @@ public class MainClass {
 			}
 
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
+				if(countryDefending!=null && countryDefending.getCountryArmy()==0) {
+					errorFlag="invalid command!";
+					break;
+				}
+				
 				errorFlag = "false";
-
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
-			} else if (commands.length == 4 && Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0) {
+			} else if (commands.length == 4 ) {
 
 				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))
 						|| p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[2]))) {
 
 					errorFlag = "Check country ownership again";
-				} else {
+				} else  {
 					countryAttacking = mapInstance.getCountryByName(commands[1]);
 					countryDefending = mapInstance.getCountryByName(commands[2]);
 
@@ -560,7 +564,7 @@ public class MainClass {
 						attacker.setAttackResult(s);
 						System.out.println(s);
 
-					} else {
+					} else if( Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0){
 						errorFlag = "false";
 						doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
 						System.out.println("Defender's Turn :" + defender.getPlayerName());
@@ -600,10 +604,7 @@ public class MainClass {
 					p.setFortificationDone(true);
 					
 					System.out.println("Fortification over!");
-					p.setPlayerReinforceArmy(assign_army(p));
-					p.addArmies(p.getPlayerReinforceArmy());
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-					setNextPlayerTurn();
 				} else if (commands.length == 4 && Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0) {
 					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
 							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2]))) {
@@ -1089,7 +1090,7 @@ public class MainClass {
 	}
 
 	public void showNeighbors(Country c) {
-		for (int b : mapInstance.getBorders().get(c.getCountryID() + 1)) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
@@ -1343,7 +1344,4 @@ public class MainClass {
 		System.out.println("Attacked Country army: " + to.getCountryArmy());
 
 	}
-
-	// Successful attack pr check kro about continent conquered or not and CARD
-
 }
