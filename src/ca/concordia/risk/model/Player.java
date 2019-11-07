@@ -460,16 +460,9 @@ public class Player implements Subject {
 
 			} else
 				System.out.println("There must be atleast one army in a country!");
-			
-			
+				
 			this.attach(new CardExchangeView(this));
-			HashMap<String, Integer> demoCards = new HashMap<String, Integer>();
-			demoCards.put(Card.ARTILLERY, Integer.valueOf(5));
-			demoCards.put(Card.CAVALRY, Integer.valueOf(2));
-			demoCards.put(Card.INFANTRY, Integer.valueOf(0));
-			this.setPlayerCards(demoCards);
-			
-			
+	
 			notify_observer();
 			
 		

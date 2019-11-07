@@ -1102,7 +1102,7 @@ public class MainClass {
 								Integer.parseInt(temp[i + 2]), null);
 						// mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
 					} catch (Exception e) {
-						e.printStackTrace();
+						errorFlag=e.getMessage();
 					}
 
 				} else {
