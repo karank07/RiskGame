@@ -375,7 +375,7 @@ public class Player implements Subject {
 					main.PlaceArmy(countryName, armyNumber);
 					currentlyUnplacedArmy -= armyNumber;
 					this.setPlayerReinforceArmy(currentlyUnplacedArmy);
-					this.addArmies(currentlyUnplacedArmy);
+					this.addArmies(armyNumber);
 				}
 				errorFlag = "false";
 
