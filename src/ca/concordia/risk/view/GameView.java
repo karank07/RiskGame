@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.CompoundBorder;
 
 /**
+ * This class manages the player's World Domination View and all the information necessary to 
+ * play the phases
  * @author Karan
  *
  */
@@ -45,12 +47,18 @@ public class GameView implements Observer {
 	private JTable playerTable;
 	private JTable continentTable;
 
+	/**
+	 * default constructor
+	 */
 	public GameView() {
 		createView();
 	}
 
 	static GameView gv;
 
+	/**
+	 * @return the static instance of the Game View
+	 */
 	public static GameView get_instance() {
 		if (gv == null) {
 			gv = new GameView();
@@ -60,6 +68,9 @@ public class GameView implements Observer {
 			return gv;
 	}
 
+	/**
+	 * This method creates the actual Jframe to display the information for the Domination View
+	 */
 	public void createView() {
 		JFrame frame = new JFrame("Player World Domination View");
 		frame.getContentPane().setLayout(null);
@@ -260,13 +271,14 @@ public class GameView implements Observer {
 		scrollPane.setViewportView(playerTable);
 
 		continentTable = new JTable();
+		continentTable.setBorder(new CompoundBorder());
 		continentTable.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Continent", "Owned By" }));
 		continentTable.setBounds(480, 520, 669, 164);
 
 		JScrollPane scrollPaneTable2 = new JScrollPane();
 		scrollPaneTable2.setBounds(480, 520, 669, 164);
 		frame.getContentPane().add(scrollPaneTable2);
-		scrollPaneTable2.add(continentTable);
+		scrollPaneTable2.setViewportView(continentTable);
 		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().add(scrollPaneTable2);
 		frame.setVisible(true);
@@ -275,6 +287,9 @@ public class GameView implements Observer {
 
 	}
 
+	/**
+	 * This method clears the various Jframe textFields mentioned
+	 */
 	private void clearall() {
 		phaseField.setText("");
 		infantryField.setText("");
@@ -293,6 +308,10 @@ public class GameView implements Observer {
 
 	}
 
+	/**
+	 *Updates various Jframe field according to the observer pattern flow that is 
+	 *when notified about a change
+	 */
 	@Override
 	public void update(Object o) {
 		if (o instanceof Player) {
@@ -305,14 +324,19 @@ public class GameView implements Observer {
 				for (Player player : MainClass.playerList) {
 					int playerCountryCount = MainClass.player_country_map.get(player).size();
 					playerModel.addRow(new Object[] { player.getPlayerName(), player.getPlayerTotalArmies(),
-							(int) ((playerCountryCount / totalCountries) * 100) });
+							 (playerCountryCount* 100 / totalCountries)  });
 
 				}
 
 			}
 			if(!Map.getM_instance().getBorders().isEmpty()) {
 				for(Continent c:Map.getM_instance().getContinents().values()) {
-					continentModel.addRow(new Object[] {c.getContinentName(), MainClass.playerList.get(c.getRuler()).getPlayerName()});
+					if(c.getRuler()==0) {
+						continentModel.addRow(new Object[] {c.getContinentName(), "none"});
+						
+					}
+					else
+					continentModel.addRow(new Object[] {c.getContinentName(), MainClass.playerList.get(c.getRuler()-1).getPlayerName()});
 				}
 			}
 
