@@ -586,7 +586,7 @@ public class MainClass {
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
 				if (commands.length == 2 && commands[1].equals("none")) {
-
+					p.setFortificationDone(true);
 					System.out.println("Fortification over!");
 				} else if (commands.length == 4) {
 					if(p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1])) 
