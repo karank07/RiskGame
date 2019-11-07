@@ -592,14 +592,21 @@ public class MainClass {
 					
 					System.out.println("Fortification over!");
 				} else if (commands.length == 4) {
-					Country from = mapInstance.getCountryByName(commands[1]);
-					Country to = mapInstance.getCountryByName(commands[2]);
-					p.fortify(from, to, Integer.parseInt(commands[3]));
-					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-					p.setPlayerReinforceArmy(assign_army(p));
-					p.addArmies(p.getPlayerReinforceArmy());
-					setNextPlayerTurn();
-
+					if(p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1])) 
+							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2])))
+					{
+						errorFlag = "false";
+						Country from = mapInstance.getCountryByName(commands[1]);
+						Country to = mapInstance.getCountryByName(commands[2]);
+						p.fortify(from, to, Integer.parseInt(commands[3]));
+						p.setCurrentPhase(GamePhase.REINFORCEMENT);
+						p.setPlayerReinforceArmy(assign_army(p));
+						p.addArmies(p.getPlayerReinforceArmy());
+						setNextPlayerTurn();
+					}
+					else
+						errorFlag = "the country doesnot exist or isnot owned by you ";
+					
 				} else
 					errorFlag = "Invalid command!";
 
@@ -623,7 +630,7 @@ public class MainClass {
 			return "Attacker won! Country conquered";
 
 		} else
-			return "continue attacking?";
+			return "Enter attack -noattack to end else continue";
 	}
 
 	private void unmapPlayerToCountry(Player player, Country country) {
