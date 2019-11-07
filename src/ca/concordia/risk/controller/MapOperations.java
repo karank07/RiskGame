@@ -264,6 +264,7 @@ public class MapOperations{
 					{
 						iteratorCountry.remove();
 						state=2;
+						
 						while (iteratorBoundries.hasNext()) 
 						{
 							Entry<Integer, ArrayList<Integer>> entryBoundries=iteratorBoundries.next();
@@ -274,9 +275,10 @@ public class MapOperations{
 							{
 								iteratorBoundries.remove();
 								state=3;
+								break;
 							}
 							else
-							{								
+							{							
 								if(list.contains(entryCountries.getKey()))
 								{
 									list.remove(Integer.valueOf(entryCountries.getKey()));
@@ -287,6 +289,8 @@ public class MapOperations{
 				}				
 			}
 		}
+		
+		System.out.println("STATE:" + state);
 		if(state==1)
 		{
 			return "Continent removed successfully";
@@ -407,6 +411,7 @@ public class MapOperations{
 				if(borders.get(cNum).contains(nNum))
 				{
 					borders.get(cNum).remove(Integer.valueOf(nNum));
+					borders.get(nNum).remove(Integer.valueOf(cNum));
 					return "Neighbour country removed successfully";
 				}
 				else

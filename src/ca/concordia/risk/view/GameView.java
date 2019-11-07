@@ -271,13 +271,14 @@ public class GameView implements Observer {
 		scrollPane.setViewportView(playerTable);
 
 		continentTable = new JTable();
+		continentTable.setBorder(new CompoundBorder());
 		continentTable.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Continent", "Owned By" }));
 		continentTable.setBounds(480, 520, 669, 164);
 
 		JScrollPane scrollPaneTable2 = new JScrollPane();
 		scrollPaneTable2.setBounds(480, 520, 669, 164);
 		frame.getContentPane().add(scrollPaneTable2);
-		scrollPaneTable2.add(continentTable);
+		scrollPaneTable2.setViewportView(continentTable);
 		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().add(scrollPaneTable2);
 		frame.setVisible(true);
@@ -323,14 +324,19 @@ public class GameView implements Observer {
 				for (Player player : MainClass.playerList) {
 					int playerCountryCount = MainClass.player_country_map.get(player).size();
 					playerModel.addRow(new Object[] { player.getPlayerName(), player.getPlayerTotalArmies(),
-							(int) ((playerCountryCount / totalCountries) * 100) });
+							 (playerCountryCount* 100 / totalCountries)  });
 
 				}
 
 			}
 			if(!Map.getM_instance().getBorders().isEmpty()) {
 				for(Continent c:Map.getM_instance().getContinents().values()) {
-					continentModel.addRow(new Object[] {c.getContinentName(), MainClass.playerList.get(c.getRuler()).getPlayerName()});
+					if(c.getRuler()==0) {
+						continentModel.addRow(new Object[] {c.getContinentName(), "none"});
+						
+					}
+					else
+					continentModel.addRow(new Object[] {c.getContinentName(), MainClass.playerList.get(c.getRuler()-1).getPlayerName()});
 				}
 			}
 
