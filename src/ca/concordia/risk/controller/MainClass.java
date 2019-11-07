@@ -194,6 +194,7 @@ public class MainClass {
 	}
 
 	void setNextPlayerTurn() {
+		
 		turn++;
 		turn = turn > playerList.size() ? 1 : turn;
 	}
@@ -521,6 +522,8 @@ public class MainClass {
 			break;
 
 		case "attack":
+			errorFlag=""
+					+ "false";
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
 				errorFlag = "Invalid command!";
 
@@ -571,8 +574,8 @@ public class MainClass {
 			break;
 		case "attackmove":
 			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK
-					) {
-				//&& countryDefending.getCountryArmy() == 0
+					&& countryDefending.getCountryArmy() == 0	) {
+				
 				moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 			} else {
 				errorFlag = "Invalid command!";
