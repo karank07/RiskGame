@@ -9,6 +9,7 @@ import ca.concordia.risk.view.Console;
 //import ca.concordia.risk.view.GameView;
 
 /**
+ * This class handles the view and model class values for the same following the observer pattern
  * @author Karan
  *
  */
@@ -16,20 +17,29 @@ public class ConsoleViewHandler {
 
 	static Console c;
 	MainClass main;
-	//static GameView gameView;
+	// static GameView gameView;
 
 	public static void main(String[] args) {
 		c = new Console();
 		c.createConsole();
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public ConsoleViewHandler() {
 		main = new MainClass();
 
 	}
 
+	/**
+	 * This method handles the input passed from the console and calling appropriate phase method
+	 *  from  model and other controller classes
+	 * @param inputCommand String of command passed from Console
+	 * @return errorFlag indicating valid or invalid command and phase flow
+	 */
 	public String phaseDecider(String inputCommand) {
-		inputCommand = inputCommand.toLowerCase();
+		inputCommand = inputCommand.toLowerCase().trim();
 		System.out.println(inputCommand + "\n");
 		String[] commands = inputCommand.split(" ");
 		String errorFlag = "false";
@@ -91,30 +101,48 @@ public class ConsoleViewHandler {
 			errorFlag = main.startGamePhase(inputCommand);
 			break;
 		case "editcontinent":
-			errorFlag = main.editcontinent(inputCommand);
+			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+				errorFlag = main.editcontinent(inputCommand);
+			} else
+				errorFlag = "Invalid command!";
 			break;
 
 		case "editcountry":
-			errorFlag=main.editcountry(inputCommand);
+			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+				errorFlag =main.editcountry(inputCommand);
+			} else
+				errorFlag = "Invalid command!";
 			break;
 
 		case "editneighbor":
-			errorFlag = main.editneigbor(inputCommand);
+			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+				errorFlag = errorFlag = main.editneigbor(inputCommand);
+				
+			} else
+				errorFlag = "Invalid command!";
+			
 			break;
 
 		case "savemap":
-			errorFlag = main.savemap(inputCommand);
+			if(commands.length==2 && !Map.m_instance.getBorders().isEmpty())
+				errorFlag = main.savemap(inputCommand);
+			else errorFlag="Invalid command";
 			break;
 
 		case "showmap":
-		
-			main.showmap();
+			if(commands.length==1)
+				main.showmap();
+			else errorFlag="Invalid command";
 			break;
 		case "validatemap":
-			main.validatemap();
+			if(commands.length==1 && !Map.m_instance.getBorders().isEmpty())
+				main.validatemap();
+			else errorFlag="Invalid command!";
 			break;
 		case "editmap":
-			main.editmap(inputCommand);
+			if(commands.length==2)
+				main.editmap(inputCommand);
+			else errorFlag="Invalid command";
 			break;
 
 		default:

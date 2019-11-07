@@ -522,24 +522,24 @@ public class MainClass {
 		case "attack":
 			errorFlag = "" + "false";
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
-				System.out.println("in first if");
+				
 				errorFlag = "Invalid command!";
 
 			}
 
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
 				errorFlag = "false";
-				//if (countryDefending.getCountryArmy() != 0) {
+
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
-				//}else errorFlag="Cannot Skip Attack, Move armies to Conquered Country!";
 
 			} else if (commands.length == 4) {
 
-				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))) {
+				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1])) || 
+						p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[2]))) {
 
-					errorFlag = "" + commands[1] + " is not yours!";
+					errorFlag = "Check country ownership again";
 				} else {
 					countryAttacking = mapInstance.getCountryByName(commands[1]);
 					countryDefending = mapInstance.getCountryByName(commands[2]);
@@ -584,8 +584,10 @@ public class MainClass {
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
 				if (commands.length == 2 && commands[1].equals("none")) {
+					errorFlag="false";
 					p.setFortificationDone(true);
 					System.out.println("Fortification over!");
+					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 				} else if (commands.length == 4) {
 					if(p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1])) 
 							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2])))
@@ -613,6 +615,12 @@ public class MainClass {
 
 	}
 
+	/**
+	 * @param attackingCountry country attacking
+	 * @param defendingCountry country being attacked
+	 * @param attacker player attacking
+	 * @return string declaring the winner
+	 */
 	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
 		if (countryAttacking.getCountryArmy() == 1) {
 			return "Defender won!";
@@ -628,10 +636,22 @@ public class MainClass {
 			return "Enter attack -noattack to end else continue";
 	}
 
+	/**
+	 * @param player the player to disown the country
+	 * @param country the country to be disowned
+	 */
 	private void unmapPlayerToCountry(Player player, Country country) {
 		player_country_map.get(player).remove(country);
 	}
 
+	/**
+	 * This method rolls the dice for the defender
+	 * @param numDice number of dice rolls the defender decides
+	 * @param attacker
+	 * @param defender
+	 * @param countryAttacking
+	 * @param countryDefending
+	 */
 	void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
 		if (!checkDiceRD(numDice, countryDefending)) {
 			errorFlag = "invalid defender dice";
@@ -921,6 +941,13 @@ public class MainClass {
 		}
 	}
 
+	/**
+	 * This method rolls the dice for the attacker
+	 * @param countryAttacking
+	 * @param countryDefending
+	 * @param numDice the number of dice rolls decide by attacker
+	 * @param attacker
+	 */
 	void doAttack(Country countryAttacking, Country countryDefending, int numDice, Player attacker) {
 
 		if (!canAttack(countryAttacking, countryDefending)) {
@@ -1029,11 +1056,17 @@ public class MainClass {
 					+ mapInstance.getContinents().get(c.getContinentID()).getContinentName() + " || Country army: "
 					+ c.getCountryArmy() + " || Owner Name:" + playerList.get(c.getCountryOwner() - 1).getPlayerName()
 					+ " ||\nNeighbours :");
-			showNeighbors(c);
+			showNeighborsForGame(c);
 
 		}
 	}
+	public void showNeighborsForGame(Country c) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
+			System.out.println(mapInstance.getCountries().get(b).getCountryName());
+		}
 
+	}
+	
 	public void showNeighbors(Country c) {
 		for (int b : mapInstance.getBorders().get(c.getCountryID()+1)) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());

@@ -24,6 +24,11 @@ import ca.concordia.risk.utilities.GamePhase;
 
 import javax.swing.JButton;
 
+/**
+ * This class manages the view for the exchange of cards during the game phases
+ * @author Rohan
+ *
+ */
 public class CardExchangeView implements ActionListener, Observer {
 
 	private JFrame frame;
