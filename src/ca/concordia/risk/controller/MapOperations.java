@@ -234,9 +234,9 @@ public class MapOperations{
 	 * @param countries the hashmap of countries
 	 * @param borders the hashmap of borders
 	 * @param continentName the name of continent to be removed
-	 * @return true if continent and its countries along with neighbours is deleted
+	 * @return string according to the operation is returned
 	 */
-	public boolean deleteContinent(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String continentName)
+	public String deleteContinent(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String continentName)
 	{
 		int state=0;
 		
@@ -287,17 +287,144 @@ public class MapOperations{
 				}				
 			}
 		}
-		if(state==3)
+		if(state==1)
 		{
-			return true;
+			return "Continent removed successfully";
+		}
+		else if(state==2)
+		{
+			return "Continents and countries under continent removed successfully";
+		}
+		else if(state==3)
+		{
+			return "Continents and countries and neighbours under continent removed successfully";
 		}
 		else
 		{
-			return false;
+			return "Continent does not exist";
 		}
-}
+	}
 
+	/**
+	 * This method removes the country specified
+	 * @param countries the hashmap of countries
+	 * @param borders the hashmap of borders
+	 * @param countryName the name of the country to be removed
+	 * @return string according to the operation is returned
+	 */
+	public String deleteCountry(HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders , String countryName )
+	{
+		int removeFlag=0;
 		
+		Iterator<Entry<Integer, Country>> iteratorCountry = countries.entrySet().iterator();
+		Iterator<Entry<Integer, ArrayList<Integer>>> iteratorBorder = borders.entrySet().iterator();
+		
+		while(iteratorCountry.hasNext())
+		{
+			Entry<Integer, Country> entryCountry = iteratorCountry.next();
+			Country co = entryCountry.getValue();
+			
+			if(co.getCountryName().equalsIgnoreCase(countryName))
+			{
+				iteratorCountry.remove();
+				removeFlag=1;
+			}
+			
+			while(iteratorBorder.hasNext())
+			{
+				Entry<Integer, ArrayList<Integer>> entryBorder = iteratorBorder.next();
+				ArrayList<Integer> borderList = entryBorder.getValue();
+				
+				if(entryBorder.getKey() == entryCountry.getKey())
+				{
+					iteratorBorder.remove();
+					removeFlag=2;
+				}
+				else
+				{
+					if(borderList.contains(entryCountry.getKey()))
+					{
+						borderList.remove(Integer.valueOf(entryCountry.getKey()));
+					}
+				}
+			}
+		}
+		
+		if(removeFlag==1)
+		{
+			return "Country removed successfully";
+		}
+		else if(removeFlag==2)
+		{
+			return "Country and neighbours are removed successfully";
+		}
+		else
+		{
+			return "Country does not exist. Add the Country first";
+		}		
+	}
+
+	
+	/**
+	 * This method removes the neighbour country
+	 * @param countries the hashmap of countries
+	 * @param borders the hashmap of borders
+	 * @param countryName the name of the country
+	 * @param neighbourName the name of the neighbour country
+	 * @return string according to the operation is returned
+	 */
+	public String deleteNeighbour(HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String countryName, String neighbourName)
+	{
+		int cNum=0, nNum=0;
+		boolean cFlag=false, nFlag=false;
+		
+		for(int c : countries.keySet())
+		{
+			String str = countries.get(c).getCountryName();
+			if (countryName.equalsIgnoreCase(str))
+			{
+				cNum=c;
+				cFlag=true;
+				break;
+			}
+		}
+		
+		if(cFlag)
+		{
+			for (int p : countries.keySet())
+			{
+				String q = countries.get(p).getCountryName();
+				if(neighbourName.equalsIgnoreCase(q))
+				{
+					nNum=p;
+					nFlag=true;
+					break;
+				}
+			}
+			
+			if(nFlag)
+			{				
+				if(borders.get(cNum).contains(nNum))
+				{
+					borders.get(cNum).remove(Integer.valueOf(nNum));
+					return "Neighbour country removed successfully";
+				}
+				else
+				{
+					return "Neighbour country not present in neighbours list";
+				}								
+			}
+			else
+			{
+				return "Neighbour country does not exists";
+			}
+		}
+		else
+		{
+			return "Country does not exists";
+		}
+	}
+	
 	
 	/**
 	 * This method checks if the map is connected or not
