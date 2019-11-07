@@ -91,37 +91,29 @@ public class ConsoleViewHandler {
 			errorFlag = main.startGamePhase(inputCommand);
 			break;
 		case "editcontinent":
-			main.editcontinent(inputCommand);
+			errorFlag = main.editcontinent(inputCommand);
 			break;
 
 		case "editcountry":
-			main.editcountry(inputCommand);
+			errorFlag=main.editcountry(inputCommand);
 			break;
 
 		case "editneighbor":
-			main.editneigbor(inputCommand);
+			errorFlag = main.editneigbor(inputCommand);
 			break;
 
 		case "savemap":
-			/*
-			 * if (mapPhase.contentEquals("end")) { errorFlag = "Invalid command!"; return
-			 * errorFlag; }
-			 */
-			main.savemap(inputCommand);
+			errorFlag = main.savemap(inputCommand);
 			break;
 
 		case "showmap":
-			// if (!mapPhase.contentEquals("end")) {
+		
 			main.showmap();
 			break;
 		case "validatemap":
 			main.validatemap();
 			break;
 		case "editmap":
-			/*
-			 * if (!mapPhase.contentEquals("editmap")) { errorFlag = "Invalid command!";
-			 * return errorFlag; }
-			 */
 			main.editmap(inputCommand);
 			break;
 
