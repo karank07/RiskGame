@@ -9,6 +9,7 @@ import ca.concordia.risk.view.Console;
 //import ca.concordia.risk.view.GameView;
 
 /**
+ * This class handles the view and model class values for the same following the observer pattern
  * @author Karan
  *
  */
@@ -23,11 +24,20 @@ public class ConsoleViewHandler {
 		c.createConsole();
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public ConsoleViewHandler() {
 		main = new MainClass();
 
 	}
 
+	/**
+	 * This method handles the input passed from the console and calling appropriate phase method
+	 *  from  model and other controller classes
+	 * @param inputCommand String of command passed from Console
+	 * @return errorFlag indicating valid or invalid command and phase flow
+	 */
 	public String phaseDecider(String inputCommand) {
 		inputCommand = inputCommand.toLowerCase().trim();
 		System.out.println(inputCommand + "\n");

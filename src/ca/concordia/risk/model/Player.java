@@ -19,38 +19,72 @@ import ca.concordia.risk.view.GameView;
 
 public class Player implements Subject {
 
+	/**
+	 * @param fortifyCountry name
+	 */
 	String fortifyCountry;
+
+	
+	
 	boolean isFortificationDone = false;
 
+	/**
+	 * This method returns true indicating fortification is done
+	 * @return true if fortification finishes
+	 */
 	public boolean isFortificationDone() {
 		return isFortificationDone;
 	}
 
+	/** sets the boolean value if fortification is done
+	 * @param isFortificationDone
+	 */
 	public void setFortificationDone(boolean isFortificationDone) {
 		this.isFortificationDone = isFortificationDone;
 		notify_observer();
 	}
 
+	/**
+	 * @return fortifyCountry from where the armies are fortified
+	 */
+
 	public String getFortifyCountry() {
 		return fortifyCountry;
 	}
 
+	/** to set from where the armies are fortified
+	 * @param fortifyCountry from where the armies are fortified
+	 */
 	public void setFortifyCountry(String fortifyCountry) {
 		this.fortifyCountry = fortifyCountry;
 	}
+	
 
+	/**
+	 * @return fortifiedCountry to where the armies are fortified
+	 */
 	public String getFortifiedCountry() {
 		return fortifiedCountry;
 	}
 
+	/**to set the country where the armies are fortified
+	 * @param fortifiedCountry
+	 */
 	public void setFortifiedCountry(String fortifiedCountry) {
 		this.fortifiedCountry = fortifiedCountry;
 	}
 
+	/**
+	 * @return number of armies to be fortified
+	 */
 	public int getFortifyArmies() {
 		return fortifyArmies;
 	}
 
+	/**
+	 * to set the number of armies to be fortified
+	 * @param fortifyArmies
+	 */
 	public void setFortifyArmies(int fortifyArmies) {
 		this.fortifyArmies = fortifyArmies;
 	}
@@ -410,11 +444,12 @@ public class Player implements Subject {
 
 	/**
 	 * This function performs attack phase and return the result of it
-	 * 
-	 * @param from
-	 * @param to
-	 * @param defender
-	 * @return
+
+	 * @param from the country attacking
+	 * @param to the country being attacked
+	 * @param defender the owner of the country being attacked
+	 * @return resultString declaring the name of who wins the roll
+
 	 */
 	public String attack(Country from, Country to, Player defender) {
 		// notify method to close the card exchange view dialogue if it is still oprn
