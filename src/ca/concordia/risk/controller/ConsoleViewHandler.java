@@ -74,6 +74,10 @@ public class ConsoleViewHandler {
 					errorFlag="Too many players for this map!";
 					break;
 				}
+				else if(MainClass.playerList.size()==1) {
+					errorFlag="Not enough players!";
+					break;
+				}
 				errorFlag = "false";
 				main.startupPhase();
 			} else
