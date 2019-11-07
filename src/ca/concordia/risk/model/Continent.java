@@ -11,8 +11,22 @@ public class Continent {
 	private String continentName;
 	private String continentColor;
 	private int controlValue;
-
+	private int ruler;
 	
+
+	/**
+	 * @return the ruler
+	 */
+	public int getRuler() {
+		return ruler;
+	}
+
+	/**
+	 * @param ruler the ruler to set
+	 */
+	public void setRuler(int ruler) {
+		this.ruler = ruler;
+	}
 
 	/**
 	 * Constructor to instantiate Continent object

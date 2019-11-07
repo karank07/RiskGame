@@ -1,5 +1,7 @@
 package ca.concordia.risk.view;
 
+import java.util.Vector;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -8,6 +10,10 @@ import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import ca.concordia.risk.controller.MainClass;
+import ca.concordia.risk.model.Card;
+import ca.concordia.risk.model.Continent;
+import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Observer;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.utilities.GamePhase;
@@ -23,9 +29,6 @@ public class GameView implements Observer {
 	JTextField nameField;
 	JTextField phaseField;
 	JTextField armyField;
-	JTextField infantryField;
-	JTextField cavalryField;
-	JTextField artilleryField;
 	JTextField reinforceCountryField;
 	JTextField reinforceArmiesField;
 	JTextField attackingCountryField;
@@ -36,11 +39,11 @@ public class GameView implements Observer {
 	JTextField fortifyingCountryField;
 	JTextField fortifiedCountryField;
 	JTextField fortifyArmiesField;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTable table;
-	private JTable table_1;
+	private JTextField infantryField;
+	private JTextField cavalryField;
+	private JTextField artilleryField;
+	private JTable playerTable;
+	private JTable continentTable;
 
 	public GameView() {
 		createView();
@@ -205,31 +208,31 @@ public class GameView implements Observer {
 		lblArtillery.setBounds(261, 42, 56, 16);
 		playerPanel.add(lblArtillery);
 
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(337, 39, 33, 22);
-		playerPanel.add(textField);
-		textField.setColumns(10);
+		infantryField = new JTextField();
+		infantryField.setEditable(false);
+		infantryField.setBounds(337, 39, 33, 22);
+		playerPanel.add(infantryField);
+		infantryField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Cavalry");
 		lblNewLabel.setBounds(261, 74, 56, 16);
 		playerPanel.add(lblNewLabel);
 
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(337, 71, 33, 22);
-		playerPanel.add(textField_1);
+		cavalryField = new JTextField();
+		cavalryField.setEditable(false);
+		cavalryField.setColumns(10);
+		cavalryField.setBounds(337, 71, 33, 22);
+		playerPanel.add(cavalryField);
 
 		JLabel lblArtillery_1 = new JLabel("Artillery");
 		lblArtillery_1.setBounds(261, 107, 56, 16);
 		playerPanel.add(lblArtillery_1);
 
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(337, 104, 33, 22);
-		playerPanel.add(textField_2);
+		artilleryField = new JTextField();
+		artilleryField.setEditable(false);
+		artilleryField.setColumns(10);
+		artilleryField.setBounds(337, 104, 33, 22);
+		playerPanel.add(artilleryField);
 		frame.getContentPane().add(reinforcePanel);
 		frame.getContentPane().add(attackPanel);
 		frame.getContentPane().add(fortifyPanel);
@@ -244,25 +247,26 @@ public class GameView implements Observer {
 		phaseField.setEditable(false);
 		phaseLabel.setLabelFor(phaseField);
 
-		table = new JTable();
-		table.setBorder(new CompoundBorder());
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Player", "Armies", "Map Control%" }));
-		table.getColumnModel().getColumn(2).setPreferredWidth(99);
-		table.setBounds(480, 225, 669, 254);
+		playerTable = new JTable();
+		playerTable.setBorder(new CompoundBorder());
+		playerTable.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Player", "Armies", "Map Control%" }));
+		playerTable.getColumnModel().getColumn(2).setPreferredWidth(99);
+		playerTable.setBounds(480, 225, 669, 254);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(480, 225, 669, 254);
 		frame.getContentPane().add(scrollPane);
-		scrollPane.add(table);
+		scrollPane.setViewportView(playerTable);
 
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Continent", "Owned By" }));
-		table_1.setBounds(480, 520, 669, 164);
+		continentTable = new JTable();
+		continentTable.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Continent", "Owned By" }));
+		continentTable.setBounds(480, 520, 669, 164);
 
 		JScrollPane scrollPaneTable2 = new JScrollPane();
 		scrollPaneTable2.setBounds(480, 520, 669, 164);
 		frame.getContentPane().add(scrollPaneTable2);
-		scrollPaneTable2.add(table_1);
+		scrollPaneTable2.add(continentTable);
 		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().add(scrollPaneTable2);
 		frame.setVisible(true);
@@ -271,36 +275,81 @@ public class GameView implements Observer {
 
 	}
 
+	private void clearall() {
+		phaseField.setText("");
+		infantryField.setText("");
+		cavalryField.setText("");
+		artilleryField.setText("");
+		reinforceCountryField.setText("");
+		reinforceArmiesField.setText("");
+		attackingCountryField.setText("");
+		defendingCountryField.setText("");
+		attackerRollsField.setText("");
+		defenderRollsField.setText("");
+		resultField.setText("");
+		fortifyingCountryField.setText("");
+		fortifiedCountryField.setText("");
+		fortifyArmiesField.setText("");
+
+	}
+
 	@Override
 	public void update(Object o) {
 		if (o instanceof Player) {
+			DefaultTableModel playerModel = (DefaultTableModel) playerTable.getModel();
+			playerModel.setRowCount(0);
+			DefaultTableModel continentModel = (DefaultTableModel) continentTable.getModel();
+			continentModel.setRowCount(0);
+			int totalCountries = Map.getM_instance().getCountries().size();
+			if (!MainClass.player_country_map.isEmpty()) {
+				for (Player player : MainClass.playerList) {
+					int playerCountryCount = MainClass.player_country_map.get(player).size();
+					playerModel.addRow(new Object[] { player.getPlayerName(), player.getPlayerTotalArmies(),
+							(int) ((playerCountryCount / totalCountries) * 100) });
+
+				}
+
+			}
+			if(!Map.getM_instance().getBorders().isEmpty()) {
+				for(Continent c:Map.getM_instance().getContinents().values()) {
+					continentModel.addRow(new Object[] {c.getContinentName(), MainClass.playerList.get(c.getRuler()).getPlayerName()});
+				}
+			}
+
 			Player p = (Player) o;
-			System.out.println(p.getCurrentPhase().toString());
+
+			nameField.setText(p.getPlayerName());
+			armyField.setText(String.valueOf(p.getPlayerTotalArmies()));
 			phaseField.setText(p.getCurrentPhase().toString());
+			artilleryField.setText(String.valueOf(p.getPlayerCards().get(Card.ARTILLERY)));
+			cavalryField.setText(String.valueOf(p.getPlayerCards().get(Card.CAVALRY)));
+			infantryField.setText(String.valueOf(p.getPlayerCards().get(Card.INFANTRY)));
 			if (p.getCurrentPhase().equals(GamePhase.REINFORCEMENT)) {
+				clearall();
+				phaseField.setText(p.getCurrentPhase().toString());
 
 				reinforceArmiesField.setText(String.valueOf(p.getPlayerReinforceArmy()));
 				reinforceCountryField.setText(p.getReinforceCountry());
 			}
 			if (p.getCurrentPhase().equals(GamePhase.ATTACK) && !p.getDefenderDiceResult().isEmpty()) {
-				System.out.println(p.getAttackingCountry());
-				System.out.println(p.getDefendingCountry());
+				phaseField.setText(p.getCurrentPhase().toString());
 				attackingCountryField.setText(p.getAttackingCountry());
 				defendingCountryField.setText(p.getDefendingCountry());
 				attackerRollsField.setText(p.getDiceResult().toString());
 				defenderRollsField.setText(p.getDefenderDiceResult().toString());
-				//resultField.setText(p.getDiceWins().toString());
-				// }
-				if (p.getFortifyArmies() != 0) {
-					fortifyingCountryField.setText(p.getFortifyCountry());
-					fortifiedCountryField.setText(p.getFortifiedCountry());
-					fortifyArmiesField.setText(String.valueOf(p.getFortifyArmies()));
+				// resultField.setText(p.getDiceWins().toString());
+			}
+			if (p.getFortifyArmies() != 0) {
+				phaseField.setText(p.getCurrentPhase().toString());
 
-				}
+				fortifyingCountryField.setText(p.getFortifyCountry());
+				fortifiedCountryField.setText(p.getFortifiedCountry());
+				fortifyArmiesField.setText(String.valueOf(p.getFortifyArmies()));
 
-			} else
-				System.out.println("in else");
-		}
+			}
 
+		} else
+			System.out.println("in else");
 	}
+
 }
