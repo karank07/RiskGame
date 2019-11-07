@@ -382,6 +382,10 @@ public class Player implements Subject {
 		return errorFlag;
 	}
 
+	/**
+	 * Check whether the current player has 5 or more than cards or not
+	 * @return boolean
+	 */
 	public boolean hasMoreThanFiveCards() {
 		if (this.getPlayerCards().get(Card.ARTILLERY) + this.getPlayerCards().get(Card.CAVALRY)
 				+ this.getPlayerCards().get(Card.INFANTRY) >= 5) {
@@ -390,6 +394,13 @@ public class Player implements Subject {
 		return false;
 	}
 
+	/**
+	 * This function performs attack phase and return the result of it
+	 * @param from
+	 * @param to
+	 * @param defender
+	 * @return
+	 */
 	public String attack(Country from, Country to, Player defender) {
 		// notify method to close the card exchange view dialogue if it is still oprn
 		this.attackingCountry=from.getCountryName();
@@ -471,6 +482,10 @@ public class Player implements Subject {
 
 	}
 
+	/**
+	 * This function sets the current phase of the player model class
+	 * @param phase
+	 */
 	public void setCurrentPhase(GamePhase phase) {
 		this.gamePhase = phase;
 		this.attach(gameView);
@@ -494,6 +509,10 @@ public class Player implements Subject {
 	public void setIntialArmies(int intialArmies) {
 		this.intialArmies = intialArmies;
 	}
+	
+	/**
+	 *Notify method is used to notify all observers to 
+	 */
 	@Override
 	public void notify_observer() {
 		if (o != null) {
@@ -504,7 +523,6 @@ public class Player implements Subject {
 
 	@Override
 	public void attach(Observer o) {
-
 		this.o = o;
 	}
 
