@@ -285,7 +285,7 @@ public class Player implements Subject {
 		int currentlyUnplacedArmy = this.getPlayerReinforceArmy();
 		String errorFlag = "false";
 		if (currentlyUnplacedArmy > 0) {
-			// check whether entered country name (through console) is valid or not
+			
 			if (main.countryBelongsToPlayer(this, countryName)) {
 
 				if (armyNumber <= currentlyUnplacedArmy) {
@@ -305,7 +305,7 @@ public class Player implements Subject {
 
 		}
 
-		// Printing LOG _ The status of new army with number of army it contains
+		
 		for (int i = 0; i < this.getPlayerTotalCountries(); i++) {
 			System.out.println("Country: " + this.getPlayerCountries().get(i).getCountryName() + "-->>"
 					+ this.getPlayerCountries().get(i).getCountryArmy());
@@ -322,7 +322,7 @@ public class Player implements Subject {
 	}
 
 	public String attack(Country from, Country to, Player defender) {
-		// notify method to close the card exchange view dialogue if it is still oprn
+		// notify method to close the card exchange view dialogue if it is still open
 		notify_observer();
 
 		String resultString = "";
@@ -387,7 +387,7 @@ public class Player implements Subject {
 			} else
 				System.out.println("There must be atleast one army in a country!");
 			
-			//now as the phase will be the  reinforcement Card Exchange View should be there
+			
 			this.attach(new CardExchangeView(this));
 			HashMap<String, Integer> demoCards = new HashMap<String, Integer>();
 			demoCards.put(Card.ARTILLERY, Integer.valueOf(5));
