@@ -1,6 +1,5 @@
 package ca.concordia.risk.view;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,35 +27,24 @@ import javax.swing.JButton;
 public class CardExchangeView implements ActionListener, Observer {
 
 	private JFrame frame;
-	private JTextField textField;
 	private JTextField availableArtilleryCards, availableCavalryCards, availableInfantryCards;
 	private JButton btnExchangeCards;
 	private JTextField userInputArtilleryCards, userInputCavalryCards, userInputInfantryCards;
 	private Player p;
 	private int aCardCount = 0, cCardCount = 0, iCardCount = 0;
 
+	
 	/**
-	 * Launch the application.
-	 *//*
-		 * public static void main(String[] args) { EventQueue.invokeLater(new
-		 * Runnable() { public void run() { try { CardExchangeView window = new
-		 * CardExchangeView(); window.frame.setVisible(true); } catch (Exception e) {
-		 * e.printStackTrace(); } } }); }
-		 */
-
-	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
+	 * @param p
 	 */
 	public CardExchangeView(Player p) {
 		this.p = p;
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
+	 * This method will initialize the UI 
+	 * @param p
 	 */
-
 	private void initialize(Player p) {
 		aCardCount = (int) ((boolean) ((p.getPlayerCards().get(Card.ARTILLERY) == null)) ? 0
 				: (p.getPlayerCards().get(Card.ARTILLERY)));
@@ -149,7 +137,6 @@ public class CardExchangeView implements ActionListener, Observer {
 
 				int inputOfArtilleyCards = Integer.parseInt(userInputArtilleryCards.getText().trim());
 				int inputOfCavalryCards = Integer.parseInt(userInputCavalryCards.getText().trim());
-
 				int inputOfInfantryCards = Integer.parseInt(userInputInfantryCards.getText().trim());
 
 				System.out.println(aCardCount + " , input-> " + inputOfArtilleyCards);

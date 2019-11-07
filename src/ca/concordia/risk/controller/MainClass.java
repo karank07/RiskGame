@@ -300,8 +300,6 @@ public class MainClass {
 		for (Country country : mapInstance.getCountries().values()) {
 			Player player = playerList.get(j % playerCount);
 			setNewCountryRuler(player, country, 1);
-//			HashMap<String, Object> countryPopulated = new HashMap<>();
-//			countryPopulated.put("countryName", country.getCountryName());
 			player.setPlayerCountries(player_country_map.get(player));
 
 			j++;
@@ -589,6 +587,7 @@ public class MainClass {
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
 				if (commands.length == 2 && commands[1].equals("none")) {
 					errorFlag="false";
+					p.setFortificationDone(true);
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 				} else if (commands.length == 4) {
@@ -680,16 +679,6 @@ public class MainClass {
 	 * @param countOfInfantry
 	 */
 	public boolean exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
-
-		// display cards owned by player
-		// Then player will select the card from UI
-		// selected card are given in arguments
-
-		// now it's valid card selection
-
-		// do exchange cards for army
-
-		// if user wants to exchange same type of any 3 cards
 
 		boolean operationStatus = false;
 
@@ -983,7 +972,6 @@ public class MainClass {
 	 */
 	public boolean checkNeighbours(Country from, Country to, int owner) {
 		adjFlag = false;
-		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
 		visited.clear();
 		visited.add(from);
 
@@ -1110,7 +1098,7 @@ public class MainClass {
 					try {
 						mapOperations.addContinent(mapInstance, mapInstance.getContinents(), temp[i + 1],
 								Integer.parseInt(temp[i + 2]), null);
-						// mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
+						
 					} catch (Exception e) {
 						errorFlag = e.getMessage();
 					}
@@ -1119,6 +1107,17 @@ public class MainClass {
 					errorFlag = "Enter a valid command";
 				}
 			} else if (temp[i].contentEquals("-remove")) {
+				if (!(temp[i + 1].contentEquals("stop"))) {
+					errorFlag = "false";
+					try {
+						errorFlag = mapOperations.deleteContinent(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1]);
+					} catch (Exception e) {
+						errorFlag=e.getMessage().toString();
+					}
+
+				} else {
+					errorFlag = "Enter a valid command";
+				}
 
 			}
 		}
@@ -1143,7 +1142,17 @@ public class MainClass {
 					errorFlag = "Enter a valid command";
 				}
 			} else if (temp[i].contentEquals("-remove")) {
+				if (!(temp[i + 1].contentEquals("stop"))) {
+					errorFlag = "false";
+					try {
+						errorFlag = mapOperations.deleteCountry(mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1]);
+					} catch (Exception e) {
+						errorFlag=e.getMessage().toString();
+					}
 
+				} else {
+					errorFlag = "Enter a valid command";
+				}
 			}
 		}
 		return errorFlag;
@@ -1169,7 +1178,18 @@ public class MainClass {
 					errorFlag = "Enter a valid command";
 				}
 			} else if (temp[i].contentEquals("-remove")) {
+				if (!(temp[i + 1].contentEquals("stop")) && !(temp[i + 2].contentEquals("stop"))) {
+					errorFlag = "false";
+					try {
+						mapOperations.deleteNeighbour(mapInstance.getCountries(), mapInstance.getBorders(), temp[i+1], temp[i+2]);
+						
+					} catch (Exception e) {
+						errorFlag=e.getMessage();
+					}
 
+				} else {
+					errorFlag = "Enter a valid command";
+				}
 			}
 		}
 		return errorFlag;
@@ -1182,7 +1202,6 @@ public class MainClass {
 				mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(),
 						mapInstance.getBorders(), temp[1]);
 				errorFlag = "false";
-				// mapPhase = "end";
 			} catch (ValidMapException e) {
 				// TODO Auto-generated catch block
 				errorFlag = e.getLocalizedMessage().toString();
@@ -1198,8 +1217,6 @@ public class MainClass {
 
 		boolean canAttack = false;
 		boolean neighbourFlag = false;
-//		System.out.println(from.getCountryArmy());
-//		System.out.println(to.getCountryArmy());
 
 		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
 			neighbourFlag = true;
