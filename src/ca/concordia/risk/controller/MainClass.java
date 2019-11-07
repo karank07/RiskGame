@@ -52,7 +52,7 @@ public class MainClass {
 	/**
 	 * @param player_country_map a hash-map for a player and its owned countries
 	 */
-	static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
+	public static HashMap<Player, List<Country>> player_country_map = new HashMap<Player, List<Country>>();
 	public static HashMap<String, Integer> globalCardDeck;
 	// GameView gameview;
 
@@ -194,6 +194,7 @@ public class MainClass {
 	}
 
 	void setNextPlayerTurn() {
+
 		turn++;
 		turn = turn > playerList.size() ? 1 : turn;
 	}
@@ -312,6 +313,7 @@ public class MainClass {
 			}
 			p.setPlayerReinforceArmy(assign_army(p));
 		}
+		resetPlayerTurn();
 	}
 
 	/**
@@ -587,14 +589,21 @@ public class MainClass {
 
 					System.out.println("Fortification over!");
 				} else if (commands.length == 4) {
-					Country from = mapInstance.getCountryByName(commands[1]);
-					Country to = mapInstance.getCountryByName(commands[2]);
-					p.fortify(from, to, Integer.parseInt(commands[3]));
-					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-					p.setPlayerReinforceArmy(assign_army(p));
-					p.addArmies(p.getPlayerReinforceArmy());
-					setNextPlayerTurn();
-
+					if(p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1])) 
+							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2])))
+					{
+						errorFlag = "false";
+						Country from = mapInstance.getCountryByName(commands[1]);
+						Country to = mapInstance.getCountryByName(commands[2]);
+						p.fortify(from, to, Integer.parseInt(commands[3]));
+						p.setCurrentPhase(GamePhase.REINFORCEMENT);
+						p.setPlayerReinforceArmy(assign_army(p));
+						p.addArmies(p.getPlayerReinforceArmy());
+						setNextPlayerTurn();
+					}
+					else
+						errorFlag = "the country doesnot exist or isnot owned by you ";
+					
 				} else
 					errorFlag = "Invalid command!";
 
@@ -618,7 +627,7 @@ public class MainClass {
 			return "Attacker won! Country conquered";
 
 		} else
-			return "continue attacking?";
+			return "Enter attack -noattack to end else continue";
 	}
 
 	private void unmapPlayerToCountry(Player player, Country country) {
@@ -641,7 +650,9 @@ public class MainClass {
 
 		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
 			if (player.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
+
 				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i).getContinentControlValue();
+				mapInstance.getContinents().get(i).setRuler(i+1);
 			}
 		}
 
@@ -1037,7 +1048,7 @@ public class MainClass {
 	}
 
 	public void showNeighbors(Country c) {
-		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID()+1)) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
@@ -1053,7 +1064,7 @@ public class MainClass {
 
 	}
 
-	public void editmap(String s1) {
+	public String editmap(String s1) {
 		String[] temp = s1.split(" ");
 		try {
 			if (mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(),
@@ -1066,9 +1077,9 @@ public class MainClass {
 				errorFlag = "false";
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			errorFlag = e.getLocalizedMessage().toString();
 		}
-
+		return errorFlag;
 	}
 
 	private List<String> getNeighboursName(int[] neighbours) {
@@ -1079,7 +1090,7 @@ public class MainClass {
 		return list;
 	}
 
-	public void editcontinent(String s1) {
+	public String editcontinent(String s1) {
 		s1 = s1 + " stop";
 		String[] temp = s1.split(" ");
 
@@ -1092,7 +1103,7 @@ public class MainClass {
 								Integer.parseInt(temp[i + 2]), null);
 						// mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
 					} catch (Exception e) {
-						e.printStackTrace();
+						errorFlag = e.getMessage();
 					}
 
 				} else {
@@ -1102,10 +1113,10 @@ public class MainClass {
 
 			}
 		}
-
+		return errorFlag;
 	}
 
-	public void editcountry(String s1) {
+	public String editcountry(String s1) {
 		s1 = s1 + " stop";
 		String[] temp = s1.split(" ");
 		for (int i = 0; i < temp.length; i++) {
@@ -1117,7 +1128,7 @@ public class MainClass {
 								mapInstance.getBorders(), temp[i + 1], temp[i + 2]);
 
 					} catch (Exception e) {
-						e.printStackTrace();
+						errorFlag = e.getLocalizedMessage().toString();
 					}
 				} else {
 					errorFlag = "Enter a valid command";
@@ -1126,10 +1137,11 @@ public class MainClass {
 
 			}
 		}
+		return errorFlag;
 
 	}
 
-	public void editneigbor(String s1) {
+	public String editneigbor(String s1) {
 		String[] temp = s1.split(" ");
 		for (int i = 0; i < temp.length; i++) {
 			if (temp[i].contentEquals("-add")) {
@@ -1142,7 +1154,7 @@ public class MainClass {
 						mapOperations.addNeighbours(mapInstance, mapInstance.getCountries(), mapInstance.getBorders(),
 								temp[i + 2], temp[i + 1]);
 					} catch (Exception e) {
-						e.printStackTrace();
+						errorFlag = e.getLocalizedMessage().toString();
 					}
 				} else {
 					errorFlag = "Enter a valid command";
@@ -1151,10 +1163,10 @@ public class MainClass {
 
 			}
 		}
-
+		return errorFlag;
 	}
 
-	public void savemap(String s1) {
+	public String savemap(String s1) {
 		String[] temp = s1.split(" ");
 		try {
 			try {
@@ -1164,12 +1176,13 @@ public class MainClass {
 				// mapPhase = "end";
 			} catch (ValidMapException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				errorFlag = e.getLocalizedMessage().toString();
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			errorFlag = e.getLocalizedMessage().toString();
 		}
+		return errorFlag;
 	}
 
 	public boolean canAttack(Country from, Country to) {

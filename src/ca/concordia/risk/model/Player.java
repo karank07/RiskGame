@@ -239,6 +239,7 @@ public class Player implements Subject {
 	 */
 	public void addArmies(int addN) {
 		this.playerTotalArmies += addN;
+		notify_observer();
 	}
 
 	/**
@@ -247,6 +248,7 @@ public class Player implements Subject {
 	 */
 	public void remArmies(int n) {
 		this.playerTotalArmies -= n;
+		notify_observer();
 	}
 
 	/**
@@ -275,6 +277,7 @@ public class Player implements Subject {
 	 */
 	public void setPlayerReinforceArmy(int playerReinforceArmy) {
 		this.playerReinforceArmy = playerReinforceArmy;
+		notify_observer();
 	}
 
 	/**
@@ -362,6 +365,7 @@ public class Player implements Subject {
 					main.PlaceArmy(countryName, armyNumber);
 					currentlyUnplacedArmy -= armyNumber;
 					this.setPlayerReinforceArmy(currentlyUnplacedArmy);
+					this.addArmies(currentlyUnplacedArmy);
 				}
 				errorFlag = "false";
 
@@ -467,12 +471,12 @@ public class Player implements Subject {
 				from.remCountryArmies(army);
 				to.addCountryArmies(army);
 				System.out.println("\nFortification successful");
+				notify_observer();
 				
 
 			} else
 				System.out.println("There must be atleast one army in a country!");
-			
-			
+				
 			this.attach(new CardExchangeView(this));
 			notify_observer();
 			
