@@ -68,7 +68,12 @@ public class ConsoleViewHandler {
 			break;
 
 		case "populatecountries":
+			
 			if (commands.length == 1 && !MainClass.playerList.isEmpty()) {
+				if(MainClass.playerList.size()>Map.getM_instance().getCountries().size()) {
+					errorFlag="Too many players for this map!";
+					break;
+				}
 				errorFlag = "false";
 				main.startupPhase();
 			} else
@@ -101,21 +106,21 @@ public class ConsoleViewHandler {
 			errorFlag = main.startGamePhase(inputCommand);
 			break;
 		case "editcontinent":
-			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands.length >= 3 ) {
 				errorFlag = main.editcontinent(inputCommand);
 			} else
 				errorFlag = "Invalid command!";
 			break;
 
 		case "editcountry":
-			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands.length >= 3 && !Map.m_instance.getContinents().isEmpty()) {
 				errorFlag =main.editcountry(inputCommand);
 			} else
 				errorFlag = "Invalid command!";
 			break;
 
 		case "editneighbor":
-			if (commands.length >= 4 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands.length >= 3 && !Map.m_instance.getCountries().isEmpty()) {
 				errorFlag = errorFlag = main.editneigbor(inputCommand);
 				
 			} else
@@ -124,7 +129,7 @@ public class ConsoleViewHandler {
 			break;
 
 		case "savemap":
-			if(commands.length==2 && !Map.m_instance.getBorders().isEmpty())
+			if(commands.length==2 )
 				errorFlag = main.savemap(inputCommand);
 			else errorFlag="Invalid command";
 			break;

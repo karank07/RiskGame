@@ -26,6 +26,26 @@ public class Player implements Subject {
 
 	public boolean armyAssigning = false;
 	public boolean reinforcingArmy = false;
+	/**
+	 * @param attack result string
+	 */
+	
+	String attackResult;
+	/**
+	 * @return the attackResult
+	 */
+	public String getAttackResult() {
+		return attackResult;
+	}
+
+	/**
+	 * @param attackResult the attackResult to set
+	 */
+	public void setAttackResult(String attackResult) {
+		attach(gameView);
+		notify_observer();
+		this.attackResult = attackResult;
+	}
 
 	boolean isFortificationDone = false;
 
@@ -213,7 +233,8 @@ public class Player implements Subject {
 		this.getPlayerCards().put(Card.ARTILLERY, 0);
 		this.getPlayerCards().put(Card.CAVALRY, 0);
 		this.getPlayerCards().put(Card.INFANTRY, 0);
-
+		this.attackResult=new String("null");
+		
 	}
 
 	/**
@@ -525,6 +546,7 @@ public class Player implements Subject {
 		System.out.println("attacker :" + attackerWins);
 		System.out.println("defender: " + defenderWins);
 		System.out.println(resultString);
+		attach(gameView);
 		notify_observer();
 
 		return resultString;
