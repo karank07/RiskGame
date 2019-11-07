@@ -361,7 +361,6 @@ public class GameView implements Observer {
 				defendingCountryField.setText(p.getDefendingCountry());
 				attackerRollsField.setText(p.getDiceResult().toString());
 				defenderRollsField.setText(p.getDefenderDiceResult().toString());
-				System.out.println(p.getAttackResult());
 				resultField.setText(p.getAttackResult());
 			}
 			if (p.getFortifyArmies() != 0) {
