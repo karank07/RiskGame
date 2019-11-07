@@ -462,7 +462,6 @@ public class Player implements Subject {
 				System.out.println("There must be atleast one army in a country!");
 				
 			this.attach(new CardExchangeView(this));
-	
 			notify_observer();
 			
 		

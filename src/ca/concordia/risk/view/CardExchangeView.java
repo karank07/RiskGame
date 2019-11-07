@@ -137,6 +137,7 @@ public class CardExchangeView implements ActionListener, Observer {
 
 		frame.setVisible(true);
 		btnExchangeCards.addActionListener(this);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}
 
