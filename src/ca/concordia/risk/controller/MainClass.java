@@ -313,7 +313,7 @@ public class MainClass {
 			for (Country c : player_country_map.get(p)) {
 				System.out.println(c.getCountryName());
 			}
-			p.setPlayerReinforceArmy(assign_army(p));
+			p.setPlayerReinforceArmy(p.assign_army());
 		}
 		resetPlayerTurn();
 	}
@@ -496,6 +496,7 @@ public class MainClass {
 					}
 				} else {
 					errorFlag = "Please exchnage the cards first";
+					p.checkForExchangeCards();
 				}
 
 			} else
@@ -601,6 +602,9 @@ public class MainClass {
 				if (commands.length == 2 && commands[1].equals("none")) {
 					errorFlag = "false";
 					p.setFortificationDone(true);
+					p.setPlayerReinforceArmy(p.assign_army());
+					p.addArmies(p.getPlayerReinforceArmy());
+					setNextPlayerTurn();
 					System.out.println("Fortification over!");
 					p.setPlayerReinforceArmy(assign_army(p));
 					p.addArmies(p.getPlayerReinforceArmy());
@@ -614,7 +618,7 @@ public class MainClass {
 						Country to = mapInstance.getCountryByName(commands[2]);
 						p.fortify(from, to, Integer.parseInt(commands[3]));
 						p.setCurrentPhase(GamePhase.REINFORCEMENT);
-						p.setPlayerReinforceArmy(assign_army(p));
+						p.setPlayerReinforceArmy(p.assign_army());
 						p.addArmies(p.getPlayerReinforceArmy());
 						setNextPlayerTurn();
 					} else
@@ -681,6 +685,7 @@ public class MainClass {
 		attacker.attack(countryAttacking, countryDefending, defender);
 	}
 
+	
 	public int assign_army(Player player) {
 		int reinforceAmry;
 

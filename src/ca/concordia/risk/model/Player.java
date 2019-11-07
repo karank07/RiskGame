@@ -24,6 +24,8 @@ public class Player implements Subject {
 	 */
 	String fortifyCountry;
 
+	public boolean armyAssigning = false;
+	public boolean reinforcingArmy = false;
 	/**
 	 * @param attack result string
 	 */
@@ -49,18 +51,22 @@ public class Player implements Subject {
 
 	/**
 	 * This method returns true indicating fortification is done
+	 * 
 	 * @return true if fortification finishes
 	 */
 	public boolean isFortificationDone() {
 		return isFortificationDone;
 	}
 
-	/** sets the boolean value if fortification is done
+	/**
+	 * sets the boolean value if fortification is done
+	 * 
 	 * @param isFortificationDone
 	 */
 	public void setFortificationDone(boolean isFortificationDone) {
 		this.isFortificationDone = isFortificationDone;
-		notify_observer();
+		this.armyAssigning = true;
+		checkForExchangeCards();
 	}
 
 	/**
@@ -71,13 +77,14 @@ public class Player implements Subject {
 		return fortifyCountry;
 	}
 
-	/** to set from where the armies are fortified
+	/**
+	 * to set from where the armies are fortified
+	 * 
 	 * @param fortifyCountry from where the armies are fortified
 	 */
 	public void setFortifyCountry(String fortifyCountry) {
 		this.fortifyCountry = fortifyCountry;
 	}
-	
 
 	/**
 	 * @return fortifiedCountry to where the armies are fortified
@@ -86,7 +93,9 @@ public class Player implements Subject {
 		return fortifiedCountry;
 	}
 
-	/**to set the country where the armies are fortified
+	/**
+	 * to set the country where the armies are fortified
+	 * 
 	 * @param fortifiedCountry
 	 */
 	public void setFortifiedCountry(String fortifiedCountry) {
@@ -102,6 +111,7 @@ public class Player implements Subject {
 
 	/**
 	 * to set the number of armies to be fortified
+	 * 
 	 * @param fortifyArmies
 	 */
 	public void setFortifyArmies(int fortifyArmies) {
@@ -407,6 +417,27 @@ public class Player implements Subject {
 		this.diceWins = diceWins;
 	}
 
+	private Map mapInstance = Map.getM_instance();
+
+	public int assign_army() {
+
+		int reinforceAmry;
+
+		reinforceAmry = (this.getPlayerCountries().size() / 3) >= 3 ? (this.getPlayerCountries().size() / 3) : 3;
+
+		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
+			if (this.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
+
+				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i).getContinentControlValue();
+				mapInstance.getContinents().get(i).setRuler(i + 1);
+			}
+		}
+
+		
+		return reinforceAmry;
+
+	}
+
 	/**
 	 * function for command:- reinforce countryname, number (number is army to be
 	 * placed in that country)
@@ -416,8 +447,11 @@ public class Player implements Subject {
 	 * @param player      for player entity
 	 */
 	public String reinforceArmy(String countryName, int armyNumber) {
+		this.armyAssigning = false;
+		checkForExchangeCards();// to close the UI
+
 		this.reinforceCountry = countryName;
-		notify_observer();
+
 		int currentlyUnplacedArmy = this.getPlayerReinforceArmy();
 		String errorFlag = "false";
 		if (currentlyUnplacedArmy > 0) {
@@ -464,12 +498,12 @@ public class Player implements Subject {
 
 	/**
 	 * This function performs attack phase and return the result of it
-
-	 * @param from the country attacking
-	 * @param to the country being attacked
+	 * 
+	 * @param from     the country attacking
+	 * @param to       the country being attacked
 	 * @param defender the owner of the country being attacked
 	 * @return resultString declaring the name of who wins the roll
-
+	 * 
 	 */
 	public String attack(Country from, Country to, Player defender) {
 		// notify method to close the card exchange view dialogue if it is still oprn
@@ -539,13 +573,12 @@ public class Player implements Subject {
 				to.addCountryArmies(army);
 				System.out.println("\nFortification successful");
 				this.setFortificationDone(true);
-				
 
 			} else
 				System.out.println("There must be atleast one army in a country!");
 
-			this.attach(new CardExchangeView(this));
-			notify_observer();
+			this.armyAssigning = true;
+			checkForExchangeCards();
 
 		} else
 			System.out.println("Move not possible");
@@ -599,6 +632,12 @@ public class Player implements Subject {
 
 	@Override
 	public void detach(Observer o) {
+
+	}
+
+	public void checkForExchangeCards() {
+		attach(CardExchangeView.getCardExchangeViewInstance());
+		notify_observer();
 
 	}
 
