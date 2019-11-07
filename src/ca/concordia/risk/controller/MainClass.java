@@ -586,7 +586,7 @@ public class MainClass {
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
 				if (commands.length == 2 && commands[1].equals("none")) {
-
+					p.setFortificationDone(true);
 					System.out.println("Fortification over!");
 				} else if (commands.length == 4) {
 					if(p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1])) 
@@ -677,16 +677,6 @@ public class MainClass {
 	 * @param countOfInfantry
 	 */
 	public boolean exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
-
-		// display cards owned by player
-		// Then player will select the card from UI
-		// selected card are given in arguments
-
-		// now it's valid card selection
-
-		// do exchange cards for army
-
-		// if user wants to exchange same type of any 3 cards
 
 		boolean operationStatus = false;
 
@@ -980,7 +970,6 @@ public class MainClass {
 	 */
 	public boolean checkNeighbours(Country from, Country to, int owner) {
 		adjFlag = false;
-		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
 		visited.clear();
 		visited.add(from);
 
@@ -1220,8 +1209,6 @@ public class MainClass {
 
 		boolean canAttack = false;
 		boolean neighbourFlag = false;
-//		System.out.println(from.getCountryArmy());
-//		System.out.println(to.getCountryArmy());
 
 		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
 			neighbourFlag = true;
