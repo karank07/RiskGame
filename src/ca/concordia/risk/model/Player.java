@@ -25,21 +25,28 @@ public class Player implements Subject {
 	String fortifyCountry;
 
 	
-	/**
-	 * @return fortifyCountry from where the armies are fortified
-	 */
-
+	
 	boolean isFortificationDone = false;
 
+	/**
+	 * This method returns true indicating fortification is done
+	 * @return true if fortification finishes
+	 */
 	public boolean isFortificationDone() {
 		return isFortificationDone;
 	}
 
+	/** sets the boolean value if fortification is done
+	 * @param isFortificationDone
+	 */
 	public void setFortificationDone(boolean isFortificationDone) {
 		this.isFortificationDone = isFortificationDone;
 		notify_observer();
 	}
 
+	/**
+	 * @return fortifyCountry from where the armies are fortified
+	 */
 
 	public String getFortifyCountry() {
 		return fortifyCountry;
