@@ -194,6 +194,7 @@ public class MainClass {
 	}
 
 	void setNextPlayerTurn() {
+		
 		turn++;
 		turn = turn > playerList.size() ? 1 : turn;
 	}
@@ -490,6 +491,7 @@ public class MainClass {
 					errorFlag = p.reinforceArmy(commands[1], Integer.parseInt(commands[2]));
 					if (p.getPlayerReinforceArmy() == 0) {
 						p.setCurrentPhase(GamePhase.ATTACK);
+						System.out.println("phase set now: "+ p.getCurrentPhase());
 					}
 				} else {
 					errorFlag = "Please exchnage the cards first";
@@ -522,18 +524,21 @@ public class MainClass {
 			break;
 
 		case "attack":
+			errorFlag=""
+					+ "false";
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
+				System.out.println("in first if");
 				errorFlag = "Invalid command!";
 
 			}
 
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
 				errorFlag = "false";
-
+//				if (countryDefending.getCountryArmy() != 0) {
 					System.out.println("Attack Over!");
 					p.setCurrentPhase(GamePhase.FORTIFICATION);
 
-
+//				}else errorFlag="Cannot Skip Attack, Move armies to Conquered Country!";
 
 			} else if (commands.length == 4) {
 
@@ -584,6 +589,7 @@ public class MainClass {
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
 				if (commands.length == 2 && commands[1].equals("none")) {
+					
 					System.out.println("Fortification over!");
 				} else if (commands.length == 4) {
 					Country from = mapInstance.getCountryByName(commands[1]);
@@ -636,11 +642,10 @@ public class MainClass {
 	public int assign_army(Player player) {
 		int reinforceAmry;
 
-		// 1st rule: country/3...if it's less then 3; then assign 3 army minimum
+	
 		reinforceAmry = (player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3;
 
-		// 2nd rule: check if player owns all countries of any of the continents
-		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
+				for (int i = 0; i < mapInstance.getContinents().size(); i++) {
 			if (player.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
 				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i).getContinentControlValue();
 			}
@@ -682,54 +687,54 @@ public class MainClass {
 
 		if (countOfArtillery == 3 && countOfCavalry == 0 && countOfInfantry == 0) {
 			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-			// increase cardExchangeCount of player object
+			
 			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-			// remove 3 artillery cards from player's cards
+			
 			player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 3));
 
 			operationStatus = true;
-			// add these cards in global deck
+			
 			MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 3);
 
 		} else if (countOfArtillery == 0 && countOfCavalry == 3 && countOfInfantry == 0) {
 			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-			// increase cardExchangeCount of player object
+			
 			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-			// remove 3 cavalry cards from player's cards
+			
 			player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 3));
 
 			operationStatus = true;
-			// add these cards in global deck
+			
 			MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 3);
 
 		} else if (countOfArtillery == 0 && countOfCavalry == 0 && countOfInfantry == 3) {
 			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-			// increase cardExchangeCount of player object
+			
 			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-			// remove 3 Infantry cards from player's cards
+			
 			player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 3));
 
 			operationStatus = true;
 
-			// add these cards in global deck
+		
 			MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 3);
 		}
-		// if user wants to exchange 3 different cards
+		
 		else if (countOfArtillery == 1 && countOfCavalry == 1 && countOfInfantry == 1) {
 			player.setPlayerReinforceArmy(player.getPlayerReinforceArmy() + (player.getCardExchangeCount() + 1) * 5);
-			// increase cardExchangeCount of player object
+			
 			player.setCardExchangeCount(player.getCardExchangeCount() + 1);
 
-			// remove 1 card of each type from player's cards
+			
 			player.getPlayerCards().replace(Card.ARTILLERY, (player.getPlayerCards().get(Card.ARTILLERY) - 1));
 			player.getPlayerCards().replace(Card.CAVALRY, (player.getPlayerCards().get(Card.CAVALRY) - 1));
 			player.getPlayerCards().replace(Card.INFANTRY, (player.getPlayerCards().get(Card.INFANTRY) - 1));
 
 			operationStatus = true;
-			// add these cards in global deck
+			
 			MainClass.globalCardDeck.replace(Card.ARTILLERY, MainClass.globalCardDeck.get(Card.ARTILLERY) + 1);
 			MainClass.globalCardDeck.replace(Card.CAVALRY, MainClass.globalCardDeck.get(Card.CAVALRY) + 1);
 			MainClass.globalCardDeck.replace(Card.INFANTRY, MainClass.globalCardDeck.get(Card.INFANTRY) + 1);
@@ -775,16 +780,12 @@ public class MainClass {
 	 * 
 	 */
 	public void generateDeck() {
-		// System.out.println("in generate deck: :: Countries size: " +
-		// countryList.size());
-		// gloabalCardArray = new int[3];
-
-		// int numberOfTotalCards = countryList.size();
+		
 		int numberOfTotalCards = 40;
 
 		if (numberOfTotalCards > 0) {
 
-			// preparing the global card deck
+			
 			int divison = (int) Math.ceil(numberOfTotalCards / 3);
 			globalCardDeck.put(Card.INFANTRY, Integer.valueOf(divison));
 
@@ -895,11 +896,10 @@ public class MainClass {
 	 */
 	public void assignCardToPlayer(Player player, Card card) {
 		if (player.getPlayerCards().containsKey(card.getCardType())) {
-			// if it already contains that type of card than we need to increase to count of
-			// that card
+			
 			player.getPlayerCards().replace(card.getCardType(), player.getPlayerCards().get(card.getCardType()) + 1);
 		} else {
-			// add new entry of this type of card
+			
 			player.getPlayerCards().put(card.getCardType(), 1);
 		}
 
@@ -956,9 +956,7 @@ public class MainClass {
 	 * @param army number of armies used to fortify
 	 */
 	public void setFortify(String from, String to, int army) {
-		/*
-		 * if (!phase.contentEquals("fortify")) return;
-		 */
+		
 		Country countryTo = null, countryFrom = null;
 		for (Country obj : mapInstance.getCountries().values()) {
 
@@ -986,7 +984,7 @@ public class MainClass {
 		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
 		visited.clear();
 		visited.add(from);
-		// System.out.println(visited.toString());
+		
 		if (from.getCountryOwner() == to.getCountryOwner()) {
 			searchNeighbors(visited, from, to, owner);
 		}
@@ -1106,7 +1104,7 @@ public class MainClass {
 								Integer.parseInt(temp[i + 2]), null);
 						// mapWriter.writeMapFile(continents, countries, borders, "risk1.txt");
 					} catch (Exception e) {
-						e.printStackTrace();
+						errorFlag=e.getMessage();
 					}
 
 				} else {
