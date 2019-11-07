@@ -1089,6 +1089,11 @@ public class MainClass {
 	}
 
 	public void showNeighbors(Country c) {
+		if(mapInstance.getBorders().isEmpty())
+		{
+			errorFlag="Invalid map";
+			return;
+		}
 		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
@@ -1192,6 +1197,7 @@ public class MainClass {
 					try {
 						errorFlag = mapOperations.deleteCountry(mapInstance.getCountries(), mapInstance.getBorders(),
 								temp[i + 1]);
+						
 					} catch (Exception e) {
 						errorFlag = e.getMessage().toString();
 					}
