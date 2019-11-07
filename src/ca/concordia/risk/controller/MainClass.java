@@ -489,6 +489,7 @@ public class MainClass {
 					errorFlag = p.reinforceArmy(commands[1], Integer.parseInt(commands[2]));
 					if (p.getPlayerReinforceArmy() == 0) {
 						p.setCurrentPhase(GamePhase.ATTACK);
+						System.out.println("phase set now: "+ p.getCurrentPhase());
 					}
 				} else {
 					errorFlag = "Please exchnage the cards first";
@@ -522,6 +523,7 @@ public class MainClass {
 
 		case "attack":
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
+				System.out.println("in first if");
 				errorFlag = "Invalid command!";
 
 			}

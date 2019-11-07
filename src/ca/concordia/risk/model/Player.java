@@ -389,13 +389,6 @@ public class Player implements Subject {
 			
 			//now as the phase will be the  reinforcement Card Exchange View should be there
 			this.attach(new CardExchangeView(this));
-			HashMap<String, Integer> demoCards = new HashMap<String, Integer>();
-			demoCards.put(Card.ARTILLERY, Integer.valueOf(5));
-			demoCards.put(Card.CAVALRY, Integer.valueOf(2));
-			demoCards.put(Card.INFANTRY, Integer.valueOf(0));
-			this.setPlayerCards(demoCards);
-			
-			
 			notify_observer();
 			
 		
