@@ -57,8 +57,6 @@ public class MainClass {
 	public MainClass() {
 		playerList = new ArrayList<Player>();
 		globalCardDeck = new HashMap<String, Integer>();
-		// globalCardDeck = new ArrayList<Card>();
-
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
@@ -66,7 +64,8 @@ public class MainClass {
 	}
 
 	/**
-	 * @return instance of main class
+	 * creates and returns the instance of main class
+	 * @return main_instance instance of the main class
 	 */
 	public static MainClass getM_instance() {
 		if (main_instance == null) {
@@ -186,14 +185,16 @@ public class MainClass {
 	}
 
 	/**
-	 * @return current player turn
+	 * 
+	 * @return the current turn of the player
+	 * 
 	 */
 	int getPlayerTurn() {
 		return turn;
 	}
 
 	/**
-	 * set player turn to next player
+	 * sets the turn for the next player in the list
 	 */
 	void setNextPlayerTurn() {
 
@@ -207,11 +208,11 @@ public class MainClass {
 	void resetPlayerTurn() {
 		turn = 1;
 	}
-
-	/**
-	 * handles gameplayer command to add or remove player
-	 * @param s1 specifies command to add or remove and player name
-	 */
+	
+/**
+ * this method adds or removes a player for the game
+ * @param s1 string to check whether to add or remove player
+ */
 	public void gamePlayer(String s1) {
 		errorFlag = "false";
 		s1 = s1 + " stop";
@@ -605,7 +606,6 @@ public class MainClass {
 			} else {
 				errorFlag = "Invalid command!";
 			}
-
 			break;
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
@@ -690,28 +690,6 @@ public class MainClass {
 		attacker.attack(countryAttacking, countryDefending, defender);
 	}
 
-	
-	/**
-	 * to assign reinforce army for player
-	 * @param player 
-	 * @return reinforce army count
-	 */
-	public int assign_army(Player player) {
-		int reinforceAmry;
-
-		reinforceAmry = (player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3;
-
-		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
-			if (player.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
-
-				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i + 1).getContinentControlValue();
-				mapInstance.getContinents().get(i + 1).setRuler(i + 1);
-			}
-		}
-
-		return reinforceAmry;
-
-	}
 
 	/**
 	 * to check game end state
