@@ -709,7 +709,7 @@ public class MainClass {
 	 * @param player
 	 * @param countOfArtillery
 	 * @param countOfCavalry
-	 * @param countOfInfantry
+	 * @param countOfInfantry	
 	 */
 	public boolean exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
 

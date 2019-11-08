@@ -1,4 +1,4 @@
-package test.ca.concordia.risk.modelTest;
+package ca.concordia.risk.modelTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

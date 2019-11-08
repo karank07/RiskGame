@@ -1,7 +1,7 @@
 /**
  * 
  */
-package test.ca.concordia.risk.controllerTest;
+package ca.concordia.risk.controllerTest;
 
 import static org.junit.Assert.*;
 
@@ -44,10 +44,10 @@ public class MainClassTest {
 		mC.addPlayer("rv");
 		mC.addPlayer("k");
 		mC.addPlayer("D");
+		mC.removePlayer("k");
+		System.out.println(mC.playerList);
 
-		mC.removePlayer("D");
-
-		assertEquals(3, mC.playerList.size());
+		assertEquals(2, mC.playerList.size());
 		
 		//Global card deck test
 		mC.generateDeck();
