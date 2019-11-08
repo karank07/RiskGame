@@ -679,24 +679,6 @@ public class MainClass {
 		attacker.attack(countryAttacking, countryDefending, defender);
 	}
 
-	
-	public int assign_army(Player player) {
-		int reinforceAmry;
-
-		reinforceAmry = (player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3;
-
-		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
-			if (player.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
-
-				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i + 1).getContinentControlValue();
-				mapInstance.getContinents().get(i + 1).setRuler(i + 1);
-			}
-		}
-
-		return reinforceAmry;
-
-	}
-
 	public void gameOver(Player p) {
 		if (player_country_map.get(p).size() == mapInstance.getCountries().size()) {
 			System.out.println("Game Over! " + p.getPlayerName() + " wins!");
@@ -1126,14 +1108,6 @@ public class MainClass {
 			errorFlag = e.getLocalizedMessage().toString();
 		}
 		return errorFlag;
-	}
-
-	private List<String> getNeighboursName(int[] neighbours) {
-		List<String> list = new ArrayList<String>();
-		for (int i = 1; i < neighbours.length; i++) {
-			list.add(mapInstance.getCountries().get(neighbours[i] - 1).getCountryName());
-		}
-		return list;
 	}
 
 	public String editcontinent(String s1) {
