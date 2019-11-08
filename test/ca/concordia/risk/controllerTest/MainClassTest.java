@@ -11,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ca.concordia.risk.controller.MainClass;
+import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Country;
 
 /**
@@ -47,6 +48,15 @@ public class MainClassTest {
 		mC.removePlayer("D");
 
 		assertEquals(3, mC.playerList.size());
+		
+		//Global card deck test
+		mC.generateDeck();
+		
+		assertTrue(mC.removeCardFromDeck(Card.ARTILLERY));
+		
+		assertTrue(mC.countryBelongsToPlayer(mC.playerList.get(0), "alberta"));
+		
+		
 		
 		
 		
