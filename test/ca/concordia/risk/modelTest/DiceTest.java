@@ -1,4 +1,4 @@
-package test.ca.concordia.risk.modelTest;
+package ca.concordia.risk.modelTest;
 
 import static org.junit.Assert.*;
 

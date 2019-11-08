@@ -1,7 +1,6 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
-
 import ca.concordia.risk.controllerTest.MainClassTest;
 import ca.concordia.risk.controllerTest.MapOperationsTest;
 import ca.concordia.risk.controllerTest.MapValidateTest;
