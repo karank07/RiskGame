@@ -17,15 +17,13 @@ public class ConsoleViewHandler {
 
 	static Console c;
 	MainClass main;
-	// static GameView gameView;
-
 	public static void main(String[] args) {
 		c = new Console();
 		c.createConsole();
 	}
 
 	/**
-	 * Default constructor
+	 * constructor to instantiate object
 	 */
 	public ConsoleViewHandler() {
 		main = new MainClass();
