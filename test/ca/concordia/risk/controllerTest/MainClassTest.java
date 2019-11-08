@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ca.concordia.risk.controllerTest;
+package test.ca.concordia.risk.controllerTest;
 
 import static org.junit.Assert.*;
 
