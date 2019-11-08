@@ -1,4 +1,4 @@
-package ca.concordia.risk.modelTest;
+package test.ca.concordia.risk.modelTest;
 
 import static org.junit.Assert.*;
 
@@ -37,7 +37,9 @@ public class PlayerTest {
 			e.printStackTrace();
 		}
 		
-		cv.phaseDecider("gameplayer -add k -add r");cv.phaseDecider("populatecountries"); cv.phaseDecider("placeall");
+		cv.phaseDecider("gameplayer -add k -add r");
+		cv.phaseDecider("populatecountries");
+		cv.phaseDecider("placeall");
 		
 		assertEquals("false",main.playerList.get(0).reinforceArmy("alaska", 7));
 		//assertEquals("This country does not belongs to you!",main.playerList.get(0).reinforceArmy("north-west-territory", 7));
