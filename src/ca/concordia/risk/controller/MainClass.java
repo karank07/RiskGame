@@ -58,6 +58,10 @@ public class MainClass {
 
 	static int playerTurn = 0;// place army
 
+	/**
+	 * default constructor for the main class that initializes
+	 * player list and card deck and necessary map instances.
+	 */
 	public MainClass() {
 		playerList = new ArrayList<Player>();
 		globalCardDeck = new HashMap<String, Integer>();
@@ -69,6 +73,10 @@ public class MainClass {
 
 	}
 
+	/**
+	 * creates and returns the instance of main class
+	 * @return main_instance instance of the main class
+	 */
 	public static MainClass getM_instance() {
 		if (main_instance == null) {
 			main_instance = new MainClass();
@@ -189,10 +197,18 @@ public class MainClass {
 		// phase = "gameplayer";
 	}
 
+	/**
+	 * 
+	 * @return the current turn of the player
+	 * 
+	 */
 	int getPlayerTurn() {
 		return turn;
 	}
 
+	/**
+	 * sets the turn for the next player in the list
+	 */
 	void setNextPlayerTurn() {
 
 		turn++;
@@ -202,7 +218,11 @@ public class MainClass {
 	void resetPlayerTurn() {
 		turn = 1;
 	}
-
+	
+/**
+ * this method adds or removes a player for the game
+ * @param s1 string to check whether to add or remove player
+ */
 	public void gamePlayer(String s1) {
 		errorFlag = "false";
 		s1 = s1 + " stop";
