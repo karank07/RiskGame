@@ -442,21 +442,25 @@ public class Player implements Subject {
 
 	public int assign_army() {
 
-		int reinforceAmry;
+		int reinforceAmry = 0;
 
-		reinforceAmry = (this.getPlayerCountries().size() / 3) >= 3 ? (this.getPlayerCountries().size() / 3) : 3;
-
-		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
-			if (this.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
-
-				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i).getContinentControlValue();
-				mapInstance.getContinents().get(i).setRuler(i + 1);
+		reinforceAmry = (MainClass.player_country_map.get(this).size() / 3) >= 3 ? (MainClass.player_country_map.get(this).size() / 3) : 3;
+		
+		for (Continent c: mapInstance.getContinents().values()) {
+		
+			if (MainClass.player_country_map.get(this).containsAll((mapInstance.getCountriesByContinent(c.getContinentName())))){
+				
+			
+				reinforceAmry = reinforceAmry + c.getContinentControlValue();
+				c.setRuler(this.getPlayerId() - 1);
 			}
 		}
 
+		
 		return reinforceAmry;
 
 	}
+	
 
 	/**
 	 * function for command:- reinforce countryname, number (number is army to be

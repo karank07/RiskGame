@@ -27,7 +27,7 @@ import ca.concordia.risk.utilities.ValidMapException;
  * @author Rohan
  *
  */
-public class MapPhaseTest {
+public class MapWriterTest {
 
 	static Map m;
 	static MapOperations mO;
@@ -63,33 +63,7 @@ public class MapPhaseTest {
 			System.out.println("File not Found for loadmap");
 		}
 
-		File file = new File(
-				Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + fileName);
-
-		// Test: check whether map file is valid in terms of format or not. i.e does it
-		// contains CONTINENT_HEADER, COUNTRIES_HEADER and BORDERS_HEADER
-		try {
-			assertTrue(mV.validateFile(file));
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found for validation");
-		}
-		System.out.println(borders);
-		// Test : map validation – map is a connected graph
-		assertTrue(mO.isConnected(borders));
-
-		assertTrue(mO.addContinent(Map.getM_instance(), continents, "c1", 3, "blue")); // add c11 to fail addcountry
-																						// test
-		assertTrue(mO.addContinent(Map.getM_instance(), continents, "c2", 4, "yellow"));
-
-		assertTrue(mO.addCountry(Map.getM_instance(), continents, countries, borders, "a1", "c1"));
-		assertTrue(mO.addCountry(Map.getM_instance(), continents, countries, borders, "a2", "c1"));
-
-		assertTrue(mO.addNeighbours(Map.getM_instance(), countries, borders, "a1", "a2"));
-
-		assertEquals("Continents and countries and neighbours under continent removed successfully",
-				mO.deleteContinent(continents, countries, borders, "c1"));
-
-		assertEquals("Continent removed successfully", mO.deleteContinent(continents, countries, borders, "c2"));
+		
 
 		
 	}

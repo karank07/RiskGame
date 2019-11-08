@@ -47,12 +47,13 @@ public class MainClass {
 	static int turn = 1;
 	private boolean gamePlayerSet = false;
 	public static String errorFlag = "false";
-	
+
 	boolean adjFlag = false;
 	List<Country> visited = new ArrayList<Country>();
 
 	/**
-	 * constructor to initialize player list,card deck, map instance, map operations and map writer
+	 * constructor to initialize player list,card deck, map instance, map operations
+	 * and map writer
 	 */
 	public MainClass() {
 		playerList = new ArrayList<Player>();
@@ -65,6 +66,7 @@ public class MainClass {
 
 	/**
 	 * creates and returns the instance of main class
+	 * 
 	 * @return main_instance instance of the main class
 	 */
 	public static MainClass getM_instance() {
@@ -168,7 +170,7 @@ public class MainClass {
 					mapInstance.setBorders(borders);
 
 					for (Country o : countries.values()) {
-						System.out.println(o.getCountryID()+ " " + o.getCountryName());
+						System.out.println(o.getCountryID() + " " + o.getCountryName());
 
 					}
 
@@ -208,11 +210,12 @@ public class MainClass {
 	void resetPlayerTurn() {
 		turn = 1;
 	}
-	
-/**
- * this method adds or removes a player for the game
- * @param s1 string to check whether to add or remove player
- */
+
+	/**
+	 * this method adds or removes a player for the game
+	 * 
+	 * @param s1 string to check whether to add or remove player
+	 */
 	public void gamePlayer(String s1) {
 		errorFlag = "false";
 		s1 = s1 + " stop";
@@ -433,7 +436,7 @@ public class MainClass {
 		}
 		if (errorFlag.equals("false")) {
 			setNextPlayerTurn();
-			if (playerList.get(getPlayerTurn()-1).getIntialArmies() == 0) {
+			if (playerList.get(getPlayerTurn() - 1).getIntialArmies() == 0) {
 				resetPlayerTurn();
 			}
 		}
@@ -484,6 +487,7 @@ public class MainClass {
 
 	/**
 	 * to set calls for game phase commands reinforce,attack, fortify
+	 * 
 	 * @param inputCommand
 	 * @return
 	 */
@@ -547,22 +551,22 @@ public class MainClass {
 			}
 
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
-				if(countryDefending!=null && countryDefending.getCountryArmy()==0) {
-					errorFlag="invalid command!";
+				if (countryDefending != null && countryDefending.getCountryArmy() == 0) {
+					errorFlag = "invalid command!";
 					break;
 				}
-				
+
 				errorFlag = "false";
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
-			} else if (commands.length == 4 ) {
+			} else if (commands.length == 4) {
 
 				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))
 						|| p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[2]))) {
 
 					errorFlag = "Check country ownership again";
-				} else  {
+				} else {
 					countryAttacking = mapInstance.getCountryByName(commands[1]);
 					countryDefending = mapInstance.getCountryByName(commands[2]);
 
@@ -575,7 +579,7 @@ public class MainClass {
 						attacker.setAttackResult(s);
 						System.out.println(s);
 
-					} else if( Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0){
+					} else if (Pattern.matches("[0-9]", commands[3]) && Integer.parseInt(commands[3]) > 0) {
 						errorFlag = "false";
 						doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
 						System.out.println("Defender's Turn :" + defender.getPlayerName());
@@ -587,7 +591,8 @@ public class MainClass {
 
 			break;
 		case "defend":
-			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK && Pattern.matches( "[0-9]",commands[1]) && Integer.parseInt(commands[1]) > 0) {
+			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK && Pattern.matches("[0-9]", commands[1])
+					&& Integer.parseInt(commands[1]) > 0) {
 				if (!attacker.getDiceResult().isEmpty()) {
 					errorFlag = "false";
 					doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
@@ -600,7 +605,8 @@ public class MainClass {
 			break;
 		case "attackmove":
 			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK
-					&& countryDefending.getCountryArmy() == 0 && Pattern.matches( "[0-9]",commands[1]) && Integer.parseInt(commands[1]) > 0) {
+					&& countryDefending.getCountryArmy() == 0 && Pattern.matches("[0-9]", commands[1])
+					&& Integer.parseInt(commands[1]) > 0) {
 
 				moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 			} else {
@@ -612,10 +618,11 @@ public class MainClass {
 				if (commands.length == 2 && commands[1].equals("none")) {
 					errorFlag = "false";
 					p.setFortificationDone(true);
-					
+
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-				} else if (commands.length == 4 && Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0) {
+				} else if (commands.length == 4 && Pattern.matches("[0-9]", commands[3])
+						&& Integer.parseInt(commands[3]) > 0) {
 					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
 							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2]))) {
 						errorFlag = "false";
@@ -675,7 +682,7 @@ public class MainClass {
 	/**
 	 * This method rolls the dice for the defender
 	 * 
-	 * @param numDice number of dice rolls the defender decides
+	 * @param numDice          number of dice rolls the defender decides
 	 * @param attacker
 	 * @param defender
 	 * @param countryAttacking
@@ -690,15 +697,17 @@ public class MainClass {
 		attacker.attack(countryAttacking, countryDefending, defender);
 	}
 
-
 	/**
 	 * to check game end state
+	 * 
 	 * @param p
 	 */
-	public void gameOver(Player p) {
+	public boolean gameOver(Player p) {
 		if (player_country_map.get(p).size() == mapInstance.getCountries().size()) {
 			System.out.println("Game Over! " + p.getPlayerName() + " wins!");
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -709,7 +718,7 @@ public class MainClass {
 	 * @param player
 	 * @param countOfArtillery
 	 * @param countOfCavalry
-	 * @param countOfInfantry	
+	 * @param countOfInfantry
 	 */
 	public boolean exchangeCardsForArmy(Player player, int countOfArtillery, int countOfCavalry, int countOfInfantry) {
 
@@ -832,6 +841,7 @@ public class MainClass {
 
 	/**
 	 * to remove a card from deck of specified type
+	 * 
 	 * @param cardType
 	 * @return true if cards get successfully removed from deck
 	 */
@@ -869,6 +879,7 @@ public class MainClass {
 
 	/**
 	 * to add a card to deck of specified type
+	 * 
 	 * @param cardType
 	 * @return true if card get added to deck successfully
 	 */
@@ -941,7 +952,9 @@ public class MainClass {
 	}
 
 	/**
-	 * perform attacks till attacker conquers country or has no more armies to attack for a country
+	 * perform attacks till attacker conquers country or has no more armies to
+	 * attack for a country
+	 * 
 	 * @param countryAttacking
 	 * @param countryDefending
 	 * @param attacker
@@ -1080,7 +1093,8 @@ public class MainClass {
 	}
 
 	/**
-	 * to showmap for map phase, list of countries,continent it belongs to and adjacent countries
+	 * to showmap for map phase, list of countries,continent it belongs to and
+	 * adjacent countries
 	 */
 	public void showmapForMapPhase() {
 		for (Country c : mapInstance.getCountries().values()) {
@@ -1091,7 +1105,8 @@ public class MainClass {
 	}
 
 	/**
-	 * to showmap for game phase, list countries, continent it belongs to, owner, country army and neighbors
+	 * to showmap for game phase, list countries, continent it belongs to, owner,
+	 * country army and neighbors
 	 */
 	public void showmapForGamePhase() {
 
@@ -1107,6 +1122,7 @@ public class MainClass {
 
 	/**
 	 * displays list of neighbor countries of object c for game phase
+	 * 
 	 * @param c
 	 */
 	public void showNeighborsForGame(Country c) {
@@ -1118,12 +1134,12 @@ public class MainClass {
 
 	/**
 	 * displays list of neighbor countries of object c for map phase
+	 * 
 	 * @param c
 	 */
 	public void showNeighbors(Country c) {
-		if(mapInstance.getBorders().isEmpty())
-		{
-			errorFlag="Invalid map";
+		if (mapInstance.getBorders().isEmpty()) {
+			errorFlag = "Invalid map";
 			return;
 		}
 		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
@@ -1133,7 +1149,7 @@ public class MainClass {
 	}
 
 	/**
-	 * to check validity of map 
+	 * to check validity of map
 	 */
 	public void validatemap() {
 		if (mapInstance.getBorders().isEmpty()) {
@@ -1147,6 +1163,7 @@ public class MainClass {
 
 	/**
 	 * loads map to edit
+	 * 
 	 * @param s1
 	 * @return errorFlag
 	 */
@@ -1170,6 +1187,7 @@ public class MainClass {
 
 	/**
 	 * to editcontinent -add or remove continent
+	 * 
 	 * @param s1
 	 * @return errorFlag
 	 */
@@ -1213,6 +1231,7 @@ public class MainClass {
 
 	/**
 	 * to editcountry -add or remove country
+	 * 
 	 * @param s1
 	 * @return errorFlag
 	 */
@@ -1239,7 +1258,7 @@ public class MainClass {
 					try {
 						errorFlag = mapOperations.deleteCountry(mapInstance.getCountries(), mapInstance.getBorders(),
 								temp[i + 1]);
-						
+
 					} catch (Exception e) {
 						errorFlag = e.getMessage().toString();
 					}
@@ -1254,7 +1273,8 @@ public class MainClass {
 	}
 
 	/**
-	 * to editneighbor  -add or remove neighbor
+	 * to editneighbor -add or remove neighbor
+	 * 
 	 * @param s1
 	 * @return errorFlag
 	 */
@@ -1297,6 +1317,7 @@ public class MainClass {
 
 	/**
 	 * saves map file
+	 * 
 	 * @param s1 contains file
 	 * @return errorFlag
 	 */
@@ -1318,9 +1339,10 @@ public class MainClass {
 
 	/**
 	 * check if from country obj can attack to country obj
+	 * 
 	 * @param from country object
-	 * @param to country object
-	 * @return boolean canAttack 
+	 * @param to   country object
+	 * @return boolean canAttack
 	 */
 	public boolean canAttack(Country from, Country to) {
 
