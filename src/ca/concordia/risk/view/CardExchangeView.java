@@ -26,6 +26,7 @@ import javax.swing.JButton;
 
 /**
  * This class manages the view for the exchange of cards during the game phases
+ * 
  * @author Rohan
  *
  */
@@ -38,16 +39,23 @@ public class CardExchangeView implements ActionListener, Observer {
 	private Player p;
 	private int aCardCount = 0, cCardCount = 0, iCardCount = 0;
 
-	
+	private static CardExchangeView cEV;
+
 	/**
 	 * @param p
 	 */
-	public CardExchangeView(Player p) {
-		this.p = p;
+	public static CardExchangeView getCardExchangeViewInstance() {
+		if (cEV == null) {
+			cEV = new CardExchangeView();
+			return cEV;
+		} else {
+			return cEV;
+		}
 	}
 
 	/**
-	 * This method will initialize the UI 
+	 * This method will initialize the UI
+	 * 
 	 * @param p
 	 */
 	private void initialize(Player p) {
@@ -137,7 +145,7 @@ public class CardExchangeView implements ActionListener, Observer {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnExchangeCards) {
-			
+
 			try {
 
 				int inputOfArtilleyCards = Integer.parseInt(userInputArtilleryCards.getText().trim());
@@ -148,19 +156,24 @@ public class CardExchangeView implements ActionListener, Observer {
 				System.out.println(cCardCount + " , input-> " + inputOfCavalryCards);
 				System.out.println(iCardCount + " , input-> " + inputOfInfantryCards);
 
-				if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
+				if (inputOfArtilleyCards == 0 && inputOfCavalryCards == 0 && inputOfInfantryCards == 0) {
+					JOptionPane.showMessageDialog(null, "OH! You must Exhange more then 0 cards");
+				} else if ((userInputArtilleryCards.getText().trim() != null && userInputCavalryCards != null
 						&& userInputInfantryCards != null)
+						&& (inputOfArtilleyCards > 0 && inputOfCavalryCards >= 0 && inputOfInfantryCards >= 0)
 						&& ((inputOfArtilleyCards <= aCardCount) && (inputOfCavalryCards <= cCardCount)
 								&& (inputOfInfantryCards <= iCardCount))) {
 
 					MainClass.getM_instance().exchangeCardsForArmy(p, inputOfArtilleyCards, inputOfCavalryCards,
 							inputOfInfantryCards);
-					
+
 					frame.setVisible(false);
-					if(p.hasMoreThanFiveCards()) {
-						initialize(p);
+					if (p.hasMoreThanFiveCards()) {
+						if (frame != null) {
+							initialize(p);
+						}
 					}
-					
+
 				} else {
 					JOptionPane.showMessageDialog(null, "Invalid Operation!");
 				}
@@ -178,22 +191,23 @@ public class CardExchangeView implements ActionListener, Observer {
 	public void update(Object o) {
 		if (o instanceof Player) {
 			Player p = (Player) o;
-			if(p.getCurrentPhase() == GamePhase.FORTIFICATION) {
-				if (frame != null && frame.isActive()) {
+			if (p.armyAssigning == true) {
+				if (frame != null) {
 					frame.dispose();
+					frame = null;
+					initialize((Player) o);
+					return;
+				} else {
 					initialize((Player) o);
 				}
-				else {
-					initialize((Player) o);
+			} else if (p.armyAssigning == false) {
+				if (frame != null) {
+					frame.setVisible(false);
+					frame = null;
+					return;
+
 				}
 			}
-			else if(p.getCurrentPhase() == GamePhase.REINFORCEMENT) {
-				if (frame != null && frame.isActive()) {
-					frame.dispose();
-				}
-			}
-			
-			
 
 		}
 

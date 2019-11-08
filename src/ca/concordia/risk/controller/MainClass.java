@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
@@ -152,6 +153,7 @@ public class MainClass {
 						fileData = br.readLine();
 					}
 					// stringToCountry(countryString, countryList);
+
 					String[] temp = new String[3];
 
 					for (String obj : countryString) {
@@ -303,6 +305,7 @@ public class MainClass {
 	 * all countries are randomly assigned to players for initial startup
 	 */
 	public void startupPhase() {
+
 		for (Player p : playerList) {
 			if (gamePlayerSet) {
 				p.setCurrentPhase(GamePhase.STARTUP);
@@ -330,7 +333,7 @@ public class MainClass {
 			for (Country c : player_country_map.get(p)) {
 				System.out.println(c.getCountryName());
 			}
-			p.setPlayerReinforceArmy(assign_army(p));
+			p.setPlayerReinforceArmy(p.assign_army());
 		}
 		resetPlayerTurn();
 	}
@@ -501,7 +504,8 @@ public class MainClass {
 
 		case "reinforce":
 
-			if (commands.length == 3 && p.getCurrentPhase() == GamePhase.REINFORCEMENT) {
+			if (commands.length == 3 && p.getCurrentPhase() == GamePhase.REINFORCEMENT
+					&& Pattern.matches("[0-9]", commands[2]) && Integer.parseInt(commands[2]) > 0) {
 				// If player has more then 5 cards then he/she must have to exchange the cards
 				// first
 				if (!p.hasMoreThanFiveCards()) {
@@ -512,6 +516,7 @@ public class MainClass {
 					}
 				} else {
 					errorFlag = "Please exchnage the cards first";
+					p.checkForExchangeCards();
 				}
 
 			} else
@@ -522,7 +527,10 @@ public class MainClass {
 		case "exchangecards":
 			try {
 				if ((commands.length == 4 || (commands.length == 2 && commands[1].equalsIgnoreCase("-none"))
-						&& p.getCurrentPhase() == GamePhase.REINFORCEMENT)) {
+						&& p.getCurrentPhase() == GamePhase.REINFORCEMENT) && Pattern.matches("[0-9]", commands[1])
+						&& Pattern.matches("[0-9]", commands[2]) && Pattern.matches("[0-9]", commands[3])
+						&& Integer.parseInt(commands[1]) > 0 && Integer.parseInt(commands[2]) > 0
+						&& Integer.parseInt(commands[3]) > 0) {
 					if (commands.length == 4) {
 						errorFlag = MainClass.getM_instance().exchangeCardsForArmy(p, Integer.parseInt(commands[1]),
 								Integer.parseInt(commands[2]), Integer.parseInt(commands[3]))
@@ -542,37 +550,42 @@ public class MainClass {
 		case "attack":
 			errorFlag = "" + "false";
 			if (p.getCurrentPhase() != GamePhase.ATTACK) {
-				
+
 				errorFlag = "Invalid command!";
 
 			}
 
 			else if (commands.length == 2 && commands[1].equals("-noattack")) {
+				if(countryDefending!=null && countryDefending.getCountryArmy()==0) {
+					errorFlag="invalid command!";
+					break;
+				}
+				
 				errorFlag = "false";
-
 				System.out.println("Attack Over!");
 				p.setCurrentPhase(GamePhase.FORTIFICATION);
 
+			} else if (commands.length == 4 ) {
 
-			} else if (commands.length == 4) {
-
-				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1])) || 
-						p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[2]))) {
+				if (!p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[1]))
+						|| p.getPlayerCountries().contains(Map.getM_instance().getCountryByName(commands[2]))) {
 
 					errorFlag = "Check country ownership again";
-				} else {
+				} else  {
 					countryAttacking = mapInstance.getCountryByName(commands[1]);
 					countryDefending = mapInstance.getCountryByName(commands[2]);
 
 					attacker = playerList.get(countryAttacking.getCountryOwner() - 1);
 					defender = playerList.get(countryDefending.getCountryOwner() - 1);
 					if (commands[3].equals("-allout")) {
+						errorFlag = "false";
 						alloutAttack(countryAttacking, countryDefending, attacker, defender);
-						String s=attackResult(countryAttacking, countryDefending, attacker);
+						String s = attackResult(countryAttacking, countryDefending, attacker);
 						attacker.setAttackResult(s);
 						System.out.println(s);
 
-					} else {
+					} else if( Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0){
+						errorFlag = "false";
 						doAttack(countryAttacking, countryDefending, Integer.parseInt(commands[3]), attacker);
 						System.out.println("Defender's Turn :" + defender.getPlayerName());
 					}
@@ -583,49 +596,48 @@ public class MainClass {
 
 			break;
 		case "defend":
-			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK) {
+			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK && Pattern.matches( "[0-9]",commands[1]) && Integer.parseInt(commands[1]) > 0) {
 				if (!attacker.getDiceResult().isEmpty()) {
+					errorFlag = "false";
 					doDefend(Integer.parseInt(commands[1]), attacker, defender, countryAttacking, countryDefending);
 					System.out.println(attackResult(countryAttacking, countryDefending, attacker));
 				} else
 					errorFlag = "wait for attacker's turn";
 			} else
-				errorFlag = "Invalid flag!";
+				errorFlag = "Invalid command!";
 
 			break;
 		case "attackmove":
 			if (commands.length == 2 && p.getCurrentPhase() == GamePhase.ATTACK
-					&& countryDefending.getCountryArmy() == 0) {
+					&& countryDefending.getCountryArmy() == 0 && Pattern.matches( "[0-9]",commands[1]) && Integer.parseInt(commands[1]) > 0) {
 
 				moveArmies(attacker, countryAttacking, countryDefending, Integer.parseInt(commands[1]));
 			} else {
 				errorFlag = "Invalid command!";
 			}
-
 			break;
 		case "fortify":
 			if (p.getCurrentPhase() == GamePhase.FORTIFICATION) {
 				if (commands.length == 2 && commands[1].equals("none")) {
-					errorFlag="false";
+					errorFlag = "false";
 					p.setFortificationDone(true);
+					
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-				} else if (commands.length == 4) {
-					if(p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1])) 
-							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2])))
-					{
+				} else if (commands.length == 4 && Pattern.matches( "[0-9]",commands[3]) && Integer.parseInt(commands[3]) > 0) {
+					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
+							&& p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[2]))) {
 						errorFlag = "false";
 						Country from = mapInstance.getCountryByName(commands[1]);
 						Country to = mapInstance.getCountryByName(commands[2]);
 						p.fortify(from, to, Integer.parseInt(commands[3]));
 						p.setCurrentPhase(GamePhase.REINFORCEMENT);
-						p.setPlayerReinforceArmy(assign_army(p));
+						p.setPlayerReinforceArmy(p.assign_army());
 						p.addArmies(p.getPlayerReinforceArmy());
 						setNextPlayerTurn();
-					}
-					else
+					} else
 						errorFlag = "the country doesnot exist or isnot owned by you ";
-					
+
 				} else
 					errorFlag = "Invalid command!";
 
@@ -640,13 +652,13 @@ public class MainClass {
 	/**
 	 * @param attackingCountry country attacking
 	 * @param defendingCountry country being attacked
-	 * @param attacker player attacking
+	 * @param attacker         player attacking
 	 * @return string declaring the winner
 	 */
 	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
 		if (countryAttacking.getCountryArmy() == 1) {
 			attacker.setAttackResult("Defender won!");
-			
+
 			return "Defender won!";
 		} else if (countryDefending.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, countryDefending);
@@ -662,7 +674,7 @@ public class MainClass {
 	}
 
 	/**
-	 * @param player the player to disown the country
+	 * @param player  the player to disown the country
 	 * @param country the country to be disowned
 	 */
 	private void unmapPlayerToCountry(Player player, Country country) {
@@ -671,7 +683,8 @@ public class MainClass {
 
 	/**
 	 * This method rolls the dice for the defender
-	 * @param numDice number of dice rolls the defender decides
+	 * 
+	 * @param numDice          number of dice rolls the defender decides
 	 * @param attacker
 	 * @param defender
 	 * @param countryAttacking
@@ -684,23 +697,6 @@ public class MainClass {
 		}
 		roll(defender, numDice);
 		attacker.attack(countryAttacking, countryDefending, defender);
-	}
-
-	public int assign_army(Player player) {
-		int reinforceAmry;
-
-		reinforceAmry = (player.getPlayerCountries().size() / 3) >= 3 ? (player.getPlayerCountries().size() / 3) : 3;
-
-		for (int i = 0; i < mapInstance.getContinents().size(); i++) {
-			if (player.getPlayerCountries().equals(mapInstance.getCountriesOfContinent().get(i))) {
-
-				reinforceAmry = reinforceAmry + mapInstance.getContinents().get(i).getContinentControlValue();
-				mapInstance.getContinents().get(i).setRuler(i+1);
-			}
-		}
-
-		return reinforceAmry;
-
 	}
 
 	public void gameOver(Player p) {
@@ -968,9 +964,10 @@ public class MainClass {
 
 	/**
 	 * This method rolls the dice for the attacker
+	 * 
 	 * @param countryAttacking
 	 * @param countryDefending
-	 * @param numDice the number of dice rolls decide by attacker
+	 * @param numDice          the number of dice rolls decide by attacker
 	 * @param attacker
 	 */
 	void doAttack(Country countryAttacking, Country countryDefending, int numDice, Player attacker) {
@@ -1085,15 +1082,21 @@ public class MainClass {
 
 		}
 	}
+
 	public void showNeighborsForGame(Country c) {
 		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
 	}
-	
+
 	public void showNeighbors(Country c) {
-		for (int b : mapInstance.getBorders().get(c.getCountryID()+1)) {
+		if(mapInstance.getBorders().isEmpty())
+		{
+			errorFlag="Invalid map";
+			return;
+		}
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
@@ -1127,14 +1130,6 @@ public class MainClass {
 		return errorFlag;
 	}
 
-	private List<String> getNeighboursName(int[] neighbours) {
-		List<String> list = new ArrayList<String>();
-		for (int i = 1; i < neighbours.length; i++) {
-			list.add(mapInstance.getCountries().get(neighbours[i] - 1).getCountryName());
-		}
-		return list;
-	}
-
 	public String editcontinent(String s1) {
 		s1 = s1 + " stop";
 		String[] temp = s1.split(" ");
@@ -1146,7 +1141,7 @@ public class MainClass {
 					try {
 						mapOperations.addContinent(mapInstance, mapInstance.getContinents(), temp[i + 1],
 								Integer.parseInt(temp[i + 2]), null);
-						
+
 					} catch (Exception e) {
 						errorFlag = e.getMessage();
 					}
@@ -1158,9 +1153,10 @@ public class MainClass {
 				if (!(temp[i + 1].contentEquals("stop"))) {
 					errorFlag = "false";
 					try {
-						errorFlag = mapOperations.deleteContinent(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1]);
+						errorFlag = mapOperations.deleteContinent(mapInstance.getContinents(),
+								mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1]);
 					} catch (Exception e) {
-						errorFlag=e.getMessage().toString();
+						errorFlag = e.getMessage().toString();
 					}
 
 				} else {
@@ -1193,9 +1189,11 @@ public class MainClass {
 				if (!(temp[i + 1].contentEquals("stop"))) {
 					errorFlag = "false";
 					try {
-						errorFlag = mapOperations.deleteCountry(mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1]);
+						errorFlag = mapOperations.deleteCountry(mapInstance.getCountries(), mapInstance.getBorders(),
+								temp[i + 1]);
+						
 					} catch (Exception e) {
-						errorFlag=e.getMessage().toString();
+						errorFlag = e.getMessage().toString();
 					}
 
 				} else {
@@ -1229,10 +1227,11 @@ public class MainClass {
 				if (!(temp[i + 1].contentEquals("stop")) && !(temp[i + 2].contentEquals("stop"))) {
 					errorFlag = "false";
 					try {
-						mapOperations.deleteNeighbour(mapInstance.getCountries(), mapInstance.getBorders(), temp[i+1], temp[i+2]);
-						
+						mapOperations.deleteNeighbour(mapInstance.getCountries(), mapInstance.getBorders(), temp[i + 1],
+								temp[i + 2]);
+
 					} catch (Exception e) {
-						errorFlag=e.getMessage();
+						errorFlag = e.getMessage();
 					}
 
 				} else {
@@ -1344,7 +1343,4 @@ public class MainClass {
 		System.out.println("Attacked Country army: " + to.getCountryArmy());
 
 	}
-
-	// Successful attack pr check kro about continent conquered or not and CARD
-
 }

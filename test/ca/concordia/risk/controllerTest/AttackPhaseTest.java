@@ -1,4 +1,4 @@
-package tests.test.ca.concordia.risk.controllerTest;
+package ca.concordia.risk.controllerTest;
 
 import static org.junit.Assert.*;
 
@@ -38,7 +38,7 @@ public class AttackPhaseTest {
 		
 		assertEquals(0,main.playerList.get(0).getDiceResult().size());
 		
-		
+		cv.phaseDecider("populatecountries"); cv.phaseDecider("placeall");
 		cv.phaseDecider("reinforce alaska 7");
 		cv.phaseDecider("attack alaska north-west-territory 3");
 		
