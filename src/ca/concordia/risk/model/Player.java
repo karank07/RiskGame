@@ -23,104 +23,11 @@ public class Player implements Subject {
 	 * @param fortifyCountry name
 	 */
 	String fortifyCountry;
-
-	public boolean armyAssigning = false;
-	public boolean reinforcingArmy = false;
 	/**
 	 * @param attack result string
 	 */
-	
 	String attackResult;
-	/**
-	 * @return the attackResult
-	 */
-	public String getAttackResult() {
-		return attackResult;
-	}
-
-	/**
-	 * @param attackResult the attackResult to set
-	 */
-	public void setAttackResult(String attackResult) {
-		attach(gameView);
-		notify_observer();
-		this.attackResult = attackResult;
-	}
-
-	boolean isFortificationDone = false;
-
-	/**
-	 * This method returns true indicating fortification is done
-	 * 
-	 * @return true if fortification finishes
-	 */
-	public boolean isFortificationDone() {
-		return isFortificationDone;
-	}
-
-	/**
-	 * sets the boolean value if fortification is done
-	 * 
-	 * @param isFortificationDone
-	 */
-	public void setFortificationDone(boolean isFortificationDone) {
-		this.isFortificationDone = isFortificationDone;
-		this.armyAssigning = true;
-		checkForExchangeCards();
-	}
-
-	/**
-	 * @return fortifyCountry from where the armies are fortified
-	 */
-
-	public String getFortifyCountry() {
-		return fortifyCountry;
-	}
-
-	/**
-	 * to set from where the armies are fortified
-	 * 
-	 * @param fortifyCountry from where the armies are fortified
-	 */
-	public void setFortifyCountry(String fortifyCountry) {
-		this.fortifyCountry = fortifyCountry;
-	}
-
-	/**
-	 * @return fortifiedCountry to where the armies are fortified
-	 */
-	public String getFortifiedCountry() {
-		return fortifiedCountry;
-	}
-
-	/**
-	 * to set the country where the armies are fortified
-	 * 
-	 * @param fortifiedCountry
-	 */
-	public void setFortifiedCountry(String fortifiedCountry) {
-		this.fortifiedCountry = fortifiedCountry;
-	}
-
-	/**
-	 * @return number of armies to be fortified
-	 */
-	public int getFortifyArmies() {
-		return fortifyArmies;
-	}
-
-	/**
-	 * to set the number of armies to be fortified
-	 * 
-	 * @param fortifyArmies
-	 */
-	public void setFortifyArmies(int fortifyArmies) {
-		this.fortifyArmies = fortifyArmies;
-	}
-
-	String fortifiedCountry;
-	int fortifyArmies;
-	/**
+		/**
 	 * @param playerId - for unique player id
 	 */
 	private int playerId;
@@ -160,13 +67,30 @@ public class Player implements Subject {
 	 *                   the player
 	 */
 	private List<Integer> diceResult = new ArrayList<Integer>();
-
 	private List<Integer> defenderDiceResult = new ArrayList<Integer>();
+	boolean isFortificationDone = false;
+	String fortifiedCountry;
+	int fortifyArmies;
+	public boolean armyAssigning = false;
+	public boolean reinforcingArmy = false;
+	private HashMap<String, Integer> playerCards;
+	private int intialArmies;
+	private Observer o;
+	private GameView gameView = GameView.get_instance();
+	MainClass main = MainClass.getM_instance();
+	public GamePhase gamePhase;
 
+
+	/**
+	 * @return defender dice result
+	 */
 	public List<Integer> getDefenderDiceResult() {
 		return defenderDiceResult;
 	}
 
+	/**
+	 * @param defenderDiceResult to set defender dice result
+	 */
 	public void setDefenderDiceResult(List<Integer> defenderDiceResult) {
 		this.defenderDiceResult = defenderDiceResult;
 	}
@@ -182,40 +106,49 @@ public class Player implements Subject {
 	String attackingCountry;
 	String defendingCountry;
 
+	/**
+	 * @return attacking country name
+	 */
 	public String getAttackingCountry() {
 		return attackingCountry;
 	}
 
+	/**
+	 * @param attackingCountry to set attacking country name
+	 */
 	public void setAttackingCountry(String attackingCountry) {
 		this.attackingCountry = attackingCountry;
 	}
 
+	/**
+	 * @return defending country name
+	 */
 	public String getDefendingCountry() {
 		return defendingCountry;
 	}
 
+	/**
+	 * @param defendingCountry to set defending country name
+	 */
 	public void setDefendingCountry(String defendingCountry) {
 		this.defendingCountry = defendingCountry;
 	}
 
+	/**
+	 * @return reinforce country name
+	 */
 	public String getReinforceCountry() {
 		return reinforceCountry;
 	}
 
+	/**
+	 * @param reinforceCountry set reinforce country name
+	 */
 	public void setReinforceCountry(String reinforceCountry) {
 		notify_observer();
 		this.reinforceCountry = reinforceCountry;
 	}
 
-	private HashMap<String, Integer> playerCards;
-
-	private int intialArmies;
-
-	private Observer o;
-	private GameView gameView = GameView.get_instance();
-
-	MainClass main = MainClass.getM_instance();
-	public GamePhase gamePhase;
 
 	/**
 	 * Constructor to instantiate Player object
@@ -233,8 +166,8 @@ public class Player implements Subject {
 		this.getPlayerCards().put(Card.ARTILLERY, 0);
 		this.getPlayerCards().put(Card.CAVALRY, 0);
 		this.getPlayerCards().put(Card.INFANTRY, 0);
-		this.attackResult=new String("null");
-		
+		this.attackResult = new String("null");
+
 	}
 
 	/**
@@ -318,6 +251,75 @@ public class Player implements Subject {
 	}
 
 	/**
+	 * This method returns true indicating fortification is done
+	 * 
+	 * @return true if fortification finishes
+	 */
+	public boolean isFortificationDone() {
+		return isFortificationDone;
+	}
+
+	/**
+	 * sets the boolean value if fortification is done
+	 * 
+	 * @param isFortificationDone
+	 */
+	public void setFortificationDone(boolean isFortificationDone) {
+		this.isFortificationDone = isFortificationDone;
+		this.armyAssigning = true;
+		checkForExchangeCards();
+	}
+
+	/**
+	 * @return fortifyCountry from where the armies are fortified
+	 */
+
+	public String getFortifyCountry() {
+		return fortifyCountry;
+	}
+
+	/**
+	 * to set from where the armies are fortified
+	 * 
+	 * @param fortifyCountry from where the armies are fortified
+	 */
+	public void setFortifyCountry(String fortifyCountry) {
+		this.fortifyCountry = fortifyCountry;
+	}
+
+	/**
+	 * @return fortifiedCountry to where the armies are fortified
+	 */
+	public String getFortifiedCountry() {
+		return fortifiedCountry;
+	}
+
+	/**
+	 * to set the country where the armies are fortified
+	 * 
+	 * @param fortifiedCountry
+	 */
+	public void setFortifiedCountry(String fortifiedCountry) {
+		this.fortifiedCountry = fortifiedCountry;
+	}
+
+	/**
+	 * @return number of armies to be fortified
+	 */
+	public int getFortifyArmies() {
+		return fortifyArmies;
+	}
+
+	/**
+	 * to set the number of armies to be fortified
+	 * 
+	 * @param fortifyArmies
+	 */
+	public void setFortifyArmies(int fortifyArmies) {
+		this.fortifyArmies = fortifyArmies;
+	}
+
+	/**
 	 * @param n armies deducted from total
 	 *
 	 */
@@ -362,6 +364,22 @@ public class Player implements Subject {
 	 */
 	public int getCardExchangeCount() {
 		return cardExchangeCount;
+	}
+
+	/**
+	 * @return the attackResult
+	 */
+	public String getAttackResult() {
+		return attackResult;
+	}
+
+	/**
+	 * @param attackResult the attackResult to set
+	 */
+	public void setAttackResult(String attackResult) {
+		attach(gameView);
+		notify_observer();
+		this.attackResult = attackResult;
 	}
 
 	/**
@@ -436,7 +454,6 @@ public class Player implements Subject {
 			}
 		}
 
-		
 		return reinforceAmry;
 
 	}
@@ -496,7 +513,7 @@ public class Player implements Subject {
 				+ this.getPlayerCards().get(Card.INFANTRY) >= 5) {
 			return true;
 		}
-	
+
 		return false;
 	}
 

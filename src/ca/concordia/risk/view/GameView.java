@@ -24,7 +24,8 @@ import javax.swing.border.CompoundBorder;
 /**
  * This class manages the player's World Domination View and all the information necessary to 
  * play the phases
- * @author Karan
+ * @author Rohan
+ * @author Dhruv
  *
  */
 public class GameView implements Observer {
