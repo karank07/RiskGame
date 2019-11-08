@@ -302,12 +302,26 @@ public class MainClass {
 			}
 
 		}
+		divideInitialArmies();
+		generateDeck();
+		resetPlayerTurn();
+		populatecountries();
+	}
+
+	/**
+	 * to divide armies to player at game start
+	 */
+	public void divideInitialArmies() {
 		for (Player p : playerList) {
 			p.setPlayerTotalArmies(getInitialArmies());
 			p.setIntialArmies(getInitialArmies());
 		}
-		generateDeck();
-		resetPlayerTurn();
+	}
+
+	/**
+	 * to map countries to player initially
+	 */
+	public void populatecountries() {
 		int playerCount = playerList.size();
 		int j = 0;
 		for (Country country : mapInstance.getCountries().values()) {
@@ -326,6 +340,7 @@ public class MainClass {
 			p.setPlayerReinforceArmy(p.assign_army());
 		}
 		resetPlayerTurn();
+
 	}
 
 	/**

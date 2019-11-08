@@ -13,6 +13,7 @@ import org.junit.Test;
 import ca.concordia.risk.controller.ConsoleViewHandler;
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Dice;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
@@ -20,11 +21,13 @@ public class PlayerAttackPhaseTest {
 
 	static MainClass main;
 	static ConsoleViewHandler cView;
+	static Dice d;
 
 	@Before
 	public void beforeMethod() {
-		main = new MainClass();
-		cView = new ConsoleViewHandler();
+		 main = new MainClass();
+	cView = new ConsoleViewHandler();
+		d = new Dice(3);
 	}
 	
 	@After
@@ -36,26 +39,28 @@ public class PlayerAttackPhaseTest {
 
 	@Test
 	public void test() {
-
+		
 		try {
 			main.readMapFile("risk.map");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+//
 		cView.phaseDecider("gameplayer -add k -add r");
+//
+//		assertEquals(0, main.playerList.get(0).getDiceResult().size());
+//
+//		cView.phaseDecider("populatecountries");
+//		cView.phaseDecider("placeall");
+//		cView.phaseDecider("reinforce alaska 7");
+//		cView.phaseDecider("attack alaska north-west-territory 3");
 
-		assertEquals(0, main.playerList.get(0).getDiceResult().size());
-
-		cView.phaseDecider("populatecountries");
-		cView.phaseDecider("placeall");
-		cView.phaseDecider("reinforce alaska 7");
-		cView.phaseDecider("attack alaska north-west-territory 3");
-
+		d.rollDice(3, MainClass.playerList.get(0));
 		assertNotEquals(0, main.playerList.get(0).getDiceResult().size());
 
 		cView.phaseDecider("defend 1");
 
+		d.rollDice(3, MainClass.playerList.get(1));
 		assertNotEquals(0, main.playerList.get(1).getDiceResult().size());
 
 		assertFalse(main.canAttack(Map.getM_instance().getCountryByName("alaska"),

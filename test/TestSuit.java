@@ -13,5 +13,5 @@ import ca.concordia.risk.modelTest.playerFortifyTest;
 @RunWith(Suite.class)
 @SuiteClasses({MainClassTest.class, MapOperationsTest.class, MapValidateTest.class, MapWriterTest.class, PlayerAttackPhaseTest.class, PlayerReinforcementTest.class, playerFortifyTest.class, DiceTest.class})
 public class TestSuit {
-
+ 
 }

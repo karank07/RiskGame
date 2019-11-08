@@ -45,10 +45,10 @@ public class playerFortifyTest {
 		
 		assertEquals(0,main.playerList.get(0).getDiceResult().size());
 		
-		cv.phaseDecider("populatecountries");
-		cv.phaseDecider("placeall");
-		cv.phaseDecider("reinforce alaska 7");
-		cv.phaseDecider("attack -noattack");
+//		cv.phaseDecider("populatecountries");
+//		cv.phaseDecider("placeall");
+//		cv.phaseDecider("reinforce alaska 7");
+//		cv.phaseDecider("attack -noattack");
 		
 		Country c1 = Map.getM_instance().getCountryByName("alaska");
 		Country c2 = Map.getM_instance().getCountryByName("alberta");

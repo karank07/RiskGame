@@ -3,6 +3,7 @@ package ca.concordia.risk.modelTest;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.After;
@@ -18,26 +19,26 @@ import ca.concordia.risk.model.Player;
 
 public class PlayerReinforcementTest {
 
-//	static 
-//	static ConsoleViewHandler cVH;
-//
-//	@BeforeClass
-//	public void beforeMethod() {
-//		main = new MainClass();
-//		cVH = new ConsoleViewHandler();
-//			
-//	}
-//	
-//	@After
-//	public void afterMethod() {
-//		main = null;
-//		cVH = null;
-//	}
+	static MainClass main;
+	static ConsoleViewHandler cVH;
+
+	@BeforeClass
+	public static void beforeMethod() {
+		main = new MainClass();
+		cVH = new ConsoleViewHandler();
+		//MainClass.player_country_map = new HashMap<Player, List<Country>>();
+			
+	}
 	
+	@After
+	public void afterMethod() {
+		main = null;
+		cVH = null;
+	}
+
 	@Test
 	public void test() {
-		MainClass main =  new MainClass();
-		ConsoleViewHandler cVH = new ConsoleViewHandler();
+		
 		try {
 			main.readMapFile("risk.map");
 		} catch (Exception e) {
@@ -46,15 +47,33 @@ public class PlayerReinforcementTest {
 
 		cVH.phaseDecider("gameplayer -add k -add r");
 
-		assertEquals(0, main.playerList.get(0).getDiceResult().size());
+		
+		
+		main.divideInitialArmies();
+		
+		List<Country> cList1 = new ArrayList<>();
+		List<Country> cList2 = new ArrayList<>();
+		
+		MainClass.player_country_map.clear();
+	for(Country c: Map.getM_instance().getCountries().values()) {
+		if(c.getCountryID()%2==0) {
+			cList1.add(c);
+		}
+		else {
+			cList2.add(c);
+		}
+	}
+	
+	
+	 MainClass.player_country_map.put(MainClass.playerList.get(0), cList1);
+		System.out.println(cList1.size());
 
-		cVH.phaseDecider("populatecountries");
-		cVH.phaseDecider("placeall");
-
-		// assertEquals(7, MainClass.playerList.get(0).assign_army());
+		 assertEquals(7, MainClass.playerList.get(0).assign_army());
 		// cv.phaseDecider("reinforce alaska 7");
 
 		List<Country> cc = new ArrayList<Country>();
+		
+		
 		MainClass.player_country_map.clear();
 		for (Country c : Map.getM_instance().getCountriesByContinent("Asia")) {
 
