@@ -1,4 +1,4 @@
-package test.ca.concordia.risk.controllerTest;
+package ca.concordia.risk.controllerTest;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

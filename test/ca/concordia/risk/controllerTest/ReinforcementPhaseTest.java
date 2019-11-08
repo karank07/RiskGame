@@ -13,6 +13,7 @@ import org.junit.Test;
 import ca.concordia.risk.controller.ConsoleViewHandler;
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.model.Map;
+import ca.concordia.risk.model.Player;
 
 /**
  * @author Rohan
@@ -22,11 +23,13 @@ public class ReinforcementPhaseTest {
 
 	static MainClass mC;
 	static ConsoleViewHandler cv;
+	static Player p;
 
 	@BeforeClass
 	public static void initReinforcementTest() {
 		mC = new MainClass();
 		cv = new ConsoleViewHandler();
+	
 
 	}
 
@@ -39,16 +42,9 @@ public class ReinforcementPhaseTest {
 			e.printStackTrace();
 		}
 
-		// System.out.println(mC.countryList);
-
-		// player list should be 0 initially
-		assertEquals(0, MainClass.playerList.size());
-
-		// now adding 2 players and final playerList size should be 2
-
 		cv.phaseDecider("gameplayer -add r -add k");
-
-		assertEquals(2, mC.playerList.size());
+		
+		p = mC.playerList.get(0);
 
 		cv.phaseDecider("placeall");
 
@@ -69,9 +65,9 @@ public class ReinforcementPhaseTest {
 
 		// check whether ever country has minimum 1 army or not
 		boolean allCountryHasMinOneArmy = true;
-		for (int i = 0; i < mC.countries.size(); i++) {
+		for (int i = 0; i < Map.getM_instance().getCountries().size(); i++) {
 			{
-				if (mC.countryList.get(i).getCountryArmy() < 1) {
+				if (Map.getM_instance().getCountries().get(i).getCountryArmy() < 1) {
 					allCountryHasMinOneArmy = false;
 				}
 			}
@@ -79,17 +75,17 @@ public class ReinforcementPhaseTest {
 
 		assertTrue(allCountryHasMinOneArmy);
 
-		int beforeArmy = MainClass.countryList.get(0).getCountryArmy();
+		int beforeArmy = Map.getM_instance().getCountries().get(0).getCountryArmy();
 		// System.out.println(beforeArmy);
 		// test: reinforcement - chk whether armys being assigned or not at the time of
 		// reinforcement
 		// player 1 will get 7 army (21 countries / 3 = 7 army)
-		assertEquals(8, mC.assign_army(MainClass.playerList.get(0)));
+		assertEquals(8, p.assign_army());
 
 		cv.phaseDecider("reinforce Alaska 7"); // max is 7 -- so it should return false
 
 		// now alaska should have army
-		assertEquals(beforeArmy + 7, MainClass.countryList.get(0).getCountryArmy());
+		assertEquals(beforeArmy + 7, Map.getM_instance().getCountries().get(0).getCountryArmy());
 
 		// Test: Fortification - whether 2 countries entered are following rules for
 		// fortification or not
@@ -99,7 +95,7 @@ public class ReinforcementPhaseTest {
 		cv.phaseDecider("fortify Alaska Alberta " + String.valueOf(beforeArmy));
 
 		// now alaska should have left with army it had at beginning
-		assertEquals(7, MainClass.countryList.get(0).getCountryArmy());
+		assertEquals(7, Map.getM_instance().getCountries().get(0).getCountryArmy());
 	}
 
 }
