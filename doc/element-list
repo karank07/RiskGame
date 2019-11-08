@@ -1,0 +1,6 @@
+ca.concordia.risk.controller
+ca.concordia.risk.model
+ca.concordia.risk.utilities
+ca.concordia.risk.view
+test.ca.concordia.risk.controllerTest
+test.ca.concordia.risk.modelTest
