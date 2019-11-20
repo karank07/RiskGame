@@ -351,18 +351,21 @@ public class GameView implements Observer {
 			infantryField.setText(String.valueOf(p.getPlayerCards().get(Card.INFANTRY)));
 			if (p.getCurrentPhase().equals(GamePhase.REINFORCEMENT)) {
 				clearall();
+				
 				phaseField.setText(p.getCurrentPhase().toString());
 				reinforceArmiesField.setText(String.valueOf(p.getPlayerReinforceArmy()));
 		
 				reinforceCountryField.setText(p.getReinforceCountry());
 			}
-			if (p.getCurrentPhase().equals(GamePhase.ATTACK) && !p.getAttackResult().equalsIgnoreCase("null") ){
+			if (p.getCurrentPhase().equals(GamePhase.ATTACK) && !p.getDefenderDiceResult().isEmpty() ){
 				phaseField.setText(p.getCurrentPhase().toString());
 				attackingCountryField.setText(p.getAttackingCountry());
 				defendingCountryField.setText(p.getDefendingCountry());
 				attackerRollsField.setText(p.getDiceResult().toString());
 				defenderRollsField.setText(p.getDefenderDiceResult().toString());
-				resultField.setText(p.getAttackResult());
+				if(p.getAttackResult().equals("null"))
+					resultField.setText("");
+				else resultField.setText(p.getAttackResult());
 			}
 			if (p.getFortifyArmies() != 0) {
 				phaseField.setText(p.getCurrentPhase().toString());
@@ -370,7 +373,6 @@ public class GameView implements Observer {
 				fortifyingCountryField.setText(p.getFortifyCountry());
 				fortifiedCountryField.setText(p.getFortifiedCountry());
 				fortifyArmiesField.setText(String.valueOf(p.getFortifyArmies()));
-
 			}
 
 		} else
