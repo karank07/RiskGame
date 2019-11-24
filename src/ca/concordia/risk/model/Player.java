@@ -683,6 +683,25 @@ public class Player implements Subject {
 		return strongestCountry;
 }
 	/**
+	 * returns list of the countries that can be attacked by the country c
+	 * @param c is the country for which attackable countries have to searched for
+	 * @return countriesAttackable the list of attackable countries
+	 */
+	public List<Country> attackableCountries(Country c)
+	{
+		List<Country> countriesAttackable=new ArrayList<>();
+		List<Country> neighbouringCountries= Map.m_instance.getNeighbourCountries(c);
+		for(Country neighbour:neighbouringCountries) 
+		{
+			if(neighbour.getCountryOwner()!=c.getCountryOwner()) 
+			{
+				countriesAttackable.add(neighbour);
+			}
+		}
+		
+		return countriesAttackable;
+	}
+	/**
 	 * Notify method is used to notify all observers to
 	 */
 	@Override
