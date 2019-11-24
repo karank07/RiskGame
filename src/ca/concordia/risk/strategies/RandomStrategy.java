@@ -27,19 +27,13 @@ public class RandomStrategy {
 			// armies will be assigned at populatecountries function for FIRST time
 			// second time armies will be assigned at the end of the fortification phase
 
-			int armyToPlace = 0;
+			country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
 
-			// choose random country and random number of reinforcement army from total
-			// reinforcement army
-			// and do reinforcement till Reinforcement army will become 0
-			while (p.getPlayerReinforceArmy() > 0) {
-				country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
-				armyToPlace = r.nextInt(p.getPlayerReinforceArmy());
-				String flag = p.reinforceArmy(country.getCountryName(), armyToPlace);
-			}
+			String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
 
 		} else {
 			// do exchange the cards randomly without UI
+
 		}
 
 	}

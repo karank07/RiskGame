@@ -637,7 +637,7 @@ public class MainClass {
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 					setNextPlayerTurn();
-					System.out.println("Next Player Turn " +MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
+					System.out.println("Next Player Turn " + MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
 				} else if (commands.length == 4 && Pattern.matches("[0-9]", commands[3])
 						&& Integer.parseInt(commands[3]) > 0) {
 					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
