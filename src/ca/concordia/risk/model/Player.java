@@ -655,7 +655,33 @@ public class Player implements Subject {
 	public void setIntialArmies(int intialArmies) {
 		this.intialArmies = intialArmies;
 	}
+	
+	/**
+	 *  Returns the strongest country for the player
+	 *  @param p player
+	 *  @return strongestCountry 
+	 * 
+	 * */
+	public Country getStrongestCountry() {
 
+		List<Country> playerCountries = this.getPlayerCountries();
+
+		Country strongestCountry = null;
+		
+		int maxArmy = 0;
+		
+		for (Country country : playerCountries) {
+			
+			int playerArmy = country.getCountryArmy();
+			
+			if (playerArmy > maxArmy) {
+				maxArmy = playerArmy;
+				strongestCountry = country;
+			}
+		}
+
+		return strongestCountry;
+}
 	/**
 	 * Notify method is used to notify all observers to
 	 */
