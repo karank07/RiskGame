@@ -27,7 +27,7 @@ public class Player implements Subject {
 	 * @param attack result string
 	 */
 	String attackResult;
-		/**
+	/**
 	 * @param playerId - for unique player id
 	 */
 	private int playerId;
@@ -61,7 +61,7 @@ public class Player implements Subject {
 	 *                           exchanged cards for armies
 	 */
 	private int cardExchangeCount = 0;
-	
+
 	/**
 	 * @param strategy - to decide the strategy of the player object
 	 */
@@ -92,7 +92,6 @@ public class Player implements Subject {
 	private GameView gameView = GameView.get_instance();
 	MainClass main = MainClass.getM_instance();
 	public GamePhase gamePhase;
-
 
 	/**
 	 * @return defender dice result
@@ -161,7 +160,6 @@ public class Player implements Subject {
 		notify_observer();
 		this.reinforceCountry = reinforceCountry;
 	}
-
 
 	/**
 	 * Constructor to instantiate Player object
@@ -458,23 +456,23 @@ public class Player implements Subject {
 
 		int reinforceAmry = 0;
 
-		reinforceAmry = (MainClass.player_country_map.get(this).size() / 3) >= 3 ? (MainClass.player_country_map.get(this).size() / 3) : 3;
-		
-		for (Continent c: mapInstance.getContinents().values()) {
-		
-			if (MainClass.player_country_map.get(this).containsAll((mapInstance.getCountriesByContinent(c.getContinentName())))){
-				
-			
+		reinforceAmry = (MainClass.player_country_map.get(this).size() / 3) >= 3
+				? (MainClass.player_country_map.get(this).size() / 3)
+				: 3;
+
+		for (Continent c : mapInstance.getContinents().values()) {
+
+			if (MainClass.player_country_map.get(this)
+					.containsAll((mapInstance.getCountriesByContinent(c.getContinentName())))) {
+
 				reinforceAmry = reinforceAmry + c.getContinentControlValue();
 				c.setRuler(this.getPlayerId() - 1);
 			}
 		}
 
-		
 		return reinforceAmry;
 
 	}
-	
 
 	/**
 	 * function for command:- reinforce countryname, number (number is army to be
@@ -486,7 +484,12 @@ public class Player implements Subject {
 	 */
 	public String reinforceArmy(String countryName, int armyNumber) {
 		this.armyAssigning = false;
-		checkForExchangeCards();// to close the UI
+		if (this.getStrategy().equals("human")) {
+			checkForExchangeCards();// to close the UI
+		}
+		else {
+			
+		}
 
 		this.reinforceCountry = countryName;
 
