@@ -33,10 +33,10 @@ public class MapWriter {
 	 * This method the map file
 	 * 
 	 * @param continents the hashmap of continents
-	 * @param countries  the hashmap of countries
-	 * @param borders    the hashmap of borders
-	 * @param mapFile    stores the file of ,ap
-	 * @throws IOException       handles exception
+	 * @param countries the hashmap of countries
+	 * @param borders the hashmap of borders
+	 * @param mapFile stores the file of map
+	 * @throws IOException handles exception
 	 * @throws ValidMapException handles exception
 	 */
 	public void writeMapFile(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries,
@@ -101,9 +101,9 @@ public class MapWriter {
 	 * This method loads map file and validates it.
 	 * 
 	 * @param continents the hashmap of continents
-	 * @param countries  the hashmap of countries
-	 * @param borders    the hashmap of borders
-	 * @param fileName   the name of the map file
+	 * @param countries the hashmap of countries
+	 * @param borders the hashmap of borders
+	 * @param fileName the name of the map file
 	 * @return true if file loaded else retun false
 	 * @throws FileNotFoundException handles exceptions
 	 */
