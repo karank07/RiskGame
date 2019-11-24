@@ -18,6 +18,7 @@ import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
+import ca.concordia.risk.model.TournamentMode;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 //import ca.concordia.risk.view.GameView;
@@ -43,6 +44,7 @@ public class MainClass {
 	private MapOperations mapOperations;
 	private MapWriter mapWriter;
 	public static MainClass main_instance;
+	private static TournamentMode tournamentObject;
 
 	static int turn = 1;
 	private boolean gamePlayerSet = false;
@@ -61,6 +63,7 @@ public class MainClass {
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
+		tournamentObject = TournamentMode.getInstance();
 
 	}
 
@@ -225,7 +228,7 @@ public class MainClass {
 			if (temp[i].contentEquals("-add")) {
 				if (!temp[i + 1].contentEquals("stop")) {
 					errorFlag = "false";
-					addPlayer(temp[i + 1]);
+					addPlayer(temp[i + 1], temp[i + 2]);
 
 				} else {
 					errorFlag = "add a valid name";
@@ -255,7 +258,7 @@ public class MainClass {
 	 * 
 	 * @param playerName the player to be added in the game
 	 */
-	public void addPlayer(String playerName) {
+	public void addPlayer(String playerName, String stratergy) {
 		for (Player p : playerList) {
 			if (p.getPlayerName().equalsIgnoreCase(playerName)) {
 				errorFlag = "Name Already exists!";
@@ -263,7 +266,7 @@ public class MainClass {
 			}
 		}
 		int playerID = playerList.size() + 1;
-		Player p = new Player(playerID, playerName);
+		Player p = new Player(playerID, playerName, stratergy);
 		playerList.add(p);
 		errorFlag = "false";
 	}
@@ -650,7 +653,8 @@ public class MainClass {
 						p.setPlayerReinforceArmy(p.assign_army());
 						p.addArmies(p.getPlayerReinforceArmy());
 						setNextPlayerTurn();
-						System.out.println("Next Player Turn " +MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
+						System.out.println(
+								"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
 					} else
 						errorFlag = "the country doesnot exist or isnot owned by you ";
 
@@ -1444,5 +1448,11 @@ public class MainClass {
 		System.out.println("Attacking Country army: " + from.getCountryArmy());
 		System.out.println("Attacked Country army: " + to.getCountryArmy());
 
+	}
+
+	public void setupTournament(String mapFileNames, String playerStratergyNames, String numOfGames, String maxTurns) {
+		String[] mapFiles=mapFileNames.split("-");
+		String[] playerStratergies=playerStratergyNames.split("-");
+		
 	}
 }
