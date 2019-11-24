@@ -61,6 +61,19 @@ public class Player implements Subject {
 	 *                           exchanged cards for armies
 	 */
 	private int cardExchangeCount = 0;
+	
+	/**
+	 * @param strategy - to decide the strategy of the player object
+	 */
+	private String strategy = "human";
+
+	public String getStrategy() {
+		return strategy;
+	}
+
+	public void setStrategy(String strategy) {
+		this.strategy = strategy;
+	}
 
 	/**
 	 * @param diceResult stores the list of result of the number of dices rolled for
@@ -156,7 +169,7 @@ public class Player implements Subject {
 	 * @param playerId
 	 * @param playerName
 	 */
-	public Player(int playerId, String playerName) {
+	public Player(int playerId, String playerName, String strategy) {
 
 		this.playerId = playerId;
 		this.playerName = playerName;
@@ -167,6 +180,7 @@ public class Player implements Subject {
 		this.getPlayerCards().put(Card.CAVALRY, 0);
 		this.getPlayerCards().put(Card.INFANTRY, 0);
 		this.attackResult = new String("null");
+		this.strategy = strategy;
 
 	}
 

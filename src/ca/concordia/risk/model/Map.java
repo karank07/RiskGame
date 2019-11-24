@@ -188,5 +188,11 @@ public class Map
 
 	}
 
+	public void resetMap()
+	{
+		continents.clear();
+		countries.clear();
+		borders.clear();
+	}
 
 }
