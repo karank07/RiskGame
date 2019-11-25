@@ -8,7 +8,7 @@ import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Player;
 
 public class BenevolentStrategy {
-	 public void BenevolentStrategyReinforcement(Player p) 
+	 public static void BenevolentStrategyReinforcement(Player p) 
 	 {
 		 Country weakest = p.getWeakestCountry();
 			int reinforceArmy = p.getPlayerReinforceArmy();
@@ -16,13 +16,13 @@ public class BenevolentStrategy {
 			BenevolentStrategyAttack(p);
 	 }
 
-	private void BenevolentStrategyAttack(Player p) 
+	private static void BenevolentStrategyAttack(Player p) 
 	{
 		BenevolentStrategyFortify(p);
 		
 	}
 
-	private void BenevolentStrategyFortify(Player p) {
+	private static void BenevolentStrategyFortify(Player p) {
 		
 		List<Country> countryConquered = p.getPlayerCountries();
 		List<Country> countryFromList = new ArrayList<>();

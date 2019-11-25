@@ -15,7 +15,7 @@ import ca.concordia.risk.utilities.GamePhase;
  *
  */
 public class RandomStrategy {
-	Random r = new Random();
+	static Random r = new Random();
 
 	/**
 	 * @param p This function does the select country and number army to be placed
@@ -58,7 +58,7 @@ public class RandomStrategy {
 
 	}
 
-	private void RandomStrategyAttack(Player p) {
+	private static void RandomStrategyAttack(Player p) {
 		Country attackerCountry = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
 		Country defenderCountry = p.attackableCountries(attackerCountry)
 				.get(r.nextInt(p.attackableCountries(attackerCountry).size()));
@@ -81,7 +81,7 @@ public class RandomStrategy {
 		RandomStrategyFortify(p);
 	}
 
-	private void RandomStrategyFortify(Player p) {
+	private static void RandomStrategyFortify(Player p) {
 		Country fromCountry = p.getPlayerCountries().get(r.nextInt(p.getPlayerTotalCountries()));
 		int army = 0;
 		while(true) {

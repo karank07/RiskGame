@@ -25,7 +25,7 @@ public class AggressiveStrategy {
 		AggressiveStrategyAttack(p);
 	}
 
-	public void AggressiveStrategyAttack(Player p) {
+	public static void AggressiveStrategyAttack(Player p) {
 		Country strongest = p.getStrongestCountry();
 
 		if (strongest != null) {
@@ -40,7 +40,7 @@ public class AggressiveStrategy {
 		AggressiveStrategyFortify(p);
 	}
 
-	public void AggressiveStrategyFortify(Player p) {
+	public static void AggressiveStrategyFortify(Player p) {
 		List<Country> countryConquered = p.getPlayerCountries();
 		List<Country> countryFromList = new ArrayList<>();
 		Country to = p.getStrongestCountry();

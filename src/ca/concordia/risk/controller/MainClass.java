@@ -21,6 +21,7 @@ import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
 import ca.concordia.risk.strategies.AggressiveStrategy;
 import ca.concordia.risk.strategies.BenevolentStrategy;
+import ca.concordia.risk.strategies.CheaterStrategy;
 import ca.concordia.risk.strategies.RandomStrategy;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
@@ -1471,8 +1472,7 @@ public class MainClass {
 				return;
 			}
 			else if(p.getStrategy().equals("random")){
-				RandomStrategy.RandomStrategyReinforcement(p);
-				
+				RandomStrategy.RandomStrategyReinforcement(p);		
 			}
 			else if(p.getStrategy().equals("cheater")) {
 				CheaterStrategy.cheaterStrategyReinforcement(p);
@@ -1483,6 +1483,7 @@ public class MainClass {
 			else if(p.getStrategy().equals("benevolent")) {
 				BenevolentStrategy.BenevolentStrategyReinforcement(p);
 			}
+	}
 	
 		
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
