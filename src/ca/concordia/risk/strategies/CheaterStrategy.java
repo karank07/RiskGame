@@ -53,8 +53,12 @@ public class CheaterStrategy {
 				c.setCountryOwner(p.getPlayerId());
 			}
 		}
+		if (MainClass.getM_instance().player_country_map.size() == Map.getM_instance().getCountries().size()) {
+			System.out.println("Player" + p.getPlayerName() + " won the game!");
 
-		cheaterStrategyFortify(p);
+		} else {
+			cheaterStrategyFortify(p);
+		}
 	}
 
 	private static void cheaterStrategyFortify(Player p) {
@@ -67,6 +71,7 @@ public class CheaterStrategy {
 				}
 			}
 		}
+		System.out.println("Cheater fortification is done");
 		mainClassInstance.nextTurn(p);
 	}
 
