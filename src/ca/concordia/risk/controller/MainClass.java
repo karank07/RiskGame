@@ -18,6 +18,7 @@ import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
+import ca.concordia.risk.model.TournamentMode;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 //import ca.concordia.risk.view.GameView;
@@ -43,11 +44,12 @@ public class MainClass {
 	private MapOperations mapOperations;
 	private MapWriter mapWriter;
 	public static MainClass main_instance;
-
+	private static TournamentMode tournamentObject;
+	TournamentController tournamentController;
 	static int turn = 1;
 	private boolean gamePlayerSet = false;
 	public static String errorFlag = "false";
-
+	private String mode;
 	boolean adjFlag = false;
 	List<Country> visited = new ArrayList<Country>();
 
@@ -61,6 +63,7 @@ public class MainClass {
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
+		tournamentObject = TournamentMode.getInstance();
 
 	}
 
@@ -225,7 +228,7 @@ public class MainClass {
 			if (temp[i].contentEquals("-add")) {
 				if (!temp[i + 1].contentEquals("stop")) {
 					errorFlag = "false";
-					addPlayer(temp[i + 1]);
+					addPlayer(temp[i + 1], temp[i + 2]);
 
 				} else {
 					errorFlag = "add a valid name";
@@ -255,7 +258,7 @@ public class MainClass {
 	 * 
 	 * @param playerName the player to be added in the game
 	 */
-	public void addPlayer(String playerName) {
+	public void addPlayer(String playerName, String stratergy) {
 		for (Player p : playerList) {
 			if (p.getPlayerName().equalsIgnoreCase(playerName)) {
 				errorFlag = "Name Already exists!";
@@ -263,7 +266,7 @@ public class MainClass {
 			}
 		}
 		int playerID = playerList.size() + 1;
-		Player p = new Player(playerID, playerName);
+		Player p = new Player(playerID, playerName, stratergy);
 		playerList.add(p);
 		errorFlag = "false";
 	}
@@ -637,7 +640,7 @@ public class MainClass {
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 					setNextPlayerTurn();
-					System.out.println("Next Player Turn " +MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
+					System.out.println("Next Player Turn " + MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
 				} else if (commands.length == 4 && Pattern.matches("[0-9]", commands[3])
 						&& Integer.parseInt(commands[3]) > 0) {
 					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
@@ -650,7 +653,8 @@ public class MainClass {
 						p.setPlayerReinforceArmy(p.assign_army());
 						p.addArmies(p.getPlayerReinforceArmy());
 						setNextPlayerTurn();
-						System.out.println("Next Player Turn " +MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
+						System.out.println(
+								"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
 					} else
 						errorFlag = "the country doesnot exist or isnot owned by you ";
 
@@ -680,7 +684,9 @@ public class MainClass {
 			mapPlayerToCountry(attacker, countryDefending);
 			unmapPlayerToCountry(defender, countryDefending);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
-			gameOver(attacker);
+			if(gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
+				
+			}
 			errorFlag = "You have to move armies";
 			attacker.setAttackResult("Attacker won! Country conquered");
 			return "Attacker won! Country conquered";
@@ -706,7 +712,7 @@ public class MainClass {
 	 * @param countryAttacking
 	 * @param countryDefending
 	 */
-	void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
+	public void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
 		if (!checkDiceRD(numDice, countryDefending)) {
 			errorFlag = "invalid defender dice";
 			return;
@@ -978,7 +984,7 @@ public class MainClass {
 	 * @param attacker
 	 * @param defender
 	 */
-	void alloutAttack(Country countryAttacking, Country countryDefending, Player attacker, Player defender) {
+	public void alloutAttack(Country countryAttacking, Country countryDefending, Player attacker, Player defender) {
 		int numDice = 3;
 		while (countryAttacking.getCountryArmy() > 1 && countryDefending.getCountryArmy() > 0) {
 			numDice = (numDice <= countryAttacking.getCountryArmy() - 1) ? 3 : countryAttacking.getCountryArmy() - 1;
@@ -1014,7 +1020,7 @@ public class MainClass {
 	 * @param numDice          the number of dice rolls decide by attacker
 	 * @param attacker
 	 */
-	void doAttack(Country countryAttacking, Country countryDefending, int numDice, Player attacker) {
+	public void doAttack(Country countryAttacking, Country countryDefending, int numDice, Player attacker) {
 
 		if (!canAttack(countryAttacking, countryDefending)) {
 			errorFlag = "invalid attack";
@@ -1444,5 +1450,28 @@ public class MainClass {
 		System.out.println("Attacking Country army: " + from.getCountryArmy());
 		System.out.println("Attacked Country army: " + to.getCountryArmy());
 
+	}
+
+	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
+		String[] mapFiles=mapFileNames.split("-");
+		String[] playerStratergies=playerStratergyNames.split("-");
+		tournamentObject.setNumGames(Integer.parseInt(numGames));
+		tournamentObject.setMaxTurns(Integer.parseInt(maxTurns));
+		
+		for(int i=0;i<playerStratergies.length;i++) {
+			
+			tournamentObject.addGameMaps(mapFiles[i]);
+		}
+		for(int i=0;i<playerStratergies.length;i++) {
+			
+			tournamentObject.addPlayerStratergies(playerStratergies[i]);
+		}
+		tournamentController= new TournamentController();
+		
+		
+	}
+	public void resetGame() {
+		playerList.clear();
+		mapInstance.resetMap();
 	}
 }

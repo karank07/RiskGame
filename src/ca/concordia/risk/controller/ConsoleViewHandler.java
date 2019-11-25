@@ -58,10 +58,12 @@ public class ConsoleViewHandler {
 			break;
 
 		case "gameplayer":
-			if (commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands[2]=="-remove" && commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
 				errorFlag = "false";
 				main.gamePlayer(inputCommand);
-			} else
+			} else if(commands[2]=="-add") {
+				main.gamePlayer(inputCommand);
+			}else
 				errorFlag = "Invalid command!";
 			break;
 
@@ -151,7 +153,10 @@ public class ConsoleViewHandler {
 				main.editmap(inputCommand);
 			else errorFlag="Invalid command";
 			break;
-
+		case "tournament":
+			if(commands.length==9) {
+				main.setupTournament(commands[2],commands[4],commands[6],commands[8]);
+			}
 		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";
