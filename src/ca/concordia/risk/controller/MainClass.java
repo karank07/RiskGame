@@ -275,9 +275,15 @@ public class MainClass {
 			}
 		}
 		int playerID = playerList.size() + 1;
-		Player p = new Player(playerID, playerName, stratergy);
-		playerList.add(p);
-		errorFlag = "false";
+		if(stratergy.equals("human") || stratergy.equals("random") || stratergy.equals("cheater") || stratergy.equals("aggressive") || stratergy.equals("benevolent")){
+			Player p = new Player(playerID, playerName, stratergy);
+			playerList.add(p);
+			errorFlag = "false";
+		}
+		else {
+			errorFlag  = "Invalid strategy type";
+		}
+		
 	}
 
 	/**
@@ -1511,9 +1517,6 @@ public class MainClass {
 			AggressiveStrategy.AggresiveStrategyReinforcement(p);
 		} else if (p.getStrategy().equals("benevolent")) {
 			BenevolentStrategy.BenevolentStrategyReinforcement(p);
-		}
-		else {
-			errorFlag = "Invalid command";
 		}
 	}
 
