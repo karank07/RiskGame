@@ -54,6 +54,7 @@ public class MainClass {
 	public static String errorFlag = "false";
 	private String mode;
 	boolean adjFlag = false;
+	
 	List<Country> visited = new ArrayList<Country>();
 
 	/**
@@ -66,7 +67,7 @@ public class MainClass {
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
-		tournamentObject = TournamentMode.getInstance();
+		tournamentObject = TournamentMode.getInstance();+6
 
 	}
 
