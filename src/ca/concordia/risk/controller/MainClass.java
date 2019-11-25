@@ -68,8 +68,7 @@ public class MainClass {
 		mapInstance = Map.getM_instance();
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
-		tournamentObject = TournamentMode.getInstance();+6
-
+		tournamentObject = TournamentMode.getInstance();
 	}
 
 	/**
@@ -83,6 +82,8 @@ public class MainClass {
 		}
 		return main_instance;
 	}
+	
+	
 
 	/**
 	 * reads the map file to be loaded
