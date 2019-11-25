@@ -70,7 +70,7 @@ public class RandomStrategy {
 
 			Player defender = mainClassInstance.playerList.get(defenderCountry.getCountryOwner() - 1);
 
-			mainClassInstance.doDefend(attackerCountry.getCountryArmy() == 1 ? 1 : 2, p, defender, attackerCountry,
+			mainClassInstance.doDefend(defenderCountry.getCountryArmy() == 1 ? 1 : 2, p, defender, attackerCountry,
 					defenderCountry);
 		}
 		RandomStrategyFortify(p);

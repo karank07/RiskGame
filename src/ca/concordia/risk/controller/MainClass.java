@@ -1396,6 +1396,9 @@ public class MainClass {
 
 		boolean canAttack = false;
 		boolean neighbourFlag = false;
+		System.out.println(mapInstance.getBorders().get(from.getCountryID()) + "borders.get(from.getCountryid)");
+		System.out.println(from.getCountryID() + "from.countryid");
+		System.out.println(to.getCountryID() + "to.countryid");
 
 		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
 			neighbourFlag = true;
