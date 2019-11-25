@@ -648,8 +648,7 @@ public class MainClass {
 					p.setFortificationDone(true);
 
 					System.out.println("Fortification over!");
-					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-					setNextPlayerTurn();
+					nextTurn(p);
 					System.out.println(
 							"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
 				} else if (commands.length == 4 && Pattern.matches("[0-9]", commands[3])
@@ -660,10 +659,7 @@ public class MainClass {
 						Country from = mapInstance.getCountryByName(commands[1]);
 						Country to = mapInstance.getCountryByName(commands[2]);
 						p.fortify(from, to, Integer.parseInt(commands[3]));
-						p.setCurrentPhase(GamePhase.REINFORCEMENT);
-						p.setPlayerReinforceArmy(p.assign_army());
-						p.addArmies(p.getPlayerReinforceArmy());
-						setNextPlayerTurn();
+						nextTurn(p);
 						System.out.println(
 								"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
 					} else
@@ -1416,19 +1412,12 @@ public class MainClass {
 
 		boolean canAttack = false;
 		boolean neighbourFlag = false;
-		System.out.println(mapInstance.getBorders().get(from.getCountryID()) + "borders.get(from.getCountryid)");
-		System.out.println(from.getCountryID() + "from.countryid");
-		System.out.println(to.getCountryID() + "to.countryid");
 
 		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
 			neighbourFlag = true;
-		System.out.println("in Checkout(): Neighbour flag " + neighbourFlag);
 		canAttack = neighbourFlag && (from.getCountryOwner() != to.getCountryOwner()) && (from.getCountryArmy() >= 2)
 				&& (to.getCountryArmy() > 0) ? true : false;
 
-		System.out.println("In CanAttack(): " + "from country owner: " + from.getCountryOwner() + " to country owner: "
-				+ to.getCountryOwner() + " from country army: " + from.getCountryArmy() + " to country amry: "
-				+ to.getCountryArmy());
 
 		return canAttack;
 	}

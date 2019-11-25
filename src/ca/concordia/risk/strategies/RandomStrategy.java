@@ -68,7 +68,7 @@ public class RandomStrategy {
 		Country attackerCountry = cList.get(r.nextInt(cList.size()));
 		Country defenderCountry = p.attackableCountries(attackerCountry)
 				.get(r.nextInt(p.attackableCountries(attackerCountry).size()));
-		System.out.println("Randomly selected defender country: " + defenderCountry.getCountryName());
+		
 		int randomTimesAttack = r.nextInt(11) + 1; // Bw. 1 and 10
 
 		for (int i = 0; i < randomTimesAttack; i++) {
@@ -77,11 +77,8 @@ public class RandomStrategy {
 				break;
 			} else {
 				int dice = attackerCountry.getCountryArmy() == 2 ? 1 : attackerCountry.getCountryArmy() == 3 ? 2 : 3;
-				System.out.println("dice" + dice);
 				mainClassInstance.doAttack(attackerCountry, defenderCountry,
 						attackerCountry.getCountryArmy() == 2 ? 1 : attackerCountry.getCountryArmy() == 3 ? 2 : 3, p);
-				System.out
-						.println("defender:" + mainClassInstance.playerList.get(defenderCountry.getCountryOwner() - 1));
 				Player defender = mainClassInstance.playerList.get(defenderCountry.getCountryOwner() - 1);
 
 				mainClassInstance.doDefend(defenderCountry.getCountryArmy() == 1 ? 1 : 2, p, defender, attackerCountry,
