@@ -620,7 +620,10 @@ public class Player implements Subject {
 				System.out.println("There must be atleast one army in a country!");
 
 			this.armyAssigning = true;
-			checkForExchangeCards();
+			if(this.getStrategy().equals("human")) {
+				checkForExchangeCards();
+			}
+			
 
 		} else
 			System.out.println("Move not possible");
