@@ -156,7 +156,6 @@ public class Map
 	{
 		List<Country> neighbourCountry= new ArrayList<>();
 		ArrayList<Integer>temp=borders.get(country.getCountryID());
-		System.out.println(borders);
 		ArrayList<Country>tempstr=new ArrayList<Country>();
 		
 		for(int i=0;i<temp.size();i++) {
