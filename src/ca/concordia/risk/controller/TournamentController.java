@@ -55,15 +55,8 @@ public class TournamentController {
 			main.generateDeck();
 			main.populatecountries();
 			main.placeAll();
-			for (int x = 0; x < numOfGames; x++) {
-				for (int j = 0; j < gameTurns; j++) {
-					for (Player p : main.playerList) {
-						
-
-					}
-					
-				}
-			}
+			Player p=MainClass.playerList.get(0);
+			main.nextTurn(p);
 			index++;
 
 		}
