@@ -16,7 +16,7 @@ import ca.concordia.risk.model.Player;
  */
 public class AggressiveStrategy {
 	
-	public void AggresiveStrategyReinforcement(Player p) 
+	public static void AggresiveStrategyReinforcement(Player p) 
 	{
 		Country strongest = p.getStrongestCountry();
 		int reinforceArmy = p.getPlayerReinforceArmy();

@@ -19,6 +19,9 @@ import ca.concordia.risk.model.Dice;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
+import ca.concordia.risk.strategies.AggressiveStrategy;
+import ca.concordia.risk.strategies.BenevolentStrategy;
+import ca.concordia.risk.strategies.RandomStrategy;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 //import ca.concordia.risk.view.GameView;
@@ -201,7 +204,7 @@ public class MainClass {
 	/**
 	 * sets the turn for the next player in the list
 	 */
-	void setNextPlayerTurn() {
+	public void setNextPlayerTurn() {
 
 		turn++;
 		turn = turn > playerList.size() ? 1 : turn;
@@ -211,7 +214,7 @@ public class MainClass {
 	 * resets player turn to first player
 	 */
 	void resetPlayerTurn() {
-		turn = 1;
+		turn = 0;
 	}
 
 	/**
@@ -495,6 +498,7 @@ public class MainClass {
 		System.out.println();
 
 		resetPlayerTurn();
+		nextTurn(playerList.get(getPlayerTurn()));
 
 	}
 
@@ -640,7 +644,8 @@ public class MainClass {
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 					setNextPlayerTurn();
-					System.out.println("Next Player Turn " + MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
+					System.out.println(
+							"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
 				} else if (commands.length == 4 && Pattern.matches("[0-9]", commands[3])
 						&& Integer.parseInt(commands[3]) > 0) {
 					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
@@ -710,7 +715,8 @@ public class MainClass {
 	 * @param countryAttacking
 	 * @param countryDefending
 	 */
-	public void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
+	public void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking,
+			Country countryDefending) {
 		if (!checkDiceRD(numDice, countryDefending)) {
 			errorFlag = "invalid defender dice";
 			return;
@@ -1451,8 +1457,34 @@ public class MainClass {
 	}
 
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numOfGames, String maxTurns) {
-		String[] mapFiles=mapFileNames.split("-");
-		String[] playerStratergies=playerStratergyNames.split("-");
+		String[] mapFiles = mapFileNames.split("-");
+		String[] playerStratergies = playerStratergyNames.split("-");
+
+	}
+
+	public void nextTurn(Player p) {
+		setNextPlayerTurn();
+		
+		p.setCurrentPhase(GamePhase.REINFORCEMENT);
+		p.setPlayerReinforceArmy(p.assign_army());
+			if(p.getStrategy().equals("human")){
+				return;
+			}
+			else if(p.getStrategy().equals("random")){
+				RandomStrategy.RandomStrategyReinforcement(p);
+				
+			}
+			else if(p.getStrategy().equals("cheater")) {
+				CheaterStrategy.cheaterStrategyReinforcement(p);
+			}
+			else if(p.getStrategy().equals("aggressive")) {
+				AggressiveStrategy.AggresiveStrategyReinforcement(p);
+			}
+			else if(p.getStrategy().equals("benevolent")) {
+				BenevolentStrategy.BenevolentStrategyReinforcement(p);
+			}
+	
+		
 		
 	}
 }
