@@ -55,7 +55,7 @@ public class MainClass {
 	static int turn = 1;
 	private boolean gamePlayerSet = false;
 	public static String errorFlag = "false";
-	private String mode;
+	private String mode = "single";
 	boolean adjFlag = false;
 
 	List<Country> visited = new ArrayList<Country>();
@@ -74,7 +74,6 @@ public class MainClass {
 
 		tournamentResult = TournamentResult.getInstance();
 
-
 	}
 
 	/**
@@ -88,8 +87,6 @@ public class MainClass {
 		}
 		return main_instance;
 	}
-	
-	
 
 	/**
 	 * reads the map file to be loaded
@@ -478,7 +475,7 @@ public class MainClass {
 	 * Randomly assigns the armies to each player in round robin fashion
 	 */
 	public void placeAll() {
-
+		setNextPlayerTurn();
 		int playersLeftForAssign = playerList.size();
 
 		while (playersLeftForAssign > 0) {
@@ -505,11 +502,10 @@ public class MainClass {
 			}
 		}
 		System.out.println();
-		if (mode.equalsIgnoreCase("tournament")) {
-			resetPlayerTurn();
-			nextTurn(playerList.get(getPlayerTurn()));
 
-		}
+		resetPlayerTurn();
+		nextTurn(playerList.get(getPlayerTurn()));
+
 	}
 
 	Country countryAttacking = null;
@@ -707,9 +703,9 @@ public class MainClass {
 					temp = tournamentResult.results.get(tournamentController.currentMap);
 				temp.add(attacker.getPlayerName());
 				tournamentResult.results.put(tournamentController.currentMap, temp);
-				if (tournamentResult.results.size() == tournamentObject.getGameMaps().size()
-						&& tournamentResult.results.get(tournamentObject.getGameMaps().size() - 1).size()==tournamentObject.getNumGames()) {
-					tournamentResult.end=true;
+				if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
+						.get(tournamentObject.getGameMaps().size() - 1).size() == tournamentObject.getNumGames()) {
+					tournamentResult.end = true;
 
 				}
 			} else if (gameOver(attacker)) {
@@ -1499,6 +1495,7 @@ public class MainClass {
 	}
 
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
+		mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));

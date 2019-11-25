@@ -58,10 +58,10 @@ public class ConsoleViewHandler {
 			break;
 
 		case "gameplayer":
-			if (commands[2]=="-remove" && commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands[1]=="-remove" && commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
 				errorFlag = "false";
 				main.gamePlayer(inputCommand);
-			} else if(commands[2]=="-add") {
+			} else if(commands[1].equalsIgnoreCase("-add")) {
 				main.gamePlayer(inputCommand);
 			}else
 				errorFlag = "Invalid command!";
