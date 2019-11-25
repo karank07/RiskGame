@@ -1508,7 +1508,7 @@ public class MainClass {
 		p.setPlayerReinforceArmy(p.assign_army());
 		if (p.getStrategy().equals("human")) {
 			return;
-		} else if (p.getStrategy().equals("loa")) {
+		} else if (p.getStrategy().equals("random")) {
 			System.out.println("in random");
 			RandomStrategy.RandomStrategyReinforcement(p);
 		} else if (p.getStrategy().equals("cheater")) {
