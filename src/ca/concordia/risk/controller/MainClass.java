@@ -1098,8 +1098,11 @@ public class MainClass {
 		visited.add(from);
 
 		if (from.getCountryOwner() == to.getCountryOwner()) {
-			System.out.println("in check neighbours: " + "visited: "+ visited + " from: " + from + " to: " + to + " owner: "+ owner);
+			//System.out.println("in check neighbours: " + "visited: "+ visited + " from: " + from + " to: " + to + " owner: "+ owner);
 			searchNeighbors(visited, from, to, owner);
+		}
+		else {
+			//System.out.println("Fortification can not be dobne because you don't own country "+ to.getCountryName());
 		}
 		return adjFlag;
 	}
@@ -1113,9 +1116,9 @@ public class MainClass {
 	 */
 
 	private void searchNeighbors(List<Country> visited, Country from, Country to, int owner) {
-		System.out.println("country id in search"+from.getCountryID());
+		//System.out.println("country id in search"+from.getCountryID());
 		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
-		System.out.println(listOfNeighbours);
+		//System.out.println(listOfNeighbours);
 		if (!listOfNeighbours.contains(to.getCountryID()) && visited.size()<=10) {
 		
 			visited.add(from);
@@ -1123,9 +1126,9 @@ public class MainClass {
 			for (int i = 0; i < listOfNeighbours.size(); i++) {
 				//System.out.println("In search Neighbours: get country owner: " + mapInstance.getCountries().get(i).getCountryOwner());
 				if (mapInstance.getCountries().get(listOfNeighbours.get(i)).getCountryOwner() == owner) {
-					System.out.println("first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)) );
+					//System.out.println("first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)) );
 					Country mayBecomeFrom = mapInstance.getCountries().get(listOfNeighbours.get(i));
-					System.out.println("Array of Visited: " + visited);
+					//System.out.println("Array of Visited: " + visited);
 					if (!visited.contains(mayBecomeFrom))  {
 						searchNeighbors(visited, mayBecomeFrom, to, owner);
 					}

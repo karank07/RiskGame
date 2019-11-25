@@ -100,12 +100,17 @@ public class RandomStrategy {
 					.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
 			army = r.nextInt(fromCountry.getCountryArmy()) + 1;
 			
+			System.out.println("Randomly selected From Country: "+ fromCountry.getCountryName() + " to country: "+ toCountry.getCountryName());
+			
 			if (mainClassInstance.checkNeighbours(fromCountry, toCountry, p.getPlayerId())) { 
 				if (fromCountry.getCountryArmy() - army >= 1) {
-					System.out.println("in randomStrategy File: "+ "From country: " + fromCountry.getCountryName() + " to country:"+toCountry.getCountryName() +" player name "+ p.getPlayerName() );
+					//System.out.println("in randomStrategy File: "+ "From country: " + fromCountry.getCountryName() + " to country:"+toCountry.getCountryName() +" player name "+ p.getPlayerName() );
 					p.fortify(fromCountry, toCountry, army);
 				
 				}
+			}
+			else {
+				System.out.println("Fortification not done: not neighbours");
 			}
 			
 			mainClassInstance.nextTurn(p);
