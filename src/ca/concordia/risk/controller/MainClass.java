@@ -1523,6 +1523,9 @@ public class MainClass {
 		} else if (p.getStrategy().equals("benevolent")) {
 			BenevolentStrategy.BenevolentStrategyReinforcement(p);
 		}
+		else {
+			errorFlag = "Invalid command";
+		}
 	}
 
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
