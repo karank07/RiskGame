@@ -10,7 +10,7 @@ import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
 public class CheaterStrategy {
-	static Random r = new Random();
+	static MainClass mainClassInstance = MainClass.getM_instance();
 
 	public static void cheaterStrategyReinforcement(Player p) {
 		if (!p.hasMoreThanFiveCards()) {
@@ -24,19 +24,19 @@ public class CheaterStrategy {
 			// do exchange the cards randomly without UI
 			while (p.getPlayerCards().size() >= 5) {
 				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 3, 0, 0);
+					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
 				} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 0, 3, 0);
+					mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
 				} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 0, 0, 3);
+					mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
 				} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
 						&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 1, 1, 1);
+					mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
 				}
 			}
 			cheaterStrategyReinforcement(p);
 		}
-		
+
 	}
 
 	public static void cheaterStrategyAttack(Player p) {
@@ -64,7 +64,7 @@ public class CheaterStrategy {
 				}
 			}
 		}
-		MainClass.getM_instance().nextTurn(p);
+		mainClassInstance.nextTurn(p);
 	}
 
 }

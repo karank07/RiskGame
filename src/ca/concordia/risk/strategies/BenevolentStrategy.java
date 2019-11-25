@@ -9,6 +9,8 @@ import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Player;
 
 public class BenevolentStrategy {
+	static MainClass mainClassInstance = MainClass.getM_instance();
+
 	public static void BenevolentStrategyReinforcement(Player p) {
 		if (!p.hasMoreThanFiveCards()) {
 			Country weakest = p.getWeakestCountry();
@@ -19,14 +21,14 @@ public class BenevolentStrategy {
 			// do exchange the cards randomly without UI
 			while (p.getPlayerCards().size() >= 5) {
 				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 3, 0, 0);
+					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
 				} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 0, 3, 0);
+					mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
 				} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 0, 0, 3);
+					mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
 				} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
 						&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 1, 1, 1);
+					mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
 				}
 			}
 			BenevolentStrategyReinforcement(p);
@@ -54,7 +56,7 @@ public class BenevolentStrategy {
 		Country from = null;
 		boolean flag = false;
 		for (Country country : countryFromList) {
-			flag = MainClass.main_instance.checkNeighbours(country, to, p.getPlayerId());
+			flag = mainClassInstance.checkNeighbours(country, to, p.getPlayerId());
 			if (flag) {
 
 				int playerArmy = country.getCountryArmy();
@@ -67,7 +69,7 @@ public class BenevolentStrategy {
 		}
 
 		p.fortify(from, to, from.getCountryArmy() - 1);
-		MainClass.getM_instance().nextTurn(p);
+		mainClassInstance.nextTurn(p);
 
 	}
 

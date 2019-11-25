@@ -17,7 +17,7 @@ import ca.concordia.risk.model.Player;
  *
  */
 public class AggressiveStrategy {
-
+	static MainClass mainClassInstance = MainClass.getM_instance();
 	public static void AggresiveStrategyReinforcement(Player p) {
 		if (!p.hasMoreThanFiveCards()) {
 			Country strongest = p.getStrongestCountry();
@@ -28,14 +28,14 @@ public class AggressiveStrategy {
 			// do exchange the cards randomly without UI
 			while (p.getPlayerCards().size() >= 5) {
 				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 3, 0, 0);
+					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
 				} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 0, 3, 0);
+					mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
 				} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 0, 0, 3);
+					mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
 				} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
 						&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {
-					MainClass.getM_instance().exchangeCardsForArmy(p, 1, 1, 1);
+					mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
 				}
 			}
 			AggresiveStrategyReinforcement(p);
@@ -50,9 +50,9 @@ public class AggressiveStrategy {
 			if (!p.attackableCountries(strongest).isEmpty()) {
 
 				Country defendingCountry = p.attackableCountries(strongest).get(0);
-				MainClass.getM_instance().alloutAttack(strongest, defendingCountry, p,
+				mainClassInstance.alloutAttack(strongest, defendingCountry, p,
 						MainClass.getM_instance().playerList.get(defendingCountry.getCountryOwner() - 1));
-				p.setAttackResult(MainClass.getM_instance().attackResult(strongest, defendingCountry, p));
+				p.setAttackResult(mainClassInstance.attackResult(strongest, defendingCountry, p));
 			}
 		}
 		AggressiveStrategyFortify(p);
@@ -73,7 +73,7 @@ public class AggressiveStrategy {
 		Country from = null;
 		boolean flag = false;
 		for (Country country : countryFromList) {
-			flag = MainClass.main_instance.checkNeighbours(country, to, p.getPlayerId());
+			flag = mainClassInstance.checkNeighbours(country, to, p.getPlayerId());
 			if (flag) {
 
 				int playerArmy = country.getCountryArmy();
@@ -86,7 +86,7 @@ public class AggressiveStrategy {
 		}
 
 		p.fortify(from, to, from.getCountryArmy() - 1);
-		MainClass.getM_instance().nextTurn(p);
+		mainClassInstance.nextTurn(p);
 
 	}
 
