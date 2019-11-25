@@ -48,11 +48,11 @@ public class MainClass {
 	private MapWriter mapWriter;
 	public static MainClass main_instance;
 	private static TournamentMode tournamentObject;
-
+	TournamentController tournamentController;
 	static int turn = 1;
 	private boolean gamePlayerSet = false;
 	public static String errorFlag = "false";
-
+	private String mode;
 	boolean adjFlag = false;
 	List<Country> visited = new ArrayList<Country>();
 
@@ -689,7 +689,9 @@ public class MainClass {
 			mapPlayerToCountry(attacker, countryDefending);
 			unmapPlayerToCountry(defender, countryDefending);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
-			gameOver(attacker);
+			if(gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
+				
+			}
 			errorFlag = "You have to move armies";
 			attacker.setAttackResult("Attacker won! Country conquered");
 			return "Attacker won! Country conquered";
@@ -1456,11 +1458,6 @@ public class MainClass {
 
 	}
 
-	public void setupTournament(String mapFileNames, String playerStratergyNames, String numOfGames, String maxTurns) {
-		String[] mapFiles = mapFileNames.split("-");
-		String[] playerStratergies = playerStratergyNames.split("-");
-
-	}
 
 	public void nextTurn(Player p) {
 		setNextPlayerTurn();
@@ -1485,6 +1482,26 @@ public class MainClass {
 			}
 	
 		
+	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
+		String[] mapFiles=mapFileNames.split("-");
+		String[] playerStratergies=playerStratergyNames.split("-");
+		tournamentObject.setNumGames(Integer.parseInt(numGames));
+		tournamentObject.setMaxTurns(Integer.parseInt(maxTurns));
 		
+		for(int i=0;i<playerStratergies.length;i++) {
+			
+			tournamentObject.addGameMaps(mapFiles[i]);
+		}
+		for(int i=0;i<playerStratergies.length;i++) {
+			
+			tournamentObject.addPlayerStratergies(playerStratergies[i]);
+		}
+		tournamentController= new TournamentController();
+		
+		
+	}
+	public void resetGame() {
+		playerList.clear();
+		mapInstance.resetMap();
 	}
 }
