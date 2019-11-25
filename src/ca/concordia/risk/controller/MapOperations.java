@@ -368,8 +368,8 @@ public class MapOperations {
 	/**
 	 * This method checks if the map is connected or not
 	 * 
-	 * @param borders the list of borders, to check connectivity
-	 * @return true if map is connected, else false
+	 * @param borders the list of borders to check connectivity
+	 * @return true if map is connected else false
 	 */
 	public boolean isConnected(HashMap<Integer, ArrayList<Integer>> borders) {
 		hMap = borders;

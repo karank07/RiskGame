@@ -1,5 +1,6 @@
 package ca.concordia.risk.strategies;
 
+import java.security.DrbgParameters.NextBytes;
 import java.util.Random;
 
 import ca.concordia.risk.controller.MainClass;
@@ -7,6 +8,7 @@ import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
+import ca.concordia.risk.utilities.GamePhase;
 
 /**
  * @author Rohan
@@ -22,7 +24,7 @@ public class RandomStrategy {
 	 *          After that it will call function for doing reinforcement
 	 * 
 	 */
-	public void RandomStrategyReinforcement(Player p) {
+	public static void RandomStrategyReinforcement(Player p) {
 		if (!p.hasMoreThanFiveCards()) {
 			// select any random country from playr's country list
 
@@ -91,6 +93,8 @@ public class RandomStrategy {
 				}
 			}			
 			p.fortify(fromCountry, toCountry, army);
+			MainClass.getM_instance().nextTurn(p);
+			
 		}
 	}
 

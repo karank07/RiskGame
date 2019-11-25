@@ -9,62 +9,66 @@ import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Player;
 
 /**
- * This class implements the aggressive strategy wherein it will always focus on attacking 
- * until it can no longer attack
+ * This class implements the aggressive strategy wherein it will always focus on
+ * attacking until it can no longer attack
+ * 
  * @author Pranal
  *
  */
 public class AggressiveStrategy {
 	
-	public void AggresiveStrategyReinforcement(Player p) 
+	public static void AggresiveStrategyReinforcement(Player p) 
 	{
 		Country strongest = p.getStrongestCountry();
 		int reinforceArmy = p.getPlayerReinforceArmy();
 		p.reinforceArmy(strongest.getCountryName(), reinforceArmy);
+		AggressiveStrategyAttack(p);
 	}
-	
-	public void AggresiveStrategyAttack(Player p)
-	{
+
+	public void AggressiveStrategyAttack(Player p) {
 		Country strongest = p.getStrongestCountry();
-		
-		if(strongest!=null) {
-			if(!p.attackableCountries(strongest).isEmpty()) {
-				
+
+		if (strongest != null) {
+			if (!p.attackableCountries(strongest).isEmpty()) {
+
 				Country defendingCountry = p.attackableCountries(strongest).get(0);
 				MainClass.getM_instance().alloutAttack(strongest, defendingCountry, p,
-						MainClass.getM_instance().playerList.get(defendingCountry.getCountryOwner()-1));
+						MainClass.getM_instance().playerList.get(defendingCountry.getCountryOwner() - 1));
 				p.setAttackResult(MainClass.getM_instance().attackResult(strongest, defendingCountry, p));
 			}
 		}
+		AggressiveStrategyFortify(p);
 	}
-	
+
 	public void AggressiveStrategyFortify(Player p) {
 		List<Country> countryConquered = p.getPlayerCountries();
 		List<Country> countryFromList = new ArrayList<>();
 		Country to = p.getStrongestCountry();
-		
+
 		for (Country c : countryConquered) {
-			if (c.getCountryArmy() > 1 && c!=to) {
+			if (c.getCountryArmy() > 1 && c != to) {
 				countryFromList.add(c);
 			}
 		}
-		
+
 		int maxArmy = 0;
 		Country from = null;
+		boolean flag=false;
 		for (Country country : countryFromList) {
-			
-			int playerArmy = country.getCountryArmy();
-			
-			if (playerArmy > maxArmy) {
-				maxArmy = playerArmy;
-				 from = country;
+			flag = MainClass.main_instance.checkNeighbours(country, to, p.getPlayerId());
+			if (flag) {
+
+				int playerArmy = country.getCountryArmy();
+
+				if (playerArmy > maxArmy) {
+					maxArmy = playerArmy;
+					from = country;
+				}
 			}
 		}
-		
-		p.fortify(from, to, from.getCountryArmy()-1);
-		
-		
-		
+
+		p.fortify(from, to, from.getCountryArmy() - 1);
+
 	}
 
 }
