@@ -126,7 +126,7 @@ public class MapWriter {
 				}
 
 				int continents_count = 0;
-				// for continents
+				
 				while (sc.hasNext()) {
 					continents_count++;
 					continent_start = sc.nextLine();
@@ -142,7 +142,6 @@ public class MapWriter {
 					}
 				}
 
-				// for countries
 				while (sc.hasNext()) {
 					country = sc.nextLine();
 					if (country.equals(GameConstants.COUNTRIES_HEADER) == false) {
@@ -170,7 +169,6 @@ public class MapWriter {
 					}
 				}
 
-				// for borders
 				while (sc.hasNext()) {
 
 					border = sc.nextLine();
