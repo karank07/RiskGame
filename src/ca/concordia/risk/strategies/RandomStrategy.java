@@ -9,6 +9,10 @@ import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
 /**
+ * Random strategy that reinforces random a random country, attacks a random
+ * number of times a random country, and fortifies a random country, all
+ * following the standard rules for each phase.
+ * 
  * @author Rohan
  *
  */
@@ -25,21 +29,13 @@ public class RandomStrategy {
 	 */
 	public static void RandomStrategyReinforcement(Player p) {
 		if (!p.hasMoreThanFiveCards()) {
-			// select any random country from playr's country list
-
-			Country country;
-
-			// armies will be assigned at populatecountries function for FIRST time
-			// second time armies will be assigned at the end of the fortification phase
-
-			country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
+			Country country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
 
 			String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
 
 			RandomStrategyAttack(p);
 
 		} else {
-			// do exchange the cards randomly without UI
 			while (p.getPlayerCards().size() >= 5) {
 				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
 					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);

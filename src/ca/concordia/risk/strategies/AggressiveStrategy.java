@@ -25,7 +25,6 @@ public class AggressiveStrategy {
 			p.reinforceArmy(strongest.getCountryName(), reinforceArmy);
 			AggressiveStrategyAttack(p);
 		} else {
-			// do exchange the cards randomly without UI
 			while (p.getPlayerCards().size() >= 5) {
 				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
 					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);

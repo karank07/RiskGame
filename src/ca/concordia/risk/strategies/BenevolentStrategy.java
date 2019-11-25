@@ -18,7 +18,6 @@ public class BenevolentStrategy {
 			p.reinforceArmy(weakest.getCountryName(), reinforceArmy);
 			BenevolentStrategyAttack(p);
 		} else {
-			// do exchange the cards randomly without UI
 			while (p.getPlayerCards().size() >= 5) {
 				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
 					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
