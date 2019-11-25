@@ -157,7 +157,7 @@ public class Player implements Subject {
 	 * @param reinforceCountry set reinforce country name
 	 */
 	public void setReinforceCountry(String reinforceCountry) {
-		notify_observer();
+		//notify_observer();
 		this.reinforceCountry = reinforceCountry;
 	}
 
@@ -259,7 +259,7 @@ public class Player implements Subject {
 	public void addArmies(int addN) {
 		this.playerTotalArmies += addN;
 		attach(gameView);
-		notify_observer();
+		//notify_observer();
 	}
 
 	/**
@@ -338,7 +338,7 @@ public class Player implements Subject {
 	public void remArmies(int n) {
 		this.playerTotalArmies -= n;
 		attach(gameView);
-		notify_observer();
+		//notify_observer();
 	}
 
 	/**
@@ -370,7 +370,7 @@ public class Player implements Subject {
 	public void setPlayerReinforceArmy(int playerReinforceArmy) {
 		this.playerReinforceArmy = playerReinforceArmy;
 		attach(gameView);
-		notify_observer();
+		//notify_observer();
 	}
 
 	/**
@@ -392,7 +392,7 @@ public class Player implements Subject {
 	 */
 	public void setAttackResult(String attackResult) {
 		attach(gameView);
-		notify_observer();
+		//notify_observer();
 		this.attackResult = attackResult;
 	}
 
@@ -591,7 +591,7 @@ public class Player implements Subject {
 		System.out.println("defender: " + defenderWins);
 		System.out.println(resultString);
 		attach(gameView);
-		notify_observer();
+		//notify_observer();
 
 		return resultString;
 	}
@@ -640,7 +640,7 @@ public class Player implements Subject {
 	public void setCurrentPhase(GamePhase phase) {
 		this.gamePhase = phase;
 		this.attach(gameView);
-		notify_observer();
+		//notify_observer();
 	}
 
 	public GamePhase getCurrentPhase() {
