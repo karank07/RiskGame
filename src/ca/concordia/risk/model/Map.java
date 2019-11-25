@@ -155,9 +155,13 @@ public class Map
 	public List<Country> getNeighbourCountries(Country country)
 	{
 		List<Country> neighbourCountry= new ArrayList<>();
+		ArrayList<Integer>temp=borders.get(country.getCountryID());
+		ArrayList<Country>tempstr=new ArrayList<Country>();
 		
-		
-		return neighbourCountry;
+		for(int i=1;i<=temp.size();i++) {
+			tempstr.add(getCountries().get(i));
+		}
+		return tempstr;
 	}
 	
 	/**

@@ -345,6 +345,8 @@ public class Player implements Subject {
 	 * @return total countries the player own
 	 */
 	public int getPlayerTotalCountries() {
+		playerTotalCountries=main.player_country_map.get(this).size();
+		System.out.println("total countries"+ playerTotalCountries);
 		return playerTotalCountries;
 	}
 
@@ -517,10 +519,10 @@ public class Player implements Subject {
 
 		}
 
-		for (int i = 0; i < this.getPlayerTotalCountries(); i++) {
-			System.out.println("Country: " + this.getPlayerCountries().get(i).getCountryName() + "-->>"
-					+ this.getPlayerCountries().get(i).getCountryArmy());
-		}
+//		for (int i = 0; i < this.getPlayerTotalCountries(); i++) {
+//			System.out.println("Country: " + this.getPlayerCountries().get(i).getCountryName() + "-->>"
+//					+ this.getPlayerCountries().get(i).getCountryArmy());
+//		}
 		return errorFlag;
 	}
 
@@ -555,7 +557,7 @@ public class Player implements Subject {
 		List<Integer> attackerWins = new ArrayList<Integer>();
 		List<Integer> defenderWins = new ArrayList<Integer>();
 		setDefenderDiceResult(defender.getDiceResult());
-
+		System.out.println("in attack attacker"+this.getPlayerName());
 		int size = this.getDiceResult().size() < defender.getDiceResult().size() ? this.getDiceResult().size()
 				: defender.getDiceResult().size();
 
@@ -694,6 +696,7 @@ public class Player implements Subject {
 	{
 		List<Country> countriesAttackable=new ArrayList<>();
 		List<Country> neighbouringCountries= Map.m_instance.getNeighbourCountries(c);
+		
 		for(Country neighbour:neighbouringCountries) 
 		{
 			if(neighbour.getCountryOwner()!=c.getCountryOwner()) 
@@ -701,7 +704,7 @@ public class Player implements Subject {
 				countriesAttackable.add(neighbour);
 			}
 		}
-		
+		System.out.println(countriesAttackable);
 		return countriesAttackable;
 	}
 	
