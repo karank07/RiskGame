@@ -704,6 +704,36 @@ public class Player implements Subject {
 		
 		return countriesAttackable;
 	}
+	
+	/**
+	 *  Returns the weakest country for the player
+	 *  @param p player
+	 *  @return weakestCountry 
+	 * 
+	 * */
+	public Country getWeakestCountry() {
+
+		List<Country> playerCountries = this.getPlayerCountries();
+
+		Country weakestCountry = null;
+		
+		int minArmy = Integer.MAX_VALUE;
+		
+		for (Country country : playerCountries) {
+			
+			int playerArmy = country.getCountryArmy();
+			
+			if (playerArmy < minArmy) {
+				minArmy = playerArmy;
+				weakestCountry = country;
+			}
+		}
+
+		return weakestCountry;
+		
+}
+	
+	
 	/**
 	 * Notify method is used to notify all observers to
 	 */

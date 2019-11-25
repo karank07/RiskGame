@@ -982,7 +982,7 @@ public class MainClass {
 	 * @param attacker
 	 * @param defender
 	 */
-	void alloutAttack(Country countryAttacking, Country countryDefending, Player attacker, Player defender) {
+	public void alloutAttack(Country countryAttacking, Country countryDefending, Player attacker, Player defender) {
 		int numDice = 3;
 		while (countryAttacking.getCountryArmy() > 1 && countryDefending.getCountryArmy() > 0) {
 			numDice = (numDice <= countryAttacking.getCountryArmy() - 1) ? 3 : countryAttacking.getCountryArmy() - 1;
