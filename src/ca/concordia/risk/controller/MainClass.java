@@ -691,7 +691,6 @@ public class MainClass {
 	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
 		if (attackingCountry.getCountryArmy() == 1) {
 			attacker.setAttackResult("Defender won!");
-
 			return "Defender won!";
 		} else if (defendingCountry.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, defendingCountry);
