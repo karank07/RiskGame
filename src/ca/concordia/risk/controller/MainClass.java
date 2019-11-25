@@ -497,10 +497,12 @@ public class MainClass {
 			}
 		}
 		System.out.println();
+		if(mode.equalsIgnoreCase("tournament")) {
+			resetPlayerTurn();
+			nextTurn(playerList.get(getPlayerTurn()));
 
-		resetPlayerTurn();
-		nextTurn(playerList.get(getPlayerTurn()));
 
+		}
 	}
 
 	Country countryAttacking = null;
