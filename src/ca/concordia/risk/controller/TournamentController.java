@@ -58,8 +58,10 @@ public class TournamentController {
 			for (int x = 0; x < numOfGames; x++) {
 				for (int j = 0; j < gameTurns; j++) {
 					for (Player p : main.playerList) {
+						
 
 					}
+					
 				}
 			}
 			index++;
