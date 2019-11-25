@@ -95,24 +95,22 @@ public class RandomStrategy {
 	private static void RandomStrategyFortify(Player p) {
 		Country fromCountry = p.getPlayerCountries().get(r.nextInt(p.getPlayerTotalCountries()));
 		int army = 0;
-		while (true) {
+		//while (true) {
 			Country toCountry = Map.getM_instance().getNeighbourCountries(fromCountry)
 					.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
 			army = r.nextInt(fromCountry.getCountryArmy()) + 1;
-			System.out.println("in randomStrategy File: "+ "From country: " + fromCountry.getCountryName() + " to country:"+toCountry.getCountryName() +" player name "+ p.getPlayerName() );
-			if(fromCountry.getCountryName().equals(toCountry.getCountryName())) {
-				continue;
-			}
+			
 			if (mainClassInstance.checkNeighbours(fromCountry, toCountry, p.getPlayerId())) { 
 				if (fromCountry.getCountryArmy() - army >= 1) {
+					System.out.println("in randomStrategy File: "+ "From country: " + fromCountry.getCountryName() + " to country:"+toCountry.getCountryName() +" player name "+ p.getPlayerName() );
 					p.fortify(fromCountry, toCountry, army);
-					break;
+				
 				}
 			}
 			
 			mainClassInstance.nextTurn(p);
 
-		}
+		//}
 	}
 
 }

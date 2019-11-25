@@ -1116,21 +1116,31 @@ public class MainClass {
 		System.out.println("country id in search"+from.getCountryID());
 		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
 		System.out.println(listOfNeighbours);
-		if (!listOfNeighbours.contains(to.getCountryID())) {
+		if (!listOfNeighbours.contains(to.getCountryID()) && visited.size()<=10) {
+		
 			visited.add(from);
+			
 			for (int i = 0; i < listOfNeighbours.size(); i++) {
-				System.out.println("In search Neighbours: get country owner: " + mapInstance.getCountries().get(i).getCountryOwner());
-				if (mapInstance.getCountries().get(i).getCountryOwner() == owner) {
-					
-					Country mayBecomeFrom = mapInstance.getCountries().get(i);
-					if (!visited.contains(mayBecomeFrom)) {
+				//System.out.println("In search Neighbours: get country owner: " + mapInstance.getCountries().get(i).getCountryOwner());
+				if (mapInstance.getCountries().get(listOfNeighbours.get(i)).getCountryOwner() == owner) {
+					System.out.println("first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)) );
+					Country mayBecomeFrom = mapInstance.getCountries().get(listOfNeighbours.get(i));
+					System.out.println("Array of Visited: " + visited);
+					if (!visited.contains(mayBecomeFrom))  {
 						searchNeighbors(visited, mayBecomeFrom, to, owner);
 					}
+					else {
+						return;
+					}
 				}
-				else adjFlag=false;
+				else {
+					return;
+				}
+			
 			}
 		} else {
 			adjFlag = true;
+			return;
 		}
 	}
 
