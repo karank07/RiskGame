@@ -2,11 +2,14 @@ package ca.concordia.risk.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
+import ca.concordia.risk.model.TournamentResult;
 
 public class TournamentController {
 	int gameTurns = 0;
@@ -17,10 +20,10 @@ public class TournamentController {
 	Country from_country;
 	Country to_country;
 	List<Player> players = new ArrayList<Player>();
-	int player_count = 0;
 	List<String> playerStratergies = new ArrayList<String>();
 	TournamentMode tournamentObject = TournamentMode.getInstance();
-	public String current_map;
+	TournamentResult tournamentResult = TournamentResult.getInstance();
+	public String currentMap;
 	private static int index = 0;
 
 	public TournamentController() {
@@ -34,9 +37,9 @@ public class TournamentController {
 	}
 
 	private void loadmap() {
-		String mapFile = tournamentObject.getGameMaps().get(index);
+		currentMap = tournamentObject.getGameMaps().get(index);
 		try {
-			main.readMapFile(mapFile);
+			main.readMapFile(currentMap);
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -44,9 +47,9 @@ public class TournamentController {
 	}
 
 	private void startTournament() {
-		int playerName=0;
+		int playerName = 0;
 		for (String playerStratergy : playerStratergies) {
-			main.addPlayer("" +playerName , playerStratergy);
+			main.addPlayer("" + playerName, playerStratergy);
 			playerName++;
 		}
 		for (int i = 0; i < tournamentObject.getGameMaps().size(); i++) {
@@ -55,15 +58,23 @@ public class TournamentController {
 			main.generateDeck();
 			main.populatecountries();
 			main.placeAll();
-			Player p=MainClass.playerList.get(0);
+			Player p = MainClass.playerList.get(0);
 			main.nextTurn(p);
+			if (tournamentResult.end) {
+				break;
+			}
 			index++;
 
 		}
+		showResult();
+	}
+
+	private void showResult() {
+		Iterator iterator = tournamentResult.results.entrySet().iterator();
+		 while (iterator.hasNext()) { 
+	            Map.Entry mapElement = (Map.Entry)iterator.next(); 
+	             
+	            System.out.println(mapElement.getKey() + " : " + mapElement.getValue()); 
+	        } 
 	}
 }
-
-
-	
-
-	
