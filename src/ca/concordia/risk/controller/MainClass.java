@@ -686,13 +686,13 @@ public class MainClass {
 	 * @param attacker         player attacking
 	 * @return string declaring the winner
 	 */
-	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
+	public String attackResult(Country countryAttacking, Country countryDefending, Player attacker) {
 		if (countryAttacking.getCountryArmy() == 1) {
 			attacker.setAttackResult("Defender won!");
 			return "Defender won!";
 		} else if (countryDefending.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, countryDefending);
-			unmapPlayerToCountry(defender, countryDefending);
+			unmapPlayerToCountry(playerList.get(countryDefending.getCountryOwner()), countryDefending);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
 				List<String> temp;
