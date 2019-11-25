@@ -694,8 +694,10 @@ public class Player implements Subject {
 	 */
 	public List<Country> attackableCountries(Country c)
 	{
+		System.out.println("attacking country "+c.getCountryID());
 		List<Country> countriesAttackable=new ArrayList<>();
 		List<Country> neighbouringCountries= Map.m_instance.getNeighbourCountries(c);
+		System.out.println("attackable:neighbours " + neighbouringCountries);
 		
 		for(Country neighbour:neighbouringCountries) 
 		{
