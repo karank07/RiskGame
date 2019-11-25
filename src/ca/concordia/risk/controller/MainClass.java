@@ -493,9 +493,11 @@ public class MainClass {
 			}
 		}
 		System.out.println();
+		if(mode.equalsIgnoreCase("tournament")) {
+			resetPlayerTurn();
 
-		resetPlayerTurn();
-
+		}
+			
 	}
 
 	Country countryAttacking = null;
