@@ -27,7 +27,7 @@ public class Player implements Subject {
 	 * @param attack result string
 	 */
 	String attackResult;
-		/**
+	/**
 	 * @param playerId - for unique player id
 	 */
 	private int playerId;
@@ -61,7 +61,7 @@ public class Player implements Subject {
 	 *                           exchanged cards for armies
 	 */
 	private int cardExchangeCount = 0;
-	
+
 	/**
 	 * @param strategy - to decide the strategy of the player object
 	 */
@@ -92,7 +92,6 @@ public class Player implements Subject {
 	private GameView gameView = GameView.get_instance();
 	MainClass main = MainClass.getM_instance();
 	public GamePhase gamePhase;
-
 
 	/**
 	 * @return defender dice result
@@ -161,7 +160,6 @@ public class Player implements Subject {
 		notify_observer();
 		this.reinforceCountry = reinforceCountry;
 	}
-
 
 	/**
 	 * Constructor to instantiate Player object
@@ -458,23 +456,23 @@ public class Player implements Subject {
 
 		int reinforceAmry = 0;
 
-		reinforceAmry = (MainClass.player_country_map.get(this).size() / 3) >= 3 ? (MainClass.player_country_map.get(this).size() / 3) : 3;
-		
-		for (Continent c: mapInstance.getContinents().values()) {
-		
-			if (MainClass.player_country_map.get(this).containsAll((mapInstance.getCountriesByContinent(c.getContinentName())))){
-				
-			
+		reinforceAmry = (MainClass.player_country_map.get(this).size() / 3) >= 3
+				? (MainClass.player_country_map.get(this).size() / 3)
+				: 3;
+
+		for (Continent c : mapInstance.getContinents().values()) {
+
+			if (MainClass.player_country_map.get(this)
+					.containsAll((mapInstance.getCountriesByContinent(c.getContinentName())))) {
+
 				reinforceAmry = reinforceAmry + c.getContinentControlValue();
 				c.setRuler(this.getPlayerId() - 1);
 			}
 		}
 
-		
 		return reinforceAmry;
 
 	}
-	
 
 	/**
 	 * function for command:- reinforce countryname, number (number is army to be
@@ -486,7 +484,12 @@ public class Player implements Subject {
 	 */
 	public String reinforceArmy(String countryName, int armyNumber) {
 		this.armyAssigning = false;
-		checkForExchangeCards();// to close the UI
+		if (this.getStrategy().equals("human")) {
+			checkForExchangeCards();// to close the UI
+		}
+		else {
+			
+		}
 
 		this.reinforceCountry = countryName;
 
@@ -617,7 +620,10 @@ public class Player implements Subject {
 				System.out.println("There must be atleast one army in a country!");
 
 			this.armyAssigning = true;
-			checkForExchangeCards();
+			if(this.getStrategy().equals("human")) {
+				checkForExchangeCards();
+			}
+			
 
 		} else
 			System.out.println("Move not possible");
@@ -652,7 +658,82 @@ public class Player implements Subject {
 	public void setIntialArmies(int intialArmies) {
 		this.intialArmies = intialArmies;
 	}
+	
+	/**
+	 *  Returns the strongest country for the player
+	 *  @param p player
+	 *  @return strongestCountry 
+	 * 
+	 * */
+	public Country getStrongestCountry() {
 
+		List<Country> playerCountries = this.getPlayerCountries();
+
+		Country strongestCountry = null;
+		
+		int maxArmy = 0;
+		
+		for (Country country : playerCountries) {
+			
+			int playerArmy = country.getCountryArmy();
+			
+			if (playerArmy > maxArmy) {
+				maxArmy = playerArmy;
+				strongestCountry = country;
+			}
+		}
+
+		return strongestCountry;
+}
+	/**
+	 * returns list of the countries that can be attacked by the country c
+	 * @param c is the country for which attackable countries have to searched for
+	 * @return countriesAttackable the list of attackable countries
+	 */
+	public List<Country> attackableCountries(Country c)
+	{
+		List<Country> countriesAttackable=new ArrayList<>();
+		List<Country> neighbouringCountries= Map.m_instance.getNeighbourCountries(c);
+		for(Country neighbour:neighbouringCountries) 
+		{
+			if(neighbour.getCountryOwner()!=c.getCountryOwner()) 
+			{
+				countriesAttackable.add(neighbour);
+			}
+		}
+		
+		return countriesAttackable;
+	}
+	
+	/**
+	 *  Returns the weakest country for the player
+	 *  @param p player
+	 *  @return weakestCountry 
+	 * 
+	 * */
+	public Country getWeakestCountry() {
+
+		List<Country> playerCountries = this.getPlayerCountries();
+
+		Country weakestCountry = null;
+		
+		int minArmy = Integer.MAX_VALUE;
+		
+		for (Country country : playerCountries) {
+			
+			int playerArmy = country.getCountryArmy();
+			
+			if (playerArmy < minArmy) {
+				minArmy = playerArmy;
+				weakestCountry = country;
+			}
+		}
+
+		return weakestCountry;
+		
+}
+	
+	
 	/**
 	 * Notify method is used to notify all observers to
 	 */

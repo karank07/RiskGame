@@ -640,8 +640,7 @@ public class MainClass {
 					System.out.println("Fortification over!");
 					p.setCurrentPhase(GamePhase.REINFORCEMENT);
 					setNextPlayerTurn();
-					System.out.println(
-							"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
+					System.out.println("Next Player Turn " + MainClass.playerList.get(getPlayerTurn()-1).getPlayerName());
 				} else if (commands.length == 4 && Pattern.matches("[0-9]", commands[3])
 						&& Integer.parseInt(commands[3]) > 0) {
 					if (p.getPlayerCountries().contains(mapInstance.getCountryByName(commands[1]))
@@ -713,7 +712,7 @@ public class MainClass {
 	 * @param countryAttacking
 	 * @param countryDefending
 	 */
-	void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
+	public void doDefend(int numDice, Player attacker, Player defender, Country countryAttacking, Country countryDefending) {
 		if (!checkDiceRD(numDice, countryDefending)) {
 			errorFlag = "invalid defender dice";
 			return;
@@ -985,7 +984,7 @@ public class MainClass {
 	 * @param attacker
 	 * @param defender
 	 */
-	void alloutAttack(Country countryAttacking, Country countryDefending, Player attacker, Player defender) {
+	public void alloutAttack(Country countryAttacking, Country countryDefending, Player attacker, Player defender) {
 		int numDice = 3;
 		while (countryAttacking.getCountryArmy() > 1 && countryDefending.getCountryArmy() > 0) {
 			numDice = (numDice <= countryAttacking.getCountryArmy() - 1) ? 3 : countryAttacking.getCountryArmy() - 1;
@@ -1021,7 +1020,7 @@ public class MainClass {
 	 * @param numDice          the number of dice rolls decide by attacker
 	 * @param attacker
 	 */
-	void doAttack(Country countryAttacking, Country countryDefending, int numDice, Player attacker) {
+	public void doAttack(Country countryAttacking, Country countryDefending, int numDice, Player attacker) {
 
 		if (!canAttack(countryAttacking, countryDefending)) {
 			errorFlag = "invalid attack";
