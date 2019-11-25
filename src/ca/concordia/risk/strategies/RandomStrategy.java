@@ -37,6 +37,9 @@ public class RandomStrategy {
 
 			String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
 
+			RandomStrategyAttack(p);
+
+
 		} else {
 			// do exchange the cards randomly without UI
 			while (p.getPlayerCards().size() >= 5) {
@@ -51,10 +54,8 @@ public class RandomStrategy {
 					MainClass.getM_instance().exchangeCardsForArmy(p, 1, 1, 1);
 				}
 			}
-
+			RandomStrategyReinforcement(p);
 		}
-
-		RandomStrategyAttack(p);
 
 	}
 
