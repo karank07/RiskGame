@@ -1529,7 +1529,7 @@ public class MainClass {
 		tournamentObject.setNumGames(Integer.parseInt(numGames));
 		tournamentObject.setMaxTurns(Integer.parseInt(maxTurns));
 
-		for (int i = 0; i < playerStratergies.length; i++) {
+		for (int i = 0; i < mapFiles.length; i++) {
 
 			tournamentObject.addGameMaps(mapFiles[i]);
 		}
