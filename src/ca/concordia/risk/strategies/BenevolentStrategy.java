@@ -41,32 +41,11 @@ public class BenevolentStrategy {
 
 	private static void BenevolentStrategyFortify(Player p) {
 
-		List<Country> countryConquered = p.getPlayerCountries();
-		List<Country> countryFromList = new ArrayList<>();
+		Country from = p.getStrongestCountry();
 		Country to = p.getWeakestCountry();
 
-		for (Country c : countryConquered) {
-			if (c.getCountryArmy() > 1 && c != to) {
-				countryFromList.add(c);
-			}
-		}
-
-		int maxArmy = 0;
-		Country from = null;
-		boolean flag = false;
-		for (Country country : countryFromList) {
-			flag = mainClassInstance.checkNeighbours(country, to, p.getPlayerId());
-			if (flag) {
-
-				int playerArmy = country.getCountryArmy();
-
-				if (playerArmy > maxArmy) {
-					maxArmy = playerArmy;
-					from = country;
-				}
-			}
-		}
-
+	
+		System.out.println(from.getCountryName() +""+ to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);
 		mainClassInstance.nextTurn(p);
 

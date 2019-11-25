@@ -689,13 +689,13 @@ public class MainClass {
 	 * @return string declaring the winner
 	 */
 	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
-		if (countryAttacking.getCountryArmy() == 1) {
+		if (attackingCountry.getCountryArmy() == 1) {
 			attacker.setAttackResult("Defender won!");
 
 			return "Defender won!";
-		} else if (countryDefending.getCountryArmy() == 0) {
-			mapPlayerToCountry(attacker, countryDefending);
-			unmapPlayerToCountry(defender, countryDefending);
+		} else if (defendingCountry.getCountryArmy() == 0) {
+			mapPlayerToCountry(attacker, defendingCountry);
+			unmapPlayerToCountry(playerList.get(defendingCountry.getCountryOwner()), defendingCountry);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
 				List<String> temp;
@@ -1508,7 +1508,7 @@ public class MainClass {
 		p.setPlayerReinforceArmy(p.assign_army());
 		if (p.getStrategy().equals("human")) {
 			return;
-		} else if (p.getStrategy().equals("random")) {
+		} else if (p.getStrategy().equals("loa")) {
 			System.out.println("in random");
 			RandomStrategy.RandomStrategyReinforcement(p);
 		} else if (p.getStrategy().equals("cheater")) {
