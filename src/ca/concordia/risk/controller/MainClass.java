@@ -275,9 +275,15 @@ public class MainClass {
 			}
 		}
 		int playerID = playerList.size() + 1;
-		Player p = new Player(playerID, playerName, stratergy);
-		playerList.add(p);
-		errorFlag = "false";
+		if(stratergy.equals("human") || stratergy.equals("random") || stratergy.equals("cheater") || stratergy.equals("aggressive") || stratergy.equals("benevolent")){
+			Player p = new Player(playerID, playerName, stratergy);
+			playerList.add(p);
+			errorFlag = "false";
+		}
+		else {
+			errorFlag  = "Invalid strategy type";
+		}
+		
 	}
 
 	/**
@@ -648,8 +654,7 @@ public class MainClass {
 					p.setFortificationDone(true);
 
 					System.out.println("Fortification over!");
-					p.setCurrentPhase(GamePhase.REINFORCEMENT);
-					setNextPlayerTurn();
+					nextTurn(p);
 					System.out.println(
 							"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
 				} else if (commands.length == 4 && Pattern.matches("[0-9]", commands[3])
@@ -660,10 +665,7 @@ public class MainClass {
 						Country from = mapInstance.getCountryByName(commands[1]);
 						Country to = mapInstance.getCountryByName(commands[2]);
 						p.fortify(from, to, Integer.parseInt(commands[3]));
-						p.setCurrentPhase(GamePhase.REINFORCEMENT);
-						p.setPlayerReinforceArmy(p.assign_army());
-						p.addArmies(p.getPlayerReinforceArmy());
-						setNextPlayerTurn();
+						nextTurn(p);
 						System.out.println(
 								"Next Player Turn " + MainClass.playerList.get(getPlayerTurn() - 1).getPlayerName());
 					} else
@@ -687,13 +689,13 @@ public class MainClass {
 	 * @return string declaring the winner
 	 */
 	public String attackResult(Country attackingCountry, Country defendingCountry, Player attacker) {
-		if (countryAttacking.getCountryArmy() == 1) {
+		if (attackingCountry.getCountryArmy() == 1) {
 			attacker.setAttackResult("Defender won!");
 
 			return "Defender won!";
-		} else if (countryDefending.getCountryArmy() == 0) {
-			mapPlayerToCountry(attacker, countryDefending);
-			unmapPlayerToCountry(defender, countryDefending);
+		} else if (defendingCountry.getCountryArmy() == 0) {
+			mapPlayerToCountry(attacker, defendingCountry);
+			unmapPlayerToCountry(playerList.get(defendingCountry.getCountryOwner()), defendingCountry);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
 				List<String> temp;
@@ -1098,8 +1100,11 @@ public class MainClass {
 		visited.add(from);
 
 		if (from.getCountryOwner() == to.getCountryOwner()) {
-			System.out.println("in check neighbours: " + "visited: "+ visited + " from: " + from + " to: " + to + " owner: "+ owner);
+			//System.out.println("in check neighbours: " + "visited: "+ visited + " from: " + from + " to: " + to + " owner: "+ owner);
 			searchNeighbors(visited, from, to, owner);
+		}
+		else {
+			//System.out.println("Fortification can not be dobne because you don't own country "+ to.getCountryName());
 		}
 		return adjFlag;
 	}
@@ -1113,9 +1118,9 @@ public class MainClass {
 	 */
 
 	private void searchNeighbors(List<Country> visited, Country from, Country to, int owner) {
-		System.out.println("country id in search"+from.getCountryID());
+		//System.out.println("country id in search"+from.getCountryID());
 		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
-		System.out.println(listOfNeighbours);
+		//System.out.println(listOfNeighbours);
 		if (!listOfNeighbours.contains(to.getCountryID()) && visited.size()<=10) {
 		
 			visited.add(from);
@@ -1123,9 +1128,9 @@ public class MainClass {
 			for (int i = 0; i < listOfNeighbours.size(); i++) {
 				//System.out.println("In search Neighbours: get country owner: " + mapInstance.getCountries().get(i).getCountryOwner());
 				if (mapInstance.getCountries().get(listOfNeighbours.get(i)).getCountryOwner() == owner) {
-					System.out.println("first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)) );
+					//System.out.println("first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)) );
 					Country mayBecomeFrom = mapInstance.getCountries().get(listOfNeighbours.get(i));
-					System.out.println("Array of Visited: " + visited);
+					//System.out.println("Array of Visited: " + visited);
 					if (!visited.contains(mayBecomeFrom))  {
 						searchNeighbors(visited, mayBecomeFrom, to, owner);
 					}
@@ -1413,19 +1418,12 @@ public class MainClass {
 
 		boolean canAttack = false;
 		boolean neighbourFlag = false;
-		System.out.println(mapInstance.getBorders().get(from.getCountryID()) + "borders.get(from.getCountryid)");
-		System.out.println(from.getCountryID() + "from.countryid");
-		System.out.println(to.getCountryID() + "to.countryid");
 
 		if (mapInstance.getBorders().get(from.getCountryID()).contains(to.getCountryID()))
 			neighbourFlag = true;
-		System.out.println("in Checkout(): Neighbour flag " + neighbourFlag);
 		canAttack = neighbourFlag && (from.getCountryOwner() != to.getCountryOwner()) && (from.getCountryArmy() >= 2)
 				&& (to.getCountryArmy() > 0) ? true : false;
 
-		System.out.println("In CanAttack(): " + "from country owner: " + from.getCountryOwner() + " to country owner: "
-				+ to.getCountryOwner() + " from country army: " + from.getCountryArmy() + " to country amry: "
-				+ to.getCountryArmy());
 
 		return canAttack;
 	}
@@ -1510,7 +1508,7 @@ public class MainClass {
 		p.setPlayerReinforceArmy(p.assign_army());
 		if (p.getStrategy().equals("human")) {
 			return;
-		} else if (p.getStrategy().equals("random")) {
+		} else if (p.getStrategy().equals("loa")) {
 			System.out.println("in random");
 			RandomStrategy.RandomStrategyReinforcement(p);
 		} else if (p.getStrategy().equals("cheater")) {

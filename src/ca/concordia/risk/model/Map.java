@@ -158,8 +158,8 @@ public class Map
 		ArrayList<Integer>temp=borders.get(country.getCountryID());
 		ArrayList<Country>tempstr=new ArrayList<Country>();
 		
-		for(int i=1;i<=temp.size();i++) {
-			tempstr.add(getCountries().get(i));
+		for(int i=0;i<temp.size();i++) {
+			tempstr.add(getCountries().get(temp.get(i)));
 		}
 		return tempstr;
 	}

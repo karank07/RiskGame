@@ -58,7 +58,7 @@ public class AggressiveStrategy {
 	}
 
 	public static void AggressiveStrategyFortify(Player p) {
-		List<Country> countryConquered = p.getPlayerCountries();
+		List<Country> countryConquered = MainClass.player_country_map.get(p);
 		List<Country> countryFromList = new ArrayList<>();
 		Country to = p.getStrongestCountry();
 
@@ -69,7 +69,7 @@ public class AggressiveStrategy {
 		}
 
 		int maxArmy = 0;
-		Country from = null;
+		Country from = countryFromList.get(0);
 		boolean flag = false;
 		for (Country country : countryFromList) {
 			flag = mainClassInstance.checkNeighbours(country, to, p.getPlayerId());
@@ -77,13 +77,15 @@ public class AggressiveStrategy {
 
 				int playerArmy = country.getCountryArmy();
 
-				if (playerArmy > maxArmy) {
+				if (playerArmy >= maxArmy) {
 					maxArmy = playerArmy;
 					from = country;
 				}
 			}
 		}
-
+		
+		System.out.println("from:" + from.getCountryName());
+		System.out.println("to:" + to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);
 		mainClassInstance.nextTurn(p);
 

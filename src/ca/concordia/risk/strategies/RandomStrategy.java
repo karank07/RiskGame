@@ -68,7 +68,7 @@ public class RandomStrategy {
 		Country attackerCountry = cList.get(r.nextInt(cList.size()));
 		Country defenderCountry = p.attackableCountries(attackerCountry)
 				.get(r.nextInt(p.attackableCountries(attackerCountry).size()));
-		System.out.println("Randomly selected defender country: " + defenderCountry.getCountryName());
+		
 		int randomTimesAttack = r.nextInt(11) + 1; // Bw. 1 and 10
 
 		for (int i = 0; i < randomTimesAttack; i++) {
@@ -77,11 +77,8 @@ public class RandomStrategy {
 				break;
 			} else {
 				int dice = attackerCountry.getCountryArmy() == 2 ? 1 : attackerCountry.getCountryArmy() == 3 ? 2 : 3;
-				System.out.println("dice" + dice);
 				mainClassInstance.doAttack(attackerCountry, defenderCountry,
 						attackerCountry.getCountryArmy() == 2 ? 1 : attackerCountry.getCountryArmy() == 3 ? 2 : 3, p);
-				System.out
-						.println("defender:" + mainClassInstance.playerList.get(defenderCountry.getCountryOwner() - 1));
 				Player defender = mainClassInstance.playerList.get(defenderCountry.getCountryOwner() - 1);
 
 				mainClassInstance.doDefend(defenderCountry.getCountryArmy() == 1 ? 1 : 2, p, defender, attackerCountry,
@@ -100,12 +97,17 @@ public class RandomStrategy {
 					.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
 			army = r.nextInt(fromCountry.getCountryArmy()) + 1;
 			
+			System.out.println("Randomly selected From Country: "+ fromCountry.getCountryName() + " to country: "+ toCountry.getCountryName());
+			
 			if (mainClassInstance.checkNeighbours(fromCountry, toCountry, p.getPlayerId())) { 
 				if (fromCountry.getCountryArmy() - army >= 1) {
-					System.out.println("in randomStrategy File: "+ "From country: " + fromCountry.getCountryName() + " to country:"+toCountry.getCountryName() +" player name "+ p.getPlayerName() );
+					//System.out.println("in randomStrategy File: "+ "From country: " + fromCountry.getCountryName() + " to country:"+toCountry.getCountryName() +" player name "+ p.getPlayerName() );
 					p.fortify(fromCountry, toCountry, army);
 				
 				}
+			}
+			else {
+				System.out.println("Fortification not done: not neighbours");
 			}
 			
 			mainClassInstance.nextTurn(p);
