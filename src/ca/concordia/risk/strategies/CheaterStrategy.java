@@ -50,11 +50,16 @@ public class CheaterStrategy {
 			List<Country> neighboutList = Map.getM_instance().getNeighbourCountries(currentCountry);
 
 			for (Country c : neighboutList) {
-				c.setCountryOwner(p.getPlayerId());
+				// c.setCountryOwner(p.getPlayerId());
+
+				mainClassInstance
+						.unmapPlayerToCountry(MainClass.getM_instance().playerList.get(c.getCountryOwner() - 1), c);
+				mainClassInstance.mapPlayerToCountry(p, c);
 			}
 		}
-		if (MainClass.getM_instance().player_country_map.size() == Map.getM_instance().getCountries().size()) {
-			System.out.println("Player" + p.getPlayerName() + " won the game!");
+
+		if (mainClassInstance.gameOver(p)) {
+			System.out.println("Player " + p.getPlayerName() + " won the game!");
 
 		} else {
 			cheaterStrategyFortify(p);

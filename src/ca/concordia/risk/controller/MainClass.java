@@ -57,7 +57,7 @@ public class MainClass {
 	public static String errorFlag = "false";
 	private String mode = "single";
 	boolean adjFlag = false;
-	static int turnCounter=0;
+	static int turnCounter = 0;
 	List<Country> visited = new ArrayList<Country>();
 
 	/**
@@ -237,7 +237,12 @@ public class MainClass {
 			if (temp[i].contentEquals("-add")) {
 				if (!temp[i + 1].contentEquals("stop")) {
 					errorFlag = "false";
-					addPlayer(temp[i + 1], temp[i + 2]);
+
+					if (isStrategyTypeCorrect(temp[i + 2])) {
+						addPlayer(temp[i + 1], temp[i + 2]);
+					} else {
+						errorFlag = "Invalid Strategy type";
+					}
 
 				} else {
 					errorFlag = "add a valid name";
@@ -261,6 +266,17 @@ public class MainClass {
 			gamePlayerSet = true;
 
 		}
+	}
+
+	private boolean isStrategyTypeCorrect(String temp) {
+		if (temp != null && !"".equals(temp)) {
+			if (temp.equals("random") || temp.equals("human") || temp.equals("cheater") || temp.equals("benevolent")
+					|| temp.equals("aggressive")) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -692,7 +708,7 @@ public class MainClass {
 			return "Defender won!";
 		} else if (countryDefending.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, countryDefending);
-			unmapPlayerToCountry(playerList.get(countryDefending.getCountryOwner()-1), countryDefending);
+			unmapPlayerToCountry(playerList.get(countryDefending.getCountryOwner() - 1), countryDefending);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
 				List<String> temp;
@@ -722,7 +738,7 @@ public class MainClass {
 	 * @param player  the player to disown the country
 	 * @param country the country to be disowned
 	 */
-	private void unmapPlayerToCountry(Player player, Country country) {
+	public void unmapPlayerToCountry(Player player, Country country) {
 		player_country_map.get(player).remove(country);
 	}
 
@@ -1097,7 +1113,8 @@ public class MainClass {
 		visited.add(from);
 
 		if (from.getCountryOwner() == to.getCountryOwner()) {
-			System.out.println("in check neighbours: " + "visited: "+ visited + " from: " + from + " to: " + to + " owner: "+ owner);
+			System.out.println("in check neighbours: " + "visited: " + visited + " from: " + from + " to: " + to
+					+ " owner: " + owner);
 			searchNeighbors(visited, from, to, owner);
 		}
 		return adjFlag;
@@ -1112,30 +1129,30 @@ public class MainClass {
 	 */
 
 	private void searchNeighbors(List<Country> visited, Country from, Country to, int owner) {
-		System.out.println("country id in search"+from.getCountryID());
+		System.out.println("country id in search" + from.getCountryID());
 		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
 		System.out.println(listOfNeighbours);
-		if (!listOfNeighbours.contains(to.getCountryID()) && visited.size()<=10) {
-		
+		if (!listOfNeighbours.contains(to.getCountryID()) && visited.size() <= 10) {
+
 			visited.add(from);
-			
+
 			for (int i = 0; i < listOfNeighbours.size(); i++) {
-				//System.out.println("In search Neighbours: get country owner: " + mapInstance.getCountries().get(i).getCountryOwner());
+				// System.out.println("In search Neighbours: get country owner: " +
+				// mapInstance.getCountries().get(i).getCountryOwner());
 				if (mapInstance.getCountries().get(listOfNeighbours.get(i)).getCountryOwner() == owner) {
-					System.out.println("first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)) );
+					System.out.println(
+							"first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)));
 					Country mayBecomeFrom = mapInstance.getCountries().get(listOfNeighbours.get(i));
 					System.out.println("Array of Visited: " + visited);
-					if (!visited.contains(mayBecomeFrom))  {
+					if (!visited.contains(mayBecomeFrom)) {
 						searchNeighbors(visited, mayBecomeFrom, to, owner);
-					}
-					else {
+					} else {
 						return;
 					}
-				}
-				else {
+				} else {
 					return;
 				}
-			
+
 			}
 		} else {
 			adjFlag = true;
@@ -1502,7 +1519,9 @@ public class MainClass {
 
 	public void nextTurn(Player p) {
 		turnCounter++;
-		if(turnCounter==tournamentObject.getMaxTurns()*playerList.size())
+		if (turnCounter == tournamentObject.getMaxTurns() * playerList.size()) {
+
+		}
 		setNextPlayerTurn();
 		p = playerList.get(getPlayerTurn() - 1);
 		System.out.println("Current Player name: " + p.getPlayerName());
