@@ -31,28 +31,26 @@ public class RandomStrategy {
 	 * 
 	 */
 	public static void RandomStrategyReinforcement(Player p) {
-		if (!p.hasMoreThanFiveCards()) {
-			Country country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
-
-			String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
-
-			RandomStrategyAttack(p);
-
-		} else {
-			while (p.getPlayerCards().size() >= 5) {
-				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
-					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
-				} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
-					mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
-				} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
-					mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
-				} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
-						&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {
-					mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
-				}
+		if (p.getPlayerCards().size() >= 5) {
+			if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
+				mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
+			} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
+				mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
+			} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
+				mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
+			} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
+					&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {
+				mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
 			}
-			RandomStrategyReinforcement(p);
 		}
+		
+		Country country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
+
+		String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
+
+		RandomStrategyAttack(p);
+		
+		
 
 	}
 

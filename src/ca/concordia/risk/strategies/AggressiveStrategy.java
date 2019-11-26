@@ -18,28 +18,26 @@ import ca.concordia.risk.model.Player;
  */
 public class AggressiveStrategy {
 	static MainClass mainClassInstance = MainClass.getM_instance();
+
 	public static void AggresiveStrategyReinforcement(Player p) {
-		if (!p.hasMoreThanFiveCards()) {
-			Country strongest = p.getStrongestCountry();
-			int reinforceArmy = p.getPlayerReinforceArmy();
-			p.reinforceArmy(strongest.getCountryName(), reinforceArmy);
-			AggressiveStrategyAttack(p);
-		} else {
-			while (p.getPlayerCards().size() >= 5) {
-				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
-					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
-				} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
-					mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
-				} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
-					mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
-				} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
-						&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {
-					mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
-				}
+		if (p.getPlayerCards().size() >= 5) {
+			if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
+				mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
+			} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
+				mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
+			} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
+				mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
+			} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
+					&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {
+				mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
 			}
-			AggresiveStrategyReinforcement(p);
 		}
-		
+
+		Country strongest = p.getStrongestCountry();
+		int reinforceArmy = p.getPlayerReinforceArmy();
+		p.reinforceArmy(strongest.getCountryName(), reinforceArmy);
+		AggressiveStrategyAttack(p);
+
 	}
 
 	public static void AggressiveStrategyAttack(Player p) {
@@ -52,8 +50,8 @@ public class AggressiveStrategy {
 				mainClassInstance.alloutAttack(strongest, defendingCountry, p,
 						MainClass.getM_instance().playerList.get(defendingCountry.getCountryOwner() - 1));
 				p.setAttackResult(mainClassInstance.attackResult(strongest, defendingCountry, p));
-				if(p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
-					mainClassInstance.moveArmies(p, strongest,defendingCountry, p.getAttackResult().length());
+				if (p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
+					mainClassInstance.moveArmies(p, strongest, defendingCountry, p.getAttackResult().length());
 				}
 			}
 		}
@@ -86,7 +84,7 @@ public class AggressiveStrategy {
 				}
 			}
 		}
-		
+
 		System.out.println("from:" + from.getCountryName());
 		System.out.println("to:" + to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);

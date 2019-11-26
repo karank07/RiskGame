@@ -559,7 +559,6 @@ public class Player implements Subject {
 		List<Integer> attackerWins = new ArrayList<Integer>();
 		List<Integer> defenderWins = new ArrayList<Integer>();
 		setDefenderDiceResult(defender.getDiceResult());
-		System.out.println("in attack attacker" + this.getPlayerName());
 		int size = this.getDiceResult().size() < defender.getDiceResult().size() ? this.getDiceResult().size()
 				: defender.getDiceResult().size();
 
@@ -613,7 +612,6 @@ public class Player implements Subject {
 		this.fortifyCountry = from.getCountryName();
 		this.fortifyArmies = army;
 		boolean adjFlag = main.checkNeighbours(from, to, this.getPlayerId());
-		System.out.println("player " + this.getPlayerId());
 		if (adjFlag) {
 			if (from.getCountryArmy() - army >= 1) {
 				from.remCountryArmies(army);
@@ -698,17 +696,14 @@ public class Player implements Subject {
 	 * @return countriesAttackable the list of attackable countries
 	 */
 	public List<Country> attackableCountries(Country c) {
-		System.out.println("attacking country " + c.getCountryID());
 		List<Country> countriesAttackable = new ArrayList<>();
 		List<Country> neighbouringCountries = Map.m_instance.getNeighbourCountries(c);
-		System.out.println("attackable:neighbours " + neighbouringCountries);
-
+		
 		for (Country neighbour : neighbouringCountries) {
 			if (neighbour.getCountryOwner() != c.getCountryOwner()) {
 				countriesAttackable.add(neighbour);
 			}
 		}
-		System.out.println(countriesAttackable);
 		return countriesAttackable;
 	}
 
