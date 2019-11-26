@@ -49,8 +49,9 @@ public class TournamentController {
 	private void startTournament() {
 		int playerName = 0;
 		for (String playerStratergy : playerStratergies) {
-			main.addPlayer("" + playerName, playerStratergy);
 			playerName++;
+			main.addPlayer("" + playerName, playerStratergy);
+			
 		}
 		for (int i = 0; i < tournamentObject.getGameMaps().size(); i++) {
 			loadmap();
@@ -58,8 +59,9 @@ public class TournamentController {
 			main.generateDeck();
 			main.populatecountries();
 			main.placeAll();
-			Player p = MainClass.playerList.get(0);
-			main.nextTurn(p);
+//			Player p = MainClass.playerList.get(0);
+//			main.resetPlayerTurn();
+//			main.nextTurn(p);
 			if (tournamentResult.end) {
 				break;
 			}

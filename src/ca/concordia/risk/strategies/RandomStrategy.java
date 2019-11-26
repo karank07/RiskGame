@@ -83,7 +83,10 @@ public class RandomStrategy {
 
 				mainClassInstance.doDefend(defenderCountry.getCountryArmy() == 1 ? 1 : 2, p, defender, attackerCountry,
 						defenderCountry);
-
+				p.setAttackResult(mainClassInstance.attackResult(attackerCountry, defenderCountry, p));
+				if(p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
+					mainClassInstance.moveArmies(p, attackerCountry,defenderCountry, p.getAttackResult().length());
+				}
 			}
 		}
 		RandomStrategyFortify(p);
@@ -95,7 +98,13 @@ public class RandomStrategy {
 		//while (true) {
 			Country toCountry = Map.getM_instance().getNeighbourCountries(fromCountry)
 					.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
-			army = r.nextInt(fromCountry.getCountryArmy()) + 1;
+			if(fromCountry.getCountryArmy() == 0) {
+				army = 1;
+			}
+			else {
+				army = r.nextInt(fromCountry.getCountryArmy()) + 1;
+			}
+			System.out.println();
 			
 			System.out.println("Randomly selected From Country: "+ fromCountry.getCountryName() + " to country: "+ toCountry.getCountryName());
 			

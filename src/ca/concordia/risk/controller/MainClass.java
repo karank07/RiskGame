@@ -57,7 +57,7 @@ public class MainClass {
 	public static String errorFlag = "false";
 	private String mode = "single";
 	boolean adjFlag = false;
-
+	static int turnCounter=0;
 	List<Country> visited = new ArrayList<Country>();
 
 	/**
@@ -692,7 +692,7 @@ public class MainClass {
 			return "Defender won!";
 		} else if (countryDefending.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, countryDefending);
-			unmapPlayerToCountry(playerList.get(countryDefending.getCountryOwner()), countryDefending);
+			unmapPlayerToCountry(playerList.get(countryDefending.getCountryOwner()-1), countryDefending);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
 				List<String> temp;
@@ -1501,6 +1501,8 @@ public class MainClass {
 	}
 
 	public void nextTurn(Player p) {
+		turnCounter++;
+		if(turnCounter==tournamentObject.getMaxTurns()*playerList.size())
 		setNextPlayerTurn();
 		p = playerList.get(getPlayerTurn() - 1);
 		System.out.println("Current Player name: " + p.getPlayerName());
