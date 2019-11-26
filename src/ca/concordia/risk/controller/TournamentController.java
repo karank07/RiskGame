@@ -23,11 +23,11 @@ public class TournamentController {
 	List<String> playerStratergies = new ArrayList<String>();
 	TournamentMode tournamentObject = TournamentMode.getInstance();
 	TournamentResult tournamentResult = TournamentResult.getInstance();
-	public String currentMap;
+	public static String currentMap;
 	private static int index = 0;
 
 	public TournamentController() {
-		
+
 		playerStratergies = tournamentObject.getPlayerStratergies();
 		numOfGames = tournamentObject.getNumGames();
 		gameTurns = tournamentObject.getMaxTurns();
@@ -49,24 +49,28 @@ public class TournamentController {
 	private void startTournament() {
 		
 		for (int i = 0; i < tournamentObject.getGameMaps().size(); i++) {
-			loadmap();
-			int playerName = 0;
-			for (String playerStratergy : playerStratergies) {
+			for(int j=0;j<tournamentObject.getNumGames();j++) {
+				loadmap();
 				
-				playerName++;
-				main.addPlayer("" + playerName, playerStratergy);
-				
+				int playerName = 0;
+				for (String playerStratergy : playerStratergies) {
+					
+					playerName++;
+					main.addPlayer("" + playerName, playerStratergy);
+					
+				}
+				main.divideInitialArmies();
+				main.generateDeck();
+				main.populatecountries();
+				main.placeAll();
+//				Player p = MainClass.playerList.get(0);
+//				main.resetPlayerTurn();
+//				main.nextTurn(p);
+				if (tournamentResult.end) {
+					break;
+				}	
 			}
-			main.divideInitialArmies();
-			main.generateDeck();
-			main.populatecountries();
-			main.placeAll();
-//			Player p = MainClass.playerList.get(0);
-//			main.resetPlayerTurn();
-//			main.nextTurn(p);
-			if (tournamentResult.end) {
-				break;
-			}
+			main.resetGame();
 			index++;
 
 		}
@@ -75,10 +79,10 @@ public class TournamentController {
 
 	private void showResult() {
 		Iterator iterator = tournamentResult.results.entrySet().iterator();
-		 while (iterator.hasNext()) { 
-	            Map.Entry mapElement = (Map.Entry)iterator.next(); 
-	             
-	            System.out.println(mapElement.getKey() + " : " + mapElement.getValue()); 
-	        } 
+		while (iterator.hasNext()) {
+			Map.Entry mapElement = (Map.Entry) iterator.next();
+
+			System.out.println(mapElement.getKey() + " : " + mapElement.getValue());
+		}
 	}
 }

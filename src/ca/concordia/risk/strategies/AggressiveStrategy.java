@@ -50,6 +50,7 @@ public class AggressiveStrategy {
 				mainClassInstance.alloutAttack(strongest, defendingCountry, p,
 						MainClass.getM_instance().playerList.get(defendingCountry.getCountryOwner() - 1));
 				p.setAttackResult(mainClassInstance.attackResult(strongest, defendingCountry, p));
+				
 				if (p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
 					mainClassInstance.moveArmies(p, strongest, defendingCountry, p.getAttackResult().length());
 				}
