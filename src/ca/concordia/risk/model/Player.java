@@ -591,7 +591,7 @@ public class Player implements Subject {
 		System.out.println("defender: " + defenderWins);
 		System.out.println(resultString);
 		attach(gameView);
-		//notify_observer();
+		//	_observer();
 
 		return resultString;
 	}
