@@ -1545,8 +1545,12 @@ public class MainClass {
 			}
 		}
 		List<String> temp;
-
+		if(tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
+			temp=new ArrayList<String>();
+		}
+		else {
 		temp = tournamentResult.results.get(tournamentController.currentMap);
+		}
 		temp.add(attacker.getPlayerName());
 		tournamentResult.results.put(tournamentController.currentMap, temp);
 		if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
@@ -1558,6 +1562,7 @@ public class MainClass {
 	}
 
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
+		
 		mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
@@ -1576,6 +1581,7 @@ public class MainClass {
 		for (String s : tournamentObject.getGameMaps()) {
 			tournamentResult.results.put(s, temp);
 		}
+		System.out.println(tournamentResult.results);
 		tournamentController = new TournamentController();
 
 	}

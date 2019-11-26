@@ -27,7 +27,7 @@ public class TournamentController {
 	private static int index = 0;
 
 	public TournamentController() {
-		main.resetGame();
+		
 		playerStratergies = tournamentObject.getPlayerStratergies();
 		numOfGames = tournamentObject.getNumGames();
 		gameTurns = tournamentObject.getMaxTurns();
@@ -47,14 +47,16 @@ public class TournamentController {
 	}
 
 	private void startTournament() {
-		int playerName = 0;
-		for (String playerStratergy : playerStratergies) {
-			playerName++;
-			main.addPlayer("" + playerName, playerStratergy);
-			
-		}
+		
 		for (int i = 0; i < tournamentObject.getGameMaps().size(); i++) {
 			loadmap();
+			int playerName = 0;
+			for (String playerStratergy : playerStratergies) {
+				
+				playerName++;
+				main.addPlayer("" + playerName, playerStratergy);
+				
+			}
 			main.divideInitialArmies();
 			main.generateDeck();
 			main.populatecountries();
