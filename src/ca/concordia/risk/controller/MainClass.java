@@ -57,7 +57,7 @@ public class MainClass {
 	public static String errorFlag = "false";
 	private String mode = "single";
 	boolean adjFlag = false;
-	static int turnCounter=0;
+	static int turnCounter = 0;
 	List<Country> visited = new ArrayList<Country>();
 
 	/**
@@ -692,7 +692,7 @@ public class MainClass {
 			return "Defender won!";
 		} else if (countryDefending.getCountryArmy() == 0) {
 			mapPlayerToCountry(attacker, countryDefending);
-			unmapPlayerToCountry(playerList.get(countryDefending.getCountryOwner()-1), countryDefending);
+			unmapPlayerToCountry(playerList.get(countryDefending.getCountryOwner() - 1), countryDefending);
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (gameOver(attacker) && mode.equalsIgnoreCase("tournament")) {
 				List<String> temp;
@@ -1097,7 +1097,8 @@ public class MainClass {
 		visited.add(from);
 
 		if (from.getCountryOwner() == to.getCountryOwner()) {
-			System.out.println("in check neighbours: " + "visited: "+ visited + " from: " + from + " to: " + to + " owner: "+ owner);
+			System.out.println("in check neighbours: " + "visited: " + visited + " from: " + from + " to: " + to
+					+ " owner: " + owner);
 			searchNeighbors(visited, from, to, owner);
 		}
 		return adjFlag;
@@ -1112,30 +1113,30 @@ public class MainClass {
 	 */
 
 	private void searchNeighbors(List<Country> visited, Country from, Country to, int owner) {
-		System.out.println("country id in search"+from.getCountryID());
+		System.out.println("country id in search" + from.getCountryID());
 		ArrayList<Integer> listOfNeighbours = mapInstance.getBorders().get(from.getCountryID());
 		System.out.println(listOfNeighbours);
-		if (!listOfNeighbours.contains(to.getCountryID()) && visited.size()<=10) {
-		
+		if (!listOfNeighbours.contains(to.getCountryID()) && visited.size() <= 10) {
+
 			visited.add(from);
-			
+
 			for (int i = 0; i < listOfNeighbours.size(); i++) {
-				//System.out.println("In search Neighbours: get country owner: " + mapInstance.getCountries().get(i).getCountryOwner());
+				// System.out.println("In search Neighbours: get country owner: " +
+				// mapInstance.getCountries().get(i).getCountryOwner());
 				if (mapInstance.getCountries().get(listOfNeighbours.get(i)).getCountryOwner() == owner) {
-					System.out.println("first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)) );
+					System.out.println(
+							"first element of neighbours: " + mapInstance.getCountries().get(listOfNeighbours.get(i)));
 					Country mayBecomeFrom = mapInstance.getCountries().get(listOfNeighbours.get(i));
 					System.out.println("Array of Visited: " + visited);
-					if (!visited.contains(mayBecomeFrom))  {
+					if (!visited.contains(mayBecomeFrom)) {
 						searchNeighbors(visited, mayBecomeFrom, to, owner);
-					}
-					else {
+					} else {
 						return;
 					}
-				}
-				else {
+				} else {
 					return;
 				}
-			
+
 			}
 		} else {
 			adjFlag = true;
@@ -1502,7 +1503,9 @@ public class MainClass {
 
 	public void nextTurn(Player p) {
 		turnCounter++;
-		if(turnCounter==tournamentObject.getMaxTurns()*playerList.size())
+		if (turnCounter == tournamentObject.getMaxTurns() * playerList.size() && mode.equalsIgnoreCase("tournament")) {
+			endTournamentGame();
+		}
 		setNextPlayerTurn();
 		p = playerList.get(getPlayerTurn() - 1);
 		System.out.println("Current Player name: " + p.getPlayerName());
@@ -1520,6 +1523,40 @@ public class MainClass {
 		} else if (p.getStrategy().equals("benevolent")) {
 			BenevolentStrategy.BenevolentStrategyReinforcement(p);
 		}
+	}
+
+	private void endTournamentGame() {
+		Player attacker;
+		HashMap<Player,Integer>	playerCoverage= new HashMap<Player, Integer>();
+		for(Player p:playerList) {
+			int t=player_country_map.get(p).size();
+			int per=t*100/mapInstance.getCountries().size();
+			playerCoverage.put(p, per);
+		}
+		int max=playerCoverage.get(playerList.get(0));
+		attacker =playerList.get(0);
+		for(Player p:playerList) {
+			 if(max==playerCoverage.get(p)) {
+				 attacker.setPlayerName("Draw");
+			}
+			 else if(playerCoverage.get(p)>max) {
+				 attacker=p;
+			 }
+		}
+		List<String> temp;
+			if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
+				temp = new ArrayList<String>();
+			} else
+				temp = tournamentResult.results.get(tournamentController.currentMap);
+			temp.add(attacker.getPlayerName());
+			tournamentResult.results.put(tournamentController.currentMap, temp);
+			if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
+					.get(tournamentObject.getGameMaps().size() - 1).size() == tournamentObject.getNumGames()) {
+				tournamentResult.end = true;
+
+			}
+
+		
 	}
 
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
