@@ -126,7 +126,9 @@ public class RandomStrategy {
 		} else {
 			System.out.println("Fortification not done: not neighbours");
 		}
-
+		mainClassInstance.setNextPlayerTurn();
+		p=MainClass.playerList.get(mainClassInstance.getPlayerTurn()-1);
+		
 		mainClassInstance.nextTurn(p);
 
 		// }

@@ -122,9 +122,7 @@ public class AggressiveStrategy {
 			}
 		} else
 			to = strongestCountries.get(0);
-		if (p.attackableCountries(to).isEmpty()) {
 
-		}
 		for (Country c : countryConquered) {
 			if (c.getCountryArmy() > 1 && c != to) {
 				countryFromList.add(c);
@@ -150,6 +148,8 @@ public class AggressiveStrategy {
 		System.out.println("from:" + from.getCountryName());
 		System.out.println("to:" + to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);
+		mainClassInstance.setNextPlayerTurn();
+		p=MainClass.playerList.get(mainClassInstance.getPlayerTurn()-1);
 		mainClassInstance.nextTurn(p);
 
 	}
