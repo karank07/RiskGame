@@ -25,8 +25,8 @@ public class MapOperations {
 	static int hashMapID = 0;
 	static List<ArrayList<String>> neighboursList = new ArrayList<ArrayList<String>>();
 	HashMap<Integer, ArrayList<Integer>> hMap;
-	private boolean[] visited;
-	private int flag;
+	private ArrayList<Integer> visited;
+	private int count;
 	int co_id;
 
 	/**
@@ -373,23 +373,24 @@ public class MapOperations {
 	 */
 	public boolean isConnected(HashMap<Integer, ArrayList<Integer>> borders) {
 		hMap = borders;
-		visited = new boolean[borders.size()];
-		flag = 0;
-
+		visited = new ArrayList<Integer>();
+		count = 0;
+		if(borders.isEmpty())
+		{
+			return true;
+		}
 		Entry<Integer, ArrayList<Integer>> firstNode = borders.entrySet().iterator().next();
 		traverseMap(firstNode.getKey());
 
-		for (int i = 0; i < visited.length; i++) {
-			if (visited[i] == false) {
-				flag = 1;
-			}
-		}
-
-		if (flag == 1) {
-			return false;
-		} else {
+		if(count == borders.size())
+		{
 			return true;
 		}
+		else
+		{
+			return false;
+		}
+
 	}
 
 	/**
@@ -398,10 +399,11 @@ public class MapOperations {
 	 * @param node the current vertex of map which is being traversed
 	 */
 	public void traverseMap(int node) {
-		visited[node - 1] = true;
+		count = count + 1;
+		visited.add(node);
 
 		for (int n : neighbourNodes(node)) {
-			if (visited[n - 1] == false) {
+			if (visited.contains(n) == false) {
 				traverseMap(n);
 			}
 		}

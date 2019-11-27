@@ -27,4 +27,7 @@ public interface GameConstants {
 	/** The Constant BORDERS_HEADER_CONST. */
 	public static final String BORDERS_HEADER = "[borders]";
 	
+	/** The Constant MAP_HEADER */
+	public static final String MAP_HEADER = "[Map]";
+	
 }

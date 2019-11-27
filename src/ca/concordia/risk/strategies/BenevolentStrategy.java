@@ -18,7 +18,7 @@ public class BenevolentStrategy {
 			p.reinforceArmy(weakest.getCountryName(), reinforceArmy);
 			BenevolentStrategyAttack(p);
 		} else {
-			while (p.getPlayerCards().size() >= 5) {
+			if (p.getPlayerCards().size() >= 5) {
 				if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
 					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
 				} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {

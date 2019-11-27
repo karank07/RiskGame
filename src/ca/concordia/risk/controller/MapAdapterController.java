@@ -18,7 +18,7 @@ public class MapAdapterController extends MapWriter {
 
 	private ConquestMapController cmc;
 	
-	public void conquestToDomination(ConquestMapController cmc)
+	public MapAdapterController(ConquestMapController cmc)
 	{
 		this.cmc = cmc;
 	}

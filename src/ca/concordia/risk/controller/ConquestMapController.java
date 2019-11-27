@@ -12,6 +12,7 @@ import java.util.Scanner;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.utilities.GameConstants;
+import ca.concordia.risk.utilities.ValidMapException;
 
 /**
  * This class is used for reading and writing files in conquest game map format
@@ -46,9 +47,9 @@ public class ConquestMapController {
 		while(sc.hasNext())
 		{
 			String continent = sc.nextLine();
-			
-			if(continent.equals(GameConstants.CONTINENT_HEADER))
+			if(continent.equals("[Continents]"))
 			{
+				
 				break;
 			}
 		}
@@ -89,6 +90,11 @@ public class ConquestMapController {
 			countryCount++;
 			countryStart = sc.nextLine();
 			
+			if(countryStart.length() == 0)
+			{
+				continue;
+			}
+			
 			if(countryStart.length() > 0)
 			{
 				countryDetails = countryStart.split(",");
@@ -96,7 +102,7 @@ public class ConquestMapController {
 				countries.put(countryCount, coun);
 				
 				ArrayList<String> tempList = new ArrayList<String>();
-				for(int i=4 ; i<= countryDetails.length ; i++)
+				for(int i=4 ; i<= countryDetails.length -1 ; i++)
 				{
 					tempList.add(countryDetails[i]);
 				}
@@ -120,6 +126,7 @@ public class ConquestMapController {
 			}
 			
 			borders.put(i, listNumber);
+			//System.out.println(borders);
 		}
 		sc.close();
 	}
@@ -133,7 +140,7 @@ public class ConquestMapController {
 	 * @param mapFile the mapfile to be loaded
 	 * @throws IOException
 	 */
-	public void conquestMapWriter(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String mapFile) throws IOException
+	public void conquestMapWriter(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String mapFile) throws IOException, ValidMapException
 	{
 		String path = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + mapFile;
 		File file = new File(path);
@@ -141,7 +148,7 @@ public class ConquestMapController {
 		BufferedWriter bw = new BufferedWriter(fw);
 		file.createNewFile();
 		
-		bw.write("[Map]");
+		bw.write(GameConstants.MAP_HEADER);
 		bw.write("\n");
 		bw.write("[Continents]");
 		bw.newLine();
@@ -159,7 +166,7 @@ public class ConquestMapController {
 		for (Integer i : countries.keySet())
 		{
 			Country c1 = countries.get(i);
-			String str1 = c1.getCountryName() + ","+ c1.getXCo() + "," + c1.getYCo()+ "," + gmc.getContinentFromCountryName(continents, countries, c1.getCountryName())+",";
+			String str1 = c1.getCountryName() + ","+ c1.getXCo() + "," + c1.getYCo()+ "," + gmc.getContinentFromCountryName(continents, countries, c1.getCountryName()).getContinentName()+",";
 			String str2="";
 			
 			ArrayList<Integer> bList = borders.get(i);
@@ -167,9 +174,10 @@ public class ConquestMapController {
 			for(int b : bList)
 			{
 				str2 = str2 + gmc.getCountryNameById(countries, b) + ",";
+				
 			}
-			
-			str2 = str2.substring(0, bList.size()-1);
+
+			str2 = str2.substring(0, str2.length()-1);
 			bw.write(str1+str2);
 			bw.newLine();
 		}
