@@ -1548,6 +1548,10 @@ public class MainClass {
 
 	}
 
+	/**
+	 * Handles the turn setup for the game
+	 * @param p the current player instance
+	 */
 	public void nextTurn(Player p) {
 		turnCounter++;
 
