@@ -45,7 +45,7 @@ public class BenevolentStrategy {
 		Country to = p.getWeakestCountry();
 
 	
-		System.out.println(from.getCountryName() +""+ to.getCountryName());
+		System.out.println("Fortification move : "+from.getCountryName() +" "+ to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);
 		mainClassInstance.nextTurn(p);
 
