@@ -42,7 +42,8 @@ public class MapWriter {
 	public void writeMapFile(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries,
 			HashMap<Integer, ArrayList<Integer>> borders, String mapFile) throws IOException, ValidMapException {
 
-		if (mo.isConnected(borders)) {
+		boolean flag = mo.isConnected(borders);
+		if (flag) {
 			String filePath = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator
 					+ mapFile;
 			File mapfile = new File(filePath);
@@ -113,7 +114,6 @@ public class MapWriter {
 				+ fileName;
 		File filePtr = new File(filePath);
 		Scanner sc = new Scanner(filePtr);
-
 		try {
 			flag = mv.validateFile(filePtr);
 
@@ -196,9 +196,7 @@ public class MapWriter {
 						break;
 					}
 				}
-
 				sc.close();
-
 				return true;
 			} else {
 				sc.close();
@@ -210,4 +208,5 @@ public class MapWriter {
 			return false;
 		}
 	}
+		
 }
