@@ -1228,7 +1228,7 @@ public class MainClass {
 			errorFlag = "Invalid map";
 			return;
 		}
-		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID()+1)) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
@@ -1255,19 +1255,40 @@ public class MainClass {
 	 */
 	public String editmap(String s1) {
 		String[] temp = s1.split(" ");
+		String filePath = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + temp[1];
+		File filePtr = new File(filePath);
 		try {
-			if (mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(),
-					temp[1])) {
-				System.out.println("Loaded");
-				errorFlag = "false";
-				// mapPhase = "edit";
-			} else {
-				System.out.println("Not Loaded!");
-				errorFlag = "false";
+			Scanner sc = new Scanner(filePtr);
+			
+			if(sc.nextLine().equals(GameConstants.MAP_HEADER))
+			{
+				System.out.println("CONQUEST LOAD FILE!");
+				fileIdentifierFlag = 1;
+				MapWriter conquestMapHandle = new MapAdapterController(conquestMapController);
+				if(conquestMapHandle.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]))
+				{
+					System.out.println("Loaded");
+					errorFlag = "false";
+				}
+				else
+				{
+					System.out.println("Not Loaded!");
+					errorFlag = "false";
+				}
 			}
-		} catch (FileNotFoundException e) {
-			errorFlag = e.getLocalizedMessage().toString();
+			else
+			{
+				System.out.println("DOM LOAD FILE!");
+				fileIdentifierFlag = 2;
+				mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]);
+			}
+			sc.close();
 		}
+		catch (FileNotFoundException e1)
+		{
+			errorFlag = e1.getLocalizedMessage().toString();
+		}
+		
 		return errorFlag;
 	}
 
@@ -1409,20 +1430,41 @@ public class MainClass {
 	 */
 	public String savemap(String s1) {
 		String[] temp = s1.split(" ");
-		try {
-			try {
-				mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(),
-						mapInstance.getBorders(), temp[1]);
-				errorFlag = "false";
-			} catch (ValidMapException e) {
-				errorFlag = e.getLocalizedMessage().toString();
+			if(fileIdentifierFlag == 1)
+			{
+				MapWriter conquestMapHandle = new MapAdapterController(conquestMapController);				
+				try 
+				{
+					System.out.println("CONQUEST SAVE FILE!");
+					conquestMapHandle.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]);
+					errorFlag = "false";
+				}
+				catch (Exception e)
+				{
+					errorFlag = e.getLocalizedMessage().toString();
+				}
 			}
-		} catch (IOException e) {
-			errorFlag = e.getLocalizedMessage().toString();
-		}
+			else
+			{
+				try
+				{
+					System.out.println("DOM SAVE FILE!");
+					try
+					{
+						mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]);
+					}
+					catch (IOException e) 
+					{
+						errorFlag = "OUT OF B";
+					}
+				}
+				catch(ValidMapException e1)
+				{
+					errorFlag = e1.getLocalizedMessage().toString();
+				}
+			}
 		return errorFlag;
 	}
-
 	/**
 	 * check if from country obj can attack to country obj
 	 * 
