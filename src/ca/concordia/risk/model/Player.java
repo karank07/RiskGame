@@ -1,8 +1,15 @@
 package ca.concordia.risk.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.utilities.GamePhase;
@@ -61,7 +68,7 @@ public class Player implements Subject {
 	 *                           exchanged cards for armies
 	 */
 	private int cardExchangeCount = 0;
-
+	private boolean canAttack=true;
 	/**
 	 * @param strategy - to decide the strategy of the player object
 	 */
@@ -455,7 +462,7 @@ public class Player implements Subject {
 		this.diceWins = diceWins;
 	}
 
-	private Map mapInstance = Map.getM_instance();
+	private ca.concordia.risk.model.Map mapInstance = ca.concordia.risk.model.Map.getM_instance();
 
 	public int assign_army() {
 
@@ -661,34 +668,7 @@ public class Player implements Subject {
 		this.intialArmies = intialArmies;
 	}
 
-	/**
-	 * Returns the strongest country for the player
-	 * 
-	 * @param p player
-	 * @return strongestCountry
-	 * 
-	 */
-	public Country getStrongestCountry() {
-
-		List<Country> playerCountries = this.getPlayerCountries();
-
-		Country strongestCountry = null;
-
-		int maxArmy = 0;
-
-		for (Country country : playerCountries) {
-
-			int playerArmy = country.getCountryArmy();
-
-			if (playerArmy > maxArmy) {
-				maxArmy = playerArmy;
-				strongestCountry = country;
-			}
-		}
-
-		return strongestCountry;
-	}
-
+		  
 	/**
 	 * returns list of the countries that can be attacked by the country c
 	 * 
@@ -697,7 +677,7 @@ public class Player implements Subject {
 	 */
 	public List<Country> attackableCountries(Country c) {
 		List<Country> countriesAttackable = new ArrayList<>();
-		List<Country> neighbouringCountries = Map.m_instance.getNeighbourCountries(c);
+		List<Country> neighbouringCountries = ca.concordia.risk.model.Map.m_instance.getNeighbourCountries(c);
 		
 		for (Country neighbour : neighbouringCountries) {
 			if (neighbour.getCountryOwner() != c.getCountryOwner()) {
@@ -761,6 +741,20 @@ public class Player implements Subject {
 		attach(CardExchangeView.getCardExchangeViewInstance());
 		notify_observer();
 
+	}
+
+	/**
+	 * @return the canAttack
+	 */
+	public boolean getCanAttack() {
+		return canAttack;
+	}
+
+	/**
+	 * @param canAttack the canAttack to set
+	 */
+	public void setCanAttack(boolean canAttack) {
+		this.canAttack = canAttack;
 	}
 
 }

@@ -35,13 +35,20 @@ public class BenevolentStrategy {
 	}
 
 	private static void BenevolentStrategyAttack(Player p) {
+		p.setCanAttack(false);
 		BenevolentStrategyFortify(p);
 
 	}
 
 	private static void BenevolentStrategyFortify(Player p) {
-
-		Country from = p.getStrongestCountry();
+		Country from=p.getPlayerCountries().get(0);
+		int max=from.getCountryArmy();
+		for(Country c:p.getPlayerCountries()) {
+			if(c.getCountryArmy()>max) {
+				from=c;
+			}
+		}
+		
 		Country to = p.getWeakestCountry();
 
 	
