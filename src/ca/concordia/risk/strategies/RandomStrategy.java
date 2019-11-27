@@ -85,7 +85,7 @@ public class RandomStrategy {
 						defenderCountry);
 				p.setAttackResult(mainClassInstance.attackResult(attackerCountry, defenderCountry, p));
 				if (p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
-					mainClassInstance.moveArmies(p, attackerCountry, defenderCountry, p.getAttackResult().length());
+					mainClassInstance.moveArmies(p, attackerCountry, defenderCountry, p.getDiceWins().size());
 				}
 //				dice = defenderCountry.getCountryArmy() == 1 ? 1 : 2;
 //				mainClassInstance.doDefend(dice, p, defender, attackerCountry, defenderCountry);
@@ -96,7 +96,7 @@ public class RandomStrategy {
 	}
 
 	private static void RandomStrategyFortify(Player p) {
-		Country fromCountry = p.getPlayerCountries().get(r.nextInt(p.getPlayerTotalCountries()));
+		Country fromCountry = p.getPlayerCountries().get(r.nextInt(MainClass.player_country_map.get(p).size()));
 		Country toCountry = null;
 		int army = 0;
 		while (true) {
