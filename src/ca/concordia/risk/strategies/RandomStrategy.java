@@ -43,14 +43,12 @@ public class RandomStrategy {
 				mainClassInstance.exchangeCardsForArmy(p, 1, 1, 1);
 			}
 		}
-		
+
 		Country country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
 
 		String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
 
 		RandomStrategyAttack(p);
-		
-		
 
 	}
 
@@ -59,7 +57,6 @@ public class RandomStrategy {
 		for (Country c : mainClassInstance.player_country_map.get(p)) {
 			if (c.getCountryArmy() > 1) {
 				cList.add(c);
-
 			}
 		}
 
@@ -90,8 +87,8 @@ public class RandomStrategy {
 				if (p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
 					mainClassInstance.moveArmies(p, attackerCountry, defenderCountry, p.getAttackResult().length());
 				}
-				dice = defenderCountry.getCountryArmy() == 1 ? 1 : 2;
-				mainClassInstance.doDefend(dice, p, defender, attackerCountry, defenderCountry);
+//				dice = defenderCountry.getCountryArmy() == 1 ? 1 : 2;
+//				mainClassInstance.doDefend(dice, p, defender, attackerCountry, defenderCountry);
 
 			}
 		}
@@ -100,11 +97,16 @@ public class RandomStrategy {
 
 	private static void RandomStrategyFortify(Player p) {
 		Country fromCountry = p.getPlayerCountries().get(r.nextInt(p.getPlayerTotalCountries()));
+		Country toCountry = null;
 		int army = 0;
-		// while (true) {
-		Country toCountry = Map.getM_instance().getNeighbourCountries(fromCountry)
-				.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
+		while (true) {
+			toCountry = Map.getM_instance().getNeighbourCountries(fromCountry)
+					.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
 
+			if (toCountry.getCountryOwner() == p.getPlayerId()) {
+				break;
+			}
+		}
 		if (fromCountry.getCountryArmy() > 0) {
 			army = r.nextInt(fromCountry.getCountryArmy()) + 1;
 
@@ -116,19 +118,18 @@ public class RandomStrategy {
 				+ toCountry.getCountryName());
 
 		if (mainClassInstance.checkNeighbours(fromCountry, toCountry, p.getPlayerId())) {
-			if (fromCountry.getCountryArmy() - army >= 1) {
+			if (fromCountry.getCountryArmy() - 1 >= 1) {
 				// System.out.println("in randomStrategy File: "+ "From country: " +
 				// fromCountry.getCountryName() + " to country:"+toCountry.getCountryName() +"
 				// player name "+ p.getPlayerName() );
-				p.fortify(fromCountry, toCountry, army);
-
+				// move 1 army
+				p.fortify(fromCountry, toCountry, 1);
 			}
 		} else {
 			System.out.println("Fortification not done: not neighbours");
 		}
 
 		mainClassInstance.nextTurn(p);
-
 		// }
 	}
 
