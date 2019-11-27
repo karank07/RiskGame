@@ -1594,6 +1594,10 @@ public class MainClass {
 
 	}
 
+	/**
+	 * Returns true if the player can attack
+	 * @return attack true if the player can attack
+	 */
 	private boolean checkPlayerCanAttack() {
 		boolean attack = false;
 		for (Player p : playerList) {
@@ -1605,6 +1609,10 @@ public class MainClass {
 		return attack;
 	}
 
+	/**
+	 * Handles the game ending scenario,
+	 * along-with setting and printing the result in the console
+	 */
 	private void endTournamentGame() {
 		if (tournamentResult.end) {
 			System.out.println("Game over! Player " + playerList.get(getPlayerTurn() - 1) + " Wins");
@@ -1683,6 +1691,10 @@ public class MainClass {
 
 	}
 
+	/**
+	 * Resets the game by clearing the player list,
+	 * the country mappings and all instances.
+	 */
 	public void resetGame() {
 		playerList.clear();
 		player_country_map.clear();
