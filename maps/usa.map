@@ -1,0 +1,77 @@
+[Map]
+image=USA (small).bmp
+wrap=no
+warn=yes
+scroll=horizontal
+author=dragon_kicker
+
+[Continents]
+Mexico=2
+Northwest U.S.=3
+Southwest U.S.=4
+Canada=4
+Southeast U.S.=7
+Northeast U.S.=6
+Midwest U.S.=7
+
+[Territories]
+Baja California,53,192,Mexico,California,Western Mexico
+Western Mexico,87,192,Mexico,Baja California,Arizona,New Mexico,Texas,Eastern Mexico
+Eastern Mexico,137,213,Mexico,Western Mexico,Texas
+
+Washington,40,25,Northwest U.S.,British Columbia,Idaho,Oregon
+Oregon,35,55,Northwest U.S.,Washington,Idaho,Nevada,California
+Idaho,67,62,Northwest U.S.,British Columbia,Montana,Wyoming,Utah,Nevada,Oregon,Washington
+Montana,100,40,Northwest U.S.,British Columbia,Alberta,Saskatchewan,North Dakota,South Dakota,Wyoming,Idaho
+Wyoming,107,75,Northwest U.S.,Montana,South Dakota,Nebraska,Colorado,Utah,Idaho
+
+California,25,110,Southwest U.S.,Oregon,Nevada,Arizona,Baja California
+Nevada,48,95,Southwest U.S.,Oregon,Idaho,Utah,Arizona,California
+Utah,80,100,Southwest U.S.,Idaho,Wyoming,Colorado,Arizona,Nevada
+Colorado,117,112,Southwest U.S.,Wyoming,Nebraska,Kansas,Oklahoma,New Mexico,Utah
+Arizona,72,143,Southwest U.S.,California,Nevada,Utah,New Mexico,Western Mexico
+New Mexico,110,145,Southwest U.S.,Colorado,Oklahoma,Texas,Western Mexico,Arizona
+
+British Columbia,50,7,Canada,Alberta,Montana,Idaho,Washington
+Alberta,87,12,Canada,Saskatchewan,Montana,British Columbia
+Saskatchewan,125,12,Canada,Manitoba,North Dakota,Montana,Alberta
+Manitoba,165,17,Canada,Ontario,Minnisota,North Dakota,Saskatchewan
+Ontario,225,17,Canada,Quebec,New York,Ohio,Michigan,Minnisota,Manitoba
+Quebec,293,22,Canada,New Brunswick,Maine,VT_NH,New York,Ontario
+New Brunswick,342,22,Canada,Maine,Quebec
+
+Kentucky,247,117,Southeast U.S.,Illinois,Indiana,Ohio,West Virginia,Virginia,Tennessee,Missouri
+West Virginia,272,107,Southeast U.S.,Ohio,PA_NJ,MA_DL,Virginia,Kentucky
+MA_DL,297,93,Southeast U.S.,PA_NJ,Virginia,West Virginia
+Virginia,290,110,Southeast U.S.,MA_DL,North Carolina,Tennessee,Kentucky,West Virginia
+Tennessee,240,135,Southeast U.S.,Kentucky,Virginia,North Carolina,Georgia,Alabama,Mississippi,Arkansas,Missouri
+North Carolina,280,130,Southeast U.S.,Virginia,South Carolina,Georgia,Tennessee
+Mississippi,222,162,Southeast U.S.,Tennessee,Alabama,Louisiana,Arkansas
+Alabama,242,160,Southeast U.S.,Tennessee,Georgia,Florida,Mississippi
+Georgia,265,157,Southeast U.S.,Tennessee,North Carolina,South Carolina,Florida,Alabama
+South Carolina,280,145,Southeast U.S.,North Carolina,Georgia
+Florida,280,190,Southeast U.S.,Alabama,Georgia
+
+Wisconsin,212,65,Northeast U.S.,Michigan,Illinois,Iowa,Minnisota
+Michigan,242,70,Northeast U.S.,Ontario,Ohio,Indiana,Wisconsin,Minnisota
+Illinois,220,100,Northeast U.S.,Wisconsin,Indiana,Kentucky,Missouri,Iowa
+Indiana,240,100,Northeast U.S.,Michigan,Ohio,Kentucky,Illinois
+Ohio,260,95,Northeast U.S.,Michigan,Ontario,PA_NJ,West Virginia,Kentucky,Indiana
+PA_NJ,290,85,Northeast U.S.,New York,MA_DL,West Virginia,Ohio
+New York,300,65,Northeast U.S.,Quebec,VT_NH,MA_CT_RI,PA_NJ,Ontario
+MA_CT_RI,320,65,Northeast U.S.,New York,VT_NH
+VT_NH,320,55,Northeast U.S.,Quebec,MA_CT_RI,New York,Maine
+Maine,330,36,Northeast U.S.,Quebec,New Brunswick,VT_NH
+
+North Dakota,152,42,Midwest U.S.,Saskatchewan,Manitoba,Minnisota,South Dakota,Montana
+South Dakota,152,65,Midwest U.S.,North Dakota,Minnisota,Iowa,Nebraska,Wyoming,Montana
+Nebraska,152,90,Midwest U.S.,South Dakota,Iowa,Missouri,Kansas,Colorado,Wyoming
+Kansas,160,115,Midwest U.S.,Nebraska,Missouri,Oklahoma,Colorado
+Oklahoma,170,140,Midwest U.S.,Kansas,Missouri,Arkansas,Texas,New Mexico,Colorado
+Texas,152,175,Midwest U.S.,Oklahoma,Arkansas,Louisiana,Eastern Mexico,Western Mexico,New Mexico
+Minnisota,185,52,Midwest U.S.,Ontario,Michigan,Wisconsin,Iowa,South Dakota,North Dakota,Manitoba
+Iowa,193,85,Midwest U.S.,Minnisota,Wisconsin,Illinois,Missouri,Nebraska,South Dakota
+Missouri,197,115,Midwest U.S.,Iowa,Illinois,Kentucky,Tennessee,Arkansas,Oklahoma,Kansas,Nebraska
+Arkansas,202,145,Midwest U.S.,Missouri,Tennessee,Mississippi,Louisiana,Texas,Oklahoma
+Louisiana,202,175,Midwest U.S.,Arkansas,Mississippi,Texas
+
