@@ -440,6 +440,7 @@ public class MainClass {
 	 */
 	public void mapPlayerToCountry(Player p, Country c) {
 		List<Country> cList = MainClass.player_country_map.get(p);
+		System.out.println("player country map before adding: " + MainClass.player_country_map.get(p));
 		c.setCountryOwner(p.getPlayerId());
 		if (cList == null) {
 			cList = new ArrayList<>();
@@ -529,7 +530,9 @@ public class MainClass {
 		System.out.println();
 
 		resetPlayerTurn();
+
 		nextTurn(playerList.get(getPlayerTurn() - 1));
+
 
 	}
 
@@ -721,7 +724,6 @@ public class MainClass {
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (mode.equalsIgnoreCase("tournament")) {
 				if (gameOver(attacker)) {
-					System.out.println("in tour gameover");
 					List<String> temp;
 					if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
 						temp = new ArrayList<String>();
@@ -786,9 +788,8 @@ public class MainClass {
 	 * @param p
 	 */
 	public boolean gameOver(Player p) {
+		System.out.println("player map size "+player_country_map.size());
 		if (player_country_map.get(p).size() == mapInstance.getCountries().size()) {
-
-			System.out.println("player map size " + player_country_map.get(p).size());
 			return true;
 		}
 		return false;
@@ -1549,6 +1550,10 @@ public class MainClass {
 
 	}
 
+	/**
+	 * Handles the turn setup for the game
+	 * @param p the current player instance
+	 */
 	public void nextTurn(Player p) {
 		turnCounter++;
 
@@ -1591,17 +1596,41 @@ public class MainClass {
 
 	}
 
+	/**
+	 * Returns true if the player can attack
+	 * @return attack true if the player can attack
+	 */
 	private boolean checkPlayerCanAttack() {
 		boolean attack = false;
 		for (Player p : playerList) {
 			if (p.getCanAttack()) {
 				attack = true;
 			}
-
 		}
-		return attack;
+
+		// setNextPlayerTurn();
+		p = playerList.get(getPlayerTurn() - 1);
+		System.out.println();
+		System.out.println("Current Player name: " + p.getPlayerName());
+		p.setCurrentPhase(GamePhase.REINFORCEMENT);
+		p.setPlayerReinforceArmy(p.assign_army());
+		if (p.getStrategy().equals("human")) {
+			return;
+		} else if (p.getStrategy().equals("random")) {
+			RandomStrategy.RandomStrategyReinforcement(p);
+		} else if (p.getStrategy().equals("cheater")) {
+			CheaterStrategy.cheaterStrategyReinforcement(p);
+		} else if (p.getStrategy().equals("aggressive")) {
+			AggressiveStrategy.AggresiveStrategyReinforcement(p);
+		} else if (p.getStrategy().equals("benevolent")) {
+			BenevolentStrategy.BenevolentStrategyReinforcement(p);
+		}
 	}
 
+	/**
+	 * Handles the game ending scenario,
+	 * along-with setting and printing the result in the console
+	 */
 	private void endTournamentGame() {
 		if (tournamentResult.end) {
 			System.out.println("Game over! Player " + playerList.get(getPlayerTurn() - 1) + " Wins");
@@ -1648,9 +1677,16 @@ public class MainClass {
 		}
 	}
 
+	/**
+	 * Sets up the tournament mode for the risk game
+	 * @param mapFileNames names of the different map files to be played on
+	 * @param playerStratergyNames the different strategies used to play
+	 * @param numGames the number of games to be played on
+	 * @param maxTurns maximum number of turns till which the game can continue
+	 */
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
-		mode = "tournament";
+		this.mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));
@@ -1673,6 +1709,10 @@ public class MainClass {
 
 	}
 
+	/**
+	 * Resets the game by clearing the player list,
+	 * the country mappings and all instances.
+	 */
 	public void resetGame() {
 		playerList.clear();
 		player_country_map.clear();
