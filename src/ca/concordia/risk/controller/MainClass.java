@@ -440,13 +440,15 @@ public class MainClass {
 	 */
 	public void mapPlayerToCountry(Player p, Country c) {
 		List<Country> cList = MainClass.player_country_map.get(p);
+		System.out.println("player country map before adding: " + MainClass.player_country_map.get(p));
 		c.setCountryOwner(p.getPlayerId());
 		if (cList == null) {
 			cList = new ArrayList<>();
 		}
 		cList.add(c);
 		MainClass.player_country_map.put(p, cList);
-		
+		System.out.println("after adding: " + MainClass.player_country_map.get(p));
+
 	}
 
 	/**
@@ -529,7 +531,7 @@ public class MainClass {
 		System.out.println();
 
 		resetPlayerTurn();
-		nextTurn(playerList.get(getPlayerTurn()-1));
+		nextTurn(playerList.get(getPlayerTurn()));
 
 	}
 
@@ -721,7 +723,6 @@ public class MainClass {
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (mode.equalsIgnoreCase("tournament")) {
 				if (gameOver(attacker)) {
-					System.out.println("in tour gameover");
 					List<String> temp;
 					if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
 						temp = new ArrayList<String>();
@@ -784,9 +785,8 @@ public class MainClass {
 	 * @param p
 	 */
 	public boolean gameOver(Player p) {
+		System.out.println("player map size "+player_country_map.size());
 		if (player_country_map.get(p).size() == mapInstance.getCountries().size()) {
-
-			System.out.println("player map size " + player_country_map.get(p).size());
 			return true;
 		}
 		return false;
@@ -1561,56 +1561,34 @@ public class MainClass {
 	}
 
 	public void nextTurn(Player p) {
-			turnCounter++;
-			System.out.println(turnCounter);
-			System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
-			if (mode.equalsIgnoreCase("tournamet")) {
-				if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
-					System.out.println("calling end tournament");
-					endTournamentGame();
-					return;
-				}
-			}
-
-			// setNextPlayerTurn();
-			//p = playerList.get(getPlayerTurn() - 1);
-			System.out.println();
-			System.out.println("Current Player name: " + p.getPlayerName());
-			p.setCurrentPhase(GamePhase.REINFORCEMENT);
-			p.setPlayerReinforceArmy(p.assign_army());
-			if (p.getStrategy().equals("human")) {
+		turnCounter++;
+		System.out.println(turnCounter);
+		System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
+		if (mode.equalsIgnoreCase("tournamet")) {
+			if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
+				System.out.println("calling end tournament");
+				endTournamentGame();
 				return;
-			} else if (p.getStrategy().equals("random")) {
-				RandomStrategy.RandomStrategyReinforcement(p);
-			} else if (p.getStrategy().equals("cheater")) {
-				CheaterStrategy.cheaterStrategyReinforcement(p);
-			} else if (p.getStrategy().equals("aggressive")) {
-				AggressiveStrategy.AggresiveStrategyReinforcement(p);
-			} else if (p.getStrategy().equals("benevolent")) {
-				BenevolentStrategy.BenevolentStrategyReinforcement(p);
 			}
-			
-			
-		/*
-		 * }else { Player winner=playerList.get(0); int
-		 * max=player_country_map.get(0).size(); for(Player
-		 * player:player_country_map.keySet()) {
-		 * if(player_country_map.get(player).size()>max) {
-		 * max=player_country_map.get(player).size(); winner=player; } }
-		 * System.out.println("Player "+winner.getPlayerName()+" won by map coverage!");
-		 */
-			
-	}
-
-	private boolean checkPlayerCanAttack() {
-		boolean attack = false;
-		for (Player p : playerList) {
-			if (p.getCanAttack()) {
-				attack = true;
-			}
-
 		}
-		return attack;
+
+		// setNextPlayerTurn();
+		p = playerList.get(getPlayerTurn() - 1);
+		System.out.println();
+		System.out.println("Current Player name: " + p.getPlayerName());
+		p.setCurrentPhase(GamePhase.REINFORCEMENT);
+		p.setPlayerReinforceArmy(p.assign_army());
+		if (p.getStrategy().equals("human")) {
+			return;
+		} else if (p.getStrategy().equals("random")) {
+			RandomStrategy.RandomStrategyReinforcement(p);
+		} else if (p.getStrategy().equals("cheater")) {
+			CheaterStrategy.cheaterStrategyReinforcement(p);
+		} else if (p.getStrategy().equals("aggressive")) {
+			AggressiveStrategy.AggresiveStrategyReinforcement(p);
+		} else if (p.getStrategy().equals("benevolent")) {
+			BenevolentStrategy.BenevolentStrategyReinforcement(p);
+		}
 	}
 
 	private void endTournamentGame() {
@@ -1652,7 +1630,7 @@ public class MainClass {
 
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
-		mode = "tournament";
+		this.mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));

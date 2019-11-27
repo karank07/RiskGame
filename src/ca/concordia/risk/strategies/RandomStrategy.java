@@ -53,6 +53,9 @@ public class RandomStrategy {
 	}
 
 	private static void RandomStrategyAttack(Player p) {
+		
+		System.out.println("PLAYER COUNTRY MAP SIZE BEFORE ATTACK : " + mainClassInstance.player_country_map.get(p).size());
+		
 		List<Country> cList = new ArrayList<Country>();
 		for (Country c : mainClassInstance.player_country_map.get(p)) {
 			if (c.getCountryArmy() > 1) {
@@ -64,13 +67,14 @@ public class RandomStrategy {
 		Country defenderCountry = null;
 
 		if (p.attackableCountries(attackerCountry).size() > 0) {
+		
 			defenderCountry = p.attackableCountries(attackerCountry)
 					.get(r.nextInt(p.attackableCountries(attackerCountry).size()));
 		} else {
 			RandomStrategyFortify(p);
 		}
 
-		int randomTimesAttack = r.nextInt(11) + 1; // Bw. 1 and 10
+		int randomTimesAttack = r.nextInt(5) + 1; // Bw. 1 and 10
 
 		for (int i = 0; i < randomTimesAttack; i++) {
 
@@ -85,28 +89,36 @@ public class RandomStrategy {
 						defenderCountry);
 				p.setAttackResult(mainClassInstance.attackResult(attackerCountry, defenderCountry, p));
 				if (p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
-					mainClassInstance.moveArmies(p, attackerCountry, defenderCountry, p.getAttackResult().length());
+					mainClassInstance.moveArmies(p, attackerCountry, defenderCountry, p.getDiceWins().size());
 				}
 //				dice = defenderCountry.getCountryArmy() == 1 ? 1 : 2;
 //				mainClassInstance.doDefend(dice, p, defender, attackerCountry, defenderCountry);
 
 			}
 		}
+		System.out.println("Attack Finished, Calling fortify");
 		RandomStrategyFortify(p);
 	}
 
 	private static void RandomStrategyFortify(Player p) {
-		Country fromCountry = p.getPlayerCountries().get(r.nextInt(p.getPlayerTotalCountries()));
+//		System.out.println("Trying to fortify...");
+//		System.out.println("Player country map size: "+ mainClassInstance.player_country_map.get(p).size());
+//		int temp = r.nextInt(mainClassInstance.player_country_map.get(p).size());
+//		
+		Country fromCountry = mainClassInstance.player_country_map.get(p).get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
+		System.out.println("From COuntry: "+ fromCountry.getCountryName());
 		Country toCountry = null;
 		int army = 0;
 		while (true) {
+			System.out.println("in while");
 			toCountry = Map.getM_instance().getNeighbourCountries(fromCountry)
 					.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
-
+			fromCountry = mainClassInstance.player_country_map.get(p).get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
 			if (toCountry.getCountryOwner() == p.getPlayerId()) {
 				break;
 			}
 		}
+		System.out.println("To country: "+ toCountry.getCountryName());
 		if (fromCountry.getCountryArmy() > 0) {
 			army = r.nextInt(fromCountry.getCountryArmy()) + 1;
 
@@ -129,8 +141,8 @@ public class RandomStrategy {
 			System.out.println("Fortification not done: not neighbours");
 		}
 		mainClassInstance.setNextPlayerTurn();
-		p=MainClass.playerList.get(mainClassInstance.getPlayerTurn()-1);
-		
+		p = MainClass.playerList.get(mainClassInstance.getPlayerTurn() - 1);
+
 		mainClassInstance.nextTurn(p);
 		// }
 	}
