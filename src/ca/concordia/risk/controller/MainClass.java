@@ -1647,6 +1647,13 @@ public class MainClass {
 		}
 	}
 
+	/**
+	 * Sets up the tournament mode for the risk game
+	 * @param mapFileNames names of the different map files to be played on
+	 * @param playerStratergyNames the different strategies used to play
+	 * @param numGames the number of games to be played on
+	 * @param maxTurns maximum number of turns till which the game can continue
+	 */
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
 		mode = "tournament";
