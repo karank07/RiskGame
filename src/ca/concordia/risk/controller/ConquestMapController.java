@@ -126,7 +126,7 @@ public class ConquestMapController {
 			}
 			
 			borders.put(i, listNumber);
-			System.out.println(borders);
+			//System.out.println(borders);
 		}
 		sc.close();
 	}

@@ -192,6 +192,7 @@ public class MapWriter {
 						}
 
 						borders.put(Integer.parseInt(border_info[0]), borderList);
+						System.out.println(borders.values());
 					} else {
 						break;
 					}

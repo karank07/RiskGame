@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import org.hamcrest.Condition.Step;
@@ -26,6 +27,7 @@ import ca.concordia.risk.strategies.AggressiveStrategy;
 import ca.concordia.risk.strategies.BenevolentStrategy;
 import ca.concordia.risk.strategies.CheaterStrategy;
 import ca.concordia.risk.strategies.RandomStrategy;
+import ca.concordia.risk.utilities.GameConstants;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 //import ca.concordia.risk.view.GameView;
@@ -50,6 +52,7 @@ public class MainClass {
 	private Map mapInstance;
 	private MapOperations mapOperations;
 	private MapWriter mapWriter;
+	private ConquestMapController conquestMapController;
 	public static MainClass main_instance;
 	private static TournamentMode tournamentObject;
 	TournamentController tournamentController;
@@ -60,6 +63,7 @@ public class MainClass {
 	private static String mode = "single";
 	boolean adjFlag = false;
 	static int turnCounter = 0;
+	private int fileIdentifierFlag;
 	List<Country> visited = new ArrayList<Country>();
 
 	/**
@@ -73,7 +77,8 @@ public class MainClass {
 		mapOperations = new MapOperations();
 		mapWriter = new MapWriter();
 		tournamentObject = TournamentMode.getInstance();
-
+		conquestMapController = new ConquestMapController();
+		fileIdentifierFlag = 0;
 		tournamentResult = TournamentResult.getInstance();
 
 	}
