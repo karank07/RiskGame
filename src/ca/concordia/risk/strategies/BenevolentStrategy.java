@@ -49,11 +49,11 @@ public class BenevolentStrategy {
 			}
 		}
 		
-		Country to = p.getWeakestCountry();
-
-	
+		Country to = p.getWeakestCountry();	
 		System.out.println("Fortification move : "+from.getCountryName() +" "+ to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);
+		mainClassInstance.setNextPlayerTurn();
+		p=MainClass.playerList.get(mainClassInstance.getPlayerTurn()-1);
 		mainClassInstance.nextTurn(p);
 
 	}

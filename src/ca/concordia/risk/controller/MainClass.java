@@ -210,7 +210,7 @@ public class MainClass {
 	 * @return the current turn of the player
 	 * 
 	 */
-	int getPlayerTurn() {
+	public int getPlayerTurn() {
 		return turn;
 	}
 
@@ -529,7 +529,7 @@ public class MainClass {
 		System.out.println();
 
 		resetPlayerTurn();
-		nextTurn(playerList.get(getPlayerTurn()));
+		nextTurn(playerList.get(getPlayerTurn()-1));
 
 	}
 
@@ -721,6 +721,7 @@ public class MainClass {
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (mode.equalsIgnoreCase("tournament")) {
 				if (gameOver(attacker)) {
+					System.out.println("in tour gameover");
 					List<String> temp;
 					if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
 						temp = new ArrayList<String>();
@@ -783,8 +784,9 @@ public class MainClass {
 	 * @param p
 	 */
 	public boolean gameOver(Player p) {
-		System.out.println("player map size " + player_country_map.size());
 		if (player_country_map.get(p).size() == mapInstance.getCountries().size()) {
+
+			System.out.println("player map size " + player_country_map.get(p).size());
 			return true;
 		}
 		return false;
@@ -1571,7 +1573,7 @@ public class MainClass {
 			}
 
 			// setNextPlayerTurn();
-			p = playerList.get(getPlayerTurn() - 1);
+			//p = playerList.get(getPlayerTurn() - 1);
 			System.out.println();
 			System.out.println("Current Player name: " + p.getPlayerName());
 			p.setCurrentPhase(GamePhase.REINFORCEMENT);
@@ -1587,7 +1589,7 @@ public class MainClass {
 			} else if (p.getStrategy().equals("benevolent")) {
 				BenevolentStrategy.BenevolentStrategyReinforcement(p);
 			}
-			setNextPlayerTurn();
+			
 			
 		/*
 		 * }else { Player winner=playerList.get(0); int
@@ -1650,7 +1652,7 @@ public class MainClass {
 
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
-		this.mode = "tournament";
+		mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));
