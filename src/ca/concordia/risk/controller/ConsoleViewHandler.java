@@ -148,7 +148,7 @@ public class ConsoleViewHandler {
 			break;
 		case "editmap":
 			if(commands.length==2)
-				main.editmap(inputCommand);
+				errorFlag = main.editmap(inputCommand);
 			else errorFlag="Invalid command";
 			break;
 		case "tournament":

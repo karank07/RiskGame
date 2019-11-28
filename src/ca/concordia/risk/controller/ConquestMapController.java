@@ -38,7 +38,7 @@ public class ConquestMapController {
 	 * @throws FileNotFoundException
 	 * @return true if successfully loaded
 	 */
-	public void conquestMapReader(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String fileName) throws FileNotFoundException
+	public boolean conquestMapReader(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String fileName) throws FileNotFoundException
 	{
 		String path = Paths.get("").toAbsolutePath().toString() + "\\maps\\" + fileName;
 		File file = new File(path);
@@ -132,7 +132,7 @@ public class ConquestMapController {
 			
 		}
 	
-		/*System.out.println("c="+countries.size() + "bor=" + borders.size());
+		System.out.println("c="+countries.size() + "bor=" + borders.size());
 		if(countries.size() != borders.size())
 		{
 			System.out.println("Country != Border");
@@ -143,7 +143,7 @@ public class ConquestMapController {
 		{
 			System.out.println("Country === Border");
 				return true;
-		}*/
+		}
 		
 	}
 	

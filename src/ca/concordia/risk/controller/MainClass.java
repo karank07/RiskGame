@@ -62,7 +62,7 @@ public class MainClass {
 	static int turnCounter = 0;
 	private int fileIdentifierFlag;
 	List<Country> visited = new ArrayList<Country>();
-
+	private MapValidate mv;
 	/**
 	 * constructor to initialize player list,card deck, map instance, map operations
 	 * and map writer
@@ -1140,7 +1140,7 @@ public class MainClass {
 
 	/**
 	 * 
-	 * @param visited the list of countries traversed
+	 * @param visited the list of countries traversed 
 	 * @param from    country 1 to be checked for neighbor
 	 * @param to      country 2 to be checked for neighbor
 	 * @param owner   the player owning countries to be checked
@@ -1169,6 +1169,7 @@ public class MainClass {
 			adjFlag = true;
 			return;
 		}
+		
 	}
 
 	public boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
@@ -1269,7 +1270,7 @@ public class MainClass {
 	public void validatemap() {
 		if (mapInstance.getBorders().isEmpty()) {
 			errorFlag = "Invalid!";
-		} else if (mapOperations.isConnected(mapInstance.getBorders())) {
+		} else if (mv.validateMap(Map.getM_instance())) {
 			System.out.println("Map valid!");
 		} else
 			errorFlag = "Invalid map!";
@@ -1311,7 +1312,7 @@ public class MainClass {
 						temp[1])) {
 					errorFlag = "false";
 				} else {
-					errorFlag = "Invalid MAP!";
+					errorFlag = "Invalid MAP! Cannot Load the map!";
 				}
 			}
 			sc.close();
