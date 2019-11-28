@@ -43,6 +43,7 @@ public class Dice
 		   }
 	   }
 	  
+	   System.out.println("ROLL RESULT: "+ rollResult);
 	   Collections.sort(rollResult);
 	   Collections.reverse(rollResult);
 	   p.addDiceResult(rollResult);

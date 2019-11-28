@@ -25,21 +25,21 @@ public class PlayerAttackPhaseTest {
 
 	@Before
 	public void beforeMethod() {
-		 main = new MainClass();
-	cView = new ConsoleViewHandler();
+		main = new MainClass();
+		cView = new ConsoleViewHandler();
 		d = new Dice(3);
 	}
-	
+
 	@After
 	public void afterMethod() {
 		main = null;
 		cView = null;
-	
+
 	}
 
 	@Test
 	public void test() {
-		
+
 		try {
 			main.readMapFile("risk.map");
 		} catch (Exception e) {

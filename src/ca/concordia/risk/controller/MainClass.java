@@ -1141,7 +1141,7 @@ public class MainClass {
 
 	/**
 	 * 
-	 * @param visited the list of countries traversed
+	 * @param visited the list of countries traversed 
 	 * @param from    country 1 to be checked for neighbor
 	 * @param to      country 2 to be checked for neighbor
 	 * @param owner   the player owning countries to be checked
@@ -1170,9 +1170,10 @@ public class MainClass {
 			adjFlag = true;
 			return;
 		}
+		
 	}
 
-	private boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
+	public boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
 		if (isNeighbour(c1, c2) && c1.getCountryOwner() == c2.getCountryOwner()) {
 			return true;
 		}
