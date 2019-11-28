@@ -31,6 +31,10 @@ public class AggressiveStrategy {
 
 	}
 
+/**
+ * This function always reinforces the strongest country of the player p.
+ * @param p the player following the aggressive strategy
+ */
 	public static void AggresiveStrategyReinforcement(Player p) {
 		if (p.getPlayerCards().size() >= 5) {
 			if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
@@ -66,7 +70,12 @@ public class AggressiveStrategy {
 		AggressiveStrategyAttack(p);
 
 	}
-
+	
+	/**
+	 * This function always attacks with the strongest country until it cannot
+	 * attack anymore
+	 * @param p the player following the aggressive strategy
+	 */
 	public static void AggressiveStrategyAttack(Player p) {
 		if (p.getCanAttack()) {
 			Country strongest = strongestCountries.get(0);
@@ -98,7 +107,7 @@ public class AggressiveStrategy {
 					p.setAttackResult(mainClassInstance.attackResult(strongest, defendingCountry, p));
 
 					if (p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
-						mainClassInstance.moveArmies(p, strongest, defendingCountry, p.getAttackResult().length());
+						mainClassInstance.moveArmies(p, strongest, defendingCountry, p.getDiceWins().size());
 					}
 				}
 			}
@@ -108,6 +117,11 @@ public class AggressiveStrategy {
 		AggressiveStrategyFortify(p);
 	}
 
+	/**
+	 * This function fortifies the strongest country by moving
+	 * armies from the country having the highest aggregation of armies
+	 * @param p player following the aggressive strategy
+	 */
 	public static void AggressiveStrategyFortify(Player p) {
 		List<Country> countryConquered = MainClass.player_country_map.get(p);
 		List<Country> countryFromList = new ArrayList<>();
@@ -156,9 +170,6 @@ public class AggressiveStrategy {
 
 	/**
 	 * Returns the strongest country for the player
-	 * 
-	 * @param p
-	 * 
 	 * @param p player
 	 * @return strongestCountry
 	 * 

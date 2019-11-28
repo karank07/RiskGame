@@ -570,6 +570,7 @@ public class Player implements Subject {
 				: defender.getDiceResult().size();
 
 		System.out.println("Attacker rolls: " + this.diceResult);
+		System.out.println("CAN BE NULL???: "+defender);
 		System.out.println("Defender rolls: " + defender.diceResult);
 		for (int i = 0; i < size; i++) {
 			int a = this.getDiceResult().get(i);
@@ -591,7 +592,7 @@ public class Player implements Subject {
 		}
 
 		if (attackerWins.size() == defenderWins.size()) {
-			resultString = "DRAW";
+			resultString = "DEFENDER WINS";
 		} else {
 			resultString = attackerWins.size() > defenderWins.size() ? "ATTACKER WINS" : "DEFENDER WINS";
 		}
