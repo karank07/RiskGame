@@ -46,7 +46,7 @@ public class PlayerAttackPhaseTest {
 			e.printStackTrace();
 		}
 //
-		cView.phaseDecider("gameplayer -add k -add r");
+		cView.phaseDecider("gameplayer -add k human -add r human");
 //
 //		assertEquals(0, main.playerList.get(0).getDiceResult().size());
 //

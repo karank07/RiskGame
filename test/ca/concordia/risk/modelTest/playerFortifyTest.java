@@ -41,7 +41,7 @@ public class playerFortifyTest {
 			e.printStackTrace();
 		}
 		
-		cv.phaseDecider("gameplayer -add k -add r");
+		cv.phaseDecider("gameplayer -add k human -add r human");
 		
 		assertEquals(0,main.playerList.get(0).getDiceResult().size());
 		
