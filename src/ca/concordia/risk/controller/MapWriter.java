@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Map;
 import ca.concordia.risk.utilities.GameConstants;
 import ca.concordia.risk.utilities.ValidMapException;
 
@@ -192,13 +193,22 @@ public class MapWriter {
 						}
 
 						borders.put(Integer.parseInt(border_info[0]), borderList);
-						System.out.println(borders.values());
+						
+						
 					} else {
 						break;
 					}
 				}
-				sc.close();
-				return true;
+				if(countries.size() != borders.size())
+				{
+					Map.getM_instance().resetMap();
+					return false;
+				}
+				else
+				{
+						return true;
+				}
+				
 			} else {
 				sc.close();
 				return false;

@@ -13,8 +13,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import org.hamcrest.Condition.Step;
-
 import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
@@ -1262,14 +1260,15 @@ public class MainClass {
 		String[] temp = s1.split(" ");
 		String filePath = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + temp[1];
 		File filePtr = new File(filePath);
+		
 		try {
 			Scanner sc = new Scanner(filePtr);
-			
 			if(sc.nextLine().equals(GameConstants.MAP_HEADER))
 			{
 				System.out.println("CONQUEST LOAD FILE!");
 				fileIdentifierFlag = 1;
 				MapWriter conquestMapHandle = new MapAdapterController(conquestMapController);
+
 				if(conquestMapHandle.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]))
 				{
 					System.out.println("Loaded");
@@ -1278,22 +1277,29 @@ public class MainClass {
 				else
 				{
 					System.out.println("Not Loaded!");
-					errorFlag = "false";
+					errorFlag = "InvalidMap!";
 				}
+				
 			}
 			else
 			{
 				System.out.println("DOM LOAD FILE!");
 				fileIdentifierFlag = 2;
-				mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]);
+				if(mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]))
+				{
+					errorFlag = "false";
+				}
+				else
+				{
+					errorFlag = "Invalid MAP!";
+				}
 			}
 			sc.close();
 		}
-		catch (FileNotFoundException e1)
+		catch(FileNotFoundException e1)
 		{
 			errorFlag = e1.getLocalizedMessage().toString();
 		}
-		
 		return errorFlag;
 	}
 
@@ -1441,10 +1447,16 @@ public class MainClass {
 				try 
 				{
 					System.out.println("CONQUEST SAVE FILE!");
+					try {
 					conquestMapHandle.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]);
 					errorFlag = "false";
+					}
+					catch(IOException ex)
+					{
+						errorFlag = ex.getLocalizedMessage().toString();
+					}
 				}
-				catch (Exception e)
+				catch (ValidMapException e)
 				{
 					errorFlag = e.getLocalizedMessage().toString();
 				}
@@ -1460,7 +1472,7 @@ public class MainClass {
 					}
 					catch (IOException e) 
 					{
-						errorFlag = "OUT OF B";
+						errorFlag = "File Saved!!";
 					}
 				}
 				catch(ValidMapException e1)
