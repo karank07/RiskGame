@@ -446,8 +446,10 @@ public class MainClass {
 			cList = new ArrayList<>();
 		}
 		cList.add(c);
+		
 		MainClass.player_country_map.put(p, cList);
-
+		System.out.println("player country map after adding: " + MainClass.player_country_map.get(p));
+		
 	}
 
 	/**
@@ -1571,6 +1573,7 @@ public class MainClass {
 		// p = playerList.get(getPlayerTurn() - 1);
 		System.out.println();
 		System.out.println("Current Player name: " + p.getPlayerName());
+		System.out.println(player_country_map.get(p));
 		p.setCurrentPhase(GamePhase.REINFORCEMENT);
 		p.setPlayerReinforceArmy(p.assign_army());
 		if (p.getStrategy().equals("human")) {
@@ -1608,23 +1611,7 @@ public class MainClass {
 			}
 		}
 
-		// setNextPlayerTurn();
-		p = playerList.get(getPlayerTurn() - 1);
-		System.out.println();
-		System.out.println("Current Player name: " + p.getPlayerName());
-		p.setCurrentPhase(GamePhase.REINFORCEMENT);
-		p.setPlayerReinforceArmy(p.assign_army());
-		if (p.getStrategy().equals("human")) {
-			return;
-		} else if (p.getStrategy().equals("random")) {
-			RandomStrategy.RandomStrategyReinforcement(p);
-		} else if (p.getStrategy().equals("cheater")) {
-			CheaterStrategy.cheaterStrategyReinforcement(p);
-		} else if (p.getStrategy().equals("aggressive")) {
-			AggressiveStrategy.AggresiveStrategyReinforcement(p);
-		} else if (p.getStrategy().equals("benevolent")) {
-			BenevolentStrategy.BenevolentStrategyReinforcement(p);
-		}
+		return attack;
 	}
 
 	/**

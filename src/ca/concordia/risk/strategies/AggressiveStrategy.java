@@ -142,7 +142,10 @@ public class AggressiveStrategy {
 				countryFromList.add(c);
 			}
 		}
-
+		if(countryFromList.isEmpty()) {
+			System.out.println("No countries left to fortify");
+			return;
+		}
 		int maxArmy = 0;
 		Country from = countryFromList.get(0);
 		boolean flag = false;
