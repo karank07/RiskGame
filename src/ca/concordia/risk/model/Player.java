@@ -697,7 +697,7 @@ public class Player implements Subject {
 	 */
 	public Country getWeakestCountry() {
 
-		List<Country> playerCountries = this.getPlayerCountries();
+		List<Country> playerCountries = MainClass.player_country_map.get(this);
 
 		Country weakestCountry = null;
 

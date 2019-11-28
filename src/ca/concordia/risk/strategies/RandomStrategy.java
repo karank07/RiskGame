@@ -58,14 +58,14 @@ public class RandomStrategy {
 				"PLAYER COUNTRY MAP SIZE BEFORE ATTACK : " + mainClassInstance.player_country_map.get(p).size());
 
 		List<Country> cList = new ArrayList<Country>();
-		for (Country c : mainClassInstance.player_country_map.get(p)) {
-			if (c.getCountryArmy() > 1) {
+		for (Country c : MainClass.player_country_map.get(p)) {
+			if (c.getCountryArmy() > 1 && !p.attackableCountries(c).isEmpty()) {
 
 				cList.add(c);
 
 			}
 		}
-
+		
 		Country attackerCountry = cList.get(r.nextInt(cList.size()));
 		Country defenderCountry = null;
 
