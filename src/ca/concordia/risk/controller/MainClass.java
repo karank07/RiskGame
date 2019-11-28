@@ -533,7 +533,6 @@ public class MainClass {
 
 		nextTurn(playerList.get(getPlayerTurn() - 1));
 
-
 	}
 
 	Country countryAttacking = null;
@@ -788,7 +787,7 @@ public class MainClass {
 	 * @param p
 	 */
 	public boolean gameOver(Player p) {
-		System.out.println("player map size "+player_country_map.size());
+		System.out.println("player map size " + player_country_map.size());
 		if (player_country_map.get(p).size() == mapInstance.getCountries().size()) {
 			return true;
 		}
@@ -1536,7 +1535,7 @@ public class MainClass {
 	 */
 	public void moveArmies(Player p, Country from, Country to, int numOfArmies) {
 		System.out.println("Attacking Country army before: " + from.getCountryArmy());
-		System.out.println("num of armies "+numOfArmies+ " p.getdicewinssize "+p.getDiceWins().size());
+		System.out.println("num of armies " + numOfArmies + " p.getdicewinssize " + p.getDiceWins().size());
 		if ((numOfArmies >= p.getDiceWins().size()) && (from.getCountryArmy() - numOfArmies) >= 1) {
 
 			from.remCountryArmies(numOfArmies);
@@ -1552,6 +1551,7 @@ public class MainClass {
 
 	/**
 	 * Handles the turn setup for the game
+	 * 
 	 * @param p the current player instance
 	 */
 	public void nextTurn(Player p) {
@@ -1598,6 +1598,7 @@ public class MainClass {
 
 	/**
 	 * Returns true if the player can attack
+	 * 
 	 * @return attack true if the player can attack
 	 */
 	private boolean checkPlayerCanAttack() {
@@ -1608,28 +1609,12 @@ public class MainClass {
 			}
 		}
 
-		// setNextPlayerTurn();
-		p = playerList.get(getPlayerTurn() - 1);
-		System.out.println();
-		System.out.println("Current Player name: " + p.getPlayerName());
-		p.setCurrentPhase(GamePhase.REINFORCEMENT);
-		p.setPlayerReinforceArmy(p.assign_army());
-		if (p.getStrategy().equals("human")) {
-			return;
-		} else if (p.getStrategy().equals("random")) {
-			RandomStrategy.RandomStrategyReinforcement(p);
-		} else if (p.getStrategy().equals("cheater")) {
-			CheaterStrategy.cheaterStrategyReinforcement(p);
-		} else if (p.getStrategy().equals("aggressive")) {
-			AggressiveStrategy.AggresiveStrategyReinforcement(p);
-		} else if (p.getStrategy().equals("benevolent")) {
-			BenevolentStrategy.BenevolentStrategyReinforcement(p);
-		}
+		return attack;
 	}
 
 	/**
-	 * Handles the game ending scenario,
-	 * along-with setting and printing the result in the console
+	 * Handles the game ending scenario, along-with setting and printing the result
+	 * in the console
 	 */
 	private void endTournamentGame() {
 		if (tournamentResult.end) {
@@ -1648,7 +1633,7 @@ public class MainClass {
 			int max = playerCoverage.get(playerList.get(0));
 			attacker = playerList.get(0);
 			for (Player p : playerList) {
-				if(p.equals(attacker))
+				if (p.equals(attacker))
 					continue;
 				if (max == playerCoverage.get(p)) {
 					attacker.setPlayerName("Draw");
@@ -1669,7 +1654,7 @@ public class MainClass {
 						.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
 						.size() == tournamentObject.getNumGames()) {
 					tournamentResult.end = true;
-					System.out.println(tournamentResult.results+" "+attacker.getStrategy());
+					System.out.println(tournamentResult.results + " " + attacker.getStrategy());
 					System.out.println("Game over! Player " + attacker.getPlayerName() + " Wins");
 					System.exit(0);
 				}
@@ -1679,10 +1664,12 @@ public class MainClass {
 
 	/**
 	 * Sets up the tournament mode for the risk game
-	 * @param mapFileNames names of the different map files to be played on
+	 * 
+	 * @param mapFileNames         names of the different map files to be played on
 	 * @param playerStratergyNames the different strategies used to play
-	 * @param numGames the number of games to be played on
-	 * @param maxTurns maximum number of turns till which the game can continue
+	 * @param numGames             the number of games to be played on
+	 * @param maxTurns             maximum number of turns till which the game can
+	 *                             continue
 	 */
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
@@ -1710,8 +1697,8 @@ public class MainClass {
 	}
 
 	/**
-	 * Resets the game by clearing the player list,
-	 * the country mappings and all instances.
+	 * Resets the game by clearing the player list, the country mappings and all
+	 * instances.
 	 */
 	public void resetGame() {
 		playerList.clear();
