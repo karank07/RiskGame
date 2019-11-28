@@ -1474,7 +1474,7 @@ public class MainClass {
 					catch (IOException e) 
 					{
 						errorFlag = "File Saved!!";
-					}
+					}	
 				}
 				catch(ValidMapException e1)
 				{
