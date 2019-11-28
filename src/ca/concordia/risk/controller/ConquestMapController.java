@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Map;
 import ca.concordia.risk.utilities.GameConstants;
 import ca.concordia.risk.utilities.ValidMapException;
 
@@ -26,7 +27,7 @@ public class ConquestMapController {
 	String[] continentDetails, countryDetails, borderDetails;
 	GeneralMethodsController gmc = new GeneralMethodsController();
 	HashMap<Integer, ArrayList<String>> borderNames = new HashMap<Integer, ArrayList<String>>();
-	
+	MapOperations mo = new MapOperations();
 	
 	/**
 	 * This method reads the conquest map file
@@ -35,6 +36,7 @@ public class ConquestMapController {
 	 * @param borders the hashmap of borders
 	 * @param fileName the map file to be loaded
 	 * @throws FileNotFoundException
+	 * @return true if successfully loaded
 	 */
 	public void conquestMapReader(HashMap<Integer, Continent> continents, HashMap<Integer, Country> countries, HashMap<Integer, ArrayList<Integer>> borders, String fileName) throws FileNotFoundException
 	{
@@ -115,6 +117,7 @@ public class ConquestMapController {
 			}
 		}
 		
+		
 		for(int i : borderNames.keySet())
 		{
 			ArrayList<String> list = borderNames.get(i);
@@ -126,9 +129,22 @@ public class ConquestMapController {
 			}
 			
 			borders.put(i, listNumber);
-			//System.out.println(borders);
+			
 		}
-		sc.close();
+	
+		/*System.out.println("c="+countries.size() + "bor=" + borders.size());
+		if(countries.size() != borders.size())
+		{
+			System.out.println("Country != Border");
+			Map.getM_instance().resetMap();
+			return false;
+		}
+		else
+		{
+			System.out.println("Country === Border");
+				return true;
+		}*/
+		
 	}
 	
 	

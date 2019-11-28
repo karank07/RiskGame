@@ -26,7 +26,7 @@ public class MapOperations {
 	static List<ArrayList<String>> neighboursList = new ArrayList<ArrayList<String>>();
 	HashMap<Integer, ArrayList<Integer>> hMap;
 	private ArrayList<Integer> visited;
-	private int count;
+	private static int count = 0;
 	int co_id;
 
 	/**
@@ -374,7 +374,6 @@ public class MapOperations {
 	public boolean isConnected(HashMap<Integer, ArrayList<Integer>> borders) {
 		hMap = borders;
 		visited = new ArrayList<Integer>();
-		count = 0;
 		if(borders.isEmpty())
 		{
 			return true;
@@ -400,6 +399,7 @@ public class MapOperations {
 	 */
 	public void traverseMap(int node) {
 		count = count + 1;
+		System.out.println(count);
 		visited.add(node);
 
 		for (int n : neighbourNodes(node)) {

@@ -125,7 +125,7 @@ public class ConsoleViewHandler {
 
 		case "editneighbor":
 			if (commands.length >= 3 && !Map.m_instance.getCountries().isEmpty()) {
-				errorFlag = errorFlag = main.editneigbor(inputCommand);
+				errorFlag = main.editneigbor(inputCommand);
 				
 			} else
 				errorFlag = "Invalid command!";

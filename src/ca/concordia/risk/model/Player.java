@@ -570,7 +570,7 @@ public class Player implements Subject {
 				: defender.getDiceResult().size();
 
 		System.out.println("Attacker rolls: " + this.diceResult);
-		System.out.println("CAN BE NULL???: "+defender);
+		System.out.println("DeFENDER :(in player class attack method) : "+defender);
 		System.out.println("Defender rolls: " + defender.diceResult);
 		for (int i = 0; i < size; i++) {
 			int a = this.getDiceResult().get(i);
