@@ -97,7 +97,7 @@ public class ConsoleViewHandler {
 				main.placeAll();
 
 			} else
-				errorFlag = "Invalid command!";
+				errorFlag = "Invalid command!"; 
 			break;
 		case "reinforce":
 		case "exchangecards":
@@ -155,12 +155,6 @@ public class ConsoleViewHandler {
 			if(commands.length==9) {
 				main.setupTournament(commands[2],commands[4],commands[6],commands[8]);
 			}
-			break;
-		case "savegame":
-			main.saveGame(commands[1]);
-			break;
-		case "loadgame":
-			main.loadGame(commands[1]);
 		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";
