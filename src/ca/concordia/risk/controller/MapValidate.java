@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import ca.concordia.risk.model.Map;
 import ca.concordia.risk.utilities.GameConstants;
 
 /**
@@ -55,6 +56,11 @@ public class MapValidate {
 
 		sc.close();
 		return valid_flag;
+	}
+	
+	public boolean validateMap(Map map)
+	{
+		return true;
 	}
 
 }

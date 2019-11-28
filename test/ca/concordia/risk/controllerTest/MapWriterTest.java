@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -42,7 +43,7 @@ public class MapWriterTest {
 
 	@BeforeClass
 	public static void before() {
-		mC = new MainClass();
+		mC = MainClass.getM_instance();
 		mO = new MapOperations();
 		mV = new MapValidate();
 		mW = new MapWriter();
@@ -50,22 +51,16 @@ public class MapWriterTest {
 		continents = new HashMap<Integer, Continent>();
 		borders = new HashMap<Integer, ArrayList<Integer>>();
 
-	} 
+	}
 
 	@Test
 	public void test() throws ValidMapException {
 		// Test: whether loading the map file is working or not
-		String fileName = "demo.map";
+		String fileName = "usa.map";
 
-		try {
-			assertTrue(mW.loadMap(continents, countries, borders, fileName));
-		} catch (FileNotFoundException e) {
-			System.out.println("File not Found for loadmap");
-		}
+		assertEquals("false", mC.editmap(fileName));
+		// assertFalse(mW.loadMap(continents, countries, borders, fileName));
 
-		
-
-		
 	}
 
 }

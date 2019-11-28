@@ -26,7 +26,6 @@ import ca.concordia.risk.strategies.AggressiveStrategy;
 import ca.concordia.risk.strategies.BenevolentStrategy;
 import ca.concordia.risk.strategies.CheaterStrategy;
 import ca.concordia.risk.strategies.RandomStrategy;
-import ca.concordia.risk.utilities.GameConstants;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 //import ca.concordia.risk.view.GameView;
@@ -64,7 +63,7 @@ public class MainClass {
 	static int turnCounter = 0;
 	private int fileIdentifierFlag;
 	List<Country> visited = new ArrayList<Country>();
-
+	private MapValidate mv;
 	/**
 	 * constructor to initialize player list,card deck, map instance, map operations
 	 * and map writer
@@ -725,12 +724,12 @@ public class MainClass {
 			if (mode.equalsIgnoreCase("tournament")) {
 				if (gameOver(attacker)) {
 					List<String> temp;
-					if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
+					if (tournamentResult.results.get(TournamentController.currentMap).isEmpty()) {
 						temp = new ArrayList<String>();
 					} else
-						temp = tournamentResult.results.get(tournamentController.currentMap);
+						temp = tournamentResult.results.get(TournamentController.currentMap);
 					temp.add(attacker.getPlayerName());
-					tournamentResult.results.put(tournamentController.currentMap, temp);
+					tournamentResult.results.put(TournamentController.currentMap, temp);
 					System.out.println(tournamentResult.results);
 					if (tournamentResult.results.size() == tournamentObject.getGameMaps().size()
 							&& tournamentResult.results
@@ -1142,7 +1141,7 @@ public class MainClass {
 
 	/**
 	 * 
-	 * @param visited the list of countries traversed
+	 * @param visited the list of countries traversed 
 	 * @param from    country 1 to be checked for neighbor
 	 * @param to      country 2 to be checked for neighbor
 	 * @param owner   the player owning countries to be checked
@@ -1171,9 +1170,10 @@ public class MainClass {
 			adjFlag = true;
 			return;
 		}
+		
 	}
 
-	private boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
+	public boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
 		if (isNeighbour(c1, c2) && c1.getCountryOwner() == c2.getCountryOwner()) {
 			return true;
 		}
@@ -1271,7 +1271,7 @@ public class MainClass {
 	public void validatemap() {
 		if (mapInstance.getBorders().isEmpty()) {
 			errorFlag = "Invalid!";
-		} else if (mapOperations.isConnected(mapInstance.getBorders())) {
+		} else if (mv.validateMap(Map.getM_instance())) {
 			System.out.println("Map valid!");
 		} else
 			errorFlag = "Invalid map!";
@@ -1313,7 +1313,7 @@ public class MainClass {
 						temp[1])) {
 					errorFlag = "false";
 				} else {
-					errorFlag = "Invalid MAP!";
+					errorFlag = "Invalid MAP! Cannot Load the map!";
 				}
 			}
 			sc.close();
@@ -1594,7 +1594,7 @@ public class MainClass {
 		System.out.println(turnCounter);
 		System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
 		//if (mode.equalsIgnoreCase("tournament")) {
-			if (turnCounter >= (tournamentObject.getMaxTurns() * playerList.size())) {
+			if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
 				System.out.println("calling end tournament");
 				endTournamentGame();
 				return;
@@ -1708,7 +1708,7 @@ public class MainClass {
 	 */
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
-		this.mode = "tournament";
+		mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));

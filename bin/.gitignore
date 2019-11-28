@@ -1,4 +1,12 @@
-/.metadata/
+
+/.classpath
+/.gitignore
+/.project
+/.settings/
+/LICENSE
+/RiskGame.umlcd.png
+/TestSuit.class
+/ca/
 /doc/
 /ca/
 /maps/

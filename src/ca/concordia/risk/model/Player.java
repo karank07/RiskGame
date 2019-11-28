@@ -1,15 +1,8 @@
 package ca.concordia.risk.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.utilities.GamePhase;
@@ -355,7 +348,7 @@ public class Player implements Subject {
 	 * @return total countries the player own
 	 */
 	public int getPlayerTotalCountries() {
-		playerTotalCountries = main.player_country_map.get(this).size();
+		playerTotalCountries = MainClass.player_country_map.get(this).size();
 		System.out.println("total countries" + playerTotalCountries);
 		return playerTotalCountries;
 	}
@@ -619,7 +612,7 @@ public class Player implements Subject {
 		this.fortifiedCountry = to.getCountryName();
 		this.fortifyCountry = from.getCountryName();
 		this.fortifyArmies = army;
-		boolean adjFlag = main.checkNeighbours(from, to, this.getPlayerId());
+		boolean adjFlag = main.isConnected(from, to, this, new ArrayList<Country>());
 		if (adjFlag) {
 			if (from.getCountryArmy() - army >= 1) {
 				from.remCountryArmies(army);
@@ -688,34 +681,6 @@ public class Player implements Subject {
 		return countriesAttackable;
 	}
 
-	/**
-	 * Returns the weakest country for the player
-	 * 
-	 * @param p player
-	 * @return weakestCountry
-	 * 
-	 */
-	public Country getWeakestCountry() {
-
-		List<Country> playerCountries = MainClass.player_country_map.get(this);
-
-		Country weakestCountry = null;
-
-		int minArmy = Integer.MAX_VALUE;
-
-		for (Country country : playerCountries) {
-
-			int playerArmy = country.getCountryArmy();
-
-			if (playerArmy < minArmy) {
-				minArmy = playerArmy;
-				weakestCountry = country;
-			}
-		}
-
-		return weakestCountry;
-
-	}
 
 	/**
 	 * Notify method is used to notify all observers to
