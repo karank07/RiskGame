@@ -76,11 +76,18 @@ public class RandomStrategy {
 //				break;
 //			}
 //		}
+		
 		List<Country> defenderCountryList = new ArrayList<Country>();
 		for (int i = 1; i <= Map.getM_instance().getCountries().size(); i++) {
+			//System.out.println(""+Map.getM_instance().getCountries().get(i)+" Country Owner : "+ Map.getM_instance().getCountries().get(i).getCountryOwner()  +" and current player: "+ p.getPlayerId());
 			if (Map.getM_instance().getCountries().get(i).getCountryOwner() != p.getPlayerId()) {
+			
 				Country c = Map.getM_instance().getCountries().get(i);
-				if (c.getCountryArmy() > 0 && mainClassInstance.canAttack(attackerCountry, c)) {
+				//System.out.println("This Can be Defender COuntry: " + c.getCountryName());
+				
+				//System.out.println(">>>>>>>"+ attackerCountry.getCountryName()+" and " +c.getCountryName() +" Is Neighbour: "+ mainClassInstance.isNeighbour(attackerCountry, c) + " army in "+ attackerCountry.getCountryName() +" is "+ attackerCountry.getCountryArmy());
+				if (attackerCountry.getCountryArmy()>=2 && mainClassInstance.isNeighbour(attackerCountry, c)) {
+					//System.out.println("In defender list making: "+ "neighbour of "+ attackerCountry.getCountryName() + " is "+ c.getCountryName());
 					defenderCountryList.add(c);
 				}
 			}
@@ -95,9 +102,20 @@ public class RandomStrategy {
 		 * .get(r.nextInt(p.attackableCountries(attackerCountry).size())); } else {
 		 * RandomStrategyFortify(p); }
 		 */
+		if(defenderCountryList.size() == 0) {
+			RandomStrategyFortify(p);
+		}
 
-		defenderCountry = defenderCountryList.get(r.nextInt(defenderCountryList.size()));
+		System.out.println("attacker country: " + attackerCountry.getCountryName() +" Defender country List: "+ defenderCountryList);
+		int temp_index = r.nextInt(defenderCountryList.size());
+		if(temp_index == 0) {
+			defenderCountry = defenderCountryList.get(0);
+		}
+		else {
+			defenderCountry = defenderCountryList.get(temp_index);
 
+		}
+		
 		int randomTimesAttack = r.nextInt(5) + 1; // Bw. 1 and 5
 
 		for (int i = 0; i < randomTimesAttack; i++) {
@@ -145,7 +163,8 @@ public class RandomStrategy {
 
 		for (int i = 0; i < mainClassInstance.player_country_map.get(p).size(); i++) {
 			Country c = mainClassInstance.player_country_map.get(p).get(i);
-			if (mainClassInstance.checkNeighbours(fromCountry, c, p.getPlayerId())) {
+			//if (mainClassInstance.isConnected(fromCountry, c, p, new ArrayList<Country>())) {
+			if(mainClassInstance.checkNeighbours(fromCountry, c, fromCountry.getCountryOwner())) {
 				toCountryList.add(c);
 			}
 		}
@@ -156,14 +175,12 @@ public class RandomStrategy {
 
 			mainClassInstance.nextTurn(p);
 		} else {
-			if(toCountryList.size() == 0) {
+			if (toCountryList.size() == 0) {
 				toCountry = toCountryList.get(0);
-			}
-			else
-			{
+			} else {
 				toCountry = toCountryList.get(r.nextInt(toCountryList.size()));
 			}
-			
+
 		}
 
 		int army = fromCountry.getCountryArmy() - r.nextInt(fromCountry.getCountryArmy() - 1);

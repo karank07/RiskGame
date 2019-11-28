@@ -75,13 +75,15 @@ public class MapOperationsTest {
 
 		assertTrue(mO.addCountry(Map.getM_instance(), continents, countries, borders, "a1", "c1"));
 		assertTrue(mO.addCountry(Map.getM_instance(), continents, countries, borders, "a2", "c1"));
+		assertTrue(mO.addCountry(Map.getM_instance(), continents, countries, borders, "b1", "c2"));
+		assertFalse(mO.isConnected(borders));
 
 		assertTrue(mO.addNeighbours(Map.getM_instance(), countries, borders, "a1", "a2"));
 
 		assertEquals("Continents and countries and neighbours under continent removed successfully",
 				mO.deleteContinent(continents, countries, borders, "c1"));
 
-		assertEquals("Continent removed successfully", mO.deleteContinent(continents, countries, borders, "c2"));
+		assertEquals("Continents and countries and neighbours under continent removed successfully", mO.deleteContinent(continents, countries, borders, "c2"));
 
 	}
 
