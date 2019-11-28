@@ -107,7 +107,7 @@ public class AggressiveStrategy {
 					p.setAttackResult(mainClassInstance.attackResult(strongest, defendingCountry, p));
 
 					if (p.getAttackResult().equalsIgnoreCase("Attacker won! Country conquered")) {
-						mainClassInstance.moveArmies(p, strongest, defendingCountry, p.getAttackResult().length());
+						mainClassInstance.moveArmies(p, strongest, defendingCountry, p.getDiceWins().size());
 					}
 				}
 			}

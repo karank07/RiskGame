@@ -440,6 +440,7 @@ public class MainClass {
 	 */
 	public void mapPlayerToCountry(Player p, Country c) {
 		List<Country> cList = MainClass.player_country_map.get(p);
+		System.out.println("player country map before adding: " + MainClass.player_country_map.get(p));
 		c.setCountryOwner(p.getPlayerId());
 		if (cList == null) {
 			cList = new ArrayList<>();
@@ -529,6 +530,7 @@ public class MainClass {
 		System.out.println();
 
 		resetPlayerTurn();
+
 		nextTurn(playerList.get(getPlayerTurn() - 1));
 
 	}
@@ -721,7 +723,6 @@ public class MainClass {
 			assignCardToPlayer(attacker, pickUpCardFromDeck());
 			if (mode.equalsIgnoreCase("tournament")) {
 				if (gameOver(attacker)) {
-					System.out.println("in tour gameover");
 					List<String> temp;
 					if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
 						temp = new ArrayList<String>();
@@ -786,9 +787,8 @@ public class MainClass {
 	 * @param p
 	 */
 	public boolean gameOver(Player p) {
+		System.out.println("player map size " + player_country_map.size());
 		if (player_country_map.get(p).size() == mapInstance.getCountries().size()) {
-
-			System.out.println("player map size " + player_country_map.get(p).size());
 			return true;
 		}
 		return false;
@@ -1535,21 +1535,23 @@ public class MainClass {
 	 */
 	public void moveArmies(Player p, Country from, Country to, int numOfArmies) {
 		System.out.println("Attacking Country army before: " + from.getCountryArmy());
-
+		System.out.println("num of armies " + numOfArmies + " p.getdicewinssize " + p.getDiceWins().size());
 		if ((numOfArmies >= p.getDiceWins().size()) && (from.getCountryArmy() - numOfArmies) >= 1) {
 
 			from.remCountryArmies(numOfArmies);
 			to.addCountryArmies(numOfArmies);
 			errorFlag = "false";
+
+			System.out.println("Attacking Country army: " + from.getCountryArmy());
+			System.out.println("Attacked Country army: " + to.getCountryArmy());
 		} else
 			errorFlag = "Invalid Command!";
-		System.out.println("Attacking Country army: " + from.getCountryArmy());
-		System.out.println("Attacked Country army: " + to.getCountryArmy());
 
 	}
 
 	/**
 	 * Handles the turn setup for the game
+	 * 
 	 * @param p the current player instance
 	 */
 	public void nextTurn(Player p) {
@@ -1596,6 +1598,7 @@ public class MainClass {
 
 	/**
 	 * Returns true if the player can attack
+	 * 
 	 * @return attack true if the player can attack
 	 */
 	private boolean checkPlayerCanAttack() {
@@ -1604,14 +1607,14 @@ public class MainClass {
 			if (p.getCanAttack()) {
 				attack = true;
 			}
-
 		}
+
 		return attack;
 	}
 
 	/**
-	 * Handles the game ending scenario,
-	 * along-with setting and printing the result in the console
+	 * Handles the game ending scenario, along-with setting and printing the result
+	 * in the console
 	 */
 	private void endTournamentGame() {
 		if (tournamentResult.end) {
@@ -1630,7 +1633,7 @@ public class MainClass {
 			int max = playerCoverage.get(playerList.get(0));
 			attacker = playerList.get(0);
 			for (Player p : playerList) {
-				if(p.equals(attacker))
+				if (p.equals(attacker))
 					continue;
 				if (max == playerCoverage.get(p)) {
 					attacker.setPlayerName("Draw");
@@ -1651,7 +1654,7 @@ public class MainClass {
 						.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
 						.size() == tournamentObject.getNumGames()) {
 					tournamentResult.end = true;
-					System.out.println(tournamentResult.results+" "+attacker.getStrategy());
+					System.out.println(tournamentResult.results + " " + attacker.getStrategy());
 					System.out.println("Game over! Player " + attacker.getPlayerName() + " Wins");
 					System.exit(0);
 				}
@@ -1661,14 +1664,16 @@ public class MainClass {
 
 	/**
 	 * Sets up the tournament mode for the risk game
-	 * @param mapFileNames names of the different map files to be played on
+	 * 
+	 * @param mapFileNames         names of the different map files to be played on
 	 * @param playerStratergyNames the different strategies used to play
-	 * @param numGames the number of games to be played on
-	 * @param maxTurns maximum number of turns till which the game can continue
+	 * @param numGames             the number of games to be played on
+	 * @param maxTurns             maximum number of turns till which the game can
+	 *                             continue
 	 */
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
-		mode = "tournament";
+		this.mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));
@@ -1692,8 +1697,8 @@ public class MainClass {
 	}
 
 	/**
-	 * Resets the game by clearing the player list,
-	 * the country mappings and all instances.
+	 * Resets the game by clearing the player list, the country mappings and all
+	 * instances.
 	 */
 	public void resetGame() {
 		playerList.clear();
