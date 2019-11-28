@@ -44,7 +44,7 @@ public class RandomStrategy {
 			}
 		}
 
-		Country country = p.getPlayerCountries().get(r.nextInt(p.getPlayerCountries().size()));
+		Country country = p.getPlayerCountries().get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
 
 		String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
 
@@ -60,7 +60,9 @@ public class RandomStrategy {
 		List<Country> cList = new ArrayList<Country>();
 		for (Country c : mainClassInstance.player_country_map.get(p)) {
 			if (c.getCountryArmy() > 1) {
+
 				cList.add(c);
+
 			}
 		}
 
@@ -73,7 +75,7 @@ public class RandomStrategy {
 //				break;
 //			}
 //		}
-		System.out.println("In RANDOM : ATTACKABLE COUNTRY SIZE: "+ p.attackableCountries(attackerCountry).size());
+		System.out.println("In RANDOM : ATTACKABLE COUNTRY SIZE: " + p.attackableCountries(attackerCountry).size());
 
 		if (p.attackableCountries(attackerCountry).size() != 0) {
 
@@ -110,22 +112,24 @@ public class RandomStrategy {
 	}
 
 	private static void RandomStrategyFortify(Player p) {
-		Country fromCountry = p.getPlayerCountries().get(r.nextInt(MainClass.player_country_map.get(p).size()));
+		Country fromCountry = p.getPlayerCountries().get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
 //		System.out.println("Trying to fortify...");
 //		System.out.println("Player country map size: "+ mainClassInstance.player_country_map.get(p).size());
 //		int temp = r.nextInt(mainClassInstance.player_country_map.get(p).size());
-//		
-		System.out.println("From COuntry: " + fromCountry.getCountryName());
+
+		// System.out.println("From COuntry: " + fromCountry.getCountryName());
 		Country toCountry = null;
 		int army = 0;
 		while (true) {
-			System.out.println("in while");
+			// System.out.println("in while");
 			toCountry = Map.getM_instance().getNeighbourCountries(fromCountry)
 					.get(r.nextInt(Map.getM_instance().getNeighbourCountries(fromCountry).size()));
-			fromCountry = mainClassInstance.player_country_map.get(p)
-					.get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
+
 			if (toCountry.getCountryOwner() == p.getPlayerId()) {
 				break;
+			} else {
+				fromCountry = mainClassInstance.player_country_map.get(p)
+						.get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
 			}
 		}
 		System.out.println("To country: " + toCountry.getCountryName());

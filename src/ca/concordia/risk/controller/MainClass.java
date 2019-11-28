@@ -1266,7 +1266,7 @@ public class MainClass {
 		
 		try {
 			Scanner sc = new Scanner(filePtr);
-			if(sc.nextLine().equals(GameConstants.MAP_HEADER))
+			if(sc.nextLine().equals("[Map]"))
 			{
 				System.out.println("CONQUEST LOAD FILE!");
 				fileIdentifierFlag = 1;
@@ -1474,16 +1474,15 @@ public class MainClass {
 					catch (IOException e) 
 					{
 						errorFlag = "File Saved!!";
-					}
+					}	
 				}
 				catch(ValidMapException e1)
 				{
 					errorFlag = e1.getLocalizedMessage().toString();
 				}
-			} catch (ValidMapException e1) {
-				errorFlag = e1.getLocalizedMessage().toString();
+			
 			}
-		}
+		
 		return errorFlag;
 	}
 
