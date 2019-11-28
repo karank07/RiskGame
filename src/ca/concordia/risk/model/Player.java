@@ -591,7 +591,7 @@ public class Player implements Subject {
 		}
 
 		if (attackerWins.size() == defenderWins.size()) {
-			resultString = "DRAW";
+			resultString = "DEFENDER WINS";
 		} else {
 			resultString = attackerWins.size() > defenderWins.size() ? "ATTACKER WINS" : "DEFENDER WINS";
 		}
