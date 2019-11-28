@@ -17,6 +17,7 @@ import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
+import ca.concordia.risk.model.GameSave;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
@@ -25,7 +26,6 @@ import ca.concordia.risk.strategies.AggressiveStrategy;
 import ca.concordia.risk.strategies.BenevolentStrategy;
 import ca.concordia.risk.strategies.CheaterStrategy;
 import ca.concordia.risk.strategies.RandomStrategy;
-import ca.concordia.risk.utilities.GameConstants;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 //import ca.concordia.risk.view.GameView;
@@ -724,12 +724,12 @@ public class MainClass {
 			if (mode.equalsIgnoreCase("tournament")) {
 				if (gameOver(attacker)) {
 					List<String> temp;
-					if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
+					if (tournamentResult.results.get(TournamentController.currentMap).isEmpty()) {
 						temp = new ArrayList<String>();
 					} else
-						temp = tournamentResult.results.get(tournamentController.currentMap);
+						temp = tournamentResult.results.get(TournamentController.currentMap);
 					temp.add(attacker.getPlayerName());
-					tournamentResult.results.put(tournamentController.currentMap, temp);
+					tournamentResult.results.put(TournamentController.currentMap, temp);
 					System.out.println(tournamentResult.results);
 					if (tournamentResult.results.size() == tournamentObject.getGameMaps().size()
 							&& tournamentResult.results
@@ -1595,7 +1595,7 @@ public class MainClass {
 		System.out.println(turnCounter);
 		System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
 		//if (mode.equalsIgnoreCase("tournament")) {
-			if (turnCounter >= (tournamentObject.getMaxTurns() * playerList.size())) {
+			if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
 				System.out.println("calling end tournament");
 				endTournamentGame();
 				return;
@@ -1709,7 +1709,7 @@ public class MainClass {
 	 */
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
-		this.mode = "tournament";
+		mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));
@@ -1741,5 +1741,31 @@ public class MainClass {
 		player_country_map.clear();
 		mapInstance.resetMap();
 		turnCounter = 0;
+	}
+	
+	/**
+	 * this method copies the data to be saved
+	 * @param savedGame instance of the GameSave class
+	 */
+	public void copySaveData(GameSave savedGame){
+		savedGame.setGlobalCardDeck(globalCardDeck);
+		savedGame.setPlayerList(playerList);
+		savedGame.setPlayer_country_map(player_country_map);
+		savedGame.setTurn(turn);
+		savedGame.setMode(mode);
+		savedGame.setTurnCounter(turnCounter);
+		savedGame.setTournamentmode(tournamentObject);
+	}
+	
+	public void restoreData(GameSave gamesave) 
+	{
+		globalCardDeck= gamesave.getGlobalCardDeck();
+		playerList = gamesave.getPlayerList();
+		player_country_map = gamesave.getPlayer_country_map();
+		turn = gamesave.getTurn();
+		mode = gamesave.getMode();
+		turnCounter = gamesave.getTurnCounter();
+		tournamentObject = gamesave.getTournamentmode();
+		
 	}
 }

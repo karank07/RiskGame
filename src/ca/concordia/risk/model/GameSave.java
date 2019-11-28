@@ -3,11 +3,15 @@ package ca.concordia.risk.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import com.google.gson.Gson;
 
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.utilities.GamePhase;
+
+
 
 /**
  * This class handle the event of saving the game
@@ -22,6 +26,35 @@ public class GameSave
 	public String mode;
 	public GamePhase phase;
 	public static int turn;
+	public HashMap<Integer, Continent> continents;
+	public HashMap<Integer, ArrayList<Integer>> borders;
+	public HashMap<Integer, Country> countries;
+	public static int turnCounter;
+	public TournamentMode tournamentmode;
+	/**
+	 * @return the tournamentmode
+	 */
+	public TournamentMode getTournamentmode() {
+		return tournamentmode;
+	}
+	/**
+	 * @param tournamentmode the tournamentmode to set
+	 */
+	public void setTournamentmode(TournamentMode tournamentmode) {
+		this.tournamentmode = tournamentmode;
+	}
+	/**
+	 * @return the turnCounter
+	 */
+	public static int getTurnCounter() {
+		return turnCounter;
+	}
+	/**
+	 * @param turnCounter the turnCounter to set
+	 */
+	public static void setTurnCounter(int turnCounter) {
+		GameSave.turnCounter = turnCounter;
+	}
 	/**
 	 * @return the player_country_map
 	 */
@@ -93,6 +126,65 @@ public class GameSave
 	 */
 	public static void setTurn(int turn) {
 		GameSave.turn = turn;
+	}
+	
+	/**
+	 * @return the countries
+	 */
+	public HashMap<Integer, Country> getCountries() {
+		return countries;
+	}
+	/**
+	 * @param countries the countries to set
+	 */
+	public void setCountries(HashMap<Integer, Country> countries) {
+		this.countries = countries;
+	}
+	/**
+	 * @return the continents
+	 */
+	public HashMap<Integer, Continent> getContinents() {
+		return continents;
+	}
+	/**
+	 * @param continents the continents to set
+	 */
+	public void setContinents(HashMap<Integer, Continent> continents) {
+		this.continents = continents;
+	}
+	/**
+	 * @return the borders
+	 */
+	public HashMap<Integer, ArrayList<Integer>> getBorders() {
+		return borders;
+	}
+	/**
+	 * @param borders the borders to set
+	 */
+	public void setBorders(HashMap<Integer, ArrayList<Integer>> borders) {
+		this.borders = borders;
+	}
+	
+	public void saveThisGame(File saveFile){
+
+		Map.getM_instance().copySavedData(this);
+		MainClass.getM_instance().copySaveData(this);
+		Gson gson = GameSaveBuilder.getGSONInstance();
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(saveFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			gson.toJson(this, fw);
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

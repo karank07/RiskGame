@@ -36,6 +36,7 @@ public class TournamentController {
 
 	}
 
+	
 	private void loadmap() {
 		currentMap = tournamentObject.getGameMaps().get(index);
 		try {

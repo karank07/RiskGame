@@ -1,4 +1,4 @@
-/.metadata/
+
 /.classpath
 /.gitignore
 /.project
@@ -8,6 +8,7 @@
 /TestSuit.class
 /ca/
 /doc/
+/ca/
 /maps/
 /observerPattern.umlcd.png
 /tests/

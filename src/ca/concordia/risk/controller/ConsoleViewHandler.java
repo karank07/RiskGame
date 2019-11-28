@@ -1,8 +1,6 @@
 package ca.concordia.risk.controller;
 
 import ca.concordia.risk.model.Map;
-import ca.concordia.risk.model.Player;
-import ca.concordia.risk.utilities.*;
 import java.io.IOException;
 
 import ca.concordia.risk.view.Console;
@@ -58,7 +56,7 @@ public class ConsoleViewHandler {
 			break;
 
 		case "gameplayer":
-			if (commands[1]=="-remove" && commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
+			if (commands[1].equalsIgnoreCase("-remove") && commands.length >= 3 && commands.length % 2 != 0 && !Map.m_instance.getBorders().isEmpty()) {
 				errorFlag = "false";
 				main.gamePlayer(inputCommand);
 			} else if(commands[1].equalsIgnoreCase("-add")) {
