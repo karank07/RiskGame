@@ -31,7 +31,7 @@ public class TournamentController {
 		playerStratergies = tournamentObject.getPlayerStratergies();
 		numOfGames = tournamentObject.getNumGames();
 		gameTurns = tournamentObject.getMaxTurns();
-
+		
 		startTournament();
 
 	}
@@ -48,7 +48,7 @@ public class TournamentController {
 	}
 
 	private void startTournament() {
-		
+	
 		for (int i = 0; i < tournamentObject.getGameMaps().size(); i++) {
 			for(int j=0;j<tournamentObject.getNumGames();j++) {
 				loadmap();
@@ -78,9 +78,12 @@ public class TournamentController {
 		showResult();
 	}
 
-	private void showResult() {
+	public void showResult() {
+		
 		Iterator iterator = tournamentResult.results.entrySet().iterator();
+		System.out.println("before while");
 		while (iterator.hasNext()) {
+			
 			Map.Entry mapElement = (Map.Entry) iterator.next();
 
 			System.out.println(mapElement.getKey() + " : " + mapElement.getValue());

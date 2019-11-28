@@ -72,7 +72,7 @@ public class MapWriter {
 
 				int continent_id = coun.getContinentID();
 
-				buffW.write(i + " " + coun.getCountryName() + " " + (continent_id) + " " + coun.getXCo() + " "
+				buffW.write(coun.getCountryID() + " " + coun.getCountryName() + " " + (continent_id) + " " + coun.getXCo() + " "
 						+ coun.getYCo());
 				buffW.newLine();
 			}
@@ -151,20 +151,20 @@ public class MapWriter {
 						break;
 					}
 				}
-
+				int countryId = 0;
 				while (sc.hasNext()) {
-
+					
 					country_start = sc.nextLine();
 
 					if (country_start.length() > 0) {
-
+						
 						country_info = country_start.split(" ");
-
-						Country coun = new Country(country_info[1], Integer.parseInt(country_info[2]),
+						countryId++;
+						Country coun = new Country(countryId,country_info[1], Integer.parseInt(country_info[2]),
 								Integer.parseInt(country_info[3]), Integer.parseInt(country_info[4]));
 
 						countries.put(Integer.parseInt(country_info[0]), coun);
-
+						
 					} else {
 						break;
 					}

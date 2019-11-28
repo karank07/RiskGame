@@ -29,7 +29,7 @@ public class DiceTest {
 
 	@Test
 	public void testRollDice() {
-		Player p = new Player(1,"x");
+		Player p = new Player(1,"x","human");
 		assertEquals(3,d.rollDice(3, p).size());
 	}
 

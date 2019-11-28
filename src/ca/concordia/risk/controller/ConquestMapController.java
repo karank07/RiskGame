@@ -100,7 +100,7 @@ public class ConquestMapController {
 			if(countryStart.length() > 0)
 			{
 				countryDetails = countryStart.split(",");
-				Country coun = new Country(countryDetails[0], gmc.getContinentID(continents, countryDetails[3]) , Integer.parseInt(countryDetails[1]),Integer.parseInt(countryDetails[2]));
+				Country coun = new Country(countryCount,countryDetails[0], gmc.getContinentID(continents, countryDetails[3]) , Integer.parseInt(countryDetails[1]),Integer.parseInt(countryDetails[2]));
 				countries.put(countryCount, coun);
 				
 				ArrayList<String> tempList = new ArrayList<String>();

@@ -45,7 +45,7 @@ public class PlayerReinforcementTest {
 			e.printStackTrace();
 		}
 
-		cVH.phaseDecider("gameplayer -add k -add r");
+		cVH.phaseDecider("gameplayer -add k human -add r human");
 
 		
 		

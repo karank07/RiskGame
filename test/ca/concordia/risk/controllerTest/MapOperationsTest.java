@@ -42,7 +42,7 @@ public class MapOperationsTest {
 
 	@BeforeClass
 	public static void before() {
-		mC = new MainClass();
+		mC = MainClass.getM_instance();
 		mO = new MapOperations();
 		mV = new MapValidate();
 		mW = new MapWriter();
@@ -57,16 +57,12 @@ public class MapOperationsTest {
 		// Test: whether loading the map file is working or not
 		String fileName = "demo.map";
 
-		try {
-			assertTrue(mW.loadMap(continents, countries, borders, fileName));
-		} catch (FileNotFoundException e) {
-			System.out.println("File not Found for loadmap");
-		}
+		assertEquals("false", mC.editmap("editmap " + fileName));
 
 		File file = new File(
 				Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + fileName);
-		
-		
+
+		System.out.println("File path in map op test: " + file);
 		assertTrue(mO.isConnected(borders));
 
 		assertTrue(mO.addContinent(Map.getM_instance(), continents, "c1", 3, "blue")); // add c11 to fail addcountry
@@ -83,7 +79,8 @@ public class MapOperationsTest {
 		assertEquals("Continents and countries and neighbours under continent removed successfully",
 				mO.deleteContinent(continents, countries, borders, "c1"));
 
-		assertEquals("Continents and countries and neighbours under continent removed successfully", mO.deleteContinent(continents, countries, borders, "c2"));
+		assertEquals("Continents and countries and neighbours under continent removed successfully",
+				mO.deleteContinent(continents, countries, borders, "c2"));
 
 	}
 

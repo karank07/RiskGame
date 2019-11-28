@@ -58,7 +58,7 @@ public class MapWriterTest {
 		// Test: whether loading the map file is working or not
 		String fileName = "usa.map";
 
-		assertEquals("false", mC.editmap(fileName));
+		assertEquals("false", mC.editmap("editmap " + fileName));
 		// assertFalse(mW.loadMap(continents, countries, borders, fileName));
 
 	}

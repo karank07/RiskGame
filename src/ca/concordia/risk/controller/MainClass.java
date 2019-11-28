@@ -320,7 +320,7 @@ public class MainClass {
 			for (Player obj : MainClass.playerList) {
 				if (playerName.contentEquals(obj.getPlayerName())) {
 					playerList.remove(obj.getPlayerId() - 1);
-					System.out.println("\nplayer deleted");
+					System.out.println("\nplayer deleted, Remaining number of players: " + playerList.size());
 					errorFlag = "false";
 					for (int i = 0; i < playerList.size(); i++) {
 						playerList.get(i).setPlayerId(i + 1);
@@ -1265,7 +1265,7 @@ public class MainClass {
 			errorFlag = "Invalid map";
 			return;
 		}
-		for (int b : mapInstance.getBorders().get(c.getCountryID() + 1)) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
@@ -1293,7 +1293,8 @@ public class MainClass {
 	public String editmap(String s1) {
 		String[] temp = s1.split(" ");
 		String filePath = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator
-				+ temp[1];
+					+ temp[1];
+		System.out.println("FilePath: "+ filePath);
 		File filePtr = new File(filePath);
 
 		try {

@@ -34,6 +34,7 @@ public class MainClassTest {
 	@After
 	public void tearDown() {
 	    mC = null;
+	    mC.playerList.clear();
 	}
 
 	@Test
@@ -48,11 +49,12 @@ public class MainClassTest {
 			e.printStackTrace();
 		}
 
-		mC.addPlayer("rv");
-		mC.addPlayer("k");
-		mC.addPlayer("D");
+		mC.addPlayer("rv", "human");
+		mC.addPlayer("k", "human");
+		mC.addPlayer("D", "human");
+		System.out.println("PlayerList: "+ mC.playerList);
 		mC.removePlayer("k");
-
+		System.out.println("PlayerList: after delete"+ mC.playerList);
 		assertEquals(2, MainClass.playerList.size());
 
 		// Global card deck test
