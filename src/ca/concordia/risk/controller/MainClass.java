@@ -444,10 +444,10 @@ public class MainClass {
 			cList = new ArrayList<>();
 		}
 		cList.add(c);
-		
+
 		MainClass.player_country_map.put(p, cList);
 		System.out.println("player country map after adding: " + MainClass.player_country_map.get(p));
-		
+
 	}
 
 	/**
@@ -1172,6 +1172,29 @@ public class MainClass {
 		}
 	}
 
+	private boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
+		if (isNeighbour(c1, c2) && c1.getCountryOwner() == c2.getCountryOwner()) {
+			return true;
+		}
+
+		if (unwantedPair == null)
+			unwantedPair = new ArrayList<>();
+		else if (unwantedPair.contains(c1))
+			return false;
+		unwantedPair.add(c1);
+
+		for (Country c : Map.getM_instance().getNeighbourCountries(c1)) {
+			if (!unwantedPair.contains(c) && isConnected(c, c2, p, unwantedPair))
+				return true;
+		}
+
+		return false;
+	}
+
+	public boolean isNeighbour(Country c1, Country c2) {
+		return (Map.getM_instance().getNeighbourCountries(c1).contains(c2));
+	}
+
 	/**
 	 * To show map
 	 */
@@ -1265,42 +1288,35 @@ public class MainClass {
 		String filePath = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator
 				+ temp[1];
 		File filePtr = new File(filePath);
-		
+
 		try {
 			Scanner sc = new Scanner(filePtr);
-			if(sc.nextLine().equals("[Map]"))
-			{
+			if (sc.nextLine().equals("[Map]")) {
 				System.out.println("CONQUEST LOAD FILE!");
 				fileIdentifierFlag = 1;
 				MapWriter conquestMapHandle = new MapAdapterController(conquestMapController);
 
-				if(conquestMapHandle.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]))
-				{
+				if (conquestMapHandle.loadMap(mapInstance.getContinents(), mapInstance.getCountries(),
+						mapInstance.getBorders(), temp[1])) {
 					System.out.println("Loaded");
 					errorFlag = "false";
 				} else {
 					System.out.println("Not Loaded!");
 					errorFlag = "InvalidMap!";
 				}
-				
-			}
-			else
-			{
+
+			} else {
 				System.out.println("DOM LOAD FILE!");
 				fileIdentifierFlag = 2;
-				if(mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]))
-				{
+				if (mapWriter.loadMap(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(),
+						temp[1])) {
 					errorFlag = "false";
-				}
-				else
-				{
+				} else {
 					errorFlag = "Invalid MAP!";
 				}
 			}
 			sc.close();
-		}
-		catch(FileNotFoundException e1)
-		{
+		} catch (FileNotFoundException e1) {
 			errorFlag = e1.getLocalizedMessage().toString();
 		}
 		return errorFlag;
@@ -1444,47 +1460,35 @@ public class MainClass {
 	 */
 	public String savemap(String s1) {
 		String[] temp = s1.split(" ");
-			if(fileIdentifierFlag == 1)
-			{
-				MapWriter conquestMapHandle = new MapAdapterController(conquestMapController);				
-				try 
-				{
-					System.out.println("CONQUEST SAVE FILE!");
-					try {
-					conquestMapHandle.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]);
+		if (fileIdentifierFlag == 1) {
+			MapWriter conquestMapHandle = new MapAdapterController(conquestMapController);
+			try {
+				System.out.println("CONQUEST SAVE FILE!");
+				try {
+					conquestMapHandle.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(),
+							mapInstance.getBorders(), temp[1]);
 					errorFlag = "false";
-					}
-					catch(IOException ex)
-					{
-						errorFlag = ex.getLocalizedMessage().toString();
-					}
+				} catch (IOException ex) {
+					errorFlag = ex.getLocalizedMessage().toString();
 				}
-				catch (ValidMapException e)
-				{
-					errorFlag = e.getLocalizedMessage().toString();
-				}
+			} catch (ValidMapException e) {
+				errorFlag = e.getLocalizedMessage().toString();
 			}
-			else
-			{
-				try
-				{
-					System.out.println("DOM SAVE FILE!");
-					try
-					{
-						mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(), mapInstance.getBorders(), temp[1]);
-					}
-					catch (IOException e) 
-					{
-						errorFlag = "File Saved!!";
-					}	
+		} else {
+			try {
+				System.out.println("DOM SAVE FILE!");
+				try {
+					mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(),
+							mapInstance.getBorders(), temp[1]);
+				} catch (IOException e) {
+					errorFlag = "File Saved!!";
 				}
-				catch(ValidMapException e1)
-				{
-					errorFlag = e1.getLocalizedMessage().toString();
-				}
+			} catch (ValidMapException e1) {
+				errorFlag = e1.getLocalizedMessage().toString();
+			}
 		}
 		return errorFlag;
-		
+
 	}
 
 	/**
