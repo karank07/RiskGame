@@ -1260,7 +1260,7 @@ public class MainClass {
 			errorFlag = "Invalid map";
 			return;
 		}
-		for (int b : mapInstance.getBorders().get(c.getCountryID() + 1)) {
+		for (int b : mapInstance.getBorders().get(c.getCountryID())) {
 			System.out.println(mapInstance.getCountries().get(b).getCountryName());
 		}
 
