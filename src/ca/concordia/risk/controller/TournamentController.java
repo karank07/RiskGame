@@ -69,7 +69,7 @@ public class TournamentController {
 //				main.nextTurn(p);
 				if (tournamentResult.end) {
 					break;
-				}	
+				}	 
 			}
 			main.resetGame();
 			index++;

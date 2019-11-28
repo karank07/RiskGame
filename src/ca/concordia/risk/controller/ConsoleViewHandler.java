@@ -97,7 +97,7 @@ public class ConsoleViewHandler {
 				main.placeAll();
 
 			} else
-				errorFlag = "Invalid command!";
+				errorFlag = "Invalid command!"; 
 			break;
 		case "reinforce":
 		case "exchangecards":

@@ -743,7 +743,8 @@ public class MainClass {
 
 			} else if (gameOver(attacker)) {
 				System.out.println("Game Over! " + attacker.getPlayerName() + " wins!");
-				System.exit(0);
+				//System.exit(0);
+				return "";
 
 			}
 			errorFlag = "You have to move armies";
@@ -1598,7 +1599,7 @@ public class MainClass {
 			if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
 				System.out.println("calling end tournament");
 				endTournamentGame();
-				return;
+				return; 
 			}
 	//	}
 
@@ -1652,12 +1653,13 @@ public class MainClass {
 	 * Handles the game ending scenario, along-with setting and printing the result
 	 * in the console
 	 */
-	private void endTournamentGame() {
+	public void endTournamentGame() {
 		if (tournamentResult.end) {
 			System.out.println("Game over! Player " + playerList.get(getPlayerTurn() - 1) + " Wins");
-			System.exit(0);
+			//System.exit(0);
+			return;
 		} else {
-
+ 
 			Player attacker;
 			HashMap<Player, Integer> playerCoverage = new HashMap<Player, Integer>();
 			for (Player p : playerList) {
@@ -1692,7 +1694,7 @@ public class MainClass {
 					tournamentResult.end = true;
 					System.out.println(tournamentResult.results + " " + attacker.getStrategy());
 					System.out.println("Game over! Player " + attacker.getPlayerName() + " Wins");
-					System.exit(0);
+					//System.exit(0);
 				}
 			}
 		}

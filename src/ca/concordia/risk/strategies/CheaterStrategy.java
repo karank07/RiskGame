@@ -60,6 +60,7 @@ public class CheaterStrategy {
 
 		if (mainClassInstance.gameOver(p)) {
 			System.out.println("Player " + p.getPlayerName() + " won the game!");
+			mainClassInstance.endTournamentGame();
 
 		} else {
 			cheaterStrategyFortify(p);
@@ -68,7 +69,7 @@ public class CheaterStrategy {
 
 	private static void cheaterStrategyFortify(Player p) {
 		for (int i = 0; i < p.getPlayerCountries().size(); i++) {
-			Country currentCountry = p.getPlayerCountries().get(i);
+			Country currentCountry = p.getPlayerCountries().get(i); 
 			List<Country> neighboutList = Map.getM_instance().getNeighbourCountries(currentCountry);
 			for (Country c : neighboutList) {
 				if (c.getCountryOwner() != p.getPlayerId()) {
