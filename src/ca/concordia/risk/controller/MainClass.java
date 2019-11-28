@@ -744,12 +744,13 @@ public class MainClass {
 						System.out.println("tournament end");
 						tournamentResult.end = true;
 						endTournamentGame();
+						 
 					}
 				}
 
-			} else if (gameOver(attacker)) {
+			} else if (gameOver(attacker) && mode.equals("single")) {
 				System.out.println("Game Over! " + attacker.getPlayerName() + " wins!");
-				System.exit(0);
+				//System.exit(0);
 
 			}
 			errorFlag = "You have to move armies";
@@ -1661,7 +1662,8 @@ public class MainClass {
 	private void endTournamentGame() {
 		if (tournamentResult.end) {
 			System.out.println("Game over! Player " + playerList.get(getPlayerTurn() - 1) + " Wins");
-			System.exit(0);
+			//System.exit(0);
+			return;
 		} else {
 
 			Player attacker;
@@ -1698,7 +1700,7 @@ public class MainClass {
 					tournamentResult.end = true;
 					System.out.println(tournamentResult.results + " " + attacker.getStrategy());
 					System.out.println("Game over! Player " + attacker.getPlayerName() + " Wins");
-					System.exit(0);
+					//System.exit(0);
 				}
 			}
 		}
