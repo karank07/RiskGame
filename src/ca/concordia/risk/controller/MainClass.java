@@ -13,11 +13,14 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.google.gson.Gson;
+
 import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
 import ca.concordia.risk.model.GameSave;
+import ca.concordia.risk.model.GameSaveBuilder;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
@@ -64,6 +67,8 @@ public class MainClass {
 	private int fileIdentifierFlag;
 	List<Country> visited = new ArrayList<Country>();
 	private MapValidate mv;
+	private GameSave gameSave;
+
 	/**
 	 * constructor to initialize player list,card deck, map instance, map operations
 	 * and map writer
@@ -78,6 +83,7 @@ public class MainClass {
 		conquestMapController = new ConquestMapController();
 		fileIdentifierFlag = 0;
 		tournamentResult = TournamentResult.getInstance();
+		gameSave = new GameSave();
 
 	}
 
@@ -1141,7 +1147,7 @@ public class MainClass {
 
 	/**
 	 * 
-	 * @param visited the list of countries traversed 
+	 * @param visited the list of countries traversed
 	 * @param from    country 1 to be checked for neighbor
 	 * @param to      country 2 to be checked for neighbor
 	 * @param owner   the player owning countries to be checked
@@ -1170,7 +1176,7 @@ public class MainClass {
 			adjFlag = true;
 			return;
 		}
-		
+
 	}
 
 	public boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
@@ -1593,13 +1599,13 @@ public class MainClass {
 
 		System.out.println(turnCounter);
 		System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
-		//if (mode.equalsIgnoreCase("tournament")) {
-			if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
-				System.out.println("calling end tournament");
-				endTournamentGame();
-				return;
-			}
-	//	}
+		// if (mode.equalsIgnoreCase("tournament")) {
+		if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
+			System.out.println("calling end tournament");
+			endTournamentGame();
+			return;
+		}
+		// }
 
 		// setNextPlayerTurn();
 		// p = playerList.get(getPlayerTurn() - 1);
@@ -1741,30 +1747,83 @@ public class MainClass {
 		mapInstance.resetMap();
 		turnCounter = 0;
 	}
-	
+
 	/**
 	 * this method copies the data to be saved
+	 * 
 	 * @param savedGame instance of the GameSave class
 	 */
-	public void copySaveData(GameSave savedGame){
+	public void copySaveData(GameSave savedGame) {
 		savedGame.setGlobalCardDeck(globalCardDeck);
 		savedGame.setPlayerList(playerList);
 		savedGame.setPlayer_country_map(player_country_map);
-		savedGame.setTurn(turn);
+		savedGame.setTurn(getPlayerTurn());
 		savedGame.setMode(mode);
 		savedGame.setTurnCounter(turnCounter);
 		savedGame.setTournamentmode(tournamentObject);
 	}
-	
-	public void restoreData(GameSave gamesave) 
-	{
-		globalCardDeck= gamesave.getGlobalCardDeck();
+
+	public void restoreData(GameSave gamesave) {
+		globalCardDeck = gamesave.getGlobalCardDeck();
 		playerList = gamesave.getPlayerList();
 		player_country_map = gamesave.getPlayer_country_map();
 		turn = gamesave.getTurn();
 		mode = gamesave.getMode();
 		turnCounter = gamesave.getTurnCounter();
 		tournamentObject = gamesave.getTournamentmode();
-		
+
 	}
+
+	public void saveGame(String filename) {
+		String filenamePath = Paths.get("").toAbsolutePath().toString() + File.separator + "savedfiles" + File.separator
+				+ filename;
+		gameSave.saveThisGame(filenamePath);
+
+	}
+
+	public void loadGame(String filename) {
+		String filenamePath = Paths.get("").toAbsolutePath().toString() + File.separator + "savedfiles" + File.separator
+				+ filename;
+		File f = new File(filenamePath);
+		FileReader fr = null;
+		try {
+			fr = new FileReader(f);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		Gson gson = GameSaveBuilder.getGSONInstance();
+		GameSave savedGame = gson.fromJson(fr, GameSave.class);
+
+		loadGameController(savedGame);
+
+	}
+
+	
+
+	/**
+	 * This method controls the new Game phase
+	 * 
+	 * @param savedGame variable of type SaveGame
+	 * @return
+	 */
+	public void loadGameController(GameSave savedGame) {
+		Map.getM_instance().restoreData(savedGame);
+		restoreData(savedGame);
+		Player current_player = savedGame.getPlayerList().get(savedGame.getTurn()-1);
+		switch (current_player.gamePhase) {
+		case ATTACK:
+			current_player.gamePhase = GamePhase.REINFORCEMENT;
+			break;
+		case FORTIFICATION:
+			current_player.gamePhase = GamePhase.ATTACK;
+			break;
+		case REINFORCEMENT:
+			current_player.gamePhase = GamePhase.FORTIFICATION;
+			break;
+		case STARTUP:
+			break;
+		}
+		nextTurn(current_player);
+	}
+
 }
