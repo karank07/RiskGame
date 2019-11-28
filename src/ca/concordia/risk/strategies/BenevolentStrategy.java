@@ -33,7 +33,7 @@ public class BenevolentStrategy {
 					mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
 				} else if (p.getPlayerCards().get(Card.CAVALRY) == 3) {
 					mainClassInstance.exchangeCardsForArmy(p, 0, 3, 0);
-				} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) {
+				} else if (p.getPlayerCards().get(Card.INFANTRY) == 3) { 
 					mainClassInstance.exchangeCardsForArmy(p, 0, 0, 3);
 				} else if ((p.getPlayerCards().get(Card.ARTILLERY) >= 1) && (p.getPlayerCards().get(Card.CAVALRY) >= 1)
 						&& (p.getPlayerCards().get(Card.INFANTRY) >= 1)) {

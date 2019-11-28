@@ -61,7 +61,7 @@ public class TournamentController {
 					
 				}
 				main.divideInitialArmies();
-				main.generateDeck();
+				main.generateDeck();    
 				main.populatecountries();
 				main.placeAll();
 //				Player p = MainClass.playerList.get(0);

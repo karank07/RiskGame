@@ -41,14 +41,27 @@ public class TournamentControllerTest {
 	@After
 	public void tearDown() {
 		mC.resetGame();
-		mC = null;
+		
 		mC.playerList.clear();
+		mC.player_country_map.clear();
 		cVH = null;
 		tournamentResult.results.clear();
+		
 		tournamentObject = null;
 
 	}
+	@Test
+	public void WinTest() {
+		String s = cVH.phaseDecider("tournament -m risk.map -p cheater-benevolent -g 1 -d 4");
 
+		// tournamentController.showResult();
+		System.out.println("=======================================");
+		List<String> results_2 = new ArrayList<String>();
+		results_2 = tournamentResult.results.get(new String("risk.map"));
+		System.out.println(results_2.get(0));
+		// System.out.println(results.get(1));
+		assertEquals("1", results_2.get(0));
+	}
 	@Test
 	public void DrawTest() {
 		String s = cVH.phaseDecider("tournament -m risk.map -p benevolent-benevolent -g 1 -d 4");
@@ -63,17 +76,6 @@ public class TournamentControllerTest {
 		// assertEquals("Draw",results.get(1));
 	}
 
-//	@Test
-//	public void WinTest() {
-//		String s = cVH.phaseDecider("tournament -m risk.map -p cheater-benevolent -g 1 -d 4");
-//
-//		// tournamentController.showResult();
-//		System.out.println("=======================================");
-//		List<String> results_2 = new ArrayList<String>();
-//		results_2 = tournamentResult.results.get(new String("risk.map"));
-//		System.out.println(results_2.get(0));
-//		// System.out.println(results.get(1));
-//		assertEquals("1", results_2.get(0));
-//	}
+
 
 }

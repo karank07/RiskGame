@@ -741,7 +741,7 @@ public class MainClass {
 					}
 				}
 
-			} else if (gameOver(attacker)) {
+			} else if (gameOver(attacker) && mode.equalsIgnoreCase("single")) {
 				System.out.println("Game Over! " + attacker.getPlayerName() + " wins!");
 				//System.exit(0);
 				return "";
