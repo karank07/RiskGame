@@ -17,6 +17,7 @@ import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
+import ca.concordia.risk.model.GameSave;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
@@ -1739,5 +1740,31 @@ public class MainClass {
 		player_country_map.clear();
 		mapInstance.resetMap();
 		turnCounter = 0;
+	}
+	
+	/**
+	 * this method copies the data to be saved
+	 * @param savedGame instance of the GameSave class
+	 */
+	public void copySaveData(GameSave savedGame){
+		savedGame.setGlobalCardDeck(globalCardDeck);
+		savedGame.setPlayerList(playerList);
+		savedGame.setPlayer_country_map(player_country_map);
+		savedGame.setTurn(turn);
+		savedGame.setMode(mode);
+		savedGame.setTurnCounter(turnCounter);
+		savedGame.setTournamentmode(tournamentObject);
+	}
+	
+	public void restoreData(GameSave gamesave) 
+	{
+		globalCardDeck= gamesave.getGlobalCardDeck();
+		playerList = gamesave.getPlayerList();
+		player_country_map = gamesave.getPlayer_country_map();
+		turn = gamesave.getTurn();
+		mode = gamesave.getMode();
+		turnCounter = gamesave.getTurnCounter();
+		tournamentObject = gamesave.getTournamentmode();
+		
 	}
 }

@@ -1,13 +1,6 @@
 /.metadata/
-/.classpath
-/.gitignore
-/.project
-/.settings/
-/LICENSE
-/RiskGame.umlcd.png
-/ca/
 /doc/
+/ca/
 /maps/
 /observerPattern.umlcd.png
 /tests/
-/TestSuit.class
