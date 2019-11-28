@@ -1593,13 +1593,13 @@ public class MainClass {
 
 		System.out.println(turnCounter);
 		System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
-		if (mode.equalsIgnoreCase("tournament")) {
+		//if (mode.equalsIgnoreCase("tournament")) {
 			if (turnCounter >= (tournamentObject.getMaxTurns() * playerList.size())) {
 				System.out.println("calling end tournament");
 				endTournamentGame();
 				return;
 			}
-		}
+	//	}
 
 		// setNextPlayerTurn();
 		// p = playerList.get(getPlayerTurn() - 1);

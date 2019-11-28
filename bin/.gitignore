@@ -1,7 +1,13 @@
 /.metadata/
-/.DS_Store
-/test/
-/modelTest/
+/.classpath
+/.gitignore
+/.project
+/.settings/
+/LICENSE
+/RiskGame.umlcd.png
 /ca/
 /doc/
-/JavaDoc/
+/maps/
+/observerPattern.umlcd.png
+/tests/
+/TestSuit.class

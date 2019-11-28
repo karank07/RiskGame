@@ -6,10 +6,12 @@ import java.util.List;
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Country;
+import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
 public class BenevolentStrategy {
 	static MainClass mainClassInstance = MainClass.getM_instance();
+	static Map mapInstance = Map.getM_instance();
 
 	public static void BenevolentStrategyReinforcement(Player p) {
 		if (!p.hasMoreThanFiveCards()) {
@@ -41,15 +43,16 @@ public class BenevolentStrategy {
 	}
 
 	private static void BenevolentStrategyFortify(Player p) {
-		Country from=p.getPlayerCountries().get(0);
-		int max=from.getCountryArmy();
-		for(Country c:p.getPlayerCountries()) {
-			if(c.getCountryArmy()>max) {
-				from=c;
-			}
+		Country to = p.getWeakestCountry();	
+		List<Country> cList=MainClass.player_country_map.get(p);
+		Country from=cList.get(0);
+		int i=1;
+		while(!mainClassInstance.checkNeighbours(from, to, p.getPlayerId())) {
+			from=cList.get(i);
+			 i=(i>=cList.size())?0:i++;
 		}
 		
-		Country to = p.getWeakestCountry();	
+		
 		System.out.println("Fortification move : "+from.getCountryName() +" "+ to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);
 		mainClassInstance.setNextPlayerTurn();
