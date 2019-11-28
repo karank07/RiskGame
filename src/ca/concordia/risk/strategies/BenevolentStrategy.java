@@ -1,21 +1,29 @@
 package ca.concordia.risk.strategies;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import ca.concordia.risk.controller.MainClass;
 import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Country;
-import ca.concordia.risk.model.Map;
+
 import ca.concordia.risk.model.Player;
+import java.util.Map;
 
 public class BenevolentStrategy {
 	static MainClass mainClassInstance = MainClass.getM_instance();
-	static Map mapInstance = Map.getM_instance();
+	static ca.concordia.risk.model.Map mapInstance = ca.concordia.risk.model.Map.getM_instance();
+	static List<Country> weakestCountries = new ArrayList<Country>();
 
 	public static void BenevolentStrategyReinforcement(Player p) {
+		getWeakestCountry(p);
 		if (!p.hasMoreThanFiveCards()) {
-			Country weakest = p.getWeakestCountry();
+			Country weakest = weakestCountries.get(0);
 			int reinforceArmy = p.getPlayerReinforceArmy();
 			p.reinforceArmy(weakest.getCountryName(), reinforceArmy);
 			BenevolentStrategyAttack(p);
@@ -43,22 +51,72 @@ public class BenevolentStrategy {
 	}
 
 	private static void BenevolentStrategyFortify(Player p) {
-		Country to = p.getWeakestCountry();	
-		List<Country> cList=MainClass.player_country_map.get(p);
-		Country from=cList.get(0);
-		int i=1;
-		while(!mainClassInstance.checkNeighbours(from, to, p.getPlayerId())) {
-			from=cList.get(i);
-			 i=(i>=cList.size())?0:i++;
+		Country to = weakestCountries.get(0);
+		List<Country> cList = MainClass.player_country_map.get(p);
+		Country from = cList.get(0);
+		int i = 0;
+		while (!mainClassInstance.isConnected(from, to, p, new ArrayList<Country>()) || from.getCountryArmy() <= 1
+				|| from == to) {
+			from = cList.get(i);
+			i = (i >= cList.size() - 1) ? 0 : ++i;
+			if (i == 0) {
+				weakestCountries.remove(to);
+				BenevolentStrategyFortify(p);
+			}
 		}
-		
-		
-		System.out.println("Fortification move : "+from.getCountryName() +" "+ to.getCountryName());
+
+		System.out.println("Fortification move : " + from.getCountryName() + " " + to.getCountryName());
 		p.fortify(from, to, from.getCountryArmy() - 1);
 		mainClassInstance.setNextPlayerTurn();
-		p=MainClass.playerList.get(mainClassInstance.getPlayerTurn()-1);
+		p = MainClass.playerList.get(mainClassInstance.getPlayerTurn() - 1);
 		mainClassInstance.nextTurn(p);
 
+	}
+
+	/**
+	 * Returns the strongest country for the player
+	 * 
+	 * @param p player
+	 * @return strongestCountry
+	 * 
+	 */
+	public static void getWeakestCountry(Player p) {
+		HashMap<Country, Integer> cMap = new HashMap<Country, Integer>();
+		System.out.println("coutries for player :" + MainClass.player_country_map.get(p));
+		List<Country> playerCountries = MainClass.player_country_map.get(p);
+		cMap.clear();
+		for (Country country : playerCountries) {
+			cMap.put(country, country.getCountryArmy());
+
+		}
+
+		System.out.println("cMap :" + cMap.size());
+		cMap = sortByValue(cMap);
+		for (Country c : cMap.keySet()) {
+			weakestCountries.add(c);
+		}
+
+		System.out.println("weakest countries list: " + weakestCountries);
+
+	}
+
+	public static HashMap<Country, Integer> sortByValue(HashMap<Country, Integer> hm) {
+		// Create a list from elements of HashMap
+		List<Map.Entry<Country, Integer>> list = new LinkedList<Map.Entry<Country, Integer>>(hm.entrySet());
+
+		// Sort the list
+		Collections.sort(list, new Comparator<Map.Entry<Country, Integer>>() {
+			public int compare(Map.Entry<Country, Integer> o1, Map.Entry<Country, Integer> o2) {
+				return (o1.getValue()).compareTo(o2.getValue());
+			}
+		});
+
+		// put data from sorted list to hashmap
+		HashMap<Country, Integer> temp = new LinkedHashMap<Country, Integer>();
+		for (Map.Entry<Country, Integer> aa : list) {
+			temp.put(aa.getKey(), aa.getValue());
+		}
+		return temp;
 	}
 
 }

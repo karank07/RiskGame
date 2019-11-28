@@ -44,8 +44,8 @@ public class RandomStrategy {
 			}
 		}
 
-		Country country = mainClassInstance.player_country_map.get(p)
-				.get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
+		Country country = MainClass.player_country_map.get(p)
+				.get(r.nextInt(MainClass.player_country_map.get(p).size()));
 
 		String flag = p.reinforceArmy(country.getCountryName(), p.getPlayerReinforceArmy());
 
@@ -56,7 +56,7 @@ public class RandomStrategy {
 	private static void RandomStrategyAttack(Player p) {
 
 		System.out.println(
-				"PLAYER COUNTRY MAP SIZE BEFORE ATTACK : " + mainClassInstance.player_country_map.get(p).size());
+				"PLAYER COUNTRY MAP SIZE BEFORE ATTACK : " + MainClass.player_country_map.get(p).size());
 
 		List<Country> cList = new ArrayList<Country>();
 		for (Country c : MainClass.player_country_map.get(p)) {
@@ -126,8 +126,8 @@ public class RandomStrategy {
 		// p.getPlayerCountries().get(r.nextInt(mainClassInstance.player_country_map.get(p).size()));
 
 		List<Country> fromCountryList = new ArrayList<Country>();
-		for (int i = 0; i < mainClassInstance.player_country_map.get(p).size(); i++) {
-			Country c = mainClassInstance.player_country_map.get(p).get(i);
+		for (int i = 0; i < MainClass.player_country_map.get(p).size(); i++) {
+			Country c = MainClass.player_country_map.get(p).get(i);
 			if (c.getCountryArmy() > 1) {
 				fromCountryList.add(c);
 			}
@@ -143,8 +143,8 @@ public class RandomStrategy {
 
 		List<Country> toCountryList = new ArrayList<Country>();
 
-		for (int i = 0; i < mainClassInstance.player_country_map.get(p).size(); i++) {
-			Country c = mainClassInstance.player_country_map.get(p).get(i);
+		for (int i = 0; i < MainClass.player_country_map.get(p).size(); i++) {
+			Country c = MainClass.player_country_map.get(p).get(i);
 			if (mainClassInstance.checkNeighbours(fromCountry, c, p.getPlayerId())) {
 				toCountryList.add(c);
 			}

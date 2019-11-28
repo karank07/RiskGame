@@ -25,7 +25,6 @@ import ca.concordia.risk.strategies.AggressiveStrategy;
 import ca.concordia.risk.strategies.BenevolentStrategy;
 import ca.concordia.risk.strategies.CheaterStrategy;
 import ca.concordia.risk.strategies.RandomStrategy;
-import ca.concordia.risk.utilities.GameConstants;
 import ca.concordia.risk.utilities.GamePhase;
 import ca.concordia.risk.utilities.ValidMapException;
 //import ca.concordia.risk.view.GameView;
@@ -724,12 +723,12 @@ public class MainClass {
 			if (mode.equalsIgnoreCase("tournament")) {
 				if (gameOver(attacker)) {
 					List<String> temp;
-					if (tournamentResult.results.get(tournamentController.currentMap).isEmpty()) {
+					if (tournamentResult.results.get(TournamentController.currentMap).isEmpty()) {
 						temp = new ArrayList<String>();
 					} else
-						temp = tournamentResult.results.get(tournamentController.currentMap);
+						temp = tournamentResult.results.get(TournamentController.currentMap);
 					temp.add(attacker.getPlayerName());
-					tournamentResult.results.put(tournamentController.currentMap, temp);
+					tournamentResult.results.put(TournamentController.currentMap, temp);
 					System.out.println(tournamentResult.results);
 					if (tournamentResult.results.size() == tournamentObject.getGameMaps().size()
 							&& tournamentResult.results
@@ -1172,7 +1171,7 @@ public class MainClass {
 		}
 	}
 
-	private boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
+	public boolean isConnected(Country c1, Country c2, Player p, List<Country> unwantedPair) {
 		if (isNeighbour(c1, c2) && c1.getCountryOwner() == c2.getCountryOwner()) {
 			return true;
 		}
@@ -1593,7 +1592,7 @@ public class MainClass {
 		System.out.println(turnCounter);
 		System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
 		//if (mode.equalsIgnoreCase("tournament")) {
-			if (turnCounter >= (tournamentObject.getMaxTurns() * playerList.size())) {
+			if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
 				System.out.println("calling end tournament");
 				endTournamentGame();
 				return;
@@ -1707,7 +1706,7 @@ public class MainClass {
 	 */
 	public void setupTournament(String mapFileNames, String playerStratergyNames, String numGames, String maxTurns) {
 
-		this.mode = "tournament";
+		mode = "tournament";
 		String[] mapFiles = mapFileNames.split("-");
 		String[] playerStratergies = playerStratergyNames.split("-");
 		tournamentObject.setNumGames(Integer.parseInt(numGames));
