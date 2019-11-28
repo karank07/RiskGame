@@ -115,6 +115,7 @@ public class MapWriter {
 				+ fileName;
 		File filePtr = new File(filePath);
 		Scanner sc = new Scanner(filePtr);
+		int countryId=0;
 		try {
 			flag = mv.validateFile(filePtr);
 
@@ -151,7 +152,7 @@ public class MapWriter {
 						break;
 					}
 				}
-				int countryId=0;
+				
 				while (sc.hasNext()) {
 
 					country_start = sc.nextLine();
