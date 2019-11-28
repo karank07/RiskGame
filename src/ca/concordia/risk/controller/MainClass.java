@@ -63,7 +63,7 @@ public class MainClass {
 	static int turnCounter = 0;
 	private int fileIdentifierFlag;
 	List<Country> visited = new ArrayList<Country>();
-
+	private MapValidate mv;
 	/**
 	 * constructor to initialize player list,card deck, map instance, map operations
 	 * and map writer
@@ -1270,7 +1270,7 @@ public class MainClass {
 	public void validatemap() {
 		if (mapInstance.getBorders().isEmpty()) {
 			errorFlag = "Invalid!";
-		} else if (mapOperations.isConnected(mapInstance.getBorders())) {
+		} else if (mv.validateMap(Map.getM_instance())) {
 			System.out.println("Map valid!");
 		} else
 			errorFlag = "Invalid map!";
@@ -1312,7 +1312,7 @@ public class MainClass {
 						temp[1])) {
 					errorFlag = "false";
 				} else {
-					errorFlag = "Invalid MAP!";
+					errorFlag = "Invalid MAP! Cannot Load the map!";
 				}
 			}
 			sc.close();
