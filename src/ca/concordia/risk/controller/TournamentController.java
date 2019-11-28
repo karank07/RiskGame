@@ -57,7 +57,7 @@ public class TournamentController {
 				for (String playerStratergy : playerStratergies) {
 					
 					playerName++;
-					main.addPlayer("" + playerName, playerStratergy);
+					main.addPlayer("" +playerStratergy+ playerName, playerStratergy);
 					
 				}
 				main.divideInitialArmies();
@@ -81,7 +81,6 @@ public class TournamentController {
 	public void showResult() {
 		
 		Iterator iterator = tournamentResult.results.entrySet().iterator();
-		System.out.println("before while");
 		while (iterator.hasNext()) {
 			
 			Map.Entry mapElement = (Map.Entry) iterator.next();
