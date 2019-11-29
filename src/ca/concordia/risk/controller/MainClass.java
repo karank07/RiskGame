@@ -1487,6 +1487,7 @@ public class MainClass {
 				try {
 					mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(),
 							mapInstance.getBorders(), temp[1]);
+					errorFlag = "File Saved!!";
 				} catch (IOException e) {
 					errorFlag = "File Saved!!";
 				}

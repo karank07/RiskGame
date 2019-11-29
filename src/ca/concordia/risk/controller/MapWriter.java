@@ -201,11 +201,13 @@ public class MapWriter {
 				}
 				if(countries.size() != borders.size())
 				{
+					sc.close();
 					Map.getM_instance().resetMap();
 					return false;
 				}
 				else
 				{
+						sc.close();
 						return true;
 				}
 				
