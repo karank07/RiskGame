@@ -60,11 +60,13 @@ public class TournamentControllerTest {
 		results_2 = tournamentResult.results.get(new String("risk.map"));
 		System.out.println(results_2.get(0));
 		// System.out.println(results.get(1));
-		assertEquals("1", results_2.get(0));
+		assertEquals("cheater", results_2.get(0));
 	}
+	
 	@Test
 	public void DrawTest() {
-		String s = cVH.phaseDecider("tournament -m risk.map -p benevolent-benevolent -g 1 -d 4");
+		MainClass.getM_instance().resetGame();
+		String s = cVH.phaseDecider("tournament -m risk.map -p benevolent-benevolent -g 3 -d 3");
 
 		// tournamentController.showResult();
 		System.out.println("======================================");
@@ -72,7 +74,7 @@ public class TournamentControllerTest {
 		results = tournamentResult.results.get(new String("risk.map"));
 		System.out.println("draw result: " + results);
 		// System.out.println(results.get(1));
-		assertEquals("Draw", results.get(0));
+		assertEquals("DRAW", results.get(0));
 		// assertEquals("Draw",results.get(1));
 	}
 

@@ -36,6 +36,11 @@ public class AggressiveStrategy {
  * @param p the player following the aggressive strategy
  */
 	public static void AggresiveStrategyReinforcement(Player p) {
+		
+		if(mainClassInstance.endTournament == true) {
+			return;
+		}
+		
 		if (p.getPlayerCards().size() >= 5) {
 			if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
 				mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
