@@ -1755,13 +1755,23 @@ public class MainClass {
 	 * @param savedGame instance of the GameSave class
 	 */
 	public void copySaveData(GameSave savedGame) {
-		savedGame.setGlobalCardDeck(globalCardDeck);
-		savedGame.setPlayerList(playerList);
+		
+//		HashMap<Player, List<Country>> ns_player_country_map = player_country_map;
+//		HashMap<String, Integer> ns_globalCardDeck = globalCardDeck;
+		List<Player> ns_playerList = new ArrayList<Player>();
+		for(Player p : playerList) {ns_playerList.add(p);}
+//		String ns_mode = mode;
+//		int ns_turn=getPlayerTurn();
+//		int ns_turnCounter=turnCounter;
+		
+		savedGame.setTournamentmode(tournamentObject);
+		GameSave.setGlobalCardDeck(globalCardDeck);
+		savedGame.setPlayerList(ns_playerList);
 		savedGame.setPlayer_country_map(player_country_map);
-		savedGame.setTurn(getPlayerTurn());
+		savedGame.setTurn(turn);
 		savedGame.setMode(mode);
 		savedGame.setTurnCounter(turnCounter);
-		savedGame.setTournamentmode(tournamentObject);
+		
 	}
 
 	public void restoreData(GameSave gamesave) {

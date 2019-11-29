@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.lang.model.element.Modifier;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -21,7 +23,7 @@ public class GameSaveBuilder {
 		Type type = new TypeToken<HashMap<Country, ArrayList<String>>>(){}.getType();
 		Type type1 = new TypeToken<Map<Player, List<Country>>>(){}.getType();
 		return new GsonBuilder().enableComplexMapKeySerialization().
-							registerTypeAdapter(type, new CountryMapAdapter()).
+				registerTypeAdapter(type, new CountryMapAdapter()).
 								registerTypeAdapter(type1, new PlayerAdapter()).create();
 	}
 

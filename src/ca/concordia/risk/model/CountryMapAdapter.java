@@ -31,8 +31,8 @@ public class CountryMapAdapter implements JsonSerializer<HashMap<Country, ArrayL
 	@Override
 	public HashMap<Country, ArrayList<String>> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 			throws JsonParseException {
-		Gson gson = GameSaveBuilder.getGSONInstance();
 		
+		Gson gson = GameSaveBuilder.getGSONInstance();
 		JsonObject jsonObject = json.getAsJsonObject();
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
         String className = prim.getAsString();
