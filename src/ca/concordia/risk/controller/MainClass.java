@@ -1,9 +1,11 @@
 package ca.concordia.risk.controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
-import ca.concordia.risk.model.GameSave;
+import ca.concordia.risk.model.GameState;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
@@ -109,6 +111,7 @@ public class MainClass {
 		fileName = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + fileName;
 
 		String fileData = "";
+
 		FileReader file;
 
 		try {
@@ -439,7 +442,7 @@ public class MainClass {
 	 */
 	public void mapPlayerToCountry(Player p, Country c) {
 		List<Country> cList = MainClass.player_country_map.get(p);
-		
+
 		c.setCountryOwner(p.getPlayerId());
 		if (cList == null) {
 			cList = new ArrayList<>();
@@ -447,7 +450,7 @@ public class MainClass {
 		cList.add(c);
 
 		MainClass.player_country_map.put(p, cList);
-		
+
 	}
 
 	/**
@@ -1593,6 +1596,7 @@ public class MainClass {
 	 * @param p the current player instance
 	 */
 	public static boolean endTournament = false;
+
 	public void nextTurn(Player p) {
 		turnCounter++;
 
@@ -1645,7 +1649,7 @@ public class MainClass {
 	 * in the console
 	 */
 	public void endTournamentGame(Player attacker) {
-		
+
 		endTournament = true;
 		List<String> temp = null;
 
@@ -1680,8 +1684,7 @@ public class MainClass {
 		}
 
 		tournamentResult.results.replace(TournamentController.currentMap, temp);
-		
-
+		System.out.println("CHECK Touranemtn result obj : " + tournamentResult.results + " check tpournamentObject: "+ tournamentObject.getInstance() );
 		if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
 				.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
 				.size() == tournamentObject.getNumGames()) {
@@ -1724,6 +1727,64 @@ public class MainClass {
 
 	}
 
+	public void saveGameFile(GameState gs, String filename) throws IOException {
+		mapInstance = gs.getGameMap();
+		playerList = gs.getPlayersList();
+		Player p = gs.getPlayer();
+
+		String path = Paths.get("").toAbsolutePath().toString() + File.separator + "savedfiles" + File.separator
+				+ filename;
+		File f = new File(path);
+		FileWriter fw = new FileWriter(f, false);
+		BufferedWriter bw = new BufferedWriter(fw);
+		f.createNewFile();
+
+		// writing continents to the file
+		bw.write("[continents]");
+		bw.newLine();
+		for (Integer i : mapInstance.getContinents().keySet()) {
+			Continent c = mapInstance.getContinents().get(i);
+			bw.write(i + " " + c.getContinentName() + " " + c.getContinentControlValue());
+			bw.newLine();
+		}
+
+		// writing countries to the file
+		bw.write("\n");
+		bw.write("[countries]");
+		bw.newLine();
+		for (Country c : mapInstance.getCountries().values()) {
+			bw.write(c.getCountryName() + " " + c.getContinentID() + " " + c.getCountryArmy());
+
+		}
+
+		// writing borders to the file
+		bw.write("\n");
+		bw.write("[borders]");
+		bw.newLine();
+
+		bw.newLine();
+		bw.write("\n");
+		bw.write("[players]");
+		for(Player player:main_instance.playerList) {
+			bw.write(player.getPlayerId() +" "+ player.getPlayerName());
+		}
+		bw.newLine();
+		bw.write("\n");
+		bw.write("[players]");
+		for(Player player:main_instance.playerList) {
+			for(Country c:main_instance.player_country_map.get(player)) {
+				bw.write(player.getPlayerName()+ " "+ c.getCountryName());
+			}
+			
+		}
+		bw.write("Turn "+turn);
+		bw.write("Tournament counter "+turnCounter);
+		bw.write("Game mode "+mode);
+		bw.write(tournamentObject.getGameMaps()+" "+ tournamentObject.getNumGames()+" "+tournamentObject.getMaxTurns());
+		
+		bw.flush();
+	}
+
 	/**
 	 * Resets the game by clearing the player list, the country mappings and all
 	 * instances.
@@ -1740,34 +1801,29 @@ public class MainClass {
 	 * 
 	 * @param savedGame instance of the GameSave class
 	 */
-	public void copySaveData(GameSave savedGame) {
-		
-//		HashMap<Player, List<Country>> ns_player_country_map = player_country_map;
-//		HashMap<String, Integer> ns_globalCardDeck = globalCardDeck;
-		List<Player> ns_playerList = new ArrayList<Player>();
-		for(Player p : playerList) {ns_playerList.add(p);}
-//		String ns_mode = mode;
-//		int ns_turn=getPlayerTurn();
-//		int ns_turnCounter=turnCounter;
-		
-		savedGame.setTournamentmode(tournamentObject);
-		GameSave.setGlobalCardDeck(globalCardDeck);
-		savedGame.setPlayerList(ns_playerList);
-		savedGame.setPlayer_country_map(player_country_map);
-		savedGame.setTurn(turn);
-		savedGame.setMode(mode);
-		savedGame.setTurnCounter(turnCounter);
-		
-	}
-
-	public void restoreData(GameSave gamesave) {
-		globalCardDeck = gamesave.getGlobalCardDeck();
-		playerList = gamesave.getPlayerList();
-		player_country_map = gamesave.getPlayer_country_map();
-		turn = gamesave.getTurn();
-		mode = gamesave.getMode();
-		turnCounter = gamesave.getTurnCounter();
-		tournamentObject = gamesave.getTournamentmode();
-
-	}
+	/*
+	 * public void copySaveData(GameSave savedGame) {
+	 * 
+	 * // HashMap<Player, List<Country>> ns_player_country_map = player_country_map;
+	 * // HashMap<String, Integer> ns_globalCardDeck = globalCardDeck; List<Player>
+	 * ns_playerList = new ArrayList<Player>(); for(Player p : playerList)
+	 * {ns_playerList.add(p);} // String ns_mode = mode; // int
+	 * ns_turn=getPlayerTurn(); // int ns_turnCounter=turnCounter;
+	 * 
+	 * savedGame.setTournamentmode(tournamentObject);
+	 * GameSave.setGlobalCardDeck(globalCardDeck);
+	 * savedGame.setPlayerList(ns_playerList);
+	 * savedGame.setPlayer_country_map(player_country_map); savedGame.setTurn(turn);
+	 * savedGame.setMode(mode); savedGame.setTurnCounter(turnCounter);
+	 * 
+	 * }
+	 * 
+	 * public void restoreData(GameSave gamesave) { globalCardDeck =
+	 * gamesave.getGlobalCardDeck(); playerList = gamesave.getPlayerList();
+	 * player_country_map = gamesave.getPlayer_country_map(); turn =
+	 * gamesave.getTurn(); mode = gamesave.getMode(); turnCounter =
+	 * gamesave.getTurnCounter(); tournamentObject = gamesave.getTournamentmode();
+	 * 
+	 * }
+	 */
 }

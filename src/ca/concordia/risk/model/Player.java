@@ -157,7 +157,9 @@ public class Player implements Subject {
 	 * @param reinforceCountry set reinforce country name
 	 */
 	public void setReinforceCountry(String reinforceCountry) {
-		// notify_observer();
+		if(this.getStrategy() == "human") {
+			 notify_observer();
+		}
 		this.reinforceCountry = reinforceCountry;
 	}
 
@@ -180,6 +182,10 @@ public class Player implements Subject {
 		this.attackResult = new String("null");
 		this.strategy = strategy;
 
+	}
+
+	public Player() {
+		
 	}
 
 	/**
@@ -258,8 +264,12 @@ public class Player implements Subject {
 	 */
 	public void addArmies(int addN) {
 		this.playerTotalArmies += addN;
-		attach(gameView);
-		// notify_observer();
+	
+		if(this.getStrategy() == "human") {
+			attach(gameView);
+			 notify_observer();
+		}
+		
 	}
 
 	/**
@@ -340,8 +350,10 @@ public class Player implements Subject {
 	 */
 	public void remArmies(int n) {
 		this.playerTotalArmies -= n;
-		attach(gameView);
-		// notify_observer();
+		if(this.getStrategy() == "human") {
+			this.attach(gameView);
+			 notify_observer();
+		}
 	}
 
 	/**
@@ -372,8 +384,10 @@ public class Player implements Subject {
 	 */
 	public void setPlayerReinforceArmy(int playerReinforceArmy) {
 		this.playerReinforceArmy = playerReinforceArmy;
-		// attach(gameView);
-		// notify_observer();
+		if(this.getStrategy() == "human") {
+			this.attach(gameView);
+			 notify_observer();
+		}
 	}
 
 	/**
@@ -394,8 +408,10 @@ public class Player implements Subject {
 	 * @param attackResult the attackResult to set
 	 */
 	public void setAttackResult(String attackResult) {
-		attach(gameView);
-		// notify_observer();
+		if(this.getStrategy() == "human") {
+			this.attach(gameView);
+			 notify_observer();
+		}
 		this.attackResult = attackResult;
 	}
 
@@ -593,8 +609,10 @@ public class Player implements Subject {
 		System.out.println("attacker :" + attackerWins);
 		System.out.println("defender: " + defenderWins);
 		System.out.println(resultString);
-		attach(gameView);
-		// notify_observer();
+		if(this.getStrategy() == "human") {
+			this.attach(gameView);
+			 notify_observer();
+		}
 
 		return resultString;
 	}
@@ -640,8 +658,11 @@ public class Player implements Subject {
 	 */
 	public void setCurrentPhase(GamePhase phase) {
 		this.gamePhase = phase;
-		this.attach(gameView);
-		// notify_observer();
+	
+		if(this.getStrategy() == "human") {
+			this.attach(gameView);
+			 notify_observer();
+		}
 	}
 
 	public GamePhase getCurrentPhase() {
@@ -704,8 +725,11 @@ public class Player implements Subject {
 	}
 
 	public void checkForExchangeCards() {
-		attach(CardExchangeView.getCardExchangeViewInstance());
-		notify_observer();
+		
+		if(this.getStrategy() == "human") {
+			attach(CardExchangeView.getCardExchangeViewInstance());
+			 notify_observer();
+		}
 
 	}
 
