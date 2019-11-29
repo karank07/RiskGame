@@ -290,7 +290,7 @@ public class MapOperations {
 			if (co.getCountryName().equalsIgnoreCase(countryName)) {
 				iteratorCountry.remove();
 				removeFlag = 1;
-			}
+			
 
 			while (iteratorBorder.hasNext()) {
 				Entry<Integer, ArrayList<Integer>> entryBorder = iteratorBorder.next();
@@ -302,11 +302,11 @@ public class MapOperations {
 				} else {
 					if (borderList.contains(entryCountry.getKey())) {
 						borderList.remove(Integer.valueOf(entryCountry.getKey()));
+						}
 					}
 				}
 			}
 		}
-
 		if (removeFlag == 1) {
 			return "Country removed successfully";
 		} else if (removeFlag == 2) {
@@ -314,7 +314,7 @@ public class MapOperations {
 		} else {
 			return "Country does not exist. Add the Country first";
 		}
-	}
+}
 
 	/**
 	 * This method removes the neighbour country

@@ -20,17 +20,24 @@ import ca.concordia.risk.utilities.GamePhase;
  */
 public class GameSave 
 {
-	public static HashMap<Player, List<Country>> player_country_map;
+
+	
+	
 	public static HashMap<String, Integer> globalCardDeck;
-	public static List<Player> playerList;
-	public String mode;
-	public GamePhase phase;
+	public List<Player> playerList;
+	public static String mode;
+	public static GamePhase phase;
 	public static int turn;
-	public HashMap<Integer, Continent> continents;
-	public HashMap<Integer, ArrayList<Integer>> borders;
-	public HashMap<Integer, Country> countries;
-	public static int turnCounter;
-	public TournamentMode tournamentmode;
+	public  HashMap<Integer, Continent> continents;
+	public  HashMap<Integer, ArrayList<Integer>> borders;
+	public  HashMap<Integer, Country> countries;
+	public 	int turnCounter;
+	public 	TournamentMode tournamentmode;
+	
+	
+	public static HashMap<Player, List<Country>> player_country_map;
+
+	
 	/**
 	 * @return the tournamentmode
 	 */
@@ -55,77 +62,145 @@ public class GameSave
 	public static void setTurnCounter(int turnCounter) {
 		GameSave.turnCounter = turnCounter;
 	}
+
 	/**
 	 * @return the player_country_map
 	 */
 	public static HashMap<Player, List<Country>> getPlayer_country_map() {
 		return player_country_map;
 	}
+
+
+
+
+
+
 	/**
 	 * @param player_country_map the player_country_map to set
 	 */
 	public static void setPlayer_country_map(HashMap<Player, List<Country>> player_country_map) {
 		GameSave.player_country_map = player_country_map;
 	}
+
+
+
+
+
+
 	/**
 	 * @return the globalCardDeck
 	 */
 	public static HashMap<String, Integer> getGlobalCardDeck() {
 		return globalCardDeck;
 	}
+
+
+
+
+
+
 	/**
 	 * @param globalCardDeck the globalCardDeck to set
 	 */
 	public static void setGlobalCardDeck(HashMap<String, Integer> globalCardDeck) {
 		GameSave.globalCardDeck = globalCardDeck;
 	}
+
+
+
+
+
+
 	/**
 	 * @return the playerList
 	 */
 	public static List<Player> getPlayerList() {
 		return playerList;
 	}
+
+
+
+
+
+
 	/**
 	 * @param playerList the playerList to set
 	 */
 	public static void setPlayerList(List<Player> playerList) {
 		GameSave.playerList = playerList;
 	}
+
+
+
+
+
+
 	/**
 	 * @return the mode
 	 */
-	public String getMode() {
+	public static String getMode() {
 		return mode;
 	}
+
+
+
+
+
+
 	/**
 	 * @param mode the mode to set
 	 */
-	public void setMode(String mode) {
-		this.mode = mode;
+	public static void setMode(String mode) {
+		GameSave.mode = mode;
 	}
+
+
+
+
+
+
 	/**
 	 * @return the phase
 	 */
-	public GamePhase getPhase() {
+	public static GamePhase getPhase() {
 		return phase;
 	}
+
+
+
+
+
+
 	/**
 	 * @param phase the phase to set
 	 */
-	public void setPhase(GamePhase phase) {
-		this.phase = phase;
+	public static void setPhase(GamePhase phase) {
+		GameSave.phase = phase;
 	}
+
+
+
+
+
+
 	/**
 	 * @return the turn
 	 */
 	public static int getTurn() {
 		return turn;
 	}
+
+
+
+
+
+
 	/**
 	 * @param turn the turn to set
 	 */
 	public static void setTurn(int turn) {
 		GameSave.turn = turn;
+
 	}
 	
 	/**
@@ -139,33 +214,136 @@ public class GameSave
 	 */
 	public void setCountries(HashMap<Integer, Country> countries) {
 		this.countries = countries;
+
 	}
+
+
+
+
+
+
 	/**
 	 * @return the continents
 	 */
 	public HashMap<Integer, Continent> getContinents() {
 		return continents;
 	}
+
+
+
+
+
+
 	/**
 	 * @param continents the continents to set
 	 */
 	public void setContinents(HashMap<Integer, Continent> continents) {
 		this.continents = continents;
 	}
+
+
+
+
+
+
 	/**
 	 * @return the borders
 	 */
 	public HashMap<Integer, ArrayList<Integer>> getBorders() {
 		return borders;
 	}
+
+
+
+
+
+
 	/**
 	 * @param borders the borders to set
 	 */
 	public void setBorders(HashMap<Integer, ArrayList<Integer>> borders) {
 		this.borders = borders;
 	}
-	
-	public void saveThisGame(File saveFile){
+
+
+
+
+
+
+	/**
+	 * @return the countries
+	 */
+	public HashMap<Integer, Country> getCountries() {
+		return countries;
+	}
+
+
+
+
+
+
+	/**
+	 * @param countries the countries to set
+	 */
+	public void setCountries(HashMap<Integer, Country> countries) {
+		this.countries = countries;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the turnCounter
+	 */
+	public int getTurnCounter() {
+		return turnCounter;
+	}
+
+
+
+
+
+
+	/**
+	 * @param turnCounter the turnCounter to set
+	 */
+	public void setTurnCounter(int turnCounter) {
+		this.turnCounter = turnCounter;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the tournamentmode
+	 */
+	public TournamentMode getTournamentmode() {
+		return tournamentmode;
+	}
+
+
+
+
+
+
+	/**
+	 * @param tournamentmode the tournamentmode to set
+	 */
+	public void setTournamentmode(TournamentMode tournamentmode) {
+		this.tournamentmode = tournamentmode;
+	}
+
+
+
+
+
+	public void saveThisGame(String saveFileName){
+		File saveFile=new File(saveFileName);
+
 
 		Map.getM_instance().copySavedData(this);
 		MainClass.getM_instance().copySaveData(this);
