@@ -135,13 +135,11 @@ public class ConquestMapController {
 		System.out.println("c="+countries.size() + "bor=" + borders.size());
 		if(countries.size() != borders.size())
 		{
-			System.out.println("Country != Border");
 			Map.getM_instance().resetMap();
 			return false;
 		}
 		else
 		{
-			System.out.println("Country === Border");
 				return true;
 		}
 		
