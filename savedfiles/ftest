@@ -1,0 +1,16 @@
+[continents]
+1 North-America 5
+2 South-America 2
+3 Europe 5
+4 Africa 3
+5 Asia 7
+6 Oceania 2
+
+[countries]
+Alaska 1 10North-West-Territory 1 3Alberta 1 3Western-United-States 1 3Central-America 1 1Greenland 1 1Ontario 1 3Quebec 1 3Eastern-United-States 1 3Venezuela 2 2Peru 2 3Brazil 2 2Argentina 2 1Iceland 3 2Scandinavia 3 1Ukraine 3 1Great-Britain 3 3Northern-Europe 3 2Western-Europe 3 2Southern-Europe 3 1North-Africa 4 5Egypt 4 2Congo 4 1East-Africa 4 1South-Africa 4 2Madagascar 4 2Siberia 5 1Ural 5 1China 5 2Afghanistan 5 3Middle-East 5 1India 5 1Siam 5 1Yakutsk 5 2Irkutsk 5 1Mongolia 5 2Japan 5 1Kamchatka 5 2Indonesia 6 1New-Guinea 6 1Western-Australia 6 1Eastern-Australia 6 3
+[borders]
+
+
+[players]1 k2 r
+
+[players]k Alaskak Albertak Central-Americak Ontariok Eastern-United-Statesk Peruk Argentinak Scandinaviak Great-Britaink Western-Europek North-Africak Congok South-Africak Siberiak Chinak Middle-Eastk Siamk Irkutskk Japank Indonesiak Western-Australiar North-West-Territoryr Western-United-Statesr Greenlandr Quebecr Venezuelar Brazilr Icelandr Ukrainer Northern-Europer Southern-Europer Egyptr East-Africar Madagascarr Uralr Afghanistanr Indiar Yakutskr Mongoliar Kamchatkar New-Guinear Eastern-AustraliaTurn 1Tournament counter 1Game mode single[] 0 0

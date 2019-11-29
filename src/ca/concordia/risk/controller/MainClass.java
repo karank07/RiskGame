@@ -19,7 +19,7 @@ import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
-import ca.concordia.risk.model.GameState;
+import ca.concordia.risk.model.GameSave;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
@@ -102,109 +102,9 @@ public class MainClass {
 	 * @param fileName Map file to be read
 	 * @throws IOException to handle exceptions
 	 */
-	public void readMapFile(String fileName) throws IOException {
-		/*
-		 * if (!phase.contentEquals("loadmap")) { errorFlag = "invalid command!";
-		 * return; }
-		 */
-		MapValidate mv = new MapValidate();
-		fileName = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + fileName;
-
-		String fileData = "";
-
-		FileReader file;
-
-		try {
-			file = new FileReader(fileName);
-			File fileValidate = new File(fileName);
-			if (!mv.validateFile(fileValidate)) {
-				errorFlag = "Map invalid!";
-				return;
-			}
-
-			BufferedReader br = new BufferedReader(file);
-			HashMap<Integer, Country> countries = new HashMap<Integer, Country>();
-			HashMap<Integer, Continent> continents = new HashMap<Integer, Continent>();
-			HashMap<Integer, ArrayList<Integer>> borders = new HashMap<Integer, ArrayList<Integer>>();
-
-			List<String> continentString = new ArrayList<String>();
-			List<String> countryString = new ArrayList<String>();
-			while (fileData != null) {
-				fileData = br.readLine();
-
-				if (fileData.equals("[continents]")) {
-					fileData = br.readLine();
-
-					while (!fileData.isEmpty()) {
-						continentString.add(fileData);
-						fileData = br.readLine();
-					}
-					String[] temp = new String[3];
-					int index = 0;
-					for (String obj : continentString) {
-						index++;
-						temp = obj.split(" ");
-
-						Continent objContinent = new Continent(temp[0], Integer.parseInt(temp[1]), temp[2]); // name,control
-																												// value,color
-						continents.put(index, objContinent);
-
-					}
-
-					for (Continent o : continents.values()) {
-						System.out.println(o.toString());
-					}
-
-				} else if (fileData.equals("[countries]")) {
-					fileData = br.readLine();
-
-					while (!fileData.isEmpty()) {
-						countryString.add(fileData);
-						fileData = br.readLine();
-					}
-
-					String[] temp = new String[3];
-
-					for (String obj : countryString) {
-						temp = obj.split(" ");
-						Country objCountry = new Country(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),
-								Integer.parseInt(temp[3]), Integer.parseInt(temp[4]));
-						countries.put(objCountry.getCountryID(), objCountry);
-					}
-
-				} else if (fileData.equals("[borders]")) {
-					fileData = br.readLine();
-
-					while (fileData != null) {
-						String[] border_info = fileData.split(" ");
-						ArrayList<Integer> borderList = new ArrayList<Integer>();
-						for (int i = 1; i < border_info.length; i++) {
-							borderList.add(Integer.parseInt(border_info[i]));
-						}
-						borders.put(Integer.parseInt(border_info[0]), borderList);
-
-						fileData = br.readLine();
-					}
-
-					mapInstance.setCountries(countries);
-					mapInstance.setContinents(continents);
-					mapInstance.setBorders(borders);
-
-					for (Country o : countries.values()) {
-						System.out.println(o.getCountryID() + " " + o.getCountryName());
-
-					}
-
-					break;
-				}
-				errorFlag = "false";
-			}
-
-		} catch (FileNotFoundException e) {
-			errorFlag = "Given Map file doesnot exist!";
-		} finally {
-
-		}
+	public String readMapFile(String fileName) throws IOException {
+		errorFlag = editmap("editmap "+fileName);
+		return errorFlag;
 	}
 
 	/**
@@ -1662,9 +1562,13 @@ public class MainClass {
 		}
 		System.out.println("PLAYER COevrage " + playerCoverage);
 		int max = playerCoverage.get(playerList.get(0));
-		temp = new ArrayList<String>();
+		//temp = new ArrayList<String>();
 		attacker = playerList.get(0);
-		
+		if (tournamentResult.results.get(TournamentController.currentMap).isEmpty()) {
+			temp = new ArrayList<String>();
+		} else {
+			temp = tournamentResult.results.get(TournamentController.currentMap);
+		}
 		tournamentResult.results.put(tournamentController.currentMap, temp);
 		for (Player p : playerList) {
 			if (p.equals(attacker))
@@ -1730,9 +1634,9 @@ public class MainClass {
 
 	}
 
-	public void saveGameFile(GameState gs, String filename) throws IOException {
-		mapInstance = gs.getGameMap();
-		playerList = gs.getPlayersList();
+	public void saveGameFile(GameSave gs, String filename) throws IOException {
+		Map mapinstance = gs.getGameMap();
+		List<Player> playerlist = gs.getPlayersList();
 		Player p = gs.getPlayer();
 
 		String path = Paths.get("").toAbsolutePath().toString() + File.separator + "savedfiles" + File.separator
@@ -1756,7 +1660,7 @@ public class MainClass {
 		bw.write("[countries]");
 		bw.newLine();
 		for (Country c : mapInstance.getCountries().values()) {
-			bw.write(c.getCountryName() + " " + c.getContinentID() + " " + c.getCountryArmy());
+			bw.write(c.getCountryName() + " " + c.getContinentID() + " " + c.getCountryArmy() + " " + c.getXCo() + " " + c.getYCo());
 
 		}
 
@@ -1764,6 +1668,18 @@ public class MainClass {
 		bw.write("\n");
 		bw.write("[borders]");
 		bw.newLine();
+		for (Integer m : mapInstance.getBorders().keySet()) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			String border_string = "";
+			list = mapInstance.getBorders().get(m);
+
+			for (Integer n : list) {
+				border_string = border_string + n + " ";
+			}
+
+			bw.write(m + " " + border_string.trim());
+			bw.newLine();
+		}
 
 		bw.newLine();
 		bw.write("\n");
@@ -1775,14 +1691,20 @@ public class MainClass {
 		bw.write("\n");
 		bw.write("[players]");
 		for(Player player:main_instance.playerList) {
+			bw.write(""+ player.getPlayerName() + " " + player.getStrategy() + " " + player.getCardExchangeCount() 
+			+"\n"+ player.getCurrentPhase() + "\n");
 			for(Country c:main_instance.player_country_map.get(player)) {
-				bw.write(player.getPlayerName()+ " "+ c.getCountryName());
+				bw.write( c.getCountryName() );
 			}
 			
 		}
+		bw.newLine();
 		bw.write("Turn "+turn);
+		bw.newLine();
 		bw.write("Tournament counter "+turnCounter);
+		bw.newLine();
 		bw.write("Game mode "+mode);
+		bw.newLine();
 		bw.write(tournamentObject.getGameMaps()+" "+ tournamentObject.getNumGames()+" "+tournamentObject.getMaxTurns());
 		
 		bw.flush();
@@ -1799,41 +1721,5 @@ public class MainClass {
 		turnCounter = 0;
 	}
 
-	/**
-	 * this method copies the data to be saved
-	 * 
-	 * @param savedGame instance of the GameSave class
-	 */
-	public void copySaveData(GameSave savedGame) {
 
-//		HashMap<Player, List<Country>> ns_player_country_map = player_country_map;
-//		HashMap<String, Integer> ns_globalCardDeck = globalCardDeck;
-		List<Player> ns_playerList = new ArrayList<Player>();
-		for (Player p : playerList) {
-			ns_playerList.add(p);
-		}
-//		String ns_mode = mode;
-//		int ns_turn=getPlayerTurn();
-//		int ns_turnCounter=turnCounter;
-
-		savedGame.setTournamentmode(tournamentObject);
-		GameSave.setGlobalCardDeck(globalCardDeck);
-		savedGame.setPlayerList(ns_playerList);
-		savedGame.setPlayer_country_map(player_country_map);
-		savedGame.setTurn(turn);
-		savedGame.setMode(mode);
-		savedGame.setTurnCounter(turnCounter);
-
-	}
-
-	public void restoreData(GameSave gamesave) {
-		globalCardDeck = gamesave.getGlobalCardDeck();
-		playerList = gamesave.getPlayerList();
-		player_country_map = gamesave.getPlayer_country_map();
-		turn = gamesave.getTurn();
-		mode = gamesave.getMode();
-		turnCounter = gamesave.getTurnCounter();
-		tournamentObject = gamesave.getTournamentmode();
-
-	}
 }

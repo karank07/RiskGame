@@ -1,8 +1,8 @@
 package ca.concordia.risk.controller;
 
-import ca.concordia.risk.model.GameState;
-import ca.concordia.risk.model.GameStateBuilder;
-import ca.concordia.risk.model.GameStateScenario;
+import ca.concordia.risk.model.GameSave;
+import ca.concordia.risk.model.GameSaveBuilder;
+import ca.concordia.risk.model.GameSaveScenario;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 
@@ -24,7 +24,7 @@ public class ConsoleViewHandler {
 	static Console c;
 	MainClass main;
 	Map gm;
-	GameState gs;
+	GameSave gs;
 	ArrayList<Player> pl;
 	Player p;
 
@@ -59,7 +59,7 @@ public class ConsoleViewHandler {
 			if (commands.length == 2 && MainClass.playerList.isEmpty()) {
 				String fileName = commands[1];
 				try {
-					main.readMapFile(fileName);
+					errorFlag = main.readMapFile(fileName);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -175,9 +175,9 @@ public class ConsoleViewHandler {
 				&& (gm.getBorders().size() > 0)) {
 				try {
 					
-					GameStateBuilder gsb=new GameStateScenario() {
+					GameSaveBuilder gsb=new GameSaveScenario() {
 					};
-					gs = new GameState();
+					gs = new GameSave();
 					gsb.setGameState(gs);
 					gsb.buildGameMap(gm);
 					gsb.buildPlayersList(pl);

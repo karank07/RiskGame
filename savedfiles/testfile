@@ -1,0 +1,62 @@
+[continents]
+1 North-America 5
+2 South-America 2
+3 Europe 5
+4 Africa 3
+5 Asia 7
+6 Oceania 2
+
+[countries]
+Alaska 1 9 41 55North-West-Territory 1 2 97 51Alberta 1 2 83 93Western-United-States 1 2 102 144Central-America 1 1 118 206Greenland 1 2 195 48Ontario 1 1 135 100Quebec 1 3 200 106Eastern-United-States 1 2 157 149Venezuela 2 1 184 251Peru 2 1 187 308Brazil 2 3 223 285Argentina 2 1 199 339Iceland 3 1 250 58Scandinavia 3 3 360 40Ukraine 3 2 422 76Great-Britain 3 1 280 80Northern-Europe 3 3 342 96Western-Europe 3 4 285 139Southern-Europe 3 2 371 122North-Africa 4 2 305 217Egypt 4 3 356 203Congo 4 2 360 278East-Africa 4 1 394 248South-Africa 4 1 368 332Madagascar 4 1 423 338Siberia 5 1 533 51Ural 5 2 478 52China 5 3 544 158Afghanistan 5 1 474 128Middle-East 5 1 421 182India 5 2 493 207Siam 5 1 547 213Yakutsk 5 1 580 26Irkutsk 5 4 582 77Mongolia 5 2 581 123Japan 5 3 644 147Kamchatka 5 4 624 57Indonesia 6 2 575 279New-Guinea 6 1 643 278Western-Australia 6 2 591 353Eastern-Australia 6 1 647 355
+[borders]
+1 2 3 38
+2 1 3 7 6
+3 1 2 7 4
+4 3 7 5 9
+5 4 9 10
+6 2 7 8 14
+7 2 3 4 6 8 9
+8 6 7 9
+9 4 5 7 8
+10 5 11 12
+11 10 12 13
+12 10 11 13 21
+13 11 12
+14 6 17
+15 16 18
+16 15 28 30 31 18 20
+17 14 18 19
+18 15 16 17 19 20
+19 17 18 20 21
+20 16 18 19 21 22 31
+21 12 19 20 22 23 24
+22 20 21 24 31
+23 21 24 25
+24 21 22 23 25 26 31
+25 23 24 26
+26 24 25
+27 28 29 34 35 36
+28 16 27 29 30
+29 27 28 30 32 33 36
+30 16 28 29 31 32
+31 16 22 30 32 20 24
+32 29 30 31 33
+33 29 32 39
+34 27 35 38
+35 27 34 36 38
+36 29 35 37 38 27
+37 36 38
+38 1 34 35 36 37
+39 33 41 40
+40 39 41 42
+41 39 40 42
+42 40 41
+
+
+[players]1 karan2 rohan
+
+[players]karan Alaska 0 humankaran Alberta 0 humankaran Central-America 0 humankaran Ontario 0 humankaran Eastern-United-States 0 humankaran Peru 0 humankaran Argentina 0 humankaran Scandinavia 0 humankaran Great-Britain 0 humankaran Western-Europe 0 humankaran North-Africa 0 humankaran Congo 0 humankaran South-Africa 0 humankaran Siberia 0 humankaran China 0 humankaran Middle-East 0 humankaran Siam 0 humankaran Irkutsk 0 humankaran Japan 0 humankaran Indonesia 0 humankaran Western-Australia 0 humanrohan North-West-Territory 0 humanrohan Western-United-States 0 humanrohan Greenland 0 humanrohan Quebec 0 humanrohan Venezuela 0 humanrohan Brazil 0 humanrohan Iceland 0 humanrohan Ukraine 0 humanrohan Northern-Europe 0 humanrohan Southern-Europe 0 humanrohan Egypt 0 humanrohan East-Africa 0 humanrohan Madagascar 0 humanrohan Ural 0 humanrohan Afghanistan 0 humanrohan India 0 humanrohan Yakutsk 0 humanrohan Mongolia 0 humanrohan Kamchatka 0 humanrohan New-Guinea 0 humanrohan Eastern-Australia 0 human
+Turn 1
+Tournament counter 1
+Game mode single
+[] 0 0

@@ -15,11 +15,20 @@ import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Player;
 import java.util.Map;
 
+/**
+ * This class implements the benevolent strategy for our game
+ * @author Pranal
+ *
+ */
 public class BenevolentStrategy {
 	static MainClass mainClassInstance = MainClass.getM_instance();
 	static ca.concordia.risk.model.Map mapInstance = ca.concordia.risk.model.Map.getM_instance();
 	static List<Country> weakestCountries = new ArrayList<Country>();
 
+	/**
+	 * reinforces the weakest country of the player
+	 * @param p benevolent player
+	 */
 	public static void BenevolentStrategyReinforcement(Player p) {
 		if(mainClassInstance.endTournament == true) {
 			return;
@@ -46,7 +55,10 @@ public class BenevolentStrategy {
 			BenevolentStrategyReinforcement(p);
 		}
 	}
-
+/**
+ * this function never attacks
+ * @param p benevolent player
+ */
 	public static void BenevolentStrategyAttack(Player p) {
 		p.setCanAttack(false);
 		if(mainClassInstance.endTournament == true) {
@@ -56,6 +68,10 @@ public class BenevolentStrategy {
 
 	}
 
+	/**
+	 * Fortifies the weakest country and aggregates maximum army there
+	 * @param p benevolent player
+	 */
 	public static void BenevolentStrategyFortify(Player p) {
 		Country to = weakestCountries.get(0);
 		List<Country> cList = MainClass.player_country_map.get(p);
