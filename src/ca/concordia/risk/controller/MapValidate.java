@@ -2,8 +2,11 @@ package ca.concordia.risk.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
+import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.utilities.GameConstants;
 
@@ -57,9 +60,22 @@ public class MapValidate {
 		return valid_flag;
 	}
 	
+	/**
+	 * Checks if map is valid or not
+	 * @param map the map instance
+	 * @return true if valid
+	 */
 	public boolean validateMap(Map map)
 	{
-		return true;
+		HashMap<Integer, Country> countries = map.getCountries();
+		HashMap<Integer, ArrayList<Integer>> borders = map.getBorders();
+		
+		if(countries.size() == borders.size())
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-
 }

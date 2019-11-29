@@ -143,7 +143,7 @@ public class ConsoleViewHandler {
 			break;
 		case "validatemap":
 			if(commands.length==1 && !Map.m_instance.getBorders().isEmpty())
-				main.validatemap();
+				errorFlag = main.validatemap();
 			else errorFlag="Invalid command!";
 			break;
 		case "editmap":

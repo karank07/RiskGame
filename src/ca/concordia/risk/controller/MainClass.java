@@ -79,7 +79,7 @@ public class MainClass {
 		conquestMapController = new ConquestMapController();
 		fileIdentifierFlag = 0;
 		tournamentResult = TournamentResult.getInstance();
-
+		mv = new MapValidate();
 	}
 
 	/**
@@ -439,7 +439,7 @@ public class MainClass {
 	 */
 	public void mapPlayerToCountry(Player p, Country c) {
 		List<Country> cList = MainClass.player_country_map.get(p);
-		
+
 		c.setCountryOwner(p.getPlayerId());
 		if (cList == null) {
 			cList = new ArrayList<>();
@@ -447,7 +447,7 @@ public class MainClass {
 		cList.add(c);
 
 		MainClass.player_country_map.put(p, cList);
-		
+
 	}
 
 	/**
@@ -1271,14 +1271,14 @@ public class MainClass {
 	/**
 	 * to check validity of map
 	 */
-	public void validatemap() {
+	public String validatemap() {
 		if (mapInstance.getBorders().isEmpty()) {
 			errorFlag = "Invalid!";
 		} else if (mv.validateMap(Map.getM_instance())) {
-			System.out.println("Map valid!");
+			errorFlag = "Map is valid!";
 		} else
 			errorFlag = "Invalid map!";
-
+		return errorFlag;
 	}
 
 	/**
@@ -1594,6 +1594,7 @@ public class MainClass {
 	 * @param p the current player instance
 	 */
 	public static boolean endTournament = false;
+
 	public void nextTurn(Player p) {
 		turnCounter++;
 
@@ -1646,7 +1647,7 @@ public class MainClass {
 	 * in the console
 	 */
 	public void endTournamentGame(Player attacker) {
-		
+
 		endTournament = true;
 		List<String> temp = null;
 
@@ -1681,7 +1682,6 @@ public class MainClass {
 		}
 
 		tournamentResult.results.replace(TournamentController.currentMap, temp);
-		
 
 		if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
 				.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
@@ -1742,15 +1742,17 @@ public class MainClass {
 	 * @param savedGame instance of the GameSave class
 	 */
 	public void copySaveData(GameSave savedGame) {
-		
+
 //		HashMap<Player, List<Country>> ns_player_country_map = player_country_map;
 //		HashMap<String, Integer> ns_globalCardDeck = globalCardDeck;
 		List<Player> ns_playerList = new ArrayList<Player>();
-		for(Player p : playerList) {ns_playerList.add(p);}
+		for (Player p : playerList) {
+			ns_playerList.add(p);
+		}
 //		String ns_mode = mode;
 //		int ns_turn=getPlayerTurn();
 //		int ns_turnCounter=turnCounter;
-		
+
 		savedGame.setTournamentmode(tournamentObject);
 		GameSave.setGlobalCardDeck(globalCardDeck);
 		savedGame.setPlayerList(ns_playerList);
@@ -1758,7 +1760,7 @@ public class MainClass {
 		savedGame.setTurn(turn);
 		savedGame.setMode(mode);
 		savedGame.setTurnCounter(turnCounter);
-		
+
 	}
 
 	public void restoreData(GameSave gamesave) {
