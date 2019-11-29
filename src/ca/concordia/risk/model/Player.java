@@ -61,7 +61,7 @@ public class Player implements Subject {
 	 *                           exchanged cards for armies
 	 */
 	private int cardExchangeCount = 0;
-	private boolean canAttack=true;
+	private boolean canAttack = true;
 	/**
 	 * @param strategy - to decide the strategy of the player object
 	 */
@@ -158,8 +158,8 @@ public class Player implements Subject {
 	 */
 	public void setReinforceCountry(String reinforceCountry) {
 
-		if(this.getStrategy() == "human") {
-			 notify_observer();
+		if (this.getStrategy().equals("human")) {
+			notify_observer();
 		}
 
 		this.reinforceCountry = reinforceCountry;
@@ -187,7 +187,7 @@ public class Player implements Subject {
 	}
 
 	public Player() {
-		
+
 	}
 
 	/**
@@ -266,12 +266,12 @@ public class Player implements Subject {
 	 */
 	public void addArmies(int addN) {
 		this.playerTotalArmies += addN;
-	
-		if(this.getStrategy() == "human") {
+
+		if (this.getStrategy().equals("human")) {
 			attach(gameView);
-			 notify_observer();
+			notify_observer();
 		}
-		
+
 	}
 
 	/**
@@ -352,9 +352,9 @@ public class Player implements Subject {
 	 */
 	public void remArmies(int n) {
 		this.playerTotalArmies -= n;
-		if(this.getStrategy() == "human") {
+		if (this.getStrategy().equals("human")) {
 			this.attach(gameView);
-			 notify_observer();
+			notify_observer();
 		}
 	}
 
@@ -386,9 +386,9 @@ public class Player implements Subject {
 	 */
 	public void setPlayerReinforceArmy(int playerReinforceArmy) {
 		this.playerReinforceArmy = playerReinforceArmy;
-		if(this.getStrategy() == "human") {
+		if (this.getStrategy().equals("human")) {
 			this.attach(gameView);
-			 notify_observer();
+			notify_observer();
 		}
 	}
 
@@ -410,9 +410,9 @@ public class Player implements Subject {
 	 * @param attackResult the attackResult to set
 	 */
 	public void setAttackResult(String attackResult) {
-		if(this.getStrategy() == "human") {
+		if (this.getStrategy().equals("human")) {
 			this.attach(gameView);
-			 notify_observer();
+			notify_observer();
 		}
 		this.attackResult = attackResult;
 	}
@@ -581,7 +581,7 @@ public class Player implements Subject {
 				: defender.getDiceResult().size();
 
 		System.out.println("Attacker rolls: " + this.diceResult);
-		System.out.println("DeFENDER :(in player class attack method) : "+defender);
+		System.out.println("DeFENDER :(in player class attack method) : " + defender);
 		System.out.println("Defender rolls: " + defender.diceResult);
 		for (int i = 0; i < size; i++) {
 			int a = this.getDiceResult().get(i);
@@ -607,13 +607,13 @@ public class Player implements Subject {
 		} else {
 			resultString = attackerWins.size() > defenderWins.size() ? "ATTACKER WINS" : "DEFENDER WINS";
 		}
-		
+
 		System.out.println("attacker :" + attackerWins);
 		System.out.println("defender: " + defenderWins);
 		System.out.println(resultString);
-		if(this.getStrategy() == "human") {
+		if (this.getStrategy().equals("human")) {
 			this.attach(gameView);
-			 notify_observer();
+			notify_observer();
 		}
 
 		return resultString;
@@ -660,10 +660,10 @@ public class Player implements Subject {
 	 */
 	public void setCurrentPhase(GamePhase phase) {
 		this.gamePhase = phase;
-	
-		if(this.getStrategy() == "human") {
+
+		if (this.getStrategy().equals("human")) {
 			this.attach(gameView);
-			 notify_observer();
+			notify_observer();
 		}
 	}
 
@@ -685,7 +685,6 @@ public class Player implements Subject {
 		this.intialArmies = intialArmies;
 	}
 
-		  
 	/**
 	 * returns list of the countries that can be attacked by the country c
 	 * 
@@ -695,7 +694,7 @@ public class Player implements Subject {
 	public List<Country> attackableCountries(Country c) {
 		List<Country> countriesAttackable = new ArrayList<>();
 		List<Country> neighbouringCountries = ca.concordia.risk.model.Map.m_instance.getNeighbourCountries(c);
-		
+
 		for (Country neighbour : neighbouringCountries) {
 			if (neighbour.getCountryOwner() != c.getCountryOwner()) {
 				countriesAttackable.add(neighbour);
@@ -704,14 +703,15 @@ public class Player implements Subject {
 		return countriesAttackable;
 	}
 
-
 	/**
 	 * Notify method is used to notify all observers to
 	 */
 	@Override
 	public void notify_observer() {
-		if (o != null) {
-			o.update(this);
+		if (this.getStrategy().equals("human")) {
+			if (o != null) {
+				o.update(this);
+			}
 		}
 
 	}
@@ -727,12 +727,12 @@ public class Player implements Subject {
 	}
 
 	public void checkForExchangeCards() {
+		if (this.getStrategy().equals("human")) {
 		
-		if(this.getStrategy() == "human") {
-			attach(CardExchangeView.getCardExchangeViewInstance());
-			 notify_observer();
+				attach(CardExchangeView.getCardExchangeViewInstance());
+				notify_observer();
+			
 		}
-
 	}
 
 	/**
