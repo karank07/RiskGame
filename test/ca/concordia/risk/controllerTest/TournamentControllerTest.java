@@ -5,7 +5,11 @@ package ca.concordia.risk.controllerTest;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -26,8 +30,8 @@ public class TournamentControllerTest {
 	static TournamentMode tournamentObject;
 	static TournamentResult tournamentResult;
 
-	@BeforeClass
-	public static void before() {
+	@Before
+	public void before() {
 		mC = MainClass.getM_instance();
 		cVH = new ConsoleViewHandler();
 		tournamentObject = TournamentMode.getInstance();
@@ -36,16 +40,42 @@ public class TournamentControllerTest {
 
 	@After
 	public void tearDown() {
-		mC = null;
+		mC.resetGame();
+		
 		mC.playerList.clear();
+		mC.player_country_map.clear();
+		cVH = null;
+		tournamentResult.results.clear();
+		
+		tournamentObject = null;
+
+	}
+	@Test
+	public void WinTest() {
+		String s = cVH.phaseDecider("tournament -m risk.map -p cheater-benevolent -g 1 -d 4");
+
+		// tournamentController.showResult();
+		System.out.println("=======================================");
+		List<String> results_2 = new ArrayList<String>();
+		results_2 = tournamentResult.results.get(new String("risk.map"));
+		System.out.println(results_2.get(0));
+		// System.out.println(results.get(1));
+		assertEquals("1", results_2.get(0));
+	}
+	@Test
+	public void DrawTest() {
+		String s = cVH.phaseDecider("tournament -m risk.map -p benevolent-benevolent -g 1 -d 4");
+
+		// tournamentController.showResult();
+		System.out.println("======================================");
+		List<String> results = new ArrayList<String>();
+		results = tournamentResult.results.get(new String("risk.map"));
+		System.out.println("draw result: " + results);
+		// System.out.println(results.get(1));
+		assertEquals("Draw", results.get(0));
+		// assertEquals("Draw",results.get(1));
 	}
 
-	@Test
-	public void test() {
-		String s = cVH.phaseDecider("tournamant -m risk.map -p benevolent-benevolent -g 1 -d 4");
-		tournamentController = new TournamentController();
-		tournamentController.showResult();
-		
-	}
+
 
 }

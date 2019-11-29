@@ -20,6 +20,7 @@ import ca.concordia.risk.utilities.GamePhase;
  */
 public class GameSave 
 {
+
 	
 	
 	public static HashMap<String, Integer> globalCardDeck;
@@ -35,6 +36,33 @@ public class GameSave
 	
 	
 	public static HashMap<Player, List<Country>> player_country_map;
+
+	
+	/**
+	 * @return the tournamentmode
+	 */
+	public TournamentMode getTournamentmode() {
+		return tournamentmode;
+	}
+	/**
+	 * @param tournamentmode the tournamentmode to set
+	 */
+	public void setTournamentmode(TournamentMode tournamentmode) {
+		this.tournamentmode = tournamentmode;
+	}
+	/**
+	 * @return the turnCounter
+	 */
+	public static int getTurnCounter() {
+		return turnCounter;
+	}
+	/**
+	 * @param turnCounter the turnCounter to set
+	 */
+	public static void setTurnCounter(int turnCounter) {
+		GameSave.turnCounter = turnCounter;
+	}
+
 	/**
 	 * @return the player_country_map
 	 */
@@ -86,7 +114,7 @@ public class GameSave
 	/**
 	 * @return the playerList
 	 */
-	public List<Player> getPlayerList() {
+	public static List<Player> getPlayerList() {
 		return playerList;
 	}
 
@@ -98,8 +126,8 @@ public class GameSave
 	/**
 	 * @param playerList the playerList to set
 	 */
-	public void setPlayerList(List<Player> playerList) {
-		this.playerList = playerList;
+	public static void setPlayerList(List<Player> playerList) {
+		GameSave.playerList = playerList;
 	}
 
 
@@ -172,6 +200,21 @@ public class GameSave
 	 */
 	public static void setTurn(int turn) {
 		GameSave.turn = turn;
+
+	}
+	
+	/**
+	 * @return the countries
+	 */
+	public HashMap<Integer, Country> getCountries() {
+		return countries;
+	}
+	/**
+	 * @param countries the countries to set
+	 */
+	public void setCountries(HashMap<Integer, Country> countries) {
+		this.countries = countries;
+
 	}
 
 
@@ -294,12 +337,14 @@ public class GameSave
 		this.tournamentmode = tournamentmode;
 	}
 
-	
+
 
 
 
 	public void saveThisGame(String saveFileName){
 		File saveFile=new File(saveFileName);
+
+
 		Map.getM_instance().copySavedData(this);
 		MainClass.getM_instance().copySaveData(this);
 		Gson gson = GameSaveBuilder.getGSONInstance();

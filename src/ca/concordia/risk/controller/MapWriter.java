@@ -66,7 +66,7 @@ public class MapWriter {
 			buffW.write(GameConstants.COUNTRIES_HEADER);
 
 			buffW.newLine();
-
+			
 			for (Integer i : countries.keySet()) {
 				Country coun = countries.get(i);
 
@@ -115,6 +115,7 @@ public class MapWriter {
 				+ fileName;
 		File filePtr = new File(filePath);
 		Scanner sc = new Scanner(filePtr);
+		int countryId=0;
 		try {
 			flag = mv.validateFile(filePtr);
 
@@ -151,20 +152,19 @@ public class MapWriter {
 						break;
 					}
 				}
-				int countryId = 0;
+				
 				while (sc.hasNext()) {
-					
+
 					country_start = sc.nextLine();
 
 					if (country_start.length() > 0) {
 						
 						country_info = country_start.split(" ");
-						countryId++;
-						Country coun = new Country(countryId,country_info[1], Integer.parseInt(country_info[2]),
+						Country coun = new Country(++countryId ,country_info[1], Integer.parseInt(country_info[2]),
 								Integer.parseInt(country_info[3]), Integer.parseInt(country_info[4]));
 
 						countries.put(Integer.parseInt(country_info[0]), coun);
-						
+
 					} else {
 						break;
 					}

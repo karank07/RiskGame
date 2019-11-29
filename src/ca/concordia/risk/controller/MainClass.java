@@ -13,14 +13,11 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import com.google.gson.Gson;
-
 import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
 import ca.concordia.risk.model.GameSave;
-import ca.concordia.risk.model.GameSaveBuilder;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
@@ -67,7 +64,6 @@ public class MainClass {
 	private int fileIdentifierFlag;
 	List<Country> visited = new ArrayList<Country>();
 	private MapValidate mv;
-	private GameSave gameSave;
 
 	/**
 	 * constructor to initialize player list,card deck, map instance, map operations
@@ -83,7 +79,6 @@ public class MainClass {
 		conquestMapController = new ConquestMapController();
 		fileIdentifierFlag = 0;
 		tournamentResult = TournamentResult.getInstance();
-		gameSave = new GameSave();
 
 	}
 
@@ -721,6 +716,7 @@ public class MainClass {
 	 */
 	public String attackResult(Country countryAttacking, Country countryDefending, Player attacker) {
 		if (countryAttacking.getCountryArmy() == 1) {
+			System.out.println("Defender won!");
 			attacker.setAttackResult("Defender won!");
 			return "Defender won!";
 		} else if (countryDefending.getCountryArmy() == 0) {
@@ -743,16 +739,19 @@ public class MainClass {
 									.size() == tournamentObject.getNumGames()) {
 						System.out.println("tournament end");
 						tournamentResult.end = true;
-						endTournamentGame();
+						endTournamentGame(attacker);
+
 					}
 				}
 
-			} else if (gameOver(attacker)) {
-				System.out.println("Game Over! " + attacker.getPlayerName() + " wins!");
-				System.exit(0);
+			} else if (gameOver(attacker) && mode.equals("single")) {
+				System.out.println("Game over! " + attacker.getPlayerName() + " wins!");
+				// System.exit(0);
+
+				return "";
 
 			}
-			errorFlag = "You have to move armies";
+			System.out.println("Attacker won! Country conquered "+ countryDefending );
 			attacker.setAttackResult("Attacker won! Country conquered");
 			return "Attacker won! Country conquered";
 
@@ -1293,8 +1292,8 @@ public class MainClass {
 	public String editmap(String s1) {
 		String[] temp = s1.split(" ");
 		String filePath = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator
-					+ temp[1];
-		System.out.println("FilePath: "+ filePath);
+				+ temp[1];
+		System.out.println("FilePath: " + filePath);
 		File filePtr = new File(filePath);
 
 		try {
@@ -1600,16 +1599,12 @@ public class MainClass {
 
 		System.out.println(turnCounter);
 		System.out.println("maxturns: " + tournamentObject.getMaxTurns() + "player list size " + playerList.size());
-		// if (mode.equalsIgnoreCase("tournament")) {
-		if (turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
+		if (mode.equalsIgnoreCase("tournament") && turnCounter > (tournamentObject.getMaxTurns() * playerList.size())) {
 			System.out.println("calling end tournament");
-			endTournamentGame();
+			endTournamentGame(p);
 			return;
 		}
-		// }
 
-		// setNextPlayerTurn();
-		// p = playerList.get(getPlayerTurn() - 1);
 		System.out.println();
 		System.out.println("Current Player name: " + p.getPlayerName());
 		System.out.println(player_country_map.get(p));
@@ -1626,15 +1621,6 @@ public class MainClass {
 		} else if (p.getStrategy().equals("benevolent")) {
 			BenevolentStrategy.BenevolentStrategyReinforcement(p);
 		}
-
-		/*
-		 * }else { Player winner=playerList.get(0); int
-		 * max=player_country_map.get(0).size(); for(Player
-		 * player:player_country_map.keySet()) {
-		 * if(player_country_map.get(player).size()>max) {
-		 * max=player_country_map.get(player).size(); winner=player; } }
-		 * System.out.println("Player "+winner.getPlayerName()+" won by map coverage!");
-		 */
 
 	}
 
@@ -1658,13 +1644,12 @@ public class MainClass {
 	 * Handles the game ending scenario, along-with setting and printing the result
 	 * in the console
 	 */
-	private void endTournamentGame() {
-		if (tournamentResult.end) {
-			System.out.println("Game over! Player " + playerList.get(getPlayerTurn() - 1) + " Wins");
-			System.exit(0);
-		} else {
+	public void endTournamentGame(Player attacker) {
+		if (turnCounter > tournamentObject.getMaxTurns()) {
 
-			Player attacker;
+			
+			List<String> temp;
+
 			HashMap<Player, Integer> playerCoverage = new HashMap<Player, Integer>();
 			for (Player p : playerList) {
 				int t = player_country_map.get(p).size();
@@ -1678,29 +1663,31 @@ public class MainClass {
 				if (p.equals(attacker))
 					continue;
 				if (max == playerCoverage.get(p)) {
-					attacker.setPlayerName("Draw");
+					if (tournamentResult.results.get(TournamentController.currentMap).isEmpty()) {
+						temp = new ArrayList<String>();
+					} else {
+						temp = tournamentResult.results.get(TournamentController.currentMap);
+					}
+					temp.add("DRAW");
+					tournamentResult.results.replace(TournamentController.currentMap, temp);
 				} else if (playerCoverage.get(p) > max) {
 					attacker = p;
 				}
 			}
-			List<String> temp;
-			if (mode.equalsIgnoreCase("tournament")) {
-				if (tournamentResult.results.get(TournamentController.currentMap).isEmpty()) {
-					temp = new ArrayList<String>();
-				} else {
-					temp = tournamentResult.results.get(TournamentController.currentMap);
-				}
-				temp.add(attacker.getPlayerName());
-				tournamentResult.results.put(TournamentController.currentMap, temp);
-				if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
-						.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
-						.size() == tournamentObject.getNumGames()) {
-					tournamentResult.end = true;
-					System.out.println(tournamentResult.results + " " + attacker.getStrategy());
-					System.out.println("Game over! Player " + attacker.getPlayerName() + " Wins");
-					System.exit(0);
-				}
-			}
+		}
+		List<String> temp;
+		if (tournamentResult.results.get(TournamentController.currentMap).isEmpty()) {
+			temp = new ArrayList<String>();
+		} else {
+			temp = tournamentResult.results.get(TournamentController.currentMap);
+		}
+		temp.add(attacker.getPlayerName());
+		tournamentResult.results.put(TournamentController.currentMap, temp);
+		if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
+				.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
+				.size() == tournamentObject.getNumGames()) {
+			tournamentResult.end = true;
+			// System.exit(0);
 		}
 	}
 
@@ -1784,57 +1771,4 @@ public class MainClass {
 		tournamentObject = gamesave.getTournamentmode();
 
 	}
-
-	public void saveGame(String filename) {
-		String filenamePath = Paths.get("").toAbsolutePath().toString() + File.separator + "savedfiles" + File.separator
-				+ filename;
-		gameSave.saveThisGame(filenamePath);
-
-	}
-
-	public void loadGame(String filename) {
-		String filenamePath = Paths.get("").toAbsolutePath().toString() + File.separator + "savedfiles" + File.separator
-				+ filename;
-		File f = new File(filenamePath);
-		FileReader fr = null;
-		try {
-			fr = new FileReader(f);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		Gson gson = GameSaveBuilder.getGSONInstance();
-		GameSave savedGame = gson.fromJson(fr, GameSave.class);
-
-		loadGameController(savedGame);
-
-	}
-
-	
-
-	/**
-	 * This method controls the new Game phase
-	 * 
-	 * @param savedGame variable of type SaveGame
-	 * @return
-	 */
-	public void loadGameController(GameSave savedGame) {
-		Map.getM_instance().restoreData(savedGame);
-		restoreData(savedGame);
-		Player current_player = savedGame.getPlayerList().get(savedGame.getTurn()-1);
-		switch (current_player.gamePhase) {
-		case ATTACK:
-			current_player.gamePhase = GamePhase.REINFORCEMENT;
-			break;
-		case FORTIFICATION:
-			current_player.gamePhase = GamePhase.ATTACK;
-			break;
-		case REINFORCEMENT:
-			current_player.gamePhase = GamePhase.FORTIFICATION;
-			break;
-		case STARTUP:
-			break;
-		}
-		nextTurn(current_player);
-	}
-
 }

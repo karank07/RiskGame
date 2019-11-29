@@ -28,7 +28,7 @@ public class RandomStrategy {
 	 *          in that country randomly.
 	 * 
 	 *          After that it will call function for doing reinforcement
-	 * 
+	 *  
 	 */
 	public static void RandomStrategyReinforcement(Player p) {
 		if (p.getPlayerCards().size() >= 5) {

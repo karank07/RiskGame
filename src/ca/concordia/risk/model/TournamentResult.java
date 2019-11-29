@@ -8,7 +8,7 @@ public class TournamentResult {
 
 	private static TournamentResult instance = null;
 
-	public Map<String, List<String>> results;
+	public Map<String, List<String>> results; 
 
 	public boolean end = false;
 
