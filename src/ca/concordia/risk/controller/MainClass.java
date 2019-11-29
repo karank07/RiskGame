@@ -1662,7 +1662,10 @@ public class MainClass {
 		}
 		System.out.println("PLAYER COevrage " + playerCoverage);
 		int max = playerCoverage.get(playerList.get(0));
+		temp = new ArrayList<String>();
 		attacker = playerList.get(0);
+		
+		tournamentResult.results.put(tournamentController.currentMap, temp);
 		for (Player p : playerList) {
 			if (p.equals(attacker))
 				continue;
