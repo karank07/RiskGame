@@ -81,7 +81,7 @@ public class MainClass {
 		conquestMapController = new ConquestMapController();
 		fileIdentifierFlag = 0;
 		tournamentResult = TournamentResult.getInstance();
-
+		mv = new MapValidate();
 	}
 
 	/**
@@ -1274,14 +1274,14 @@ public class MainClass {
 	/**
 	 * to check validity of map
 	 */
-	public void validatemap() {
+	public String validatemap() {
 		if (mapInstance.getBorders().isEmpty()) {
 			errorFlag = "Invalid!";
 		} else if (mv.validateMap(Map.getM_instance())) {
-			System.out.println("Map valid!");
+			errorFlag = "Map is valid!";
 		} else
 			errorFlag = "Invalid map!";
-
+		return errorFlag;
 	}
 
 	/**
@@ -1488,6 +1488,7 @@ public class MainClass {
 				try {
 					mapWriter.writeMapFile(mapInstance.getContinents(), mapInstance.getCountries(),
 							mapInstance.getBorders(), temp[1]);
+					errorFlag = "File Saved!!";
 				} catch (IOException e) {
 					errorFlag = "File Saved!!";
 				}
@@ -1684,7 +1685,6 @@ public class MainClass {
 		}
 
 		tournamentResult.results.replace(TournamentController.currentMap, temp);
-		System.out.println("CHECK Touranemtn result obj : " + tournamentResult.results + " check tpournamentObject: "+ tournamentObject.getInstance() );
 		if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
 				.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
 				.size() == tournamentObject.getNumGames()) {
@@ -1801,29 +1801,36 @@ public class MainClass {
 	 * 
 	 * @param savedGame instance of the GameSave class
 	 */
-	/*
-	 * public void copySaveData(GameSave savedGame) {
-	 * 
-	 * // HashMap<Player, List<Country>> ns_player_country_map = player_country_map;
-	 * // HashMap<String, Integer> ns_globalCardDeck = globalCardDeck; List<Player>
-	 * ns_playerList = new ArrayList<Player>(); for(Player p : playerList)
-	 * {ns_playerList.add(p);} // String ns_mode = mode; // int
-	 * ns_turn=getPlayerTurn(); // int ns_turnCounter=turnCounter;
-	 * 
-	 * savedGame.setTournamentmode(tournamentObject);
-	 * GameSave.setGlobalCardDeck(globalCardDeck);
-	 * savedGame.setPlayerList(ns_playerList);
-	 * savedGame.setPlayer_country_map(player_country_map); savedGame.setTurn(turn);
-	 * savedGame.setMode(mode); savedGame.setTurnCounter(turnCounter);
-	 * 
-	 * }
-	 * 
-	 * public void restoreData(GameSave gamesave) { globalCardDeck =
-	 * gamesave.getGlobalCardDeck(); playerList = gamesave.getPlayerList();
-	 * player_country_map = gamesave.getPlayer_country_map(); turn =
-	 * gamesave.getTurn(); mode = gamesave.getMode(); turnCounter =
-	 * gamesave.getTurnCounter(); tournamentObject = gamesave.getTournamentmode();
-	 * 
-	 * }
-	 */
+	public void copySaveData(GameSave savedGame) {
+
+//		HashMap<Player, List<Country>> ns_player_country_map = player_country_map;
+//		HashMap<String, Integer> ns_globalCardDeck = globalCardDeck;
+		List<Player> ns_playerList = new ArrayList<Player>();
+		for (Player p : playerList) {
+			ns_playerList.add(p);
+		}
+//		String ns_mode = mode;
+//		int ns_turn=getPlayerTurn();
+//		int ns_turnCounter=turnCounter;
+
+		savedGame.setTournamentmode(tournamentObject);
+		GameSave.setGlobalCardDeck(globalCardDeck);
+		savedGame.setPlayerList(ns_playerList);
+		savedGame.setPlayer_country_map(player_country_map);
+		savedGame.setTurn(turn);
+		savedGame.setMode(mode);
+		savedGame.setTurnCounter(turnCounter);
+
+	}
+
+	public void restoreData(GameSave gamesave) {
+		globalCardDeck = gamesave.getGlobalCardDeck();
+		playerList = gamesave.getPlayerList();
+		player_country_map = gamesave.getPlayer_country_map();
+		turn = gamesave.getTurn();
+		mode = gamesave.getMode();
+		turnCounter = gamesave.getTurnCounter();
+		tournamentObject = gamesave.getTournamentmode();
+
+	}
 }

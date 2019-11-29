@@ -1,0 +1,117 @@
+[Map]
+author=Sid6.7
+image=iowa.bmp
+wrap=yes
+scroll=none
+warn=yes
+
+[Continents]
+Des Moines Metro=6
+Coteau des Prairies=1
+Eastern Iowa=4
+Siouxland=2
+Quad City Area=2
+Council Bluffs Metro=5
+Coulee Region=2
+Loess Hills Region=3
+
+[Territories]
+Boone,352,250,Des Moines Metro,Greene,Webster,hamilton,Story,Polk,Dallas
+Story,412,251,Des Moines Metro,Boone,Polk,Marshall,Hardin,hamilton,Jasper
+Jasper,461,308,Des Moines Metro,Polk,Marshall,Poweshiek,Mahaska,Marion,Story
+Polk,397,307,Des Moines Metro,Boone,Dallas,Warren,Jasper,Story
+Dallas,339,307,Des Moines Metro,Greene,Boone,Gutherie,Polk,Madison
+Gutherie,279,307,Des Moines Metro,Carroll,Audobon,Adair,Greene,Dallas
+Madison,341,360,Des Moines Metro,Adair,Union,Dallas,Warren,Clark
+Warren,400,360,Des Moines Metro,Madison,Clark,Lucas,Marion,Polk
+Marion,463,361,Des Moines Metro,Lucas,Warren,Jasper,Mahaska,Monroe
+Lyon,66,40,Siouxland,Osceola,Sioux
+Sioux,67,85,Siouxland,Lyon,O'Brien,Plymouth
+Plymouth,65,136,Siouxland,Sioux,Cherokee,Woodbury
+Woodbury,80,193,Siouxland,Plymouth,Cherokee,Ida,Monona
+Monona,100,249,Siouxland,Woodbury,Crawford,Harrison
+Harrison,115,307,Council Bluffs Metro,Monona,Crawford,Shelby,Pottawattamie
+Pottawattamie,148,363,Council Bluffs Metro,Harrison,Shelby,Cass,Montgomery,Mills
+Mills,137,409,Council Bluffs Metro,Pottawattamie,Montgomery,Fremont
+Osceola,137,40,Coteau des Prairies,Lyon,O'Brien,Dickinson
+Dickinson,198,39,Coteau des Prairies,Osceola,Emment,Clay
+Emment,258,39,Coteau des Prairies,Dickinson,Palo Alto,Kossuth
+Kossuth,316,64,Coteau des Prairies,Palo Alto,Emment,Winnebago,Hanncock,Humbolt
+Winnebago,375,36,Coteau des Prairies,Kossuth,Hanncock,Worth
+Palo Alto,257,82,Coteau des Prairies,Clay,Pocahontas,Kossuth,Emment
+Clay,197,84,Coteau des Prairies,O'Brien,Dickinson,Palo Alto,Buena Vista
+O'Brien,140,84,Coteau des Prairies,Sioux,Cherokee,Clay,Osceola
+MUscatine,707,339,Quad City Area,Johnson,Cedar,Louisa,Scott
+Scott,774,311,Quad City Area,Cedar,MUscatine,Clinton
+Allamakee,675,52,Coulee Region,Winneshiek,Clayton
+Winneshiek,618,50,Coulee Region,Howard,Chickasaw,Fayette,Allamakee
+Howard,553,38,Coulee Region,Mitchell,Chickasaw,Winneshiek
+Fayette,614,114,Coulee Region,Chickasaw,Bremer,Buchanan,Clayton,Winneshiek
+Clayton,680,119,Coulee Region,Fayette,Allamakee,Deleware,Dubuque
+Deleware,679,182,Coulee Region,Linn,Buchanan,Clayton,Dubuque,Jones
+Dubuque,741,182,Coulee Region,Clayton,Deleware,Jones,Jackson
+Cherokee,139,143,Loess Hills Region,Plymouth,Woodbury,Ida,Buena Vista,O'Brien
+Buena Vista,199,145,Loess Hills Region,Cherokee,Clay,Pocahontas,Sac
+Pocahontas,261,144,Loess Hills Region,Buena Vista,Calhoun,Webster,Humbolt,Palo Alto
+Ida,154,201,Loess Hills Region,Woodbury,Crawford,Sac,Cherokee
+Sac,210,202,Loess Hills Region,Crawford,Ida,Buena Vista,Calhoun,Carroll
+Calhoun,263,202,Loess Hills Region,Sac,Carroll,Greene,Webster,Pocahontas
+Crawford,167,252,Loess Hills Region,Monona,Harrison,Shelby,Carroll,Ida,Sac
+Carroll,231,251,Loess Hills Region,Crawford,Sac,Calhoun,Greene,Gutherie,Audobon
+Greene,292,253,Loess Hills Region,Carroll,Gutherie,Dallas,Boone,Webster,Calhoun
+Shelby,173,304,Loess Hills Region,Harrison,Pottawattamie,Cass,Crawford,Audobon
+Audobon,229,305,Loess Hills Region,Cass,Shelby,Carroll,Gutherie
+Cass,228,363,Loess Hills Region,Pottawattamie,Montgomery,Adams,Adair,Audobon,Shelby
+Adair,286,363,Loess Hills Region,Cass,Gutherie,Adams,Union,Madison
+Montgomery,202,409,Loess Hills Region,Pottawattamie,Mills,Page,Adams,Cass
+Adams,255,409,Loess Hills Region,Montgomery,Cass,Adair,Taylor,Union
+Union,309,412,Loess Hills Region,Adair,Ringgold,Clark,Madison,Adams
+Fremont,142,451,Loess Hills Region,Mills,Page
+Page,204,451,Loess Hills Region,Fremont,Taylor,Montgomery
+Taylor,262,451,Loess Hills Region,Page,Adams,Ringgold
+Ringgold,317,452,Loess Hills Region,Union,Decatur,Taylor
+Mitchell,493,40,Eastern Iowa,Worth,Howard,Floyd
+Worth,438,38,Eastern Iowa,Winnebago,Mitchell,Cerro Gordo
+Hanncock,374,84,Eastern Iowa,Kossuth,Wright,Cerro Gordo,Winnebago
+Cerro Gordo,432,84,Eastern Iowa,Hanncock,Worth,Floyd,Franklin
+Floyd,489,84,Eastern Iowa,Cerro Gordo,Butler,Chickasaw,Mitchell
+Chickasaw,550,86,Eastern Iowa,Floyd,Howard,Winneshiek,Fayette,Bremer
+Humbolt,320,134,Eastern Iowa,Pocahontas,Kossuth,Wright,Webster
+Wright,378,136,Eastern Iowa,Humbolt,Webster,hamilton,Franklin,Hanncock
+Franklin,436,136,Eastern Iowa,Wright,Cerro Gordo,Butler,Hardin
+Butler,497,136,Eastern Iowa,Franklin,Grundy,Blackhawk,Bremer,Floyd
+Bremer,556,133,Eastern Iowa,Butler,Chickasaw,Fayette,Blackhawk
+Webster,317,186,Eastern Iowa,Greene,Calhoun,Pocahontas,Humbolt,Wright,hamilton,Boone
+hamilton,378,194,Eastern Iowa,Webster,Boone,Story,Wright,Hardin
+Hardin,439,196,Eastern Iowa,Story,hamilton,Franklin,Grundy,Marshall
+Grundy,496,190,Eastern Iowa,Hardin,Marshall,Tama,Butler,Blackhawk
+Blackhawk,554,182,Eastern Iowa,Tama,Grundy,Butler,Bremer,Buchanan,Benton
+Buchanan,617,182,Eastern Iowa,Blackhawk,Benton,Linn,Fayette,Deleware
+Marshall,471,249,Eastern Iowa,Story,Hardin,Grundy,Tama,Jasper
+Tama,530,241,Eastern Iowa,Marshall,Poweshiek,Benton,Grundy,Blackhawk
+Benton,590,241,Eastern Iowa,Tama,Blackhawk,Buchanan,Linn,Iowa
+Linn,648,242,Eastern Iowa,Benton,Johnson,Cedar,Jones,Deleware,Buchanan
+Jones,707,235,Eastern Iowa,Linn,Deleware,Dubuque,Jackson,Clinton,Cedar
+Jackson,772,228,Eastern Iowa,Jones,Clinton,Dubuque
+Poweshiek,535,302,Eastern Iowa,Jasper,Mahaska,Keokuk,Iowa,Tama
+Iowa,591,302,Eastern Iowa,Poweshiek,Benton,Johnson,Washington,Keokuk
+Johnson,644,302,Eastern Iowa,Iowa,Washington,Louisa,MUscatine,Cedar,Linn
+Cedar,709,287,Eastern Iowa,Johnson,Linn,Jones,MUscatine,Scott,Clinton
+Clinton,784,268,Eastern Iowa,Jones,Scott,Cedar,Jackson
+Mahaska,518,359,Eastern Iowa,Jasper,Marion,Monroe,Wapello,Poweshiek,Keokuk
+Keokuk,575,357,Eastern Iowa,Wapello,Mahaska,Poweshiek,Iowa,Washington,Jerfferson
+Washington,630,360,Eastern Iowa,Iowa,Keokuk,Jerfferson,Henry,Louisa,Johnson
+Louisa,691,375,Eastern Iowa,Henry,Washington,Johnson,MUscatine,Des Moines
+Clark,374,409,Eastern Iowa,Union,Madison,Decatur,Lucas,Warren
+Lucas,432,409,Eastern Iowa,Clark,Wayne,Monroe,Warren,Marion
+Monroe,492,409,Eastern Iowa,Lucas,Marion,Mahaska,Wapello,Appanose
+Wapello,551,409,Eastern Iowa,Monroe,Davis,Jerfferson,Keokuk,Mahaska
+Jerfferson,606,408,Eastern Iowa,Wapello,Keokuk,Washington,Henry,Van Buren
+Henry,657,419,Eastern Iowa,Jerfferson,Van Buren,Lee,Des Moines,Louisa,Washington
+Des Moines,713,415,Eastern Iowa,Lee,Henry,Louisa
+Decatur,374,450,Eastern Iowa,Ringgold,Clark,Wayne
+Wayne,430,450,Eastern Iowa,Decatur,Lucas,Appanose
+Appanose,488,450,Eastern Iowa,Wayne,Monroe,Davis
+Davis,551,450,Eastern Iowa,Appanose,Wapello,Van Buren
+Van Buren,609,450,Eastern Iowa,Davis,Jerfferson,Henry,Lee
+Lee,663,461,Eastern Iowa,Van Buren,Henry,Des Moines

@@ -157,9 +157,11 @@ public class Player implements Subject {
 	 * @param reinforceCountry set reinforce country name
 	 */
 	public void setReinforceCountry(String reinforceCountry) {
+
 		if(this.getStrategy() == "human") {
 			 notify_observer();
 		}
+
 		this.reinforceCountry = reinforceCountry;
 	}
 
