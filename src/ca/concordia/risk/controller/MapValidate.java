@@ -53,7 +53,6 @@ public class MapValidate {
 				valid_flag = false;
 			}
 		}
-
 		sc.close();
 		return valid_flag;
 	}
