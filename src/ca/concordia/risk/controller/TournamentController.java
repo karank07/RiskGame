@@ -87,7 +87,7 @@ public class TournamentController {
 			
 			Map.Entry mapElement = (Map.Entry) iterator.next();
 
-			System.out.println(mapElement.getKey() + " : " + mapElement.getValue());
+			System.out.println("Map: "+mapElement.getKey() + " : " + "Game Winner: " +mapElement.getValue());
 		}
 	}
 }
