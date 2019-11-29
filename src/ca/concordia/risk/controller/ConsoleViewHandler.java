@@ -155,6 +155,7 @@ public class ConsoleViewHandler {
 			if(commands.length==9) {
 				main.setupTournament(commands[2],commands[4],commands[6],commands[8]);
 			}
+			break;
 		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";

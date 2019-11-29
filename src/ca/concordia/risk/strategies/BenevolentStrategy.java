@@ -21,6 +21,9 @@ public class BenevolentStrategy {
 	static List<Country> weakestCountries = new ArrayList<Country>();
 
 	public static void BenevolentStrategyReinforcement(Player p) {
+		if(mainClassInstance.endTournament == true) {
+			return;
+		}
 		getWeakestCountry(p);
 		if (!p.hasMoreThanFiveCards()) {
 			Country weakest = weakestCountries.get(0);
@@ -44,24 +47,33 @@ public class BenevolentStrategy {
 		}
 	}
 
-	private static void BenevolentStrategyAttack(Player p) {
+	public static void BenevolentStrategyAttack(Player p) {
 		p.setCanAttack(false);
+		if(mainClassInstance.endTournament == true) {
+			return;
+		}
 		BenevolentStrategyFortify(p);
 
 	}
 
-	private static void BenevolentStrategyFortify(Player p) {
+	public static void BenevolentStrategyFortify(Player p) {
 		Country to = weakestCountries.get(0);
 		List<Country> cList = MainClass.player_country_map.get(p);
 		Country from = cList.get(0);
 		int i = 0;
+		if(mainClassInstance.endTournament == true) {
+		    
+		}
 		while (!mainClassInstance.isConnected(from, to, p, new ArrayList<Country>()) || from.getCountryArmy() <= 1
 				|| from == to) {
+			
 			from = cList.get(i);
 			i = (i >= cList.size() - 1) ? 0 : ++i;
 			if (i == 0) {
 				weakestCountries.remove(to);
-				BenevolentStrategyFortify(p);
+				//BenevolentStrategyFortify(p);
+				to = weakestCountries.get(0);
+				//break;;
 			}
 		}
 

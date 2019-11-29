@@ -28,9 +28,14 @@ public class RandomStrategy {
 	 *          in that country randomly.
 	 * 
 	 *          After that it will call function for doing reinforcement
-	 *  
+	 * 
 	 */
 	public static void RandomStrategyReinforcement(Player p) {
+
+		if (mainClassInstance.endTournament == true) {
+			return;
+		}
+
 		if (p.getPlayerCards().size() >= 5) {
 			if (p.getPlayerCards().get(Card.ARTILLERY) == 3) {
 				mainClassInstance.exchangeCardsForArmy(p, 3, 0, 0);
@@ -55,8 +60,7 @@ public class RandomStrategy {
 
 	private static void RandomStrategyAttack(Player p) {
 
-		System.out.println(
-				"PLAYER COUNTRY MAP SIZE BEFORE ATTACK : " + MainClass.player_country_map.get(p).size());
+		System.out.println("PLAYER COUNTRY MAP SIZE BEFORE ATTACK : " + MainClass.player_country_map.get(p).size());
 
 		List<Country> cList = new ArrayList<Country>();
 		for (Country c : MainClass.player_country_map.get(p)) {
@@ -66,7 +70,7 @@ public class RandomStrategy {
 
 			}
 		}
-		
+
 		Country attackerCountry = cList.get(r.nextInt(cList.size()));
 		Country defenderCountry = null;
 
@@ -76,18 +80,24 @@ public class RandomStrategy {
 //				break;
 //			}
 //		}
-		
+
 		List<Country> defenderCountryList = new ArrayList<Country>();
 		for (int i = 1; i <= Map.getM_instance().getCountries().size(); i++) {
-			//System.out.println(""+Map.getM_instance().getCountries().get(i)+" Country Owner : "+ Map.getM_instance().getCountries().get(i).getCountryOwner()  +" and current player: "+ p.getPlayerId());
+			// System.out.println(""+Map.getM_instance().getCountries().get(i)+" Country
+			// Owner : "+ Map.getM_instance().getCountries().get(i).getCountryOwner() +" and
+			// current player: "+ p.getPlayerId());
 			if (Map.getM_instance().getCountries().get(i).getCountryOwner() != p.getPlayerId()) {
-			
+
 				Country c = Map.getM_instance().getCountries().get(i);
-				//System.out.println("This Can be Defender COuntry: " + c.getCountryName());
-				
-				//System.out.println(">>>>>>>"+ attackerCountry.getCountryName()+" and " +c.getCountryName() +" Is Neighbour: "+ mainClassInstance.isNeighbour(attackerCountry, c) + " army in "+ attackerCountry.getCountryName() +" is "+ attackerCountry.getCountryArmy());
-				if (attackerCountry.getCountryArmy()>=2 && mainClassInstance.isNeighbour(attackerCountry, c)) {
-					//System.out.println("In defender list making: "+ "neighbour of "+ attackerCountry.getCountryName() + " is "+ c.getCountryName());
+				// System.out.println("This Can be Defender COuntry: " + c.getCountryName());
+
+				// System.out.println(">>>>>>>"+ attackerCountry.getCountryName()+" and "
+				// +c.getCountryName() +" Is Neighbour: "+
+				// mainClassInstance.isNeighbour(attackerCountry, c) + " army in "+
+				// attackerCountry.getCountryName() +" is "+ attackerCountry.getCountryArmy());
+				if (attackerCountry.getCountryArmy() >= 2 && mainClassInstance.isNeighbour(attackerCountry, c)) {
+					// System.out.println("In defender list making: "+ "neighbour of "+
+					// attackerCountry.getCountryName() + " is "+ c.getCountryName());
 					defenderCountryList.add(c);
 				}
 			}
@@ -102,25 +112,24 @@ public class RandomStrategy {
 		 * .get(r.nextInt(p.attackableCountries(attackerCountry).size())); } else {
 		 * RandomStrategyFortify(p); }
 		 */
-		if(defenderCountryList.size() == 0) {
+		if (defenderCountryList.size() == 0) {
 			RandomStrategyFortify(p);
 		}
 
-		System.out.println("attacker country: " + attackerCountry.getCountryName() +" Defender country List: "+ defenderCountryList);
+		System.out.println("attacker country: " + attackerCountry.getCountryName() + " Defender country List: "
+				+ defenderCountryList);
 		int temp_index = r.nextInt(defenderCountryList.size());
-		if(temp_index == 0) {
+		if (temp_index == 0) {
 			defenderCountry = defenderCountryList.get(0);
-		}
-		else {
+		} else {
 			defenderCountry = defenderCountryList.get(temp_index);
 
 		}
-		
+
 		int randomTimesAttack = r.nextInt(5) + 1; // Bw. 1 and 5
 
 		for (int i = 0; i < randomTimesAttack; i++) {
 
-			
 			int dice = attackerCountry.getCountryArmy() == 2 ? 1 : attackerCountry.getCountryArmy() == 3 ? 2 : 3;
 			mainClassInstance.doAttack(attackerCountry, defenderCountry, dice, p);
 			Player defender = MainClass.playerList.get(defenderCountry.getCountryOwner() - 1);
@@ -163,8 +172,9 @@ public class RandomStrategy {
 
 		for (int i = 0; i < mainClassInstance.player_country_map.get(p).size(); i++) {
 			Country c = mainClassInstance.player_country_map.get(p).get(i);
-			//if (mainClassInstance.isConnected(fromCountry, c, p, new ArrayList<Country>())) {
-			if(mainClassInstance.checkNeighbours(fromCountry, c, fromCountry.getCountryOwner())) {
+			// if (mainClassInstance.isConnected(fromCountry, c, p, new
+			// ArrayList<Country>())) {
+			if (mainClassInstance.checkNeighbours(fromCountry, c, fromCountry.getCountryOwner())) {
 				toCountryList.add(c);
 			}
 		}
