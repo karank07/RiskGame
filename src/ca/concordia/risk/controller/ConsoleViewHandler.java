@@ -1,13 +1,21 @@
 package ca.concordia.risk.controller;
 
+import ca.concordia.risk.model.GameState;
+import ca.concordia.risk.model.GameStateBuilder;
+import ca.concordia.risk.model.GameStateScenario;
 import ca.concordia.risk.model.Map;
+import ca.concordia.risk.model.Player;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 import ca.concordia.risk.view.Console;
 //import ca.concordia.risk.view.GameView;
 
 /**
- * This class handles the view and model class values for the same following the observer pattern
+ * This class handles the view and model class values for the same following the
+ * observer pattern
+ * 
  * @author Karan
  *
  */
@@ -15,6 +23,11 @@ public class ConsoleViewHandler {
 
 	static Console c;
 	MainClass main;
+	Map gm;
+	GameState gs;
+	ArrayList<Player> pl;
+	Player p;
+
 	public static void main(String[] args) {
 		c = new Console();
 		c.createConsole();
@@ -156,6 +169,71 @@ public class ConsoleViewHandler {
 				main.setupTournament(commands[2],commands[4],commands[6],commands[8]);
 			}
 			break;
+		case "savegame":
+			gm=Map.getM_instance();
+			if ((gm.getCountries().size() > 0) && (gm.getContinents().size() > 0)
+				&& (gm.getBorders().size() > 0)) {
+				try {
+					
+					GameStateBuilder gsb=new GameStateScenario() {
+					};
+					gs = new GameState();
+					gsb.setGameState(gs);
+					gsb.buildGameMap(gm);
+					gsb.buildPlayersList(pl);
+					gsb.buildPlayer(p);
+					gs = gsb.getGameState();
+					main.saveGameFile(gs, commands[1]);
+				}catch(Exception e) {
+					
+				}
+			}
+			break;
+			case "loadgame":
+				/*if (commands.length == 2) {
+						try {
+							gs = new GameState();
+							result = msc.loadGameReading(gs.getGameMap(), gs.getPlayersList(), gs.getPlayer(),
+									inputCommand[1]);
+							if (result.contains("Success")) {
+								GameStateBuilder gsb = new GameStateScenario();
+								gsb.setGameState(gs);
+								gs = gsb.getGameState();
+								gm = gs.getGameMap();
+								pl = gs.getPlayersList();
+								p = gs.getPlayer();
+								if (p.getGameState().equals("ATTACK")) {
+									if (!(p.getAttackerName().equals(""))) {
+										addInputCommandList(true, "reinforce");
+									} else if (p.getAttackerDice().size() == p.getDiceRolled()) {
+										addInputCommandList(true, "attack");
+									} else if (p.getDiceRolled() == 0) {
+										addInputCommandList(true, "attackmove");
+									} else {
+										addInputCommandList(true, "reinforce");
+									}
+								} else if (p.getGameState().equals("FORTIFY")) {
+									addInputCommandList(true, "attack");
+								} else if (p.getGameState().equals("STARTUP")) {
+									addInputCommandList(true, "loadmap");
+								}
+								if (!(p.getGameState().equals("STARTUP"))) {
+									executeBehaviour(pl.getListOfPlayers().get(p.getCurrentPlayerTurn()).getStrategy());
+								}
+							} else {
+								System.out.println("\nUnable to loadgame. Please try again later");
+							}
+						} catch (Exception ex) {
+							System.out.println("\nError Occurred. Please try again later");
+						}
+					} else {
+						System.out.println("\n" + inputCommand[1] + " file does not exist");
+					}
+				} else {
+					System.out.println("\nloadgame command format is incorrect");
+				}
+
+*/		
 		default:
 			// set flag for alert("Wrong Input!");
 			errorFlag = "Check commands again!";

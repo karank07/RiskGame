@@ -1,9 +1,11 @@
 package ca.concordia.risk.controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import ca.concordia.risk.model.Card;
 import ca.concordia.risk.model.Continent;
 import ca.concordia.risk.model.Country;
 import ca.concordia.risk.model.Dice;
-import ca.concordia.risk.model.GameSave;
+import ca.concordia.risk.model.GameState;
 import ca.concordia.risk.model.Map;
 import ca.concordia.risk.model.Player;
 import ca.concordia.risk.model.TournamentMode;
@@ -109,6 +111,7 @@ public class MainClass {
 		fileName = Paths.get("").toAbsolutePath().toString() + File.separator + "maps" + File.separator + fileName;
 
 		String fileData = "";
+
 		FileReader file;
 
 		try {
@@ -1682,7 +1685,6 @@ public class MainClass {
 		}
 
 		tournamentResult.results.replace(TournamentController.currentMap, temp);
-
 		if (tournamentResult.results.size() == tournamentObject.getGameMaps().size() && tournamentResult.results
 				.get(tournamentObject.getGameMaps().get(tournamentObject.getGameMaps().size() - 1))
 				.size() == tournamentObject.getNumGames()) {
@@ -1723,6 +1725,64 @@ public class MainClass {
 		System.out.println(tournamentResult.results);
 		tournamentController = new TournamentController();
 
+	}
+
+	public void saveGameFile(GameState gs, String filename) throws IOException {
+		mapInstance = gs.getGameMap();
+		playerList = gs.getPlayersList();
+		Player p = gs.getPlayer();
+
+		String path = Paths.get("").toAbsolutePath().toString() + File.separator + "savedfiles" + File.separator
+				+ filename;
+		File f = new File(path);
+		FileWriter fw = new FileWriter(f, false);
+		BufferedWriter bw = new BufferedWriter(fw);
+		f.createNewFile();
+
+		// writing continents to the file
+		bw.write("[continents]");
+		bw.newLine();
+		for (Integer i : mapInstance.getContinents().keySet()) {
+			Continent c = mapInstance.getContinents().get(i);
+			bw.write(i + " " + c.getContinentName() + " " + c.getContinentControlValue());
+			bw.newLine();
+		}
+
+		// writing countries to the file
+		bw.write("\n");
+		bw.write("[countries]");
+		bw.newLine();
+		for (Country c : mapInstance.getCountries().values()) {
+			bw.write(c.getCountryName() + " " + c.getContinentID() + " " + c.getCountryArmy());
+
+		}
+
+		// writing borders to the file
+		bw.write("\n");
+		bw.write("[borders]");
+		bw.newLine();
+
+		bw.newLine();
+		bw.write("\n");
+		bw.write("[players]");
+		for(Player player:main_instance.playerList) {
+			bw.write(player.getPlayerId() +" "+ player.getPlayerName());
+		}
+		bw.newLine();
+		bw.write("\n");
+		bw.write("[players]");
+		for(Player player:main_instance.playerList) {
+			for(Country c:main_instance.player_country_map.get(player)) {
+				bw.write(player.getPlayerName()+ " "+ c.getCountryName());
+			}
+			
+		}
+		bw.write("Turn "+turn);
+		bw.write("Tournament counter "+turnCounter);
+		bw.write("Game mode "+mode);
+		bw.write(tournamentObject.getGameMaps()+" "+ tournamentObject.getNumGames()+" "+tournamentObject.getMaxTurns());
+		
+		bw.flush();
 	}
 
 	/**

@@ -203,16 +203,9 @@ public class Map
 	 * This method copies the data of the GameSave class
 	 * @param savedGame variable of type GameSave
 	 */
-	public void copySavedData(GameSave savedGame){
-		savedGame.setContinents(continents);
-		savedGame.setCountries(countries);
-		savedGame.setBorders(borders);
-	}
-	
-	public void restoreData(GameSave savedGame)
-	{
-		continents = savedGame.getContinents();
-		countries = savedGame.getCountries();
-		borders = savedGame.getBorders();
-	}
+	/*
+	 * public void restoreData(GameSave savedGame) { continents =
+	 * savedGame.getContinents(); countries = savedGame.getCountries(); borders =
+	 * savedGame.getBorders(); }
+	 */
 }
